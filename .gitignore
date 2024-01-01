@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Other
+/.vscode
+/.idea
+/out
+__pycache__
