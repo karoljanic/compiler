@@ -2,6 +2,7 @@
 #define AST_DECLARATIONS_HPP
 
 #include <memory>
+#include <ostream>
 #include <vector>
 
 #include "AstLeftValue.hpp"
@@ -21,7 +22,9 @@ class AstDeclarations : public AstNode {
   AstDeclarations& operator=(AstDeclarations&&) = default;
 
   void addDeclaration(std::shared_ptr<AstLeftValue> declaration);
-  void print() const override;
+  const std::vector<std::shared_ptr<AstLeftValue>>& getDeclarations() const;
+
+  void print(std::ostream& out, int tab) const override;
 };
 
 #endif  // AST_DECLARATIONS_HPP

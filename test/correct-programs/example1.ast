@@ -1,0 +1,64 @@
+PROGRAM
+    PROC de( ArgsDeclaration: (var m, var n, var x, var y, var z, ) )
+        var a
+        var b
+        var r
+        var s
+        var reszta
+        var iloraz
+        var rr
+        var ss
+        var tmp
+        ASSIGN var a := var m
+        ASSIGN var b := var n
+        ASSIGN var x := num 1
+        ASSIGN var y := num 0
+        ASSIGN var r := var n
+        ASSIGN var s := var m - num 1
+        WHILE var b > num 0 DO
+            ASSIGN var reszta := var a % var b
+            ASSIGN var iloraz := var a / var b
+            ASSIGN var a := var b
+            ASSIGN var b := var reszta
+            ASSIGN var rr := var r
+            ASSIGN var tmp := var iloraz * var r
+            IF var x < var tmp
+            THEN
+                ASSIGN var r := var n * var iloraz
+            ELSE
+                ASSIGN var r := num 0
+            ENDIF
+
+            ASSIGN var r := var r + var x
+            ASSIGN var r := var r - var tmp
+            ASSIGN var ss := var s
+            ASSIGN var tmp := var iloraz * var s
+            IF var y < var tmp
+            THEN
+                ASSIGN var s := var m * var iloraz
+            ELSE
+                ASSIGN var s := num 0
+            ENDIF
+
+            ASSIGN var s := var s + var y
+            ASSIGN var s := var s - var tmp
+            ASSIGN var x := var rr
+            ASSIGN var y := var ss
+        ENDWHILE
+
+        ASSIGN var z := var a
+    ENDPROC
+    MAIN
+        var m
+        var n
+        var x
+        var y
+        var nwd
+        READ var m
+        READ var n
+        CALL de(ArgsList: (var m, var n, var x, var y, var nwd, ))
+        WRITE var x
+        WRITE var y
+        WRITE var nwd
+    ENDMAIN
+ENDPROGRAM

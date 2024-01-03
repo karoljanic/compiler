@@ -1,6 +1,8 @@
 #ifndef AST_RIGHT_VALUE_HPP
 #define AST_RIGHT_VALUE_HPP
 
+#include <ostream>
+
 #include "AstValue.hpp"
 
 class AstRightValue : public AstValue {
@@ -13,7 +15,7 @@ class AstRightValue : public AstValue {
   AstRightValue(AstRightValue&&) = default;
   AstRightValue& operator=(AstRightValue&&) = default;
 
-  virtual void print() const;
+  virtual void print(std::ostream& out, int tab) const;
 };
 
 #endif  // AST_RIGHT_VALUE_HPP

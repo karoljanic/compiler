@@ -2,12 +2,13 @@
 #define AST_COMMAND_HPP
 
 #include <memory>
+#include <ostream>
 
 #include "AstNode.hpp"
 
 class AstCommand : public AstNode {
  public:
-  enum CommandType { DEFAULT, ASSIGNMENT, IF, WHILE, REPEAT, PROCEDURE_CALL, READ, WRITE };
+  enum CommandType { UNDEFINED, ASSIGNMENT, IF, WHILE, REPEAT, PROCEDURE_CALL, READ, WRITE };
 
  protected:
   CommandType commandType;
@@ -22,7 +23,8 @@ class AstCommand : public AstNode {
   AstCommand& operator=(AstCommand&&) = default;
 
   virtual CommandType getCommandType() const;
-  virtual void print() const;
+
+  virtual void print(std::ostream& out, int tab) const;
 };
 
 #endif  // AST_COMMAND_HPP

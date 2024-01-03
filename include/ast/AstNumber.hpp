@@ -2,7 +2,7 @@
 #define AST_NUMBER_HPP
 
 #include <cstdint>
-#include <iostream>
+#include <ostream>
 
 #include "AstRightValue.hpp"
 
@@ -19,7 +19,9 @@ class AstNumber : public AstRightValue {
   AstNumber(AstNumber&&) = default;
   AstNumber& operator=(AstNumber&&) = default;
 
-  virtual void print() const;
+  uint64_t getValue() const;
+
+  virtual void print(std::ostream& out, int tab) const;
 };
 
 #endif  // AST_NUMBER_HPP

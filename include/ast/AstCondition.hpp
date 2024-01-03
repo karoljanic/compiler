@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <memory>
+#include <ostream>
 
 #include "AstNode.hpp"
 #include "AstValue.hpp"
@@ -25,7 +26,11 @@ class AstCondition : public AstNode {
   AstCondition(AstCondition&&) = default;
   AstCondition& operator=(AstCondition&&) = default;
 
-  virtual void print() const;
+  ConditionType getConditionType() const;
+  const std::shared_ptr<AstValue>& getLeft() const;
+  const std::shared_ptr<AstValue>& getRight() const;
+
+  virtual void print(std::ostream& out, int tab) const;
 };
 
 #endif  // AST_CONDITION_HPP

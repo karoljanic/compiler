@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <iostream>
 #include <memory>
+#include <ostream>
 #include <string>
 
 #include "AstLeftValue.hpp"
@@ -22,7 +23,10 @@ class AstArray : public AstLeftValue {
   AstArray(AstArray&&) = default;
   AstArray& operator=(AstArray&&) = default;
 
-  virtual void print() const;
+  const std::string& getName() const;
+  const std::shared_ptr<AstValue>& getArgument() const;
+
+  virtual void print(std::ostream& out, int tab) const;
 };
 
 #endif  // AST_ARRAY_HPP

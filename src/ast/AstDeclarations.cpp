@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../../include/ast/AstDeclarations.hpp"
 
 AstDeclarations::AstDeclarations() : AstNode(NodeType::DECLARATIONS) {}
@@ -12,9 +10,13 @@ void AstDeclarations::addDeclaration(std::shared_ptr<AstLeftValue> declaration) 
   declarations.push_back(declaration);
 }
 
-void AstDeclarations::print() const {
-  std::cout << "Declarations: " << std::endl;
+const std::vector<std::shared_ptr<AstLeftValue>>& AstDeclarations::getDeclarations() const {
+  return declarations;
+}
+
+void AstDeclarations::print(std::ostream& out, int tab) const {
   for (auto& declaration : declarations) {
-    declaration->print();
+    declaration->print(out, tab);
+    out << std::endl;
   }
 }

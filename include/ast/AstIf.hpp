@@ -2,6 +2,7 @@
 #define AST_IF_HPP
 
 #include <memory>
+#include <ostream>
 
 #include "AstCommand.hpp"
 #include "AstCommands.hpp"
@@ -23,11 +24,11 @@ class AstIf : public AstCommand {
   AstIf(AstIf&&) = default;
   AstIf& operator=(AstIf&&) = default;
 
-  std::shared_ptr<AstCondition> getCondition() const;
-  std::shared_ptr<AstCommands> getCommands() const;
-  std::shared_ptr<AstCommands> getElseCommands() const;
+  const std::shared_ptr<AstCondition>& getCondition() const;
+  const std::shared_ptr<AstCommands>& getCommands() const;
+  const std::shared_ptr<AstCommands>& getElseCommands() const;
 
-  void print() const override;
+  void print(std::ostream& out, int tab) const override;
 };
 
 #endif  // AST_IF_HPP

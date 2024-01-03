@@ -2,6 +2,7 @@
 #define AST_ARGS_LIST_HPP
 
 #include <memory>
+#include <ostream>
 #include <vector>
 
 #include "AstLeftValue.hpp"
@@ -21,8 +22,9 @@ class AstArgsList : public AstNode {
   AstArgsList& operator=(AstArgsList&&) = default;
 
   void addArg(std::shared_ptr<AstLeftValue> arg);
+  const std::vector<std::shared_ptr<AstLeftValue>>& getArgs() const;
 
-  virtual void print() const override;
+  virtual void print(std::ostream& out, int tab) const override;
 };
 
 #endif  // AST_ARGS_LIST_HPP

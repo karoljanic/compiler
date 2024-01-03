@@ -1,7 +1,7 @@
 #ifndef AST_VARIABLE_HPP
 #define AST_VARIABLE_HPP
 
-#include <iostream>
+#include <ostream>
 #include <string>
 
 #include "AstLeftValue.hpp"
@@ -19,7 +19,9 @@ class AstVariable : public AstLeftValue {
   AstVariable(AstVariable&&) = default;
   AstVariable& operator=(AstVariable&&) = default;
 
-  virtual void print() const override;
+  const std::string& getName() const;
+
+  virtual void print(std::ostream& out, int tab) const override;
 };
 
 #endif  // AST_VARIABLE_HPP

@@ -2,6 +2,7 @@
 #define AST_WRITE_HPP
 
 #include <memory>
+#include <ostream>
 
 #include "AstCommand.hpp"
 #include "AstValue.hpp"
@@ -19,7 +20,9 @@ class AstWrite : public AstCommand {
   AstWrite(AstWrite&&) = default;
   AstWrite& operator=(AstWrite&&) = default;
 
-  virtual void print() const;
+  const std::shared_ptr<AstValue>& getValue() const;
+
+  virtual void print(std::ostream& out, int tab) const;
 };
 
 #endif  // AST_WRITE_HPP

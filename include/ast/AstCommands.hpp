@@ -2,6 +2,7 @@
 #define AST_COMMANDS_HPP
 
 #include <memory>
+#include <ostream>
 #include <vector>
 
 #include "AstCommand.hpp"
@@ -21,9 +22,9 @@ class AstCommands : public AstNode {
   AstCommands& operator=(AstCommands&&) = default;
 
   void addCommand(std::shared_ptr<AstCommand> command);
+  const std::vector<std::shared_ptr<AstCommand>>& getCommands();
 
-  std::vector<std::shared_ptr<AstCommand>>& getCommands();
-  void print() const override;
+  void print(std::ostream& out, int tab) const override;
 };
 
 #endif  // AST_COMMANDS_HPP

@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../../include/ast/AstProcedures.hpp"
 
 AstProcedures::AstProcedures() : AstNode(NodeType::PROCEDURES) {}
@@ -12,13 +10,13 @@ void AstProcedures::addProcedure(std::shared_ptr<AstProcedure> procedure) {
   procedures.push_back(procedure);
 }
 
-std::vector<std::shared_ptr<AstProcedure>>& AstProcedures::getProcedures() {
+const std::vector<std::shared_ptr<AstProcedure>>& AstProcedures::getProcedures() const {
   return procedures;
 }
 
-void AstProcedures::print() const {
-  std::cout << "Procedures: " << std::endl;
+void AstProcedures::print(std::ostream& out, int tab) const {
   for (auto procedure : procedures) {
-    procedure->print();
+    procedure->print(out, tab);
+    out << std::endl;
   }
 }

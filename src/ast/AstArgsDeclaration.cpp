@@ -1,9 +1,8 @@
 #include "../../include/ast/AstArgsDeclaration.hpp"
-#include <iostream>
 
-AstArgsDeclaration::AstArgsDeclaration() : AstNode(NodeType::ARGS_LIST) {}
+AstArgsDeclaration::AstArgsDeclaration() : AstNode(NodeType::ARGS_DECLARATION) {}
 
-AstArgsDeclaration::AstArgsDeclaration(std::shared_ptr<AstLeftValue> arg) : AstNode(NodeType::ARGS_LIST) {
+AstArgsDeclaration::AstArgsDeclaration(std::shared_ptr<AstLeftValue> arg) : AstNode(NodeType::ARGS_DECLARATION) {
   args.push_back(arg);
 }
 
@@ -11,11 +10,15 @@ void AstArgsDeclaration::addArg(std::shared_ptr<AstLeftValue> arg) {
   args.push_back(arg);
 }
 
-void AstArgsDeclaration::print() const {
-  std::cout << "ArgsDeclaration: (";
+const std::vector<std::shared_ptr<AstLeftValue>>& AstArgsDeclaration::getArgs() const {
+  return args;
+}
+
+void AstArgsDeclaration::print(std::ostream& out, int tab) const {
+  out << std::string(tab, ' ') << "ArgsDeclaration: (";
   for (auto& arg : args) {
-    arg->print();
-    std::cout << ", ";
+    arg->print(out, 0);
+    out << ", ";
   }
-  std::cout << ")" << std::endl;
+  out << ")";
 }

@@ -1,0 +1,34 @@
+PROGRAM
+    PROC power( ArgsDeclaration: (var a, var b, var c, var d, ) )
+        var pot
+        var wyk
+        var o
+        ASSIGN var d := num 1
+        ASSIGN var wyk := var b
+        ASSIGN var pot := var a % var c
+        WHILE var wyk > num 0 DO
+            ASSIGN var o := var wyk % num 2
+            IF var o == num 1
+            THEN
+                ASSIGN var d := var d * var pot
+                ASSIGN var d := var d % var c
+            ENDIF
+
+            ASSIGN var wyk := var wyk / num 2
+            ASSIGN var pot := var pot * var pot
+            ASSIGN var pot := var pot % var c
+        ENDWHILE
+
+    ENDPROC
+    MAIN
+        var a
+        var b
+        var c
+        var d
+        READ var a
+        READ var b
+        READ var c
+        CALL power(ArgsList: (var a, var b, var c, var d, ))
+        WRITE var d
+    ENDMAIN
+ENDPROGRAM

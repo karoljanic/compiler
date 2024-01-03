@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../../include/ast/AstNode.hpp"
 
 AstNode::AstNode() : nodeType(NodeType::DEFAULT) {}
@@ -10,6 +8,6 @@ AstNode::NodeType AstNode::getNodeType() const {
   return nodeType;
 }
 
-void AstNode::print() const {
-  std::cout << "AstNode" << std::endl;
+void AstNode::print(std::ostream& out, int tab) const {
+  out << std::string(tab, ' ') << "NODE";
 }

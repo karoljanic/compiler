@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../../include/ast/AstArray.hpp"
 
 AstArray::AstArray() : AstLeftValue(NodeType::ARRAY) {}
@@ -7,10 +5,18 @@ AstArray::AstArray() : AstLeftValue(NodeType::ARRAY) {}
 AstArray::AstArray(const std::string& name, std::shared_ptr<AstValue> argument)
     : AstLeftValue(NodeType::ARRAY), name(name), argument(argument) {}
 
-void AstArray::print() const {
-  std::cout << name << "[";
+const std::string& AstArray::getName() const {
+  return name;
+}
+
+const std::shared_ptr<AstValue>& AstArray::getArgument() const {
+  return argument;
+}
+
+void AstArray::print(std::ostream& out, int tab) const {
+  out << std::string(tab, ' ') << "array " << name << "[";
   if (argument != nullptr) {
-    argument->print();
+    argument->print(out, 0);
   }
-  std::cout << "]";
+  out << "]";
 }

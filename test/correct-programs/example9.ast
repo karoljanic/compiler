@@ -1,0 +1,32 @@
+PROGRAM
+    PROC factorial( ArgsDeclaration: (array s[], var n, ) )
+        var i
+        var j
+        ASSIGN array s[num 0] := num 1
+        ASSIGN var i := num 1
+        ASSIGN var j := num 0
+        WHILE var i <= var n DO
+            ASSIGN array s[var i] := array s[var j] * var i
+            ASSIGN var i := var i + num 1
+            ASSIGN var j := var j + num 1
+        ENDWHILE
+
+    ENDPROC
+    PROC bc( ArgsDeclaration: (var n, var k, var m, ) )
+        array s[num 100]
+        var p
+        CALL factorial(ArgsList: (var s, var n, ))
+        ASSIGN var p := var n - var k
+        ASSIGN var m := array s[var n] / array s[var k]
+        ASSIGN var m := var m / array s[var p]
+    ENDPROC
+    MAIN
+        var n
+        var k
+        var w
+        READ var n
+        READ var k
+        CALL bc(ArgsList: (var n, var k, var w, ))
+        WRITE var w
+    ENDMAIN
+ENDPROGRAM

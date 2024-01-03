@@ -2,6 +2,7 @@
 #define AST_PROCEDURE_CALL_HPP
 
 #include <memory>
+#include <ostream>
 #include <string>
 
 #include "AstArgsList.hpp"
@@ -21,7 +22,10 @@ class AstProcedureCall : public AstCommand {
   AstProcedureCall(AstProcedureCall&&) = default;
   AstProcedureCall& operator=(AstProcedureCall&&) = default;
 
-  virtual void print() const;
+  const std::string& getName() const;
+  const std::shared_ptr<AstArgsList>& getArgsList() const;
+
+  virtual void print(std::ostream& out, int tab) const;
 };
 
 #endif  // AST_PROCEDURE_CALL_HPP

@@ -1,0 +1,41 @@
+PROGRAM
+    PROC s( ArgsDeclaration: (var n, var m, ) )
+        var i
+        var o
+        ASSIGN var m := num 1
+        ASSIGN var i := var n
+        WHILE var i > num 0 DO
+            ASSIGN var o := var i % num 2
+            IF var o == num 1
+            THEN
+                ASSIGN var m := var m * var i
+            ELSE
+                ASSIGN var m := var i * var m
+            ENDIF
+
+            ASSIGN var i := var i - num 1
+        ENDWHILE
+
+    ENDPROC
+    PROC bc( ArgsDeclaration: (var n, var k, var m, ) )
+        var p
+        var a
+        var b
+        var c
+        CALL s(ArgsList: (var n, var a, ))
+        ASSIGN var p := var n - var k
+        CALL s(ArgsList: (var p, var b, ))
+        CALL s(ArgsList: (var k, var c, ))
+        ASSIGN var m := var a / var b
+        ASSIGN var m := var m / var c
+    ENDPROC
+    MAIN
+        var n
+        var k
+        var w
+        READ var n
+        READ var k
+        CALL bc(ArgsList: (var n, var k, var w, ))
+        WRITE var w
+    ENDMAIN
+ENDPROGRAM

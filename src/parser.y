@@ -31,7 +31,7 @@
     #include "../include/ast/AstMain.hpp"
     #include "../include/ast/AstProgram.hpp"
 
-    #define YAC_DEBUG
+    #undef YAC_DEBUG
 
     static void yyerror(const char *msg);
     static int yyparse(void);
@@ -41,6 +41,50 @@
 
     static ParserResult parserResult { ParserResultCode::SUCCESS, nullptr, nullptr };
 
+    static std::shared_ptr<AstValue> castAstValue(AstValue* value) {
+        switch(value->getNodeType()) {
+            case AstNode::NodeType::VARIABLE:
+                return std::make_shared<AstVariable>(*dynamic_cast<AstVariable*>(value));
+            case AstNode::NodeType::ARRAY:
+                return std::make_shared<AstArray>(*dynamic_cast<AstArray*>(value));
+            case AstNode::NodeType::NUMBER:
+                return std::make_shared<AstNumber>(*dynamic_cast<AstNumber*>(value));
+            default:
+                return nullptr;
+        }
+    }
+
+    static std::shared_ptr<AstLeftValue> castAstLValue(AstLeftValue* value) {
+            switch(value->getNodeType()) {
+                case AstNode::NodeType::VARIABLE:
+                    return std::make_shared<AstVariable>(*dynamic_cast<AstVariable*>(value));
+                case AstNode::NodeType::ARRAY:
+                    return std::make_shared<AstArray>(*dynamic_cast<AstArray*>(value));
+                default:
+                    return nullptr;
+            }
+        }
+
+    static std::shared_ptr<AstCommand> castAstCommand(AstCommand* command) {
+        switch(command->getCommandType()) {
+            case AstCommand::CommandType::ASSIGNMENT:
+                return std::make_shared<AstAssignment>(*dynamic_cast<AstAssignment*>(command));
+            case AstCommand::CommandType::IF:
+                return std::make_shared<AstIf>(*dynamic_cast<AstIf*>(command));
+            case AstCommand::CommandType::WHILE:
+                return std::make_shared<AstWhile>(*dynamic_cast<AstWhile*>(command));
+            case AstCommand::CommandType::REPEAT:
+                return std::make_shared<AstRepeat>(*dynamic_cast<AstRepeat*>(command));
+            case AstCommand::CommandType::PROCEDURE_CALL:
+                return std::make_shared<AstProcedureCall>(*dynamic_cast<AstProcedureCall*>(command));
+            case AstCommand::CommandType::READ:
+                return std::make_shared<AstRead>(*dynamic_cast<AstRead*>(command));
+            case AstCommand::CommandType::WRITE:
+                return std::make_shared<AstWrite>(*dynamic_cast<AstWrite*>(command));
+            case AstCommand::CommandType::UNDEFINED:
+                return nullptr;
+        }
+    }
 %}
 
 %code requires
@@ -174,9 +218,7 @@ program:
         std::cout << "Yac debug: program parsed successfully" << std::endl;
     #endif
 
-        const auto procedures = std::make_shared<AstProcedures>(*$1);
-        const auto main = std::make_shared<AstMain>(*$2);
-        $$ = new AstProgram(procedures, main);
+        $$ = new AstProgram(std::make_shared<AstProcedures>(*$1), std::make_shared<AstMain>(*$2));
 
         parserResult.ast = std::shared_ptr<AstProgram>($$);
     }
@@ -188,8 +230,7 @@ procedures:
         std::cout << "Yac debug: procedure(head, declarations, commands) parsed successfully" << std::endl;
     #endif
 
-        const auto procedure = std::make_shared<AstProcedure>($2->getHeader(), $2->getDeclarations(), $3->getCommands());
-        $$->addProcedure(procedure);
+        $$->addProcedure(std::make_shared<AstProcedure>($2->getHeader(), $2->getDeclarations(), $3->getCommands()));
     }
 |
     procedures simple_procedure_begin procedure_end {
@@ -197,8 +238,7 @@ procedures:
         std::cout << "Yac debug: procedure(head, commands) parsed successfully" << std::endl;
     #endif
 
-        const auto procedure = std::make_shared<AstProcedure>($2->getHeader(), nullptr, $2->getCommands());
-        $$->addProcedure(procedure);
+        $$->addProcedure(std::make_shared<AstProcedure>($2->getHeader(), $2->getDeclarations(), $3->getCommands()));
     }
 |
     %empty {
@@ -216,8 +256,7 @@ simple_procedure_begin:
         std::cout << "Yac debug: simple_procedure_begin parsed successfully" << std::endl;
     #endif
 
-        const auto procedureHeader = std::make_shared<AstProcedureHeader>(*$2);
-        $$ = new AstProcedure(procedureHeader, nullptr, nullptr);
+        $$ = new AstProcedure(std::make_shared<AstProcedureHeader>(*$2), std::make_shared<AstDeclarations>(), nullptr);
     }
 ;
 
@@ -227,9 +266,7 @@ complex_procedure_begin:
         std::cout << "Yac debug: complex_procedure_begin parsed successfully" << std::endl;
     #endif
 
-        const auto procedureHeader = std::make_shared<AstProcedureHeader>(*$2);
-        const auto declarations = std::make_shared<AstDeclarations>(*$4);
-        $$ = new AstProcedure(procedureHeader, declarations, nullptr);
+        $$ = new AstProcedure(std::make_shared<AstProcedureHeader>(*$2), std::make_shared<AstDeclarations>(*$4), nullptr);
     }
 ;
 
@@ -239,8 +276,7 @@ procedure_end:
         std::cout << "Yac debug: procedure_end parsed successfully" << std::endl;
     #endif
 
-        const auto commands = std::make_shared<AstCommands>(*$1);
-        $$ = new AstProcedure(nullptr, nullptr, commands);
+        $$ = new AstProcedure(nullptr, nullptr, std::make_shared<AstCommands>(*$1));
     }
 ;
 
@@ -250,9 +286,7 @@ main:
         std::cout << "Yac debug: main(declarations, commands) parsed successfully" << std::endl;
     #endif
 
-        const auto declarations = std::make_shared<AstDeclarations>(*$3);
-        const auto commands = std::make_shared<AstCommands>(*$5);
-        $$ = new AstMain(declarations, commands);
+        $$ = new AstMain(std::make_shared<AstDeclarations>(*$3), std::make_shared<AstCommands>(*$5));
     }
 |
     PROGRAM IS IN commands END {
@@ -260,8 +294,7 @@ main:
         std::cout << "Yac debug: main(commands) parsed successfully" << std::endl;
     #endif
 
-        const auto commands = std::make_shared<AstCommands>(*$4);
-        $$ = new AstMain(nullptr, commands);
+        $$ = new AstMain(nullptr, std::make_shared<AstCommands>(*$4));
     }
 ;
 
@@ -271,8 +304,7 @@ commands:
         std::cout << "Yac debug: commands(commands, command) parsed successfully" << std::endl;
     #endif
 
-        const auto command = std::make_shared<AstCommand>(*$2);
-        $$->addCommand(command);
+        $$->addCommand(castAstCommand($2));
     }
 |
     command {
@@ -280,8 +312,7 @@ commands:
         std::cout << "Yac debug: commands(command) parsed successfully" << std::endl;
     #endif
 
-        const auto command = std::make_shared<AstCommand>(*$1);
-        $$ = new AstCommands(command);
+        $$ = new AstCommands(castAstCommand($1));
     }
 ;
 
@@ -291,24 +322,20 @@ command:
         std::cout << "Yac debug: command(assign;) parsed successfully" << std::endl;
     #endif
 
-        const auto lvalue = std::make_shared<AstLeftValue>(*$1);
-        const auto expression = std::make_shared<AstExpression>(*$3);
-        $$ = new AstAssignment(lvalue, expression);
+        $$ = new AstAssignment(castAstLValue($1), std::make_shared<AstExpression>(*$3));
     }
 |
     if_begin if_else if_else_end {
     #ifdef YAC_DEBUG
         std::cout << "Yac debug: command(if then else endif) parsed successfully" << std::endl;
     #endif
-
-        $$ = new AstIf($1->getCondition(), $2->getCommands(), $3->getCommands());
+        $$ = new AstIf($1->getCondition(), $2->getCommands(), $3->getElseCommands());
     }
 |
     if_begin if_end {
     #ifdef YAC_DEBUG
         std::cout << "Yac debug: command(if then endif) parsed successfully" << std::endl;
     #endif
-
         $$ = new AstIf($1->getCondition(), $2->getCommands(), nullptr);
     }
 |
@@ -341,8 +368,7 @@ command:
         std::cout << "Yac debug: command(read;) parsed successfully" << std::endl;
     #endif
 
-        const auto lvalue = std::make_shared<AstLeftValue>(*$2);
-        $$ = new AstRead(lvalue);
+        $$ = new AstRead(castAstLValue($2));
     }
 |
     WRITE value SEMICOLON {
@@ -350,8 +376,7 @@ command:
         std::cout << "Yac debug: command(write;) parsed successfully" << std::endl;
     #endif
 
-        const auto value = std::make_shared<AstValue>(*$2);
-        $$ = new AstWrite(value);
+        $$ = new AstWrite(castAstValue($2));
     }
 ;
 
@@ -361,8 +386,7 @@ if_begin:
         std::cout << "Yac debug: if_end parsed successfully" << std::endl;
     #endif
 
-        const auto condition = std::make_shared<AstCondition>(*$2);
-        $$ = new AstIf(condition, nullptr, nullptr);
+        $$ = new AstIf(std::make_shared<AstCondition>(*$2), nullptr, nullptr);
     }
 ;
 
@@ -372,8 +396,7 @@ if_else:
         std::cout << "Yac debug: if_else parsed successfully" << std::endl;
     #endif
 
-        const auto commands = std::make_shared<AstCommands>(*$1);
-        $$ = new AstIf(nullptr, commands, nullptr);
+        $$ = new AstIf(nullptr, std::make_shared<AstCommands>(*$1), nullptr);
     }
 ;
 
@@ -383,8 +406,7 @@ if_end:
         std::cout << "Yac debug: if_end parsed successfully" << std::endl;
     #endif
 
-        const auto commands = std::make_shared<AstCommands>(*$1);
-        $$ = new AstIf(nullptr, commands, nullptr);
+        $$ = new AstIf(nullptr, std::make_shared<AstCommands>(*$1), nullptr);
     }
 ;
 
@@ -394,8 +416,7 @@ if_else_end:
         std::cout << "Yac debug: if_else_end parsed successfully" << std::endl;
     #endif
 
-        const auto commands = std::make_shared<AstCommands>(*$1);
-        $$ = new AstIf(nullptr, nullptr, commands);
+        $$ = new AstIf(nullptr, nullptr, std::make_shared<AstCommands>(*$1));
     }
 ;
 
@@ -405,8 +426,7 @@ while_begin:
         std::cout << "Yac debug: while_begin parsed successfully" << std::endl;
     #endif
 
-        const auto condition = std::make_shared<AstCondition>(*$2);
-        $$ = new AstWhile(condition, nullptr);
+        $$ = new AstWhile(std::make_shared<AstCondition>(*$2), nullptr);
     }
 ;
 
@@ -416,8 +436,7 @@ while_end:
         std::cout << "Yac debug: while_end parsed successfully" << std::endl;
     #endif
 
-        const auto commands = std::make_shared<AstCommands>(*$1);
-        $$ = new AstWhile(nullptr, commands);
+        $$ = new AstWhile(nullptr, std::make_shared<AstCommands>(*$1));
     }
 ;
 
@@ -435,9 +454,7 @@ repeat_end:
         std::cout << "Yac debug: repeat_end parsed successfully" << std::endl;
     #endif
 
-        const auto commands = std::make_shared<AstCommands>(*$1);
-        const auto condition = std::make_shared<AstCondition>(*$3);
-        $$ = new AstRepeat(condition, commands);
+        $$ = new AstRepeat(std::make_shared<AstCondition>(*$3), std::make_shared<AstCommands>(*$1));
     }
 ;
 
@@ -447,9 +464,7 @@ procedure_header:
         std::cout << "Yac debug: procedure_header(variable, (args_declaration)) parsed successfully" << std::endl;
     #endif
 
-        const auto name = *$1.stringValue;
-        const auto args = std::make_shared<AstArgsDeclaration>(*$3);
-        $$ = new AstProcedureHeader(name, args);
+        $$ = new AstProcedureHeader(*$1.stringValue, std::make_shared<AstArgsDeclaration>(*$3));
     }
 ;
 
@@ -459,9 +474,7 @@ procedure_call:
         std::cout << "Yac debug: procedure_call(variable, (args)) parsed successfully" << std::endl;
     #endif
 
-        const auto name = *$1.stringValue;
-        const auto args = std::make_shared<AstArgsList>(*$3);
-        $$ = new AstProcedureCall(name, args);
+        $$ = new AstProcedureCall(*$1.stringValue, std::make_shared<AstArgsList>(*$3));
     }
 ;
 
@@ -471,9 +484,7 @@ declarations:
         std::cout << "Yac debug: declarations(declarations, variable) parsed successfully" << std::endl;
     #endif
 
-        const auto name = *$3.stringValue;
-        const auto variable = std::make_shared<AstVariable>(name);
-        $$->addDeclaration(variable);
+        $$->addDeclaration(std::make_shared<AstVariable>(*$3.stringValue));
     }
 |
     declarations COMMA VARIABLE LEFT_ARRAY_BRACKET NUMBER RIGHT_ARRAY_BRACKET {
@@ -481,10 +492,7 @@ declarations:
         std::cout << "Yac debug: declarations(declarations, variable[NUMBER]) parsed successfully" << std::endl;
     #endif
 
-        const auto name = *$3.stringValue;
-        const auto arg = std::make_shared<AstNumber>($5.numericalValue);
-        const auto array = std::make_shared<AstArray>(name, arg);
-        $$->addDeclaration(array);
+        $$->addDeclaration(std::make_shared<AstArray>(*$3.stringValue, std::make_shared<AstNumber>($5.numericalValue)));
     }
 |
     VARIABLE {
@@ -492,9 +500,7 @@ declarations:
         std::cout << "Yac debug: declarations(variable) parsed successfully" << std::endl;
     #endif
 
-        const auto name = *$1.stringValue;
-        const auto variable = std::make_shared<AstVariable>(name);
-        $$ = new AstDeclarations(variable);
+        $$ = new AstDeclarations(std::make_shared<AstVariable>(*$1.stringValue));
     }
 |
     VARIABLE LEFT_ARRAY_BRACKET NUMBER RIGHT_ARRAY_BRACKET {
@@ -502,10 +508,7 @@ declarations:
         std::cout << "Yac debug: declarations(variable[NUMBER]) parsed successfully" << std::endl;
     #endif
 
-        const auto name = *$1.stringValue;
-        const auto arg = std::make_shared<AstNumber>($3.numericalValue);
-        const auto array = std::make_shared<AstArray>(name, arg);
-        $$ = new AstDeclarations(array);
+        $$ = new AstDeclarations(std::make_shared<AstArray>(*$1.stringValue, std::make_shared<AstNumber>($3.numericalValue)));
     }
 ;
 
@@ -515,8 +518,7 @@ args_declaration:
         std::cout << "Yac debug: args_declaration(args_declaration, variable) parsed successfully" << std::endl;
     #endif
 
-        const auto arg = std::make_shared<AstVariable>(*$3.stringValue);
-        $$->addArg(arg);
+        $$->addArg(std::make_shared<AstVariable>(*$3.stringValue));
     }
 |
     args_declaration COMMA ARRAY_TYPE VARIABLE {
@@ -524,8 +526,7 @@ args_declaration:
         std::cout << "Yac debug: args_declaration(args_declaration, T variable) parsed successfully" << std::endl;
     #endif
 
-        const auto arg = std::make_shared<AstArray>(*$4.stringValue, nullptr);
-        $$->addArg(arg);
+        $$->addArg(std::make_shared<AstArray>(*$4.stringValue, nullptr));
     }
 |
     VARIABLE {
@@ -533,8 +534,7 @@ args_declaration:
         std::cout << "Yac debug: args_declaration(variable) parsed successfully" << std::endl;
     #endif
 
-        const auto arg = std::make_shared<AstVariable>(*$1.stringValue);
-        $$ = new AstArgsDeclaration(arg);
+        $$ = new AstArgsDeclaration(std::make_shared<AstVariable>(*$1.stringValue));
     }
 |
     ARRAY_TYPE VARIABLE {
@@ -542,8 +542,7 @@ args_declaration:
         std::cout << "Yac debug: args_declaration(T variable) parsed successfully" << std::endl;
     #endif
 
-        const auto arg = std::make_shared<AstArray>(*$2.stringValue, nullptr);
-        $$ = new AstArgsDeclaration(arg);
+        $$ = new AstArgsDeclaration(std::make_shared<AstArray>(*$2.stringValue, nullptr));
     }
 ;
 
@@ -553,7 +552,7 @@ args:
         std::cout << "Yac debug: args(args, lvalue) parsed successfully" << std::endl;
     #endif
 
-        $$->addArg(std::make_shared<AstLeftValue>(*$3));
+        $$->addArg(castAstLValue($3));
     }
 |
     lvalue {
@@ -561,7 +560,7 @@ args:
         std::cout << "Yac debug: args(lvalue) parsed successfully" << std::endl;
     #endif
 
-        $$ = new AstArgsList(std::make_shared<AstLeftValue>(*$1));
+        $$ = new AstArgsList(castAstLValue($1));
     }
 ;
 
@@ -570,8 +569,7 @@ expression:
     #ifdef YAC_DEBUG
         std::cout << "Yac debug: expression(value) parsed successfully" << std::endl;
     #endif
-
-        $$ = new AstExpression(AstExpression::ExpressionType::VALUE, std::make_shared<AstValue>(*$1));
+        $$ = new AstExpression(AstExpression::ExpressionType::VALUE, castAstValue($1));
     }
 |
     value ADD value {
@@ -579,7 +577,7 @@ expression:
         std::cout << "Yac debug: expression(value + value) parsed successfully" << std::endl;
     #endif
 
-        $$ = new AstExpression(AstExpression::ExpressionType::ADD, std::make_shared<AstValue>(*$1), std::make_shared<AstValue>(*$3));
+        $$ = new AstExpression(AstExpression::ExpressionType::ADD, castAstValue($1), castAstValue($3));
     }
 |
     value SUB value {
@@ -587,7 +585,8 @@ expression:
         std::cout << "Yac debug: expression(value - value) parsed successfully" << std::endl;
     #endif
 
-        $$ = new AstExpression(AstExpression::ExpressionType::SUB, std::make_shared<AstValue>(*$1), std::make_shared<AstValue>(*$3));
+
+        $$ = new AstExpression(AstExpression::ExpressionType::SUB, castAstValue($1), castAstValue($3));
     }
 |
     value MUL value {
@@ -595,7 +594,7 @@ expression:
         std::cout << "Yac debug: expression(value * value) parsed successfully" << std::endl;
     #endif
 
-        $$ = new AstExpression(AstExpression::ExpressionType::MUL, std::make_shared<AstValue>(*$1), std::make_shared<AstValue>(*$3));
+        $$ = new AstExpression(AstExpression::ExpressionType::MUL, castAstValue($1), castAstValue($3));
     }
 |
     value DIV value {
@@ -603,7 +602,7 @@ expression:
         std::cout << "Yac debug: expression(value / value) parsed successfully" << std::endl;
     #endif
 
-        $$ = new AstExpression(AstExpression::ExpressionType::DIV, std::make_shared<AstValue>(*$1), std::make_shared<AstValue>(*$3));
+        $$ = new AstExpression(AstExpression::ExpressionType::DIV, castAstValue($1), castAstValue($3));
     }
 |
     value MOD value {
@@ -611,7 +610,7 @@ expression:
         std::cout << "Yac debug: expression(value % value) parsed successfully" << std::endl;
     #endif
 
-        $$ = new AstExpression(AstExpression::ExpressionType::MOD, std::make_shared<AstValue>(*$1), std::make_shared<AstValue>(*$3));
+        $$ = new AstExpression(AstExpression::ExpressionType::MOD, castAstValue($1), castAstValue($3));
     }
 ;
 
@@ -621,7 +620,7 @@ condition:
         std::cout << "Yac debug: condition(value == value) parsed successfully" << std::endl;
     #endif
 
-        $$ = new AstCondition(AstCondition::ConditionType::EQUAL, std::make_shared<AstValue>(*$1), std::make_shared<AstValue>(*$3));
+        $$ = new AstCondition(AstCondition::ConditionType::EQUAL, castAstValue($1), castAstValue($3));
     }
 |
     value NOT_EQUAL value {
@@ -629,7 +628,7 @@ condition:
         std::cout << "Yac debug: condition(value != value) parsed successfully" << std::endl;
     #endif
 
-        $$ = new AstCondition(AstCondition::ConditionType::NOT_EQUAL, std::make_shared<AstValue>(*$1), std::make_shared<AstValue>(*$3));
+        $$ = new AstCondition(AstCondition::ConditionType::NOT_EQUAL, castAstValue($1), castAstValue($3));
     }
 |
     value GREATER value {
@@ -637,7 +636,7 @@ condition:
         std::cout << "Yac debug: condition(value > value) parsed successfully" << std::endl;
     #endif
 
-        $$ = new AstCondition(AstCondition::ConditionType::GREATER, std::make_shared<AstValue>(*$1), std::make_shared<AstValue>(*$3));
+        $$ = new AstCondition(AstCondition::ConditionType::GREATER, castAstValue($1), castAstValue($3));
     }
 |
     value LESS value {
@@ -645,7 +644,7 @@ condition:
         std::cout << "Yac debug: condition(value < value) parsed successfully" << std::endl;
     #endif
 
-        $$ = new AstCondition(AstCondition::ConditionType::LESS, std::make_shared<AstValue>(*$1), std::make_shared<AstValue>(*$3));
+        $$ = new AstCondition(AstCondition::ConditionType::LESS, castAstValue($1), castAstValue($3));
     }
 |
     value GREATER_EQUAL value {
@@ -653,7 +652,7 @@ condition:
         std::cout << "Yac debug: condition(value >= value) parsed successfully" << std::endl;
     #endif
 
-        $$ = new AstCondition(AstCondition::ConditionType::GREATER_EQUAL, std::make_shared<AstValue>(*$1), std::make_shared<AstValue>(*$3));
+        $$ = new AstCondition(AstCondition::ConditionType::GREATER_EQUAL, castAstValue($1), castAstValue($3));
     }
 |
     value LESS_EQUAL value {
@@ -661,7 +660,7 @@ condition:
         std::cout << "Yac debug: condition(value <= value) parsed successfully" << std::endl;
     #endif
 
-        $$ = new AstCondition(AstCondition::ConditionType::LESS_EQUAL, std::make_shared<AstValue>(*$1), std::make_shared<AstValue>(*$3));
+        $$ = new AstCondition(AstCondition::ConditionType::LESS_EQUAL, castAstValue($1), castAstValue($3));
     }
 ;
 
@@ -693,8 +692,7 @@ lvalue:
         std::cout << "Yac debug: lvalue(variable[NUMBER]) parsed successfully" << std::endl;
     #endif
 
-        const auto arg = std::make_shared<AstNumber>($3.numericalValue);
-        $$ = new AstArray(*$1.stringValue, arg);
+        $$ = new AstArray(*$1.stringValue, std::make_shared<AstNumber>($3.numericalValue));
     }
 |
     VARIABLE LEFT_ARRAY_BRACKET VARIABLE RIGHT_ARRAY_BRACKET {
@@ -702,8 +700,7 @@ lvalue:
         std::cout << "Yac debug: lvalue(variable[variable]) parsed successfully" << std::endl;
     #endif
 
-        const auto arg = std::make_shared<AstVariable>(*$3.stringValue);
-        $$ = new AstArray(*$1.stringValue, arg);
+        $$ = new AstArray(*$1.stringValue, std::make_shared<AstVariable>(*$3.stringValue));
     }
 ;
 
@@ -729,6 +726,9 @@ ParserResult parse(const char* inputFileName) {
         std::cerr << "Error : cannot open file " << inputFileName << std::endl;
         parserResult.result = ParserResultCode::FILE_NOT_FOUND;
         return parserResult;
+    }
+    else {
+        parserResult.result = ParserResultCode::SUCCESS;
     }
 
     const int result = yyparse();

@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../../include/ast/AstIf.hpp"
 
 AstIf::AstIf() : AstCommand(AstCommand::IF) {}
@@ -8,28 +6,27 @@ AstIf::AstIf(std::shared_ptr<AstCondition> condition, std::shared_ptr<AstCommand
              std::shared_ptr<AstCommands> elseCommands)
     : AstCommand(AstCommand::IF), condition(condition), commands(commands), elseCommands(elseCommands) {}
 
-std::shared_ptr<AstCondition> AstIf::getCondition() const {
+const std::shared_ptr<AstCondition>& AstIf::getCondition() const {
   return condition;
 }
 
-std::shared_ptr<AstCommands> AstIf::getCommands() const {
+const std::shared_ptr<AstCommands>& AstIf::getCommands() const {
   return commands;
 }
 
-std::shared_ptr<AstCommands> AstIf::getElseCommands() const {
+const std::shared_ptr<AstCommands>& AstIf::getElseCommands() const {
   return elseCommands;
 }
 
-void AstIf::print() const {
-  std::cout << "AstIf {" << std::endl;
-  std::cout << "condition: ";
-  condition->print();
-  std::cout << std::endl;
-  std::cout << "commands: ";
-  commands->print();
-  std::cout << std::endl;
-  std::cout << "elseCommands: ";
-  elseCommands->print();
-  std::cout << std::endl;
-  std::cout << "}" << std::endl;
+void AstIf::print(std::ostream& out, int tab) const {
+  out << std::string(tab, ' ') << "IF ";
+  condition->print(out, 0);
+  out << std::endl;
+  out << std::string(tab, ' ') << "THEN" << std::endl;
+  commands->print(out, tab + 4);
+  if (elseCommands != nullptr) {
+    out << std::string(tab, ' ') << "ELSE" << std::endl;
+    elseCommands->print(out, tab + 4);
+  }
+  out << std::string(tab, ' ') << "ENDIF" << std::endl;
 }

@@ -2,6 +2,7 @@
 #define AST_PROCEDURE_HEADER_HPP
 
 #include <memory>
+#include <ostream>
 #include <string>
 
 #include "AstArgsDeclaration.hpp"
@@ -21,7 +22,10 @@ class AstProcedureHeader : public AstNode {
   AstProcedureHeader(AstProcedureHeader&&) = default;
   AstProcedureHeader& operator=(AstProcedureHeader&&) = default;
 
-  virtual void print() const;
+  const std::string& getName() const;
+  const std::shared_ptr<AstArgsDeclaration>& getArgsDeclaration() const;
+
+  virtual void print(std::ostream& out, int tab) const;
 };
 
 #endif  // AST_PROCEDURE_HEADER_HPP

@@ -2,6 +2,7 @@
 #define AST_PROCEDURE_HPP
 
 #include <memory>
+#include <ostream>
 
 #include "AstCommands.hpp"
 #include "AstDeclarations.hpp"
@@ -24,11 +25,11 @@ class AstProcedure : public AstNode {
   AstProcedure(AstProcedure&&) = default;
   AstProcedure& operator=(AstProcedure&&) = default;
 
-  std::shared_ptr<AstProcedureHeader>& getHeader();
-  std::shared_ptr<AstDeclarations>& getDeclarations();
-  std::shared_ptr<AstCommands>& getCommands();
+  const std::shared_ptr<AstProcedureHeader>& getHeader();
+  const std::shared_ptr<AstDeclarations>& getDeclarations();
+  const std::shared_ptr<AstCommands>& getCommands();
 
-  void print() const override;
+  void print(std::ostream& out, int tab) const override;
 };
 
 #endif  // AST_PROCEDURE_HPP

@@ -2,6 +2,7 @@
 #define AST_WHILE_HPP
 
 #include <memory>
+#include <ostream>
 
 #include "AstCommand.hpp"
 #include "AstCommands.hpp"
@@ -21,10 +22,10 @@ class AstWhile : public AstCommand {
   AstWhile(AstWhile&&) = default;
   AstWhile& operator=(AstWhile&&) = default;
 
-  std::shared_ptr<AstCondition> getCondition() const;
-  std::shared_ptr<AstCommands> getCommands() const;
+  const std::shared_ptr<AstCondition>& getCondition() const;
+  const std::shared_ptr<AstCommands>& getCommands() const;
 
-  void print() const override;
+  void print(std::ostream& out, int tab) const override;
 };
 
 #endif  // AST_WHILE_HPP

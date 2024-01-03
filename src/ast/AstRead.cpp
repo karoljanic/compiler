@@ -1,14 +1,14 @@
-#include <iostream>
-
 #include "../../include/ast/AstRead.hpp"
 
 AstRead::AstRead() : AstCommand(CommandType::READ) {}
 
 AstRead::AstRead(std::shared_ptr<AstLeftValue> lvalue) : AstCommand(CommandType::READ), lvalue(lvalue) {}
 
-void AstRead::print() const {
-  std::cout << "AstRead {" << std::endl;
-  std::cout << "lvalue: ";
-  lvalue->print();
-  std::cout << "}" << std::endl;
+const std::shared_ptr<AstLeftValue>& AstRead::getLvalue() const {
+  return lvalue;
+}
+
+void AstRead::print(std::ostream& out, int tab) const {
+  out << std::string(tab, ' ') << "READ ";
+  lvalue->print(out, 0);
 }

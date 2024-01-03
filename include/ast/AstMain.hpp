@@ -2,6 +2,7 @@
 #define AST_MAIN_HPP
 
 #include <memory>
+#include <ostream>
 
 #include "AstCommands.hpp"
 #include "AstDeclarations.hpp"
@@ -21,10 +22,10 @@ class AstMain : public AstNode {
   AstMain(AstMain&&) = default;
   AstMain& operator=(AstMain&&) = default;
 
-  void print() const override;
+  const std::shared_ptr<AstDeclarations>& getDeclarations() const;
+  const std::shared_ptr<AstCommands>& getCommands() const;
 
-  std::shared_ptr<AstDeclarations> getDeclarations() const;
-  std::shared_ptr<AstCommands> getCommands() const;
+  void print(std::ostream& out, int tab) const override;
 };
 
 #endif  // AST_MAIN_HPP

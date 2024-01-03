@@ -1,0 +1,30 @@
+PROGRAM
+    MAIN
+        array f[num 100]
+        array s[num 100]
+        array i[num 100]
+        var n
+        var j
+        var k
+        var l
+        READ var n
+        ASSIGN array f[num 0] := num 0
+        ASSIGN array s[num 0] := num 1
+        ASSIGN array i[num 0] := num 0
+        ASSIGN array f[num 1] := num 1
+        ASSIGN array s[num 1] := num 1
+        ASSIGN array i[num 1] := num 1
+        ASSIGN var j := num 2
+        WHILE var j <= var n DO
+            ASSIGN var k := var j - num 1
+            ASSIGN var l := var k - num 1
+            ASSIGN array i[var j] := array i[var k] + num 1
+            ASSIGN array f[var j] := array f[var k] + array f[var l]
+            ASSIGN array s[var j] := array s[var k] * array i[var j]
+            ASSIGN var j := var j + num 1
+        ENDWHILE
+
+        WRITE array s[var n]
+        WRITE array f[var n]
+    ENDMAIN
+ENDPROGRAM

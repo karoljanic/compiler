@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../../include/ast/AstCommands.hpp"
 
 AstCommands::AstCommands() : AstNode(NodeType::COMMANDS) {}
@@ -12,13 +10,13 @@ void AstCommands::addCommand(std::shared_ptr<AstCommand> command) {
   commands.push_back(command);
 }
 
-std::vector<std::shared_ptr<AstCommand>>& AstCommands::getCommands() {
+const std::vector<std::shared_ptr<AstCommand>>& AstCommands::getCommands() {
   return commands;
 }
 
-void AstCommands::print() const {
-  std::cout << "Commands: " << std::endl;
+void AstCommands::print(std::ostream& out, int tab) const {
   for (auto& command : commands) {
-    command->print();
+    command->print(out, tab);
+    out << std::endl;
   }
 }

@@ -2,6 +2,7 @@
 #define AST_REPEAT_HPP
 
 #include <memory>
+#include <ostream>
 
 #include "AstCommand.hpp"
 #include "AstCommands.hpp"
@@ -21,10 +22,10 @@ class AstRepeat : public AstCommand {
   AstRepeat(AstRepeat&&) = default;
   AstRepeat& operator=(AstRepeat&&) = default;
 
-  std::shared_ptr<AstCondition> getCondition() const;
-  std::shared_ptr<AstCommands> getCommands() const;
+  const std::shared_ptr<AstCondition>& getCondition() const;
+  const std::shared_ptr<AstCommands>& getCommands() const;
 
-  void print() const override;
+  void print(std::ostream& out, int tab) const override;
 };
 
 #endif  // AST_REPEAT_HPP

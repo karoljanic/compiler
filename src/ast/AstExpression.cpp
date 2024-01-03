@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../../include/ast/AstExpression.hpp"
 
 AstExpression::AstExpression() : AstNode(NodeType::EXPRESSION) {}
@@ -10,26 +8,38 @@ AstExpression::AstExpression(ExpressionType type, std::shared_ptr<AstValue> left
 AstExpression::AstExpression(ExpressionType type, std::shared_ptr<AstValue> left, std::shared_ptr<AstValue> right)
     : AstNode(NodeType::EXPRESSION), expressionType(type), left(left), right(right) {}
 
-void AstExpression::print() const {
-  left->print();
+AstExpression::ExpressionType AstExpression::getExpressionType() const {
+  return expressionType;
+}
+
+const std::shared_ptr<AstValue>& AstExpression::getLeft() const {
+  return left;
+}
+
+const std::shared_ptr<AstValue>& AstExpression::getRight() const {
+  return right;
+}
+
+void AstExpression::print(std::ostream& out, int tab) const {
+  left->print(out, tab);
   switch (expressionType) {
     case VALUE:
       return;
     case ADD:
-      std::cout << " + ";
+      out << " + ";
       break;
     case SUB:
-      std::cout << " - ";
+      out << " - ";
       break;
     case MUL:
-      std::cout << " * ";
+      out << " * ";
       break;
     case DIV:
-      std::cout << " / ";
+      out << " / ";
       break;
     case MOD:
-      std::cout << " % ";
+      out << " % ";
       break;
   }
-  right->print();
+  right->print(out, 0);
 }

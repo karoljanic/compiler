@@ -10,10 +10,11 @@ compiler:
 	$(MAKE) -C ../ all
 
 test:
-	$(CXX) $(CXXFLAGS) main.cpp to-ast-conversion.cpp ../out/*.cpp -o ast-test -lgtest
+	$(CXX) $(CXXFLAGS) main.cpp to-ast-conversion.cpp ../out/*.cpp ../src/ast/*.cpp -o ast-test -lgtest
 
 clean:
 	rm -f ast-test
+	rm -f tmp.ast
 
 cleanall:
 	$(MAKE) -C ../virtual-machine clean

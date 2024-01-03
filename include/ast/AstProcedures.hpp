@@ -2,6 +2,7 @@
 #define AST_PROCEDURES_HPP
 
 #include <memory>
+#include <ostream>
 #include <vector>
 
 #include "AstNode.hpp"
@@ -21,9 +22,9 @@ class AstProcedures : public AstNode {
   AstProcedures& operator=(AstProcedures&&) = default;
 
   void addProcedure(std::shared_ptr<AstProcedure> procedure);
+  const std::vector<std::shared_ptr<AstProcedure>>& getProcedures() const;
 
-  std::vector<std::shared_ptr<AstProcedure>>& getProcedures();
-  void print() const override;
+  void print(std::ostream& out, int tab) const override;
 };
 
 #endif  // AST_PROCEDURES_HPP

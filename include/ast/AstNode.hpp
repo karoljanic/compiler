@@ -1,6 +1,8 @@
 #ifndef AST_NODE_HPP
 #define AST_NODE_HPP
 
+#include <ostream>
+
 class AstNode {
  public:
   enum NodeType {
@@ -38,7 +40,8 @@ class AstNode {
   AstNode& operator=(AstNode&&) = default;
 
   virtual NodeType getNodeType() const;
-  virtual void print() const;
+
+  virtual void print(std::ostream& out, int tab) const;
 };
 
 #endif  // AST_NODE_HPP

@@ -2,6 +2,7 @@
 #define AST_PROGRAM_HPP
 
 #include <memory>
+#include <ostream>
 
 #include "AstMain.hpp"
 #include "AstNode.hpp"
@@ -21,10 +22,10 @@ class AstProgram : public AstNode {
   AstProgram(AstProgram&&) = default;
   AstProgram& operator=(AstProgram&&) = default;
 
-  void print() const override;
+  const std::shared_ptr<AstProcedures>& getProcedures() const;
+  const std::shared_ptr<AstMain>& getMain() const;
 
-  std::shared_ptr<AstProcedures> getProcedures() const;
-  std::shared_ptr<AstMain> getMain() const;
+  void print(std::ostream& out, int tab) const override;
 };
 
 #endif  // AST_PROGRAM_HPP

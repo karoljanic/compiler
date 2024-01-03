@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <memory>
+#include <ostream>
 
 #include "AstNode.hpp"
 #include "AstValue.hpp"
@@ -26,7 +27,11 @@ class AstExpression : public AstNode {
   AstExpression(AstExpression&&) = default;
   AstExpression& operator=(AstExpression&&) = default;
 
-  virtual void print() const;
+  ExpressionType getExpressionType() const;
+  const std::shared_ptr<AstValue>& getLeft() const;
+  const std::shared_ptr<AstValue>& getRight() const;
+
+  virtual void print(std::ostream& out, int tab) const;
 };
 
 #endif  // AST_EXPRESSION_HPP

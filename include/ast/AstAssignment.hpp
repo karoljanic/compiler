@@ -2,6 +2,7 @@
 #define AST_ASSIGNMENT_HPP
 
 #include <memory>
+#include <ostream>
 
 #include "AstCommand.hpp"
 #include "AstExpression.hpp"
@@ -21,7 +22,10 @@ class AstAssignment : public AstCommand {
   AstAssignment(AstAssignment&&) = default;
   AstAssignment& operator=(AstAssignment&&) = default;
 
-  virtual void print() const;
+  const std::shared_ptr<AstLeftValue>& getLvalue() const;
+  const std::shared_ptr<AstExpression>& getExpression() const;
+
+  virtual void print(std::ostream& out, int tab) const;
 };
 
 #endif  // AST_ASSIGNMENT_HPP

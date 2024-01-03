@@ -1,0 +1,65 @@
+PROGRAM
+    PROC shuffle( ArgsDeclaration: (array t[], var n, ) )
+        var i
+        var q
+        var w
+        ASSIGN var q := num 5
+        ASSIGN var w := num 1
+        ASSIGN var i := num 0
+        WHILE var i < var n DO
+            ASSIGN var w := var w * var q
+            ASSIGN var w := var w % var n
+            ASSIGN array t[var i] := var w
+            ASSIGN var i := var i + num 1
+        ENDWHILE
+
+        ASSIGN var i := var n - num 1
+        ASSIGN array t[var i] := num 0
+    ENDPROC
+    PROC sort( ArgsDeclaration: (array t[], var n, ) )
+        var x
+        var i
+        var j
+        var k
+        ASSIGN var i := num 1
+        WHILE var i < var n DO
+            ASSIGN var x := array t[var i]
+            ASSIGN var j := var i
+            WHILE var j > num 0 DO
+                ASSIGN var k := var j - num 1
+                IF array t[var k] > var x
+                THEN
+                    ASSIGN array tab[var j] := array tab[var k]
+                    ASSIGN var j := var j - num 1
+                ELSE
+                    ASSIGN var k := var j
+                    ASSIGN var j := num 0
+                ENDIF
+
+            ENDWHILE
+
+            ASSIGN array t[var k] := var x
+            ASSIGN var i := var i + num 1
+        ENDWHILE
+
+    ENDPROC
+    PROC write( ArgsDeclaration: (array t[], var n, ) )
+        var i
+        ASSIGN var i := num 0
+        WHILE var i < var n DO
+            WRITE array t[var i]
+            ASSIGN var i := var i + num 1
+        ENDWHILE
+
+    ENDPROC
+    MAIN
+        array t[num 23]
+        var n
+        ASSIGN var n := num 23
+        CALL shuffle(ArgsList: (var t, var n, ))
+        CALL write(ArgsList: (var t, var n, ))
+        WRITE num 1234567890
+        CALL sort(ArgsList: (var t, var n, ))
+        CALL write(ArgsList: (var t, var n, ))
+    ENDMAIN
+ENDPROGRAM
