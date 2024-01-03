@@ -2,9 +2,9 @@
 #define COMPILER_HPP
 
 class Compiler {
-public:
-     Compiler();
+ public:
+  Compiler();
   void compile(const char* filename);
 };
 
-#endif // COMPILER_HPP
+#endif  // COMPILER_HPP

@@ -15,7 +15,12 @@ parser:
 	$(BB) $(BFLAGS) -Wcounterexamples -o out/parser.cpp --defines=out/parser.hpp -v src/parser.y
 
 compiler:
-	$(CXX) $(CXXFLAGS) out/*.cpp src/*.cpp -o compiler
+	$(CXX) $(CXXFLAGS) out/*.cpp src/*.cpp src/ast/*.cpp -o compiler
 
 clean:
-	rm -f out/* compiler
+	rm -f out/*
+	rm -f compiler
+
+cleanall:
+	rm -f out/*
+	rm -f compiler

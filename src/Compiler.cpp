@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "../include/compiler.hpp"
+#include "../include/Compiler.hpp"
 
-Compiler::Compiler() { }
+Compiler::Compiler() {}
 
 void Compiler::compile(const char* filename) {
   std::cout << "Compiling " << filename << std::endl;

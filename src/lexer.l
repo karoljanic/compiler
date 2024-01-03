@@ -9,7 +9,7 @@
 
 #include "parser.hpp"
 
-#define LEX_DEBUG
+#undef LEX_DEBUG
 
 uint64_t linesCounter = 1;
 
@@ -23,28 +23,28 @@ WHITE_CHARS                 [ \t]
 
 %%
 
-^#.*$                       {
-                             #ifdef LEX_DEBUG
+#.*$                       {
+                            #ifdef LEX_DEBUG
                                 std::cout << "Lex debug: comment [" << linesCounter << "] `" << yytext << "`\n";
-                             #endif
+                            #endif
                                 ++linesCounter;
-                             }
+                            }
 {WHITE_CHARS}+              {
-                                #ifdef LEX_DEBUG
-                                    std::cout << "Lex debug: white chars [" << linesCounter << "] `" << yytext << "`\n";
-                                #endif
+                            #ifdef LEX_DEBUG
+                                std::cout << "Lex debug: white chars [" << linesCounter << "] `" << yytext << "`\n";
+                            #endif
                             }
 ^{WHITE_CHARS}*\n           {
-                                #ifdef LEX_DEBUG
-                                    std::cout << "Lex debug: white chars with new line [" << linesCounter << "] `" << yytext << "`\n";
-                                #endif
+                            #ifdef LEX_DEBUG
+                                std::cout << "Lex debug: white chars with new line [" << linesCounter << "] `" << yytext << "`\n";
+                            #endif
                                 ++linesCounter;
                             }
 
 \n                          {
-                                #ifdef LEX_DEBUG
-                                    std::cout << "Lex debug: new line [" << linesCounter << "] `" << yytext << "`\n";
-                                #endif
+                            #ifdef LEX_DEBUG
+                                std::cout << "Lex debug: new line [" << linesCounter << "] `" << yytext << "`\n";
+                            #endif
                                 ++linesCounter;
                             }
 
@@ -87,6 +87,8 @@ WHITE_CHARS                 [ \t]
 "THEN"                      {   return createToken(THEN);                               }
 "ELSE"                      {   return createToken(ELSE);                               }
 "ENDIF"                     {   return createToken(ENDIF);                              }
+
+"T"                         {   return createToken(ARRAY_TYPE);                         }
 
 \[                          {   return createToken(LEFT_ARRAY_BRACKET);                 }
 \]                          {   return createToken(RIGHT_ARRAY_BRACKET);                }

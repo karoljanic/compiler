@@ -3,9 +3,42 @@
 
 class AstNode {
  public:
-  enum Type { NUMBER, VARIABLE, ARRAY, EXPRESSION, CONDITION, COMMAND };
+  enum NodeType {
+    DEFAULT,
+    VALUE,
+    LVALUE,
+    RVALUE,
+    NUMBER,
+    VARIABLE,
+    ARRAY,
+    EXPRESSION,
+    CONDITION,
+    ARGS_LIST,
+    ARGS_DECLARATION,
+    DECLARATIONS,
+    PROCEDURE_HEADER,
+    PROCEDURE,
+    PROCEDURES,
+    COMMAND,
+    COMMANDS,
+    MAIN,
+    PROGRAM
+  };
 
-  AstNode() {}
+ protected:
+  NodeType nodeType;
+
+ public:
+  AstNode();
+  AstNode(NodeType type);
+  virtual ~AstNode() = default;
+  AstNode(const AstNode& from) = default;
+  AstNode& operator=(const AstNode& from) = default;
+  AstNode(AstNode&&) = default;
+  AstNode& operator=(AstNode&&) = default;
+
+  virtual NodeType getNodeType() const;
+  virtual void print() const;
 };
 
 #endif  // AST_NODE_HPP

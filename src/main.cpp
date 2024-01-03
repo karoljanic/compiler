@@ -1,8 +1,9 @@
+#include <fstream>
 #include <iostream>
 
-#include "../include/compiler.hpp"
+#include "../include/ParserResult.hpp"
 
-int compile(const char* in_file, const char* out_file);
+ParserResult parse(const char* inputFileName);
 
 int main(int argc, char** argv) {
   if (argc != 3) {
@@ -10,10 +11,14 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  return compile(argv[1], argv[2]);
+  std::ofstream outputFile(argv[2]);
+  if (!outputFile) {
+    std::cerr << "Error: could not open/create output file " << argv[2] << std::endl;
+    return 1;
+  }
 
-  //  Compiler compiler;
-  //  compiler.compile(argv[1]);
+  const auto result = parse(argv[1]);
+  if (result.result == ParserResultCode::SUCCESS) {}
 
   return 0;
 }

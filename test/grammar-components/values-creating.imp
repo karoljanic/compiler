@@ -1,0 +1,8 @@
+PROGRAM IS
+    x, y, z[10]
+IN
+    x := 1;
+    x := y;
+    x := z[1];
+    z[x] := z[y];
+END
