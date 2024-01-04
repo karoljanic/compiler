@@ -7,9 +7,6 @@
 #include "AstLeftValue.hpp"
 
 class AstVariable : public AstLeftValue {
- private:
-  std::string name;
-
  public:
   AstVariable();
   AstVariable(const std::string name);

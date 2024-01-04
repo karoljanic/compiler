@@ -1,5 +1,5 @@
 CXX := clang++
-CXXFLAGS := -Wall -Wextra -pedantic -std=c++17 -O3
+CXXFLAGS := -Wall -Wextra -pedantic -std=c++17 -O3 -g
 
 all: vm compiler test
 
@@ -10,7 +10,7 @@ compiler:
 	$(MAKE) -C ../ all
 
 test:
-	$(CXX) $(CXXFLAGS) main.cpp to-ast-conversion.cpp ../out/*.cpp ../src/ast/*.cpp -o ast-test -lgtest
+	$(CXX) $(CXXFLAGS) ../src/core/*.cpp ../src/ast/*.cpp ../out/*.cpp main.cpp to-ast-conversion.cpp -o ast-test -lgtest
 
 clean:
 	rm -f ast-test

@@ -1,8 +1,8 @@
 #include "../../include/ast/AstVariable.hpp"
 
-AstVariable::AstVariable() : AstLeftValue(NodeType::VARIABLE) {}
+AstVariable::AstVariable() : AstLeftValue(NodeType::VARIABLE, "", false) {}
 
-AstVariable::AstVariable(const std::string name) : AstLeftValue(NodeType::VARIABLE), name(name) {}
+AstVariable::AstVariable(const std::string name) : AstLeftValue(NodeType::VARIABLE, name, false) {}
 
 const std::string& AstVariable::getName() const {
   return name;

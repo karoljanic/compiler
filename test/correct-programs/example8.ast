@@ -29,7 +29,7 @@ PROGRAM
                 ASSIGN var k := var j - num 1
                 IF array t[var k] > var x
                 THEN
-                    ASSIGN array tab[var j] := array tab[var k]
+                    ASSIGN array t[var j] := array t[var k]
                     ASSIGN var j := var j - num 1
                 ELSE
                     ASSIGN var k := var j
@@ -56,10 +56,10 @@ PROGRAM
         array t[num 23]
         var n
         ASSIGN var n := num 23
-        CALL shuffle(ArgsList: (var t, var n, ))
-        CALL write(ArgsList: (var t, var n, ))
+        CALL shuffle(ArgsList: (array t[], var n, ))
+        CALL write(ArgsList: (array t[], var n, ))
         WRITE num 1234567890
-        CALL sort(ArgsList: (var t, var n, ))
-        CALL write(ArgsList: (var t, var n, ))
+        CALL sort(ArgsList: (array t[], var n, ))
+        CALL write(ArgsList: (array t[], var n, ))
     ENDMAIN
 ENDPROGRAM

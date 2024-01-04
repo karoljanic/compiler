@@ -1,9 +1,9 @@
 #include "../../include/ast/AstArray.hpp"
 
-AstArray::AstArray() : AstLeftValue(NodeType::ARRAY) {}
+AstArray::AstArray() : AstLeftValue(NodeType::ARRAY, "", true) {}
 
 AstArray::AstArray(const std::string& name, std::shared_ptr<AstValue> argument)
-    : AstLeftValue(NodeType::ARRAY), name(name), argument(argument) {}
+    : AstLeftValue(NodeType::ARRAY, name, true), argument(argument) {}
 
 const std::string& AstArray::getName() const {
   return name;

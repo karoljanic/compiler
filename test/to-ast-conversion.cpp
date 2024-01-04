@@ -4,7 +4,7 @@
 
 #include "gtest/gtest.h"
 
-#include "../include/ParserResult.hpp"
+#include "../include/core/ParserResult.hpp"
 
 ParserResult parse(const char* inputFileName);
 
@@ -18,6 +18,9 @@ void compareFiles(const char* resultFileName, const char* expectedFileName) {
   expectedStream << expected.rdbuf();
 
   ASSERT_EQ(resultStream.str(), expectedStream.str());
+
+  result.close();
+  expected.close();
 }
 
 TEST(toAstConversion, inputFileNotFound) {
@@ -142,4 +145,76 @@ TEST(toAstConversion, example9) {
   ast.close();
 
   compareFiles("tmp.ast", "correct-programs/example9.ast");
+}
+
+TEST(toAstConversion, error1) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("incorrect-programs/error1.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "incorrect-programs/error1.ast");
+}
+
+TEST(toAstConversion, error2) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("incorrect-programs/error2.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "incorrect-programs/error2.ast");
+}
+
+TEST(toAstConversion, error3) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("incorrect-programs/error3.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "incorrect-programs/error3.ast");
+}
+
+TEST(toAstConversion, error4) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("incorrect-programs/error4.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "incorrect-programs/error4.ast");
+}
+
+TEST(toAstConversion, error5) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("incorrect-programs/error5.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "incorrect-programs/error5.ast");
+}
+
+TEST(toAstConversion, error6) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("incorrect-programs/error6.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "incorrect-programs/error6.ast");
+}
+
+TEST(toAstConversion, error7) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("incorrect-programs/error7.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "incorrect-programs/error7.ast");
+}
+
+TEST(toAstConversion, error8) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("incorrect-programs/error8.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "incorrect-programs/error8.ast");
 }

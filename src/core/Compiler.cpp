@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../include/Compiler.hpp"
+#include "../../include/core/Compiler.hpp"
 
 Compiler::Compiler() {}
 

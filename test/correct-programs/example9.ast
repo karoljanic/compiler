@@ -15,7 +15,7 @@ PROGRAM
     PROC bc( ArgsDeclaration: (var n, var k, var m, ) )
         array s[num 100]
         var p
-        CALL factorial(ArgsList: (var s, var n, ))
+        CALL factorial(ArgsList: (array s[], var n, ))
         ASSIGN var p := var n - var k
         ASSIGN var m := array s[var n] / array s[var k]
         ASSIGN var m := var m / array s[var p]

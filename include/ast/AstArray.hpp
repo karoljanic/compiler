@@ -11,7 +11,6 @@
 
 class AstArray : public AstLeftValue {
  private:
-  std::string name;
   std::shared_ptr<AstValue> argument;
 
  public:

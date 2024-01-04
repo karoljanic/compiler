@@ -1,7 +1,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "../include/ParserResult.hpp"
+#include "../include/core/ParserResult.hpp"
 
 ParserResult parse(const char* inputFileName);
 

@@ -3,19 +3,19 @@ FFLAGS :=
 BB := bison
 BFLAGS :=
 CXX := clang++
-CXXFLAGS := -Wall -Wextra -pedantic -std=c++17 -O3
+CXXFLAGS := -Wall -Wextra -pedantic -std=c++17 -O3 -g
 
 
 all: lexer parser compiler
 
 lexer:
-	$(FF) $(FFLAGS) -o out/lexer.cpp --header-file=out/lexer.hpp src/lexer.l
+	$(FF) $(FFLAGS) -o out/lexer.cpp --header-file=out/lexer.hpp src/core/lexer.l
 
 parser:
-	$(BB) $(BFLAGS) -Wcounterexamples -o out/parser.cpp --defines=out/parser.hpp -v src/parser.y
+	$(BB) $(BFLAGS) -Wcounterexamples -o out/parser.cpp --defines=out/parser.hpp -v src/core/parser.y
 
 compiler:
-	$(CXX) $(CXXFLAGS) out/*.cpp src/*.cpp src/ast/*.cpp -o compiler
+	$(CXX) $(CXXFLAGS) src/core/*.cpp src/ast/*.cpp out/*.cpp src/main.cpp -o compiler
 
 clean:
 	rm -f out/*

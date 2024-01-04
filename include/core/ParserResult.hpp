@@ -3,15 +3,15 @@
 
 #include <memory>
 
+#include "../ast/AstProgram.hpp"
 #include "LookupTable.hpp"
-#include "ast/AstProgram.hpp"
 
-enum ParserResultCode { SUCCESS, FILE_NOT_FOUND, SYNTAX_ERROR };
+enum ParserResultCode { SUCCESS, FILE_NOT_FOUND, SYNTAX_ERROR, SEMANTIC_ERROR };
 
 struct ParserResult {
   ParserResultCode result;
   std::shared_ptr<AstProgram> ast;
-  LookupTable* lookupTable;
+  std::shared_ptr<LookupTable> lookupTable;
 };
 
 #endif  // PARSER_RESULT_HPP
