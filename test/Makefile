@@ -10,7 +10,7 @@ compiler:
 	$(MAKE) -C ../ all
 
 test:
-	$(CXX) $(CXXFLAGS) ../src/core/*.cpp ../src/ast/*.cpp ../out/*.cpp main.cpp to-ast-conversion.cpp -o ast-test -lgtest
+	$(CXX) $(CXXFLAGS) ../src/core/*.cpp ../src/ast/*.cpp ../src/bblocks/*.cpp ../out/*.cpp main.cpp to-ast-conversion.cpp -o ast-test -lgtest
 
 clean:
 	rm -f ast-test

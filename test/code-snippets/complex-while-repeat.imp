@@ -1,0 +1,30 @@
+PROGRAM IS
+  a, b, c
+IN
+    a := 0;
+    b := 1;
+    c := 2;
+
+    WHILE a < 100 DO
+        WHILE b < a DO
+            WHILE c < b DO
+                c := c + 1;
+            ENDWHILE
+            b := b + a;
+        ENDWHILE
+        a := a + 1;
+    ENDWHILE
+
+    a := 0;
+    b := 1;
+    c := 2;
+    REPEAT
+        a := a + 1;
+        REPEAT
+            b := b + a;
+            REPEAT
+                c := c + 1;
+            UNTIL c > b;
+        UNTIL b > a;
+    UNTIL a > 100;
+END

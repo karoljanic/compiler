@@ -11,7 +11,6 @@ enum ParserResultCode { SUCCESS, FILE_NOT_FOUND, SYNTAX_ERROR, SEMANTIC_ERROR };
 struct ParserResult {
   ParserResultCode result;
   std::shared_ptr<AstProgram> ast;
-  std::shared_ptr<LookupTable> lookupTable;
 };
 
 #endif  // PARSER_RESULT_HPP

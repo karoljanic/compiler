@@ -40,7 +40,7 @@
 
     extern FILE* yyin;
 
-    static ParserResult parserResult { ParserResultCode::SUCCESS, nullptr, nullptr };
+    static ParserResult parserResult;
     static LookupTable lookupTable;
 
     static void generateError(const std::string& msg, uint64_t line, ParserResultCode code);
@@ -386,7 +386,9 @@ command:
     #ifdef YAC_DEBUG
         std::cout << "Yac debug: command(if then endif) parsed successfully" << std::endl;
     #endif
-        $$ = new AstIf($1->getCondition(), $2->getCommands(), nullptr);
+
+        const auto& emptyCommands = std::make_shared<AstCommands>();
+        $$ = new AstIf($1->getCondition(), $2->getCommands(), emptyCommands);
     }
 |
     while_begin while_end {
@@ -1123,7 +1125,7 @@ static void yyerror(const char* /*msg*/) {
 
 ParserResult parse(const char* inputFileName) {
     yyin = fopen(inputFileName, "r");
-    parserResult = { ParserResultCode::SUCCESS, nullptr, nullptr };
+    parserResult = { ParserResultCode::SUCCESS, nullptr };
     lookupTable = LookupTable();
 
     if(yyin == nullptr) {

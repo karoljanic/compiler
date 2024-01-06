@@ -3,7 +3,7 @@
 AstProcedureHeader::AstProcedureHeader() {}
 
 AstProcedureHeader::AstProcedureHeader(const std::string& name, std::shared_ptr<AstArgsDeclaration> argsDeclaration)
-    : AstNode(NodeType::PROCEDURE), name(name), argsDeclaration(argsDeclaration) {}
+    : AstNode(NodeType::PROCEDURE_HEADER), name(name), argsDeclaration(argsDeclaration) {}
 
 const std::string& AstProcedureHeader::getName() const {
   return name;

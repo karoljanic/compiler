@@ -1,0 +1,19 @@
+PROGRAM IS
+  a, b, c
+IN
+    a := 0;
+    b := 1;
+    c := 2;
+
+    IF a < b THEN
+        WRITE 0;
+    ELSE
+        WRITE 3;
+    ENDIF
+
+    IF c != 5 THEN
+        WRITE 9;
+        WRITE 8;
+        WRITE 7;
+    ENDIF
+END

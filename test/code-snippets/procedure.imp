@@ -1,0 +1,20 @@
+PROCEDURE de(a,b,c) IS
+  d, e
+IN
+  READ d;
+  READ e;
+
+  WRITE a;
+  WRITE b;
+  WRITE c;
+END
+
+PROGRAM IS
+    a, b, c
+IN
+    READ a;
+    READ b;
+    READ c;
+
+    de(a,b,c);
+END
