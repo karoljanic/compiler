@@ -1,0 +1,26 @@
+PROGRAM IS
+    a, b, c[10], d[10]
+IN
+    a := 0;
+    b := a;
+
+    IF 0 != a THEN
+        WRITE 1;
+    ELSE
+        WRITE 0;
+    ENDIF
+
+    IF 0 != c[9] THEN
+        WRITE 1;
+    ENDIF
+
+    IF c[b] != 0 THEN
+        WRITE 1;
+    ELSE
+        WRITE 0;
+    ENDIF
+
+    IF c[b] != g THEN
+        WRITE 1;
+    ENDIF
+END

@@ -1,0 +1,25 @@
+PROGRAM IS
+    a, b, c[10], d[10]
+IN
+    a := 0;
+    b := a;
+
+    WHILE a < 10 DO
+        WRITE a;
+        a := a + 1;
+    ENDWHILE
+
+    WHILE b < d[0] DO
+        WRITE b;
+        b := b + 1;
+    ENDWHILE
+
+    WHILE a < d[b] DO
+        WRITE a;
+        a := a + 1;
+    ENDWHILE
+
+    WHILE g < 0 DO
+        WRITE 1;
+    ENDWHILE
+END

@@ -1,5 +1,5 @@
 PROGRAM IS
 
 IN
-    WRITE 1;
+    WRITE 11;
 END

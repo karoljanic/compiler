@@ -1,0 +1,5 @@
+PROGRAM IS
+    11
+IN
+    WRITE 1;
+END

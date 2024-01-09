@@ -218,3 +218,192 @@ TEST(toAstConversion, error8) {
 
   compareFiles("tmp.ast", "incorrect-programs/error8.ast");
 }
+
+TEST(toAstConversion, grammarCheck1) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/read.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SYNTAX_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/read.ast");
+}
+
+TEST(toAstConversion, grammarCheck2) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/write1.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/write1.ast");
+}
+
+TEST(toAstConversion, grammarCheck3) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/write2.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SYNTAX_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/write2.ast");
+}
+
+TEST(toAstConversion, grammarCheck4) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/declarations1.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/declarations1.ast");
+}
+
+TEST(toAstConversion, grammarCheck5) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/declarations2.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/declarations2.ast");
+}
+
+TEST(toAstConversion, grammarCheck6) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/declarations3.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SYNTAX_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/declarations3.ast");
+}
+
+TEST(toAstConversion, grammarCheck7) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/declarations4.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SYNTAX_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/declarations4.ast");
+}
+
+TEST(toAstConversion, grammarCheck8) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/declarations5.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/declarations5.ast");
+}
+
+TEST(toAstConversion, grammarCheck9) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/declarations6.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/declarations6.ast");
+}
+
+TEST(toAstConversion, grammarCheck10) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/declarations7.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/declarations7.ast");
+}
+
+TEST(toAstConversion, grammarCheck11) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/assignment1.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SYNTAX_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/assignment1.ast");
+}
+
+TEST(toAstConversion, grammarCheck12) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/assignment2.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SYNTAX_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/assignment2.ast");
+}
+
+TEST(toAstConversion, grammarCheck13) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/assignment3.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SYNTAX_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/assignment3.ast");
+}
+
+TEST(toAstConversion, grammarCheck14) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/assignment4.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SYNTAX_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/assignment4.ast");
+}
+
+TEST(toAstConversion, grammarCheck15) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/assignment5.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/assignment5.ast");
+}
+
+TEST(toAstConversion, grammarCheck16) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/assignment6.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SYNTAX_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/assignment6.ast");
+}
+
+TEST(toAstConversion, grammarCheck17) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/condition1.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SYNTAX_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/condition1.ast");
+}
+
+TEST(toAstConversion, grammarCheck18) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/condition2.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/condition2.ast");
+}
+
+TEST(toAstConversion, grammarCheck19) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/condition3.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/condition3.ast");
+}
+
+TEST(toAstConversion, grammarCheck20) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/condition4.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SEMANTIC_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/condition4.ast");
+}
+
+TEST(toAstConversion, grammarCheck21) {
+  freopen("tmp.ast", "w", stderr);
+  const auto parseResult = parse("grammar-components/condition5.imp");
+
+  ASSERT_EQ(parseResult.result, ParserResultCode::SYNTAX_ERROR);
+
+  compareFiles("tmp.ast", "grammar-components/condition5.ast");
+}

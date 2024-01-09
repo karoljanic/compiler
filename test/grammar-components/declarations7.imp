@@ -1,0 +1,5 @@
+PROGRAM IS
+    a[100],a[10]
+IN
+    WRITE 1;
+END

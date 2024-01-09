@@ -1,0 +1,26 @@
+PROGRAM IS
+    a, b, c[10], d[10]
+IN
+    a := 0;
+    b := a;
+
+    REPEAT
+        WRITE a;
+        a := a - 1;
+    UNTIL a > 10;
+
+    REPEAT
+        WRITE a;
+        a := a - 1;
+    UNTIL a > c[b];
+
+    REPEAT
+        WRITE a;
+        a := a - 1;
+    UNTIL b > d[b];
+
+    REPEAT
+        WRITE a;
+        a := a - 1;
+    UNTIL a > y;
+END

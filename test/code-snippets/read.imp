@@ -1,0 +1,29 @@
+PROCEDURE test_one(targ) IS
+    a
+IN
+    READ a;
+END
+
+PROCEDURE test_two(targ) IS
+    x[50], a[3]
+IN
+    READ a[0];
+    READ a[1];
+    READ a[2];
+END
+
+PROCEDURE test_three(targ) IS
+    a, c[1000], b[10]
+IN
+    READ a;
+    READ b[a];
+END
+
+
+PROGRAM IS
+  arg
+IN
+    test_one(arg);
+    test_two(arg);
+    test_three(arg);
+END

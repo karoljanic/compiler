@@ -1,0 +1,8 @@
+PROGRAM IS
+    a, b[10], c
+IN
+    a := c;
+    b[0] := c;
+    b[a] := c;
+    b[d[2]] := c;
+END

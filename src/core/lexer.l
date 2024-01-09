@@ -27,7 +27,6 @@ WHITE_CHARS                 [ \t]
                             #ifdef LEX_DEBUG
                                 std::cout << "Lex debug: comment [" << linesCounter << "] `" << yytext << "`\n";
                             #endif
-                                ++linesCounter;
                             }
 {WHITE_CHARS}+              {
                             #ifdef LEX_DEBUG
@@ -107,7 +106,7 @@ static int createToken(int token) {
     std::cout << "Lex debug: general token [" << linesCounter << "] `" << yytext << "`\n";
 #endif
 
-    yylval.token.line = linesCounter - 1;
+    yylval.token.line = linesCounter;
     yylval.token.numericalValue = 0;
     yylval.token.stringValue = nullptr;
 
@@ -119,7 +118,7 @@ static int createVariable(int token) {
     std::cout << "Lex debug: variable token [" << linesCounter << "] `" << yytext << "`\n";
 #endif
 
-    yylval.token.line = linesCounter - 1;
+    yylval.token.line = linesCounter;
     yylval.token.numericalValue = 0;
     yylval.token.stringValue = new std::string(yytext);
 
@@ -131,7 +130,7 @@ static int createNumber(int token) {
     std::cout << "Lex debug: number token [" << linesCounter << "] `" << yytext << "`\n";
 #endif
 
-    yylval.token.line = linesCounter - 1;
+    yylval.token.line = linesCounter;
     yylval.token.numericalValue = strtoull(yytext, nullptr, 10);
     yylval.token.stringValue = nullptr;
 

@@ -1,0 +1,32 @@
+PROGRAM IS
+    a, b, c[10], d[10]
+IN
+    a := 0;
+    b := a;
+
+    IF c[a] >= 9 THEN
+        WRITE 1;
+    ELSE
+        WRITE 0;
+    ENDIF
+
+    IF c[a]   >= a THEN
+        WRITE 1;
+    ENDIF
+
+    WHILE d[b] >= d[0] DO
+        WRITE 1;
+        b := b + 1;
+    ENDWHILE
+
+    REPEAT
+        WRITE 1;
+        b := b + 1;
+    UNTIL d[b] >= c[a];
+
+    IF c[d[a]] >= c[a] THEN
+        WRITE 1;
+    ELSE
+        WRITE 0;
+    ENDIF
+END

@@ -13,14 +13,14 @@ class BasicInstructionPush : public BasicInstruction {
 
  public:
   BasicInstructionPush();
-  BasicInstructionPush(uint64_t beginAddress, const std::vector<std::string>& source);
+  BasicInstructionPush(uint64_t beginAddress, const std::vector<std::string>& source, std::shared_ptr<Hardware> hardware);
   virtual ~BasicInstructionPush() = default;
   BasicInstructionPush(const BasicInstructionPush& from) = default;
   BasicInstructionPush& operator=(const BasicInstructionPush& from) = default;
   BasicInstructionPush(BasicInstructionPush&&) = default;
   BasicInstructionPush& operator=(BasicInstructionPush&&) = default;
 
-  // virtual std::vector<HardwareInstruction> convertToHardwareInstructions() const;
+  virtual std::vector<std::pair<HardwareInstruction, std::string>> expandToHardwareInstructions() const;
   virtual void print(std::ostream& out) const;
 };
 
@@ -31,14 +31,14 @@ class BasicInstructionPop : public BasicInstruction {
 
  public:
   BasicInstructionPop();
-  BasicInstructionPop(uint64_t beginAddress, const std::vector<std::string>& destination);
+  BasicInstructionPop(uint64_t beginAddress, const std::vector<std::string>& destination, std::shared_ptr<Hardware> hardware);
   virtual ~BasicInstructionPop() = default;
   BasicInstructionPop(const BasicInstructionPop& from) = default;
   BasicInstructionPop& operator=(const BasicInstructionPop& from) = default;
   BasicInstructionPop(BasicInstructionPop&&) = default;
   BasicInstructionPop& operator=(BasicInstructionPop&&) = default;
 
-  // virtual std::vector<HardwareInstruction> convertToHardwareInstructions() const;
+  virtual std::vector<std::pair<HardwareInstruction, std::string>> expandToHardwareInstructions() const;
   virtual void print(std::ostream& out) const;
 };
 

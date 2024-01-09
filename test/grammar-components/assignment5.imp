@@ -1,0 +1,8 @@
+PROGRAM IS
+    a, b[10], c[19], d, e[899]
+IN
+    a := c[d];
+    b[0] := c[d];
+    b[a] := c[d];
+    c[e[a]] := c[d];
+END

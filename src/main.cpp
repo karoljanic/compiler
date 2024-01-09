@@ -20,11 +20,15 @@ int main(int argc, char** argv) {
 
   const auto result = parse(argv[1]);
   if (result.result == ParserResultCode::SUCCESS) {
-    result.ast->print(std::cout, 0);
+    std::ofstream astFile("ast.txt");
+    std::ofstream bb1File("bb1.txt");
+    std::ofstream bb2File("bb2.txt");
+    std::ofstream machineCodeFile("mc.txt");
+
+    result.ast->print(astFile, 0);
 
     Compiler compiler(result.ast);
-    compiler.convertToBasicInstructions();
-    compiler.generateMachineCode(outputFile);
+    compiler.generateMachineCodeWithDebug(bb1File, bb2File, machineCodeFile, outputFile);
   }
 
   return 0;

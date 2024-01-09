@@ -1,0 +1,11 @@
+PROGRAM IS
+    a, b[11], c[1]
+IN
+
+    WRITE a;
+    WRITE b[0];
+    WRITE b[a];
+    WRITE 1;
+
+    WRITE b[c[0]];
+END

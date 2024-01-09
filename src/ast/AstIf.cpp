@@ -24,7 +24,7 @@ void AstIf::print(std::ostream& out, int tab) const {
   out << std::endl;
   out << std::string(tab, ' ') << "THEN" << std::endl;
   commands->print(out, tab + 4);
-  if (elseCommands != nullptr) {
+  if (elseCommands != nullptr && elseCommands->getCommands().size() > 0) {
     out << std::string(tab, ' ') << "ELSE" << std::endl;
     elseCommands->print(out, tab + 4);
   }

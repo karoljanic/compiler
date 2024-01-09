@@ -1,0 +1,5 @@
+PROGRAM IS
+    a, b[1234567890]
+IN
+    WRITE c;
+END

@@ -2,6 +2,7 @@
 #define COMPILER_HPP
 
 #include <algorithm>
+#include <cmath>
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -53,29 +54,33 @@ class Compiler {
  private:
   std::shared_ptr<AstNode> ast;
   std::vector<std::shared_ptr<BasicInstruction>> basicInstructions;
-  Hardware hardware;
+  std::vector<std::pair<HardwareInstruction, std::string>> machineCode;
+  std::shared_ptr<Hardware> hardware;
 
-  std::uint64_t tempsCounter = 0;
-  std::uint64_t labelsCounter = 0;
   std::stack<std::string> scopes;
   std::map<std::string, std::string> translationTable;
-  uint64_t stackOffset = 0;
 
  public:
   Compiler();
   Compiler(std::shared_ptr<AstNode> ast);
 
-  void convertToBasicInstructions();
   void generateMachineCode(std::ofstream& outputFile);
+  void generateMachineCodeWithDebug(std::ofstream& basicInstructionsFile, std::ofstream& partialMachineCodeFile,
+                                    std::ofstream& finalMachineCodeFile, std::ofstream& outputFile);
 
  private:
-  std::string getTempVariable();
+  void convertToBasicInstructions(const std::shared_ptr<AstNode>& ast);
+  void expandBasicInstructions();
+  void assignRegistersAndMemory();
+  void optimizeBasicInstructions();
+  void optimizeMachineCode();
+  void optimizeFinalMachineCode();
+  void assignLabels();
+
   BasicInstructionMathOperationType convertMathOperationType(AstExpression::ExpressionType type);
   std::shared_ptr<BasicInstruction> castCondition(const std::shared_ptr<AstValue> left, const std::shared_ptr<AstValue> right,
                                                   BasicInstructionConditionType jumpCondition, std::string label);
   void convertCondition(const std::shared_ptr<AstCondition> condition, std::string label);
-
-  void convertToBasicInstructionsUtil(const std::shared_ptr<AstNode>& ast);
 };
 
 #endif  // COMPILER_HPP

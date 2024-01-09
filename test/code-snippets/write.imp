@@ -1,0 +1,33 @@
+PROCEDURE test_one(targ) IS
+    a
+IN
+    a := 7;
+    WRITE a;
+
+    a := 107;
+    WRITE a;
+END
+
+PROCEDURE test_two(targ) IS
+    x[50], a[3]
+IN
+    WRITE a[0];
+    WRITE a[1];
+    WRITE a[2];
+END
+
+PROCEDURE test_three(targ) IS
+    a, c[1000], b[10]
+IN
+    READ a;
+    WRITE b[a];
+END
+
+
+PROGRAM IS
+  arg
+IN
+    test_one(arg);
+    test_two(arg);
+    test_three(arg);
+END
