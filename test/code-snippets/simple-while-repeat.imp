@@ -1,24 +1,36 @@
 PROGRAM IS
-  a, b
+  a, b, c, d, e, f
 IN
     a := 0;
     b := 1;
 
     WHILE a < 100 DO
         a := a + 1;
+        READ b;
+        READ c;
+        READ d;
+        READ e;
+        READ f;
     ENDWHILE
 
-    WHILE b >= a DO
-        b := b + a;
-    ENDWHILE
+    WRITE b;
+    WRITE c;
+    WRITE d;
 
-    a := 0;
-    REPEAT
-        a := a + 1;
-    UNTIL a > 100;
+    READ a;
+    WRITE a;
 
-    b := 1;
-    REPEAT
-        b := b + a;
-    UNTIL b < a;
+    #WHILE b >= a DO
+    #    b := b + a;
+    #ENDWHILE
+
+    #a := 0;
+    #REPEAT
+    #    a := a + 1;
+    #UNTIL a > 100;
+
+    #b := 1;
+    #REPEAT
+    #    b := b + a;
+    #UNTIL b < a;
 END

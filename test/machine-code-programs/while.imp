@@ -1,0 +1,14 @@
+PROGRAM IS
+  a, b, c
+IN
+    READ a;
+    READ b;
+    READ c;
+
+    a := 15;
+
+    WHILE a >= 10 DO
+        WRITE a;
+        a := a - 1;
+    ENDWHILE
+END

@@ -11,8 +11,13 @@
 #include "../core/Hardware.hpp"
 #include "../core/Utils.hpp"
 
+enum class BasicInstructionMathType { UNDEFINED, ADD, SUB, MUL, DIV, MOD };
+
+enum class BasicInstructionConditionType { LESS, LESS_EQUAL, EQUAL, NOT_EQUAL };
+
 class BasicInstruction {
  protected:
+  std::vector<std::pair<HardwareInstruction, std::string>> machineCode;
   std::shared_ptr<Hardware> hardware;
 
  public:
@@ -24,7 +29,9 @@ class BasicInstruction {
   BasicInstruction(BasicInstruction&&) = default;
   BasicInstruction& operator=(BasicInstruction&&) = default;
 
-  virtual std::vector<std::pair<HardwareInstruction, std::string>> expandToHardwareInstructions() const;
+  std::vector<std::pair<HardwareInstruction, std::string>> getMachineCode() const;
+
+  virtual void expandToHardwareInstructions();
   virtual void print(std::ostream& out) const;
 };
 

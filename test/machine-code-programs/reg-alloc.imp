@@ -1,0 +1,33 @@
+PROGRAM IS
+  a, b, c, d, e, f, g, h, i, j, k, l, m, n, o
+IN
+    READ a;
+    READ b;
+    READ c;
+    READ d;
+    READ e;
+
+    f := a + b;
+    g := a - c;
+    h := g + f;
+    i := b - g;
+    i := i + 1;
+
+    WRITE f;
+    WRITE g;
+    WRITE h;
+    WRITE i;
+
+    j := e - d;
+    j := j - 2;
+    k := d + e;
+    l := g + k;
+    m := b - a;
+
+    WRITE h;
+    WRITE j;
+    WRITE k;
+    WRITE l;
+    WRITE m;
+    WRITE i;
+END

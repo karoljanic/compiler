@@ -39,14 +39,14 @@ void Hardware::allocateArray(const std::string& arrayName, uint64_t size) {
 #endif
 
   arrays[arrayName] = std::make_pair(memoryOffset, size);
-  std::cout << "Array " << arrayName << " allocated at " << memoryOffset << " with size " << size << std::endl;
+  //std::cout << "Array " << arrayName << " allocated at " << memoryOffset << " with size " << size << std::endl;
   memoryOffset += size;
 }
 
 void Hardware::initializeStack() {
 #ifdef BEGIN_ON_POWER_OF_TWO_BOUNDARY
   stackOffset = Hardware::nearestPowerOfTwo(memoryOffset);
-  std::cout << "Stack offset: " << stackOffset << std::endl;
+  //std::cout << "Stack offset: " << stackOffset << std::endl;
 #elif
   stackOffset = memoryOffset;
 #endif
@@ -57,6 +57,11 @@ uint64_t Hardware::getArrayAddress(const std::string& arrayName) {
 }
 
 uint64_t Hardware::getStackOffset() {
+  return stackOffset;
+}
+
+uint64_t Hardware::getFreeMemoryAddress() {
+  stackOffset++;
   return stackOffset;
 }
 

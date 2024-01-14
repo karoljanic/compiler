@@ -1,8 +1,0 @@
-PROGRAM IS
-    a, b, c
-IN
-    a := 11;
-    b := 34;
-
-    c := a * b;
-END

@@ -1,15 +1,44 @@
-PROGRAM IS
-  a, b, c, d[10]
+PROCEDURE test_one(targ) IS
+  a, b[15]
 IN
-    a := 0;
-    b := 1;
-    c := 2;
-    d[0] := 0;
-    d[9] := 9;
+    a := 5;
 
-    d[c] := 7;
+    b[3] := 7;
+    b[a] := 9;
+END
 
+PROCEDURE test_two(targ) IS
+    a, b[15], c
+IN
+    c := 5;
     a := c;
-    d[5] := a;
-    d[c] := b;
+    b[3] := c;
+    b[a] := c;
+END
+
+PROCEDURE test_three(targ) IS
+    a, b[50], c[50]
+IN
+    a := b[9];
+    b[3] := c[5];
+    b[a] := c[7];
+END
+
+PROCEDURE test_four(targ) IS
+    a, b[50], c[50], d
+IN
+    d := 4;
+    a := b[d];
+    b[3] := c[d];
+    b[a] := c[d];
+END
+
+
+PROGRAM IS
+  arg
+IN
+    test_one(arg);
+    test_two(arg);
+    test_three(arg);
+    test_four(arg);
 END

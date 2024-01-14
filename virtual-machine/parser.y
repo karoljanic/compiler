@@ -60,9 +60,9 @@ void yyerror( vector< pair<int,int> > & program, char const *s )
 
 void run_parser( vector< pair<int,int> > & program, FILE * data ) 
 {
-  cout << cBlue << "Czytanie kodu." << cReset << endl;
+  cout << "Czytanie kodu." << endl;
   yyset_in( data );
   yyparse( program );
-  cout << cBlue << "Skończono czytanie kodu (liczba rozkazów: " << program.size() << ")." << cReset << endl;
+  cout << "Skończono czytanie kodu (liczba rozkazów: " << program.size() << ")." << endl;
 }
 

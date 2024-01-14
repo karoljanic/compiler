@@ -5,8 +5,10 @@
 #include <cstdint>
 #include <iostream>
 #include <map>
+#include <optional>
 #include <string>
 #include <utility>
+#include <vector>
 
 #define BEGIN_ON_POWER_OF_TWO_BOUNDARY
 
@@ -62,7 +64,6 @@ class Hardware {
   static std::map<HardwareInstruction, HardwareInstructionDescriptor> instructionMap;
   static std::map<HardwareRegister, HardwareRegisterDescriptor> registerMap;
   static HardwareRegister accumulator;
-  static uint64_t programCounterAddress;
 
   Hardware();
 
@@ -73,6 +74,7 @@ class Hardware {
   void initializeStack();
   uint64_t getArrayAddress(const std::string& arrayName);
   uint64_t getStackOffset();
+  uint64_t getFreeMemoryAddress();
   void incrementStackOffset(uint64_t increment);
   void decrementStackOffset(uint64_t decrement);
 

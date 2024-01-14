@@ -1,0 +1,316 @@
+Subgraph: main
+Instructions: 
+READ main@a
+Id: 1
+Predecessors: 
+Successors: 2 
+Used variables: 
+Defined variables: main@a 
+Live in variables: 
+Live out variables: main@a 
+Live now variables: 
+
+Instructions: 
+READ main@b
+Id: 2
+Predecessors: 1 
+Successors: 3 
+Used variables: 
+Defined variables: main@b 
+Live in variables: main@a 
+Live out variables: main@a main@b 
+Live now variables: 
+
+Instructions: 
+READ main@c
+Id: 3
+Predecessors: 2 
+Successors: 4 
+Used variables: 
+Defined variables: main@c 
+Live in variables: main@a main@b 
+Live out variables: main@a main@b main@c 
+Live now variables: 
+
+Instructions: 
+READ main@d
+Id: 4
+Predecessors: 3 
+Successors: 5 
+Used variables: 
+Defined variables: main@d 
+Live in variables: main@a main@b main@c 
+Live out variables: main@a main@b main@c main@d 
+Live now variables: 
+
+Instructions: 
+READ main@e
+Id: 5
+Predecessors: 4 
+Successors: 6 
+Used variables: 
+Defined variables: main@e 
+Live in variables: main@a main@b main@c main@d 
+Live out variables: main@a main@b main@c main@d main@e 
+Live now variables: 
+
+Instructions: 
+MOV main@a TO temp#1
+MOV main@b TO temp#2
+main@f = temp#1 + temp#2
+MOV main@f TO main@f
+Id: 6
+Predecessors: 5 
+Successors: 7 
+Used variables: main@a main@b 
+Defined variables: main@f temp#1 temp#2 
+Live in variables: main@a main@b main@c main@d main@e 
+Live out variables: main@a main@b main@c main@d main@e main@f 
+Live now variables: temp#1 temp#2 
+
+Instructions: 
+MOV main@a TO temp#3
+MOV main@c TO temp#4
+main@g = temp#3 - temp#4
+MOV main@g TO main@g
+Id: 7
+Predecessors: 6 
+Successors: 8 
+Used variables: main@a main@c 
+Defined variables: main@g temp#3 temp#4 
+Live in variables: main@a main@b main@c main@d main@e main@f 
+Live out variables: main@a main@b main@d main@e main@f main@g 
+Live now variables: temp#3 temp#4 
+
+Instructions: 
+MOV main@g TO temp#5
+MOV main@f TO temp#6
+main@h = temp#5 + temp#6
+MOV main@h TO main@h
+Id: 8
+Predecessors: 7 
+Successors: 9 
+Used variables: main@f main@g 
+Defined variables: main@h temp#5 temp#6 
+Live in variables: main@a main@b main@d main@e main@f main@g 
+Live out variables: main@a main@b main@d main@e main@f main@g main@h 
+Live now variables: temp#5 temp#6 
+
+Instructions: 
+MOV main@b TO temp#7
+MOV main@g TO temp#8
+main@i = temp#7 - temp#8
+MOV main@i TO main@i
+Id: 9
+Predecessors: 8 
+Successors: 10 
+Used variables: main@b main@g 
+Defined variables: main@i temp#7 temp#8 
+Live in variables: main@a main@b main@d main@e main@f main@g main@h 
+Live out variables: main@a main@b main@d main@e main@f main@g main@h main@i 
+Live now variables: temp#7 temp#8 
+
+Instructions: 
+main@i = main@i + 1
+MOV main@i TO main@i
+Id: 10
+Predecessors: 9 
+Successors: 11 
+Used variables: main@i 
+Defined variables: main@i 
+Live in variables: main@a main@b main@d main@e main@f main@g main@h main@i 
+Live out variables: main@a main@b main@d main@e main@f main@g main@h main@i 
+Live now variables: 
+
+Instructions: 
+WRITE main@f
+Id: 11
+Predecessors: 10 
+Successors: 12 
+Used variables: main@f 
+Defined variables: 
+Live in variables: main@a main@b main@d main@e main@f main@g main@h main@i 
+Live out variables: main@a main@b main@d main@e main@g main@h main@i 
+Live now variables: 
+
+Instructions: 
+WRITE main@g
+Id: 12
+Predecessors: 11 
+Successors: 13 
+Used variables: main@g 
+Defined variables: 
+Live in variables: main@a main@b main@d main@e main@g main@h main@i 
+Live out variables: main@a main@b main@d main@e main@g main@h main@i 
+Live now variables: 
+
+Instructions: 
+WRITE main@h
+Id: 13
+Predecessors: 12 
+Successors: 14 
+Used variables: main@h 
+Defined variables: 
+Live in variables: main@a main@b main@d main@e main@g main@h main@i 
+Live out variables: main@a main@b main@d main@e main@g main@h main@i 
+Live now variables: 
+
+Instructions: 
+WRITE main@i
+Id: 14
+Predecessors: 13 
+Successors: 15 
+Used variables: main@i 
+Defined variables: 
+Live in variables: main@a main@b main@d main@e main@g main@h main@i 
+Live out variables: main@a main@b main@d main@e main@g main@h main@i 
+Live now variables: 
+
+Instructions: 
+MOV main@e TO temp#9
+MOV main@d TO temp#10
+main@j = temp#9 - temp#10
+MOV main@j TO main@j
+Id: 15
+Predecessors: 14 
+Successors: 16 
+Used variables: main@d main@e 
+Defined variables: main@j temp#10 temp#9 
+Live in variables: main@a main@b main@d main@e main@g main@h main@i 
+Live out variables: main@a main@b main@d main@e main@g main@h main@i main@j 
+Live now variables: temp#10 temp#9 
+
+Instructions: 
+main@j = main@j - 2
+MOV main@j TO main@j
+Id: 16
+Predecessors: 15 
+Successors: 17 
+Used variables: main@j 
+Defined variables: main@j 
+Live in variables: main@a main@b main@d main@e main@g main@h main@i main@j 
+Live out variables: main@a main@b main@d main@e main@g main@h main@i main@j 
+Live now variables: 
+
+Instructions: 
+MOV main@d TO temp#11
+MOV main@e TO temp#12
+main@k = temp#11 + temp#12
+MOV main@k TO main@k
+Id: 17
+Predecessors: 16 
+Successors: 18 
+Used variables: main@d main@e 
+Defined variables: main@k temp#11 temp#12 
+Live in variables: main@a main@b main@d main@e main@g main@h main@i main@j 
+Live out variables: main@a main@b main@g main@h main@i main@j main@k 
+Live now variables: temp#11 temp#12 
+
+Instructions: 
+MOV main@g TO temp#13
+MOV main@k TO temp#14
+main@l = temp#13 + temp#14
+MOV main@l TO main@l
+Id: 18
+Predecessors: 17 
+Successors: 19 
+Used variables: main@g main@k 
+Defined variables: main@l temp#13 temp#14 
+Live in variables: main@a main@b main@g main@h main@i main@j main@k 
+Live out variables: main@a main@b main@h main@i main@j main@k main@l 
+Live now variables: temp#13 temp#14 
+
+Instructions: 
+MOV main@b TO temp#15
+MOV main@a TO temp#16
+main@m = temp#15 - temp#16
+MOV main@m TO main@m
+Id: 19
+Predecessors: 18 
+Successors: 20 
+Used variables: main@a main@b 
+Defined variables: main@m temp#15 temp#16 
+Live in variables: main@a main@b main@h main@i main@j main@k main@l 
+Live out variables: main@h main@i main@j main@k main@l main@m 
+Live now variables: temp#15 temp#16 
+
+Instructions: 
+WRITE main@h
+Id: 20
+Predecessors: 19 
+Successors: 21 
+Used variables: main@h 
+Defined variables: 
+Live in variables: main@h main@i main@j main@k main@l main@m 
+Live out variables: main@i main@j main@k main@l main@m 
+Live now variables: 
+
+Instructions: 
+WRITE main@j
+Id: 21
+Predecessors: 20 
+Successors: 22 
+Used variables: main@j 
+Defined variables: 
+Live in variables: main@i main@j main@k main@l main@m 
+Live out variables: main@i main@k main@l main@m 
+Live now variables: 
+
+Instructions: 
+WRITE main@k
+Id: 22
+Predecessors: 21 
+Successors: 23 
+Used variables: main@k 
+Defined variables: 
+Live in variables: main@i main@k main@l main@m 
+Live out variables: main@i main@l main@m 
+Live now variables: 
+
+Instructions: 
+WRITE main@l
+Id: 23
+Predecessors: 22 
+Successors: 24 
+Used variables: main@l 
+Defined variables: 
+Live in variables: main@i main@l main@m 
+Live out variables: main@i main@m 
+Live now variables: 
+
+Instructions: 
+WRITE main@m
+Id: 24
+Predecessors: 23 
+Successors: 25 
+Used variables: main@m 
+Defined variables: 
+Live in variables: main@i main@m 
+Live out variables: main@i 
+Live now variables: 
+
+Instructions: 
+WRITE main@i
+Id: 25
+Predecessors: 24 
+Successors: 26 
+Used variables: main@i 
+Defined variables: 
+Live in variables: main@i 
+Live out variables: 
+Live now variables: 
+
+Instructions: 
+HALT
+Id: 26
+Predecessors: 25 
+Successors: 
+Used variables: 
+Defined variables: 
+Live in variables: 
+Live out variables: 
+Live now variables: 
+
+
+
+

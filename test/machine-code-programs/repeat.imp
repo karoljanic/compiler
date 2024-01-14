@@ -1,0 +1,18 @@
+PROGRAM IS
+  a, b, c
+IN
+    READ a;
+    READ b;
+    READ c;
+
+    REPEAT
+        a := a + 1;
+        REPEAT
+             b := b + 1;
+            REPEAT
+                c := c + 1;
+                WRITE c;
+            UNTIL c > 10;
+        UNTIL b > 10;
+    UNTIL a > 10;
+END

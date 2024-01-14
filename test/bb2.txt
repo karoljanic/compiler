@@ -1,0 +1,22 @@
+
+LABEL main@begin#
+READ 
+PUT main@a
+READ 
+PUT main@b
+GET main@a
+PUT temp#1
+GET main@b
+PUT temp#2
+GET temp#1
+SUB temp#2
+PUT main@a
+GET main@a
+PUT main@a
+GET main@a
+WRITE 
+GET main@a
+WRITE 
+HALT 
+LABEL main@end#
+

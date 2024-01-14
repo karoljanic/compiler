@@ -1,0 +1,13 @@
+
+LABEL main@begin#
+READ main@a
+READ main@b
+MOV main@a TO temp#1
+MOV main@b TO temp#2
+main@a = temp#1 - temp#2
+MOV main@a TO main@a
+WRITE main@a
+WRITE main@a
+HALT
+LABEL main@end#
+

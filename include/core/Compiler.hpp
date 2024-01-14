@@ -38,49 +38,75 @@
 #include "../ast/AstWrite.hpp"
 
 #include "../bblocks/BasicInstruction.hpp"
-#include "../bblocks/BasicInstructionIO.hpp"
+#include "../bblocks/BasicInstructionCondJumpNN.hpp"
+#include "../bblocks/BasicInstructionCondJumpNV.hpp"
+#include "../bblocks/BasicInstructionCondJumpVN.hpp"
+#include "../bblocks/BasicInstructionCondJumpVV.hpp"
+#include "../bblocks/BasicInstructionHalt.hpp"
 #include "../bblocks/BasicInstructionJump.hpp"
-#include "../bblocks/BasicInstructionMath.hpp"
-#include "../bblocks/BasicInstructionMov.hpp"
-#include "../bblocks/BasicInstructionStack.hpp"
+#include "../bblocks/BasicInstructionJumpRelative.hpp"
+#include "../bblocks/BasicInstructionLabel.hpp"
+#include "../bblocks/BasicInstructionMathNN.hpp"
+#include "../bblocks/BasicInstructionMathNV.hpp"
+#include "../bblocks/BasicInstructionMathVN.hpp"
+#include "../bblocks/BasicInstructionMathVV.hpp"
+#include "../bblocks/BasicInstructionMovAV.hpp"
+#include "../bblocks/BasicInstructionMovKAV.hpp"
+#include "../bblocks/BasicInstructionMovNV.hpp"
+#include "../bblocks/BasicInstructionMovVA.hpp"
+#include "../bblocks/BasicInstructionMovVKA.hpp"
+#include "../bblocks/BasicInstructionMovVV.hpp"
+#include "../bblocks/BasicInstructionPop.hpp"
+#include "../bblocks/BasicInstructionPush.hpp"
+#include "../bblocks/BasicInstructionRead.hpp"
+#include "../bblocks/BasicInstructionWrite.hpp"
 
+#include "../core/ControlFlowGraph.hpp"
 #include "../core/Hardware.hpp"
+#include "../core/RegistersLinearScan.hpp"
 
 typedef AstNode::NodeType AstNodeType;
+typedef AstExpression::ExpressionType AstExpressionType;
 typedef AstCommand::CommandType AstCommandType;
 typedef AstCondition::ConditionType AstConditionType;
 
 class Compiler {
  private:
   std::shared_ptr<AstNode> ast;
-  std::vector<std::shared_ptr<BasicInstruction>> basicInstructions;
+  ControlFlowGraph controlFlowGraph;
   std::vector<std::pair<HardwareInstruction, std::string>> machineCode;
   std::shared_ptr<Hardware> hardware;
+  RegistersLinearScan registersLinearScan;
 
   std::stack<std::string> scopes;
   std::map<std::string, std::string> translationTable;
+  std::map<std::string, uint64_t> labels;
+  std::vector<uint64_t> parentsIds;
 
  public:
   Compiler();
   Compiler(std::shared_ptr<AstNode> ast);
 
   void generateMachineCode(std::ofstream& outputFile);
-  void generateMachineCodeWithDebug(std::ofstream& basicInstructionsFile, std::ofstream& partialMachineCodeFile,
-                                    std::ofstream& finalMachineCodeFile, std::ofstream& outputFile);
+  void generateMachineCodeWithDebug(std::ofstream& astFile, std::ofstream& basicBlocksFile, std::ofstream& machineCodeFile,
+                                    std::ofstream& outputFile);
 
  private:
-  void convertToBasicInstructions(const std::shared_ptr<AstNode>& ast);
+  void convertToControlFlowGraph();
+  void optimizeControlFlowGraph();
   void expandBasicInstructions();
-  void assignRegistersAndMemory();
+  void calculateVariablesLiveRanges();
   void optimizeBasicInstructions();
   void optimizeMachineCode();
-  void optimizeFinalMachineCode();
-  void assignLabels();
+  void generateOutput(std::ofstream& outputFile);
 
-  BasicInstructionMathOperationType convertMathOperationType(AstExpression::ExpressionType type);
-  std::shared_ptr<BasicInstruction> castCondition(const std::shared_ptr<AstValue> left, const std::shared_ptr<AstValue> right,
-                                                  BasicInstructionConditionType jumpCondition, std::string label);
-  void convertCondition(const std::shared_ptr<AstCondition> condition, std::string label);
+  void parseAstMain(std::shared_ptr<AstMain> node, std::pair<std::string, std::vector<ControlFlowGraphNode>>& instructions);
+  void parseAstProcedure(std::shared_ptr<AstProcedure> node,
+                         std::pair<std::string, std::vector<ControlFlowGraphNode>>& instructions);
+  void parseAstDeclarations(std::shared_ptr<AstDeclarations> node);
+  void parseAstProcedureHeader(std::shared_ptr<AstProcedureHeader>);
+  void parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<ControlFlowGraphNode>& instructions);
+  ControlFlowGraphNode parseAstCondition(std::shared_ptr<AstCondition> node, const std::string& jumpLabel);
 };
 
 #endif  // COMPILER_HPP

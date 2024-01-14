@@ -1,0 +1,20 @@
+PROGRAM IS
+  a, b
+IN
+    READ a;
+    READ b;
+
+    IF a > b THEN
+        IF a > 2 THEN
+            WRITE a;
+        ELSE
+            IF a = 2 THEN
+                WRITE 1;
+            ELSE
+                WRITE 0;
+            ENDIF
+        ENDIF
+    ELSE
+        WRITE b;
+    ENDIF
+END

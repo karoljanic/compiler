@@ -1,0 +1,18 @@
+READ
+PUT c
+READ
+PUT d
+GET c
+PUT e
+GET d
+PUT f
+GET e
+SUB f
+PUT c
+GET c
+PUT c
+GET c
+WRITE
+GET c
+WRITE
+HALT

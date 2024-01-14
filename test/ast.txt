@@ -1,0 +1,11 @@
+PROGRAM
+    MAIN
+        var a
+        var b
+        READ var a
+        READ var b
+        ASSIGN var a := var a - var b
+        WRITE var a
+        WRITE var a
+    ENDMAIN
+ENDPROGRAM
