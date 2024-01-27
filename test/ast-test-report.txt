@@ -14,99 +14,99 @@ Note: Google Test filter = toAstConversion.example1
 [----------] Global test environment set-up.
 [----------] 1 test from toAstConversion
 [ RUN      ] toAstConversion.example1
-[       OK ] toAstConversion.example1 (1 ms)
-[----------] 1 test from toAstConversion (1 ms total)
+[       OK ] toAstConversion.example1 (0 ms)
+[----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.example2
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
 [----------] 1 test from toAstConversion
 [ RUN      ] toAstConversion.example2
-[       OK ] toAstConversion.example2 (1 ms)
-[----------] 1 test from toAstConversion (1 ms total)
+[       OK ] toAstConversion.example2 (0 ms)
+[----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.example3
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
 [----------] 1 test from toAstConversion
 [ RUN      ] toAstConversion.example3
-[       OK ] toAstConversion.example3 (1 ms)
-[----------] 1 test from toAstConversion (1 ms total)
+[       OK ] toAstConversion.example3 (0 ms)
+[----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.example4
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
 [----------] 1 test from toAstConversion
 [ RUN      ] toAstConversion.example4
-[       OK ] toAstConversion.example4 (1 ms)
-[----------] 1 test from toAstConversion (1 ms total)
+[       OK ] toAstConversion.example4 (0 ms)
+[----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.example5
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
 [----------] 1 test from toAstConversion
 [ RUN      ] toAstConversion.example5
-[       OK ] toAstConversion.example5 (1 ms)
-[----------] 1 test from toAstConversion (1 ms total)
+[       OK ] toAstConversion.example5 (0 ms)
+[----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.example6
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
 [----------] 1 test from toAstConversion
 [ RUN      ] toAstConversion.example6
-[       OK ] toAstConversion.example6 (1 ms)
-[----------] 1 test from toAstConversion (1 ms total)
+[       OK ] toAstConversion.example6 (0 ms)
+[----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.example7
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
 [----------] 1 test from toAstConversion
 [ RUN      ] toAstConversion.example7
-[       OK ] toAstConversion.example7 (1 ms)
-[----------] 1 test from toAstConversion (1 ms total)
+[       OK ] toAstConversion.example7 (0 ms)
+[----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.example8
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
 [----------] 1 test from toAstConversion
 [ RUN      ] toAstConversion.example8
-[       OK ] toAstConversion.example8 (1 ms)
-[----------] 1 test from toAstConversion (1 ms total)
+[       OK ] toAstConversion.example8 (0 ms)
+[----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.example9
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
 [----------] 1 test from toAstConversion
 [ RUN      ] toAstConversion.example9
-[       OK ] toAstConversion.example9 (1 ms)
-[----------] 1 test from toAstConversion (1 ms total)
+[       OK ] toAstConversion.example9 (0 ms)
+[----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.error1
 [==========] Running 1 test from 1 test suite.
@@ -117,7 +117,7 @@ Note: Google Test filter = toAstConversion.error1
 [----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.error2
 [==========] Running 1 test from 1 test suite.
@@ -128,7 +128,7 @@ Note: Google Test filter = toAstConversion.error2
 [----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.error3
 [==========] Running 1 test from 1 test suite.
@@ -150,7 +150,7 @@ Note: Google Test filter = toAstConversion.error4
 [----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.error5
 [==========] Running 1 test from 1 test suite.
@@ -172,7 +172,7 @@ Note: Google Test filter = toAstConversion.error6
 [----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.error7
 [==========] Running 1 test from 1 test suite.
@@ -227,7 +227,7 @@ Note: Google Test filter = toAstConversion.grammarCheck3
 [----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.grammarCheck4
 [==========] Running 1 test from 1 test suite.
@@ -337,7 +337,7 @@ Note: Google Test filter = toAstConversion.grammarCheck13
 [----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.grammarCheck14
 [==========] Running 1 test from 1 test suite.
@@ -370,7 +370,7 @@ Note: Google Test filter = toAstConversion.grammarCheck16
 [----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.grammarCheck17
 [==========] Running 1 test from 1 test suite.
@@ -381,7 +381,7 @@ Note: Google Test filter = toAstConversion.grammarCheck17
 [----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.grammarCheck18
 [==========] Running 1 test from 1 test suite.
@@ -425,5 +425,5 @@ Note: Google Test filter = toAstConversion.grammarCheck21
 [----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.

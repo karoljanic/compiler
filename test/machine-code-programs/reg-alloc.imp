@@ -18,11 +18,11 @@ IN
     WRITE h;
     WRITE i;
 
-    j := e - d;
+    j := f - e;
     j := j - 2;
     k := d + e;
     l := g + k;
-    m := b - a;
+    m := b-a;
 
     WRITE h;
     WRITE j;
@@ -31,3 +31,5 @@ IN
     WRITE m;
     WRITE i;
 END
+
+#h; i - nie pojawiaja sie wszytskie przedzialy

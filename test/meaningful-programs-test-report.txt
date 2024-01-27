@@ -1,0 +1,1926 @@
+Note: Google Test filter = Compiler.Test1
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Compiler
+[ RUN      ] Compiler.Test1
+../compiler correct-programs/example1.imp correct-programs/example1.rm
+../virtual-machine/maszyna-wirtualna-cln correct-programs/example1.rm >correct-programs/example1.result < correct-programs/example1-in.txt
+Function de allocated at 0 with size 6
+FUN RECORD: de: 0
+FUN RECORD: de: 0
+ERROR: Variable main@nwd not found in result
+ERROR: Variable main@x not found in result
+ERROR: Variable main@y not found in result
+ERROR: Variable main@nwd not found in result
+ERROR: Variable main@x not found in result
+ERROR: Variable main@y not found in result
+RANGE de@a[2-19]: 2 3 15 19 
+RANGE de@a[23-76]: 23 24 76 
+RANGE de@b[4-23]: 4 5 14 16 20 23 
+RANGE de@b[25-75]: 25 26 
+RANGE de@iloraz[21-57]: 21 22 29 35 51 57 
+RANGE de@m[1-78]: 1 2 12 56 78 
+RANGE de@n[1-78]: 1 4 10 34 78 
+RANGE de@r[10-30]: 10 11 27 30 
+RANGE de@r[36-38]: 36 37 
+RANGE de@r[39-41]: 39 40 41 
+RANGE de@r[43-45]: 43 44 45 
+RANGE de@r[47-75]: 47 48 
+RANGE de@reszta[17-25]: 17 18 25 
+RANGE de@rr[27-71]: 27 28 71 
+RANGE de@s[12-52]: 12 13 49 52 
+RANGE de@s[58-60]: 58 59 
+RANGE de@s[61-63]: 61 62 63 
+RANGE de@s[65-67]: 65 66 67 
+RANGE de@s[69-75]: 69 70 
+RANGE de@ss[49-73]: 49 50 73 
+RANGE de@tmp[31-46]: 31 32 33 46 
+RANGE de@tmp[53-68]: 53 54 55 68 
+RANGE de@x[1-1]: 1 
+RANGE de@x[6-42]: 6 7 33 42 
+RANGE de@x[71-78]: 71 72 78 
+RANGE de@y[1-1]: 1 
+RANGE de@y[8-64]: 8 9 55 64 
+RANGE de@y[73-78]: 73 74 78 
+RANGE de@z[1-1]: 1 
+RANGE de@z[76-78]: 76 77 78 
+RANGE main@m[80-83]: 80 83 
+RANGE main@m[86-86]: 86 
+RANGE main@n[81-83]: 81 83 
+RANGE main@n[86-86]: 86 
+RANGE main@nwd[80-83]: 83 
+RANGE main@nwd[86-89]: 86 89 
+RANGE main@x[80-83]: 83 
+RANGE main@x[86-87]: 86 87 
+RANGE main@y[80-83]: 83 
+RANGE main@y[86-88]: 86 88 
+RANGE temp#1[1-79]: 1 79 
+RANGE temp#10[41-43]: 41 43 
+RANGE temp#11[42-43]: 42 43 
+RANGE temp#12[45-47]: 45 47 
+RANGE temp#13[46-47]: 46 47 
+RANGE temp#14[51-53]: 51 53 
+RANGE temp#15[52-53]: 52 53 
+RANGE temp#16[56-58]: 56 58 
+RANGE temp#17[57-58]: 57 58 
+RANGE temp#18[63-65]: 63 65 
+RANGE temp#19[64-65]: 64 65 
+RANGE temp#2[15-17]: 15 17 
+RANGE temp#20[67-69]: 67 69 
+RANGE temp#21[68-69]: 68 69 
+RANGE temp#22[17-17]: 17 
+RANGE temp#23[21-21]: 21 
+RANGE temp#24[21-21]: 21 
+RANGE temp#25[31-31]: 31 
+RANGE temp#26[31-31]: 31 
+RANGE temp#27[36-36]: 36 
+RANGE temp#28[36-36]: 36 
+RANGE temp#29[53-53]: 53 
+RANGE temp#3[16-17]: 16 17 
+RANGE temp#30[53-53]: 53 
+RANGE temp#31[58-58]: 58 
+RANGE temp#32[58-58]: 58 
+RANGE temp#4[19-21]: 19 21 
+RANGE temp#5[20-21]: 20 21 
+RANGE temp#6[29-31]: 29 31 
+RANGE temp#7[30-31]: 30 31 
+RANGE temp#8[34-36]: 34 36 
+RANGE temp#9[35-36]: 35 36 
+temp#1[1-79]: ###############################################################################                                                
+de@z[1-1]: #                                                                                                                              
+de@m[1-78]: ##############################################################################                                                 
+de@n[1-78]: ##############################################################################                                                 
+de@x[1-1]: #                                                                                                                              
+de@y[1-1]: #                                                                                                                              
+de@a[2-19]:  ##################                                                                                                            
+de@b[4-23]:    ####################                                                                                                        
+de@x[6-42]:      #####################################                                                                                     
+de@y[8-64]:        #########################################################                                                               
+de@r[10-30]:          #####################                                                                                                 
+de@s[12-52]:            #########################################                                                                           
+temp#2[15-17]:               ###                                                                                                              
+temp#3[16-17]:                ##                                                                                                              
+de@reszta[17-25]:                 #########                                                                                                      
+temp#22[17-17]:                 #                                                                                                              
+temp#4[19-21]:                   ###                                                                                                          
+temp#5[20-21]:                    ##                                                                                                          
+temp#24[21-21]:                     #                                                                                                          
+temp#23[21-21]:                     #                                                                                                          
+de@iloraz[21-57]:                     #####################################                                                                      
+de@a[23-76]:                       ######################################################                                                   
+de@b[25-26]:                         ##                                                                                                     
+de@rr[27-71]:                           #############################################                                                        
+temp#6[29-31]:                             ###                                                                                                
+temp#7[30-31]:                              ##                                                                                                
+temp#26[31-31]:                               #                                                                                                
+temp#25[31-31]:                               #                                                                                                
+de@tmp[31-46]:                               ################                                                                                 
+temp#8[34-36]:                                  ###                                                                                           
+temp#9[35-36]:                                   ##                                                                                           
+de@r[36-37]:                                    ##                                                                                          
+temp#28[36-36]:                                    #                                                                                           
+temp#27[36-36]:                                    #                                                                                           
+de@r[39-41]:                                       ###                                                                                      
+temp#10[41-43]:                                         ###                                                                                    
+temp#11[42-43]:                                          ##                                                                                    
+de@r[43-45]:                                           ###                                                                                  
+temp#12[45-47]:                                             ###                                                                                
+temp#13[46-47]:                                              ##                                                                                
+de@r[47-48]:                                               ##                                                                               
+de@ss[49-73]:                                                 #########################                                                      
+temp#14[51-53]:                                                   ###                                                                          
+temp#15[52-53]:                                                    ##                                                                          
+temp#30[53-53]:                                                     #                                                                          
+temp#29[53-53]:                                                     #                                                                          
+de@tmp[53-68]:                                                     ################                                                           
+temp#16[56-58]:                                                        ###                                                                     
+temp#17[57-58]:                                                         ##                                                                     
+temp#31[58-58]:                                                          #                                                                     
+de@s[58-59]:                                                          ##                                                                    
+temp#32[58-58]:                                                          #                                                                     
+de@s[61-63]:                                                             ###                                                                
+temp#18[63-65]:                                                               ###                                                              
+temp#19[64-65]:                                                                ##                                                              
+de@s[65-67]:                                                                 ###                                                            
+temp#20[67-69]:                                                                   ###                                                          
+temp#21[68-69]:                                                                    ##                                                          
+de@s[69-70]:                                                                     ##                                                         
+de@x[71-78]:                                                                       ########                                                 
+de@y[73-78]:                                                                         ######                                                 
+de@z[76-78]:                                                                            ###                                                 
+main@m[80-83]:                                                                                ####                                            
+main@n[81-83]:                                                                                 ###                                            
+main@y[83-83]:                                                                                   #                                            
+main@x[83-83]:                                                                                   #                                            
+main@nwd[83-83]:                                                                                   #                                            
+main@m[86-86]:                                                                                      #                                         
+main@y[86-88]:                                                                                      ###                                       
+main@x[86-87]:                                                                                      ##                                        
+main@nwd[86-89]:                                                                                      ####                                      
+main@n[86-86]:                                                                                      #                                         
+Variable usages:
+de@a: 2(L) 3(B) 23(L) 24(B) 15(R) 19(R) 76(R) 
+de@b: 4(L) 5(B) 25(L) 26(B) 14(R) 16(R) 20(R) 23(R) 
+de@iloraz: 21(L) 22(B) 29(R) 35(R) 51(R) 57(R) 
+de@m: 1(L) 78(B) 2(R) 12(R) 56(R) 
+de@n: 1(L) 78(B) 4(R) 10(R) 34(R) 
+de@r: 10(L) 11(B) 36(L) 37(B) 39(L) 40(B) 43(L) 44(B) 47(L) 48(B) 27(R) 30(R) 41(R) 45(R) 
+de@reszta: 17(L) 18(B) 25(R) 
+de@rr: 27(L) 28(B) 71(R) 
+de@s: 12(L) 13(B) 58(L) 59(B) 61(L) 62(B) 65(L) 66(B) 69(L) 70(B) 49(R) 52(R) 63(R) 67(R) 
+de@ss: 49(L) 50(B) 73(R) 
+de@tmp: 31(L) 32(B) 53(L) 54(B) 33(R) 46(R) 55(R) 68(R) 
+de@x: 1(L) 6(L) 7(B) 71(L) 72(B) 78(B) 33(R) 42(R) 
+de@y: 1(L) 8(L) 9(B) 73(L) 74(B) 78(B) 55(R) 64(R) 
+de@z: 1(L) 76(L) 77(B) 78(B) 
+main@m: 80(L) 83(B) 86(L) 
+main@n: 81(L) 83(B) 86(L) 
+main@nwd: 83(B) 86(L) 89(R) 
+main@x: 83(B) 86(L) 87(R) 
+main@y: 83(B) 86(L) 88(R) 
+temp#1: 1(L) 79(R) 
+temp#10: 41(L) 43(R) 
+temp#11: 42(L) 43(R) 
+temp#12: 45(L) 47(R) 
+temp#13: 46(L) 47(R) 
+temp#14: 51(L) 53(R) 
+temp#15: 52(L) 53(R) 
+temp#16: 56(L) 58(R) 
+temp#17: 57(L) 58(R) 
+temp#18: 63(L) 65(R) 
+temp#19: 64(L) 65(R) 
+temp#2: 15(L) 17(R) 
+temp#20: 67(L) 69(R) 
+temp#21: 68(L) 69(R) 
+temp#22: 17(L) 
+temp#23: 21(L) 
+temp#24: 21(L) 
+temp#25: 31(L) 
+temp#26: 31(L) 
+temp#27: 36(L) 
+temp#28: 36(L) 
+temp#29: 53(L) 
+temp#3: 16(L) 17(R) 
+temp#30: 53(L) 
+temp#31: 58(L) 
+temp#32: 58(L) 
+temp#4: 19(L) 21(R) 
+temp#5: 20(L) 21(R) 
+temp#6: 29(L) 31(R) 
+temp#7: 30(L) 31(R) 
+temp#8: 34(L) 36(R) 
+temp#9: 35(L) 36(R) 
+Range de@r[10-30] usages: 10 11 27 30 
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | temp#1(79-79): 79 | 
+d: de@y(1-1): 1 | de@b(4-23): 4 5 14 16 20 23 | 
+e: de@x(1-1): 1 | de@x(6-42): 6 7 33 42 | 
+f: de@m(1-78): 1 2 12 56 78 | 
+g: de@n(1-78): 1 4 10 34 78 | 
+h: de@y(8-64): 8 9 55 64 | 
+
+Range de@s[12-52] usages: 12 13 49 52 
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | temp#1(79-79): 79 | 
+d: de@y(1-1): 1 | de@b(4-23): 4 5 14 16 20 23 | 
+e: de@x(1-1): 1 | de@x(6-42): 6 7 33 42 | 
+f: de@m(1-78): 1 2 12 56 78 | 
+g: de@n(1-78): 1 4 10 34 78 | 
+h: de@y(8-9): 8 9 | de@s(12-52): 12 13 49 52 | de@y(55-64): 55 64 | 
+
+Range temp#2[15-17] usages: 15 17 
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | temp#1(79-79): 79 | 
+d: de@y(1-1): 1 | de@b(4-23): 4 5 14 16 20 23 | 
+e: de@x(1-1): 1 | de@x(6-42): 6 7 33 42 | 
+f: de@m(1-12): 1 2 12 | temp#2(15-17): 15 17 | de@m(56-78): 56 78 | 
+g: de@n(1-78): 1 4 10 34 78 | 
+h: de@y(8-9): 8 9 | de@s(12-52): 12 13 49 52 | de@y(55-64): 55 64 | 
+
+Range temp#3[16-17] usages: 16 17 
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | temp#1(79-79): 79 | 
+d: de@y(1-1): 1 | de@b(4-23): 4 5 14 16 20 23 | 
+e: de@x(1-1): 1 | de@x(6-42): 6 7 33 42 | 
+f: de@m(1-12): 1 2 12 | temp#2(15-17): 15 17 | de@m(56-78): 56 78 | 
+g: de@n(1-78): 1 4 10 34 78 | 
+h: de@y(8-9): 8 9 | de@s(12-13): 12 13 | temp#3(16-17): 16 17 | de@s(49-52): 49 52 | de@y(55-64): 55 64 | 
+
+Range de@reszta[17-25] usages: 17 18 25 
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | temp#1(79-79): 79 | 
+d: de@y(1-1): 1 | de@b(4-23): 4 5 14 16 20 23 | 
+e: de@x(1-1): 1 | de@x(6-7): 6 7 | de@reszta(17-25): 17 18 25 | de@x(33-42): 33 42 | 
+f: de@m(1-12): 1 2 12 | temp#2(15-17): 15 17 | de@m(56-78): 56 78 | 
+g: de@n(1-78): 1 4 10 34 78 | 
+h: de@y(8-9): 8 9 | de@s(12-13): 12 13 | temp#3(16-17): 16 17 | de@s(49-52): 49 52 | de@y(55-64): 55 64 | 
+
+Range temp#22[17-17] usages: 17 
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | temp#1(79-79): 79 | 
+d: de@y(1-1): 1 | de@b(4-23): 4 5 14 16 20 23 | 
+e: de@x(1-1): 1 | de@x(6-7): 6 7 | de@reszta(17-25): 17 18 25 | de@x(33-42): 33 42 | 
+f: de@m(1-12): 1 2 12 | temp#2(15-17): 15 17 | de@m(56-78): 56 78 | 
+g: de@n(1-10): 1 4 10 | temp#22(17-17): 17 | de@n(34-78): 34 78 | 
+h: de@y(8-9): 8 9 | de@s(12-13): 12 13 | temp#3(16-17): 16 17 | de@s(49-52): 49 52 | de@y(55-64): 55 64 | 
+
+Range de@iloraz[21-57] usages: 21 22 29 35 51 57 
+Min conflicting register: d
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | temp#5(20-21): 20 21 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | temp#1(79-79): 79 | 
+d: de@y(1-1): 1 | de@b(4-20): 4 5 14 16 20 | de@iloraz(21-57): 21 22 29 35 51 57 | de@iloraz(21-22): 21 22 | de@b(23-23): 23 | de@iloraz(29-57): 29 57 | 
+e: de@x(1-1): 1 | de@x(6-7): 6 7 | de@reszta(17-25): 17 18 25 | de@x(33-42): 33 42 | 
+f: de@m(1-12): 1 2 12 | temp#2(15-17): 15 17 | temp#4(19-21): 19 21 | de@m(56-78): 56 78 | 
+g: de@n(1-10): 1 4 10 | temp#22(17-17): 17 | de@n(34-78): 34 78 | 
+h: de@y(8-9): 8 9 | de@s(12-13): 12 13 | temp#3(16-17): 16 17 | de@s(49-52): 49 52 | de@y(55-64): 55 64 | 
+
+Range de@rr[27-71] usages: 27 28 71 
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | temp#5(20-21): 20 21 | de@a(23-24): 23 24 | de@rr(27-71): 27 28 71 | de@a(76-76): 76 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | temp#1(79-79): 79 | 
+d: de@y(1-1): 1 | de@b(4-20): 4 5 14 16 20 | de@iloraz(21-57): 21 22 29 35 51 57 | de@iloraz(21-22): 21 22 | de@b(23-23): 23 | de@iloraz(29-57): 29 57 | 
+e: de@x(1-1): 1 | de@x(6-7): 6 7 | de@reszta(17-25): 17 18 25 | de@x(33-42): 33 42 | 
+f: de@m(1-12): 1 2 12 | temp#2(15-17): 15 17 | temp#4(19-21): 19 21 | de@b(25-26): 25 26 | de@m(56-78): 56 78 | 
+g: de@n(1-10): 1 4 10 | temp#22(17-17): 17 | temp#24(21-21): 21 | de@n(34-78): 34 78 | 
+h: de@y(8-9): 8 9 | de@s(12-13): 12 13 | temp#3(16-17): 16 17 | temp#23(21-21): 21 | de@s(49-52): 49 52 | de@y(55-64): 55 64 | 
+
+Range de@r[36-37] usages: 36 37 
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | temp#5(20-21): 20 21 | de@a(23-24): 23 24 | de@rr(27-71): 27 28 71 | de@a(76-76): 76 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | de@tmp(31-46): 31 32 33 46 | temp#1(79-79): 79 | 
+d: de@y(1-1): 1 | de@b(4-20): 4 5 14 16 20 | de@iloraz(21-57): 21 22 29 35 51 57 | de@iloraz(21-22): 21 22 | de@b(23-23): 23 | de@iloraz(29-57): 29 57 | 
+e: de@x(1-1): 1 | de@x(6-7): 6 7 | de@reszta(17-25): 17 18 25 | temp#6(29-31): 29 31 | de@x(33-42): 33 42 | 
+f: de@m(1-12): 1 2 12 | temp#2(15-17): 15 17 | temp#4(19-21): 19 21 | de@b(25-26): 25 26 | temp#7(30-31): 30 31 | temp#8(34-36): 34 36 | de@m(56-78): 56 78 | 
+g: de@n(1-10): 1 4 10 | temp#22(17-17): 17 | temp#24(21-21): 21 | temp#25(31-31): 31 | de@n(34-34): 34 | de@r(36-37): 36 37 | de@n(78-78): 78 | 
+h: de@y(8-9): 8 9 | de@s(12-13): 12 13 | temp#3(16-17): 16 17 | temp#23(21-21): 21 | temp#26(31-31): 31 | temp#9(35-36): 35 36 | de@s(49-52): 49 52 | de@y(55-64): 55 64 | 
+
+Range temp#28[36-36] usages: 36 
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | temp#5(20-21): 20 21 | de@a(23-24): 23 24 | de@rr(27-28): 27 28 | temp#28(36-36): 36 | de@rr(71-71): 71 | de@a(76-76): 76 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | de@tmp(31-46): 31 32 33 46 | temp#1(79-79): 79 | 
+d: de@y(1-1): 1 | de@b(4-20): 4 5 14 16 20 | de@iloraz(21-57): 21 22 29 35 51 57 | de@iloraz(21-22): 21 22 | de@b(23-23): 23 | de@iloraz(29-57): 29 57 | 
+e: de@x(1-1): 1 | de@x(6-7): 6 7 | de@reszta(17-25): 17 18 25 | temp#6(29-31): 29 31 | de@x(33-42): 33 42 | 
+f: de@m(1-12): 1 2 12 | temp#2(15-17): 15 17 | temp#4(19-21): 19 21 | de@b(25-26): 25 26 | temp#7(30-31): 30 31 | temp#8(34-36): 34 36 | de@m(56-78): 56 78 | 
+g: de@n(1-10): 1 4 10 | temp#22(17-17): 17 | temp#24(21-21): 21 | temp#25(31-31): 31 | de@n(34-34): 34 | de@r(36-37): 36 37 | de@n(78-78): 78 | 
+h: de@y(8-9): 8 9 | de@s(12-13): 12 13 | temp#3(16-17): 16 17 | temp#23(21-21): 21 | temp#26(31-31): 31 | temp#9(35-36): 35 36 | de@s(49-52): 49 52 | de@y(55-64): 55 64 | 
+
+Range temp#27[36-36] usages: 36 
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | temp#5(20-21): 20 21 | de@a(23-24): 23 24 | de@rr(27-28): 27 28 | temp#28(36-36): 36 | de@rr(71-71): 71 | de@a(76-76): 76 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | de@tmp(31-46): 31 32 33 46 | temp#1(79-79): 79 | 
+d: de@y(1-1): 1 | de@b(4-20): 4 5 14 16 20 | de@iloraz(21-57): 21 22 29 35 51 57 | de@iloraz(21-22): 21 22 | de@b(23-23): 23 | de@iloraz(29-29): 29 | temp#27(36-36): 36 | de@iloraz(57-57): 57 | 
+e: de@x(1-1): 1 | de@x(6-7): 6 7 | de@reszta(17-25): 17 18 25 | temp#6(29-31): 29 31 | de@x(33-42): 33 42 | 
+f: de@m(1-12): 1 2 12 | temp#2(15-17): 15 17 | temp#4(19-21): 19 21 | de@b(25-26): 25 26 | temp#7(30-31): 30 31 | temp#8(34-36): 34 36 | de@m(56-78): 56 78 | 
+g: de@n(1-10): 1 4 10 | temp#22(17-17): 17 | temp#24(21-21): 21 | temp#25(31-31): 31 | de@n(34-34): 34 | de@r(36-37): 36 37 | de@n(78-78): 78 | 
+h: de@y(8-9): 8 9 | de@s(12-13): 12 13 | temp#3(16-17): 16 17 | temp#23(21-21): 21 | temp#26(31-31): 31 | temp#9(35-36): 35 36 | de@s(49-52): 49 52 | de@y(55-64): 55 64 | 
+
+Range de@tmp[53-68] usages: 53 54 55 68 
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | temp#5(20-21): 20 21 | de@a(23-24): 23 24 | de@rr(27-28): 27 28 | temp#28(36-36): 36 | de@r(39-41): 39 40 41 | temp#11(42-43): 42 43 | temp#12(45-47): 45 47 | temp#14(51-53): 51 53 | de@rr(71-71): 71 | de@a(76-76): 76 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | de@tmp(31-46): 31 32 33 46 | de@r(47-48): 47 48 | de@ss(49-50): 49 50 | de@tmp(53-68): 53 54 55 68 | de@ss(73-73): 73 | temp#1(79-79): 79 | 
+d: de@y(1-1): 1 | de@b(4-20): 4 5 14 16 20 | de@iloraz(21-57): 21 22 29 35 51 57 | de@iloraz(21-22): 21 22 | de@b(23-23): 23 | de@iloraz(29-29): 29 | temp#27(36-36): 36 | de@iloraz(57-57): 57 | 
+e: de@x(1-1): 1 | de@x(6-7): 6 7 | de@reszta(17-25): 17 18 25 | temp#6(29-31): 29 31 | de@x(33-42): 33 42 | de@r(43-45): 43 44 45 | temp#13(46-47): 46 47 | temp#15(52-53): 52 53 | 
+f: de@m(1-12): 1 2 12 | temp#2(15-17): 15 17 | temp#4(19-21): 19 21 | de@b(25-26): 25 26 | temp#7(30-31): 30 31 | temp#8(34-36): 34 36 | temp#10(41-43): 41 43 | temp#30(53-53): 53 | de@m(56-78): 56 78 | 
+g: de@n(1-10): 1 4 10 | temp#22(17-17): 17 | temp#24(21-21): 21 | temp#25(31-31): 31 | de@n(34-34): 34 | de@r(36-37): 36 37 | temp#29(53-53): 53 | de@n(78-78): 78 | 
+h: de@y(8-9): 8 9 | de@s(12-13): 12 13 | temp#3(16-17): 16 17 | temp#23(21-21): 21 | temp#26(31-31): 31 | temp#9(35-36): 35 36 | de@s(49-52): 49 52 | de@y(55-64): 55 64 | 
+
+Range temp#32[58-58] usages: 58 
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | temp#5(20-21): 20 21 | de@a(23-24): 23 24 | de@rr(27-28): 27 28 | temp#28(36-36): 36 | de@r(39-41): 39 40 41 | temp#11(42-43): 42 43 | temp#12(45-47): 45 47 | temp#14(51-53): 51 53 | temp#16(56-58): 56 58 | de@rr(71-71): 71 | de@a(76-76): 76 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | de@tmp(31-46): 31 32 33 46 | de@r(47-48): 47 48 | de@ss(49-50): 49 50 | de@tmp(53-68): 53 54 55 68 | de@ss(73-73): 73 | temp#1(79-79): 79 | 
+d: de@y(1-1): 1 | de@b(4-20): 4 5 14 16 20 | de@iloraz(21-57): 21 22 29 35 51 57 | de@iloraz(21-22): 21 22 | de@b(23-23): 23 | de@iloraz(29-29): 29 | temp#27(36-36): 36 | de@iloraz(57-57): 57 | temp#31(58-58): 58 | 
+e: de@x(1-1): 1 | de@x(6-7): 6 7 | de@reszta(17-25): 17 18 25 | temp#6(29-31): 29 31 | de@x(33-42): 33 42 | de@r(43-45): 43 44 45 | temp#13(46-47): 46 47 | temp#15(52-53): 52 53 | temp#17(57-58): 57 58 | 
+f: de@m(1-12): 1 2 12 | temp#2(15-17): 15 17 | temp#4(19-21): 19 21 | de@b(25-26): 25 26 | temp#7(30-31): 30 31 | temp#8(34-36): 34 36 | temp#10(41-43): 41 43 | temp#30(53-53): 53 | de@m(56-56): 56 | temp#32(58-58): 58 | de@m(78-78): 78 | 
+g: de@n(1-10): 1 4 10 | temp#22(17-17): 17 | temp#24(21-21): 21 | temp#25(31-31): 31 | de@n(34-34): 34 | de@r(36-37): 36 37 | temp#29(53-53): 53 | de@s(58-59): 58 59 | de@n(78-78): 78 | 
+h: de@y(8-9): 8 9 | de@s(12-13): 12 13 | temp#3(16-17): 16 17 | temp#23(21-21): 21 | temp#26(31-31): 31 | temp#9(35-36): 35 36 | de@s(49-52): 49 52 | de@y(55-64): 55 64 | 
+
+Final registers usage:
+b: de@z(1-1): 1 | de@a(2-19): 2 3 15 19 | temp#5(20-21): 20 21 | de@a(23-24): 23 24 | de@rr(27-28): 27 28 | temp#28(36-36): 36 | de@r(39-41): 39 40 41 | temp#11(42-43): 42 43 | temp#12(45-47): 45 47 | temp#14(51-53): 51 53 | temp#16(56-58): 56 58 | de@s(61-63): 61 62 63 | temp#19(64-65): 64 65 | temp#20(67-69): 67 69 | de@rr(71-71): 71 | de@a(76-76): 76 | main@m(80-83): 80 83 | main@m(86-86): 86 | 
+c: temp#1(1-1): 1 | de@r(10-30): 10 11 27 30 | de@tmp(31-46): 31 32 33 46 | de@r(47-48): 47 48 | de@ss(49-50): 49 50 | de@tmp(53-68): 53 54 55 68 | de@s(69-70): 69 70 | de@ss(73-73): 73 | de@z(76-78): 76 77 78 | temp#1(79-79): 79 | main@n(81-83): 81 83 | main@y(86-88): 86 88 | 
+d: de@y(1-1): 1 | de@b(4-20): 4 5 14 16 20 | de@iloraz(21-57): 21 22 29 35 51 57 | de@iloraz(21-22): 21 22 | de@b(23-23): 23 | de@iloraz(29-29): 29 | temp#27(36-36): 36 | de@iloraz(57-57): 57 | temp#31(58-58): 58 | temp#18(63-65): 63 65 | temp#21(68-69): 68 69 | de@x(71-78): 71 72 78 | main@y(83-83): 83 | main@x(86-87): 86 87 | 
+e: de@x(1-1): 1 | de@x(6-7): 6 7 | de@reszta(17-25): 17 18 25 | temp#6(29-31): 29 31 | de@x(33-42): 33 42 | de@r(43-45): 43 44 45 | temp#13(46-47): 46 47 | temp#15(52-53): 52 53 | temp#17(57-58): 57 58 | de@s(65-67): 65 66 67 | de@y(73-78): 73 74 78 | main@x(83-83): 83 | main@nwd(86-89): 86 89 | 
+f: de@m(1-12): 1 2 12 | temp#2(15-17): 15 17 | temp#4(19-21): 19 21 | de@b(25-26): 25 26 | temp#7(30-31): 30 31 | temp#8(34-36): 34 36 | temp#10(41-43): 41 43 | temp#30(53-53): 53 | de@m(56-56): 56 | temp#32(58-58): 58 | de@m(78-78): 78 | main@nwd(83-83): 83 | main@n(86-86): 86 | 
+g: de@n(1-10): 1 4 10 | temp#22(17-17): 17 | temp#24(21-21): 21 | temp#25(31-31): 31 | de@n(34-34): 34 | de@r(36-37): 36 37 | temp#29(53-53): 53 | de@s(58-59): 58 59 | de@n(78-78): 78 | 
+h: de@y(8-9): 8 9 | de@s(12-13): 12 13 | temp#3(16-17): 16 17 | temp#23(21-21): 21 | temp#26(31-31): 31 | temp#9(35-36): 35 36 | de@s(49-52): 49 52 | de@y(55-64): 55 64 | 
+
+de@a: 2(b) 3(b) 15(b) 19(b) 23(b) 24(b) 76(b) 
+de@b: 4(d) 5(d) 14(d) 16(d) 20(d) 23(d) 25(f) 26(f) 
+de@iloraz: 21(d) 22(d) 29(d) 35(d) 51(d) 57(d) 
+de@m: 1(f) 2(f) 12(f) 56(f) 78(f) 
+de@n: 1(g) 4(g) 10(g) 34(g) 78(g) 
+de@r: 10(c) 11(c) 27(c) 30(c) 36(g) 37(g) 39(b) 40(b) 41(b) 43(e) 44(e) 45(e) 47(c) 48(c) 
+de@reszta: 17(e) 18(e) 25(e) 
+de@rr: 27(b) 28(b) 71(b) 
+de@s: 12(h) 13(h) 49(h) 52(h) 58(g) 59(g) 61(b) 62(b) 63(b) 65(e) 66(e) 67(e) 69(c) 70(c) 
+de@ss: 49(c) 50(c) 73(c) 
+de@tmp: 31(c) 32(c) 33(c) 46(c) 53(c) 54(c) 55(c) 68(c) 
+de@x: 1(e) 6(e) 7(e) 33(e) 42(e) 71(d) 72(d) 78(d) 
+de@y: 1(d) 8(h) 9(h) 55(h) 64(h) 73(e) 74(e) 78(e) 
+de@z: 1(b) 76(c) 77(c) 78(c) 
+main@m: 80(b) 83(b) 86(b) 
+main@n: 81(c) 83(c) 86(f) 
+main@nwd: 83(f) 86(e) 89(e) 
+main@x: 83(e) 86(d) 87(d) 
+main@y: 83(d) 86(c) 88(c) 
+temp#1: 1(c) 79(c) 
+temp#10: 41(f) 43(f) 
+temp#11: 42(b) 43(b) 
+temp#12: 45(b) 47(b) 
+temp#13: 46(e) 47(e) 
+temp#14: 51(b) 53(b) 
+temp#15: 52(e) 53(e) 
+temp#16: 56(b) 58(b) 
+temp#17: 57(e) 58(e) 
+temp#18: 63(d) 65(d) 
+temp#19: 64(b) 65(b) 
+temp#2: 15(f) 17(f) 
+temp#20: 67(b) 69(b) 
+temp#21: 68(d) 69(d) 
+temp#22: 17(g) 
+temp#23: 21(h) 
+temp#24: 21(g) 
+temp#25: 31(g) 
+temp#26: 31(h) 
+temp#27: 36(d) 
+temp#28: 36(b) 
+temp#29: 53(g) 
+temp#3: 16(h) 17(h) 
+temp#30: 53(f) 
+temp#31: 58(d) 
+temp#32: 58(f) 
+temp#4: 19(f) 21(f) 
+temp#5: 20(b) 21(b) 
+temp#6: 29(e) 31(e) 
+temp#7: 30(f) 31(f) 
+temp#8: 34(f) 36(f) 
+temp#9: 35(h) 36(h) 
+[       OK ] Compiler.Test1 (25 ms)
+[----------] 1 test from Compiler (25 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (25 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = Compiler.Test2
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Compiler
+[ RUN      ] Compiler.Test2
+../compiler correct-programs/example2.imp correct-programs/example2.rm
+../virtual-machine/maszyna-wirtualna-cln correct-programs/example2.rm >correct-programs/example2.result < correct-programs/example2-in.txt
+Function pa allocated at 0 with size 3
+FUN RECORD: pa: 0
+Function pb allocated at 3 with size 3
+FUN RECORD: pb: 3
+FUN RECORD: pa: 0
+FUN RECORD: pa: 0
+Function pc allocated at 22 with size 3
+FUN RECORD: pc: 22
+FUN RECORD: pb: 3
+FUN RECORD: pb: 3
+FUN RECORD: pb: 3
+Function pd allocated at 49 with size 3
+FUN RECORD: pd: 49
+FUN RECORD: pc: 22
+FUN RECORD: pc: 22
+FUN RECORD: pc: 22
+FUN RECORD: pc: 22
+FUN RECORD: pd: 49
+RANGE main@a[66-69]: 66 69 
+RANGE main@a[72-73]: 72 73 
+RANGE main@b[67-69]: 67 69 
+RANGE main@b[72-74]: 72 74 
+RANGE pa@a[1-2]: 1 2 
+RANGE pa@a[4-10]: 4 5 6 10 
+RANGE pa@b[1-7]: 1 3 7 
+RANGE pa@b[8-10]: 8 9 10 
+RANGE pb@a[12-14]: 12 14 
+RANGE pb@a[17-19]: 17 19 
+RANGE pb@a[22-23]: 22 23 
+RANGE pb@b[12-14]: 12 14 
+RANGE pb@b[17-19]: 17 19 
+RANGE pb@b[22-23]: 22 23 
+RANGE pc@a[25-27]: 25 27 
+RANGE pc@a[30-32]: 30 32 
+RANGE pc@a[35-37]: 35 37 
+RANGE pc@a[40-41]: 40 41 
+RANGE pc@b[25-27]: 25 27 
+RANGE pc@b[30-32]: 30 32 
+RANGE pc@b[35-37]: 35 37 
+RANGE pc@b[40-41]: 40 41 
+RANGE pd@a[43-45]: 43 45 
+RANGE pd@a[48-50]: 48 50 
+RANGE pd@a[53-55]: 53 55 
+RANGE pd@a[58-60]: 58 60 
+RANGE pd@a[63-64]: 63 64 
+RANGE pd@b[43-45]: 43 45 
+RANGE pd@b[48-50]: 48 50 
+RANGE pd@b[53-55]: 53 55 
+RANGE pd@b[58-60]: 58 60 
+RANGE pd@b[63-64]: 63 64 
+RANGE temp#1[1-11]: 1 11 
+RANGE temp#2[2-4]: 2 4 
+RANGE temp#3[3-4]: 3 4 
+RANGE temp#4[6-8]: 6 8 
+RANGE temp#5[7-8]: 7 8 
+RANGE temp#6[12-24]: 12 24 
+RANGE temp#7[25-42]: 25 42 
+RANGE temp#8[43-65]: 43 65 
+temp#1[1-11]: ###########                                                                                                                    
+pa@a[1-2]: ##                                                                                                                             
+pa@b[1-7]: #######                                                                                                                        
+temp#2[2-4]:  ###                                                                                                                           
+temp#3[3-4]:   ##                                                                                                                           
+pa@a[4-10]:    #######                                                                                                                     
+temp#4[6-8]:      ###                                                                                                                       
+temp#5[7-8]:       ##                                                                                                                       
+pa@b[8-10]:        ###                                                                                                                     
+temp#6[12-24]:            #############                                                                                                       
+pb@a[12-14]:            ###                                                                                                                 
+pb@b[12-14]:            ###                                                                                                                 
+pb@a[17-19]:                 ###                                                                                                            
+pb@b[17-19]:                 ###                                                                                                            
+pb@b[22-23]:                      ##                                                                                                        
+pb@a[22-23]:                      ##                                                                                                        
+temp#7[25-42]:                         ##################                                                                                     
+pc@b[25-27]:                         ###                                                                                                    
+pc@a[25-27]:                         ###                                                                                                    
+pc@b[30-32]:                              ###                                                                                               
+pc@a[30-32]:                              ###                                                                                               
+pc@b[35-37]:                                   ###                                                                                          
+pc@a[35-37]:                                   ###                                                                                          
+pc@a[40-41]:                                        ##                                                                                      
+pc@b[40-41]:                                        ##                                                                                      
+temp#8[43-65]:                                           #######################                                                              
+pd@b[43-45]:                                           ###                                                                                  
+pd@a[43-45]:                                           ###                                                                                  
+pd@b[48-50]:                                                ###                                                                             
+pd@a[48-50]:                                                ###                                                                             
+pd@b[53-55]:                                                     ###                                                                        
+pd@a[53-55]:                                                     ###                                                                        
+pd@b[58-60]:                                                          ###                                                                   
+pd@a[58-60]:                                                          ###                                                                   
+pd@a[63-64]:                                                               ##                                                               
+pd@b[63-64]:                                                               ##                                                               
+main@a[66-69]:                                                                  ####                                                          
+main@b[67-69]:                                                                   ###                                                          
+main@b[72-74]:                                                                        ###                                                     
+main@a[72-73]:                                                                        ##                                                      
+Variable usages:
+main@a: 66(L) 69(B) 72(L) 73(R) 
+main@b: 67(L) 69(B) 72(L) 74(R) 
+pa@a: 1(L) 4(L) 5(B) 10(B) 2(R) 6(R) 
+pa@b: 1(L) 8(L) 9(B) 10(B) 3(R) 7(R) 
+pb@a: 12(L) 14(B) 17(L) 19(B) 22(L) 23(B) 
+pb@b: 12(L) 14(B) 17(L) 19(B) 22(L) 23(B) 
+pc@a: 25(L) 27(B) 30(L) 32(B) 35(L) 37(B) 40(L) 41(B) 
+pc@b: 25(L) 27(B) 30(L) 32(B) 35(L) 37(B) 40(L) 41(B) 
+pd@a: 43(L) 45(B) 48(L) 50(B) 53(L) 55(B) 58(L) 60(B) 63(L) 64(B) 
+pd@b: 43(L) 45(B) 48(L) 50(B) 53(L) 55(B) 58(L) 60(B) 63(L) 64(B) 
+temp#1: 1(L) 11(R) 
+temp#2: 2(L) 4(R) 
+temp#3: 3(L) 4(R) 
+temp#4: 6(L) 8(R) 
+temp#5: 7(L) 8(R) 
+temp#6: 12(L) 24(R) 
+temp#7: 25(L) 42(R) 
+temp#8: 43(L) 65(R) 
+Final registers usage:
+b: pa@a(1-2): 1 2 | temp#3(3-4): 3 4 | temp#4(6-8): 6 8 | pb@b(12-14): 12 14 | pb@a(17-19): 17 19 | pb@b(22-23): 22 23 | temp#7(25-42): 25 42 | temp#8(43-65): 43 65 | main@a(66-69): 66 69 | main@b(72-74): 72 74 | 
+c: temp#1(1-11): 1 11 | pb@a(12-14): 12 14 | pb@b(17-19): 17 19 | pb@a(22-23): 22 23 | pc@b(25-27): 25 27 | pc@a(30-32): 30 32 | pc@b(35-37): 35 37 | pc@a(40-41): 40 41 | pd@b(43-45): 43 45 | pd@b(48-50): 48 50 | pd@b(53-55): 53 55 | pd@b(58-60): 58 60 | pd@a(63-64): 63 64 | main@b(67-69): 67 69 | main@a(72-73): 72 73 | 
+d: pa@b(1-7): 1 3 7 | pa@b(8-10): 8 9 10 | temp#6(12-24): 12 24 | pc@a(25-27): 25 27 | pc@b(30-32): 30 32 | pc@a(35-37): 35 37 | pc@b(40-41): 40 41 | pd@a(43-45): 43 45 | pd@a(48-50): 48 50 | pd@a(53-55): 53 55 | pd@a(58-60): 58 60 | pd@b(63-64): 63 64 | 
+e: temp#2(2-4): 2 4 | temp#5(7-8): 7 8 | 
+f: pa@a(4-10): 4 5 6 10 | 
+g: 
+h: 
+
+main@a: 66(b) 69(b) 72(c) 73(c) 
+main@b: 67(c) 69(c) 72(b) 74(b) 
+pa@a: 1(b) 2(b) 4(f) 5(f) 6(f) 10(f) 
+pa@b: 1(d) 3(d) 7(d) 8(d) 9(d) 10(d) 
+pb@a: 12(c) 14(c) 17(b) 19(b) 22(c) 23(c) 
+pb@b: 12(b) 14(b) 17(c) 19(c) 22(b) 23(b) 
+pc@a: 25(d) 27(d) 30(c) 32(c) 35(d) 37(d) 40(c) 41(c) 
+pc@b: 25(c) 27(c) 30(d) 32(d) 35(c) 37(c) 40(d) 41(d) 
+pd@a: 43(d) 45(d) 48(d) 50(d) 53(d) 55(d) 58(d) 60(d) 63(c) 64(c) 
+pd@b: 43(c) 45(c) 48(c) 50(c) 53(c) 55(c) 58(c) 60(c) 63(d) 64(d) 
+temp#1: 1(c) 11(c) 
+temp#2: 2(e) 4(e) 
+temp#3: 3(b) 4(b) 
+temp#4: 6(b) 8(b) 
+temp#5: 7(e) 8(e) 
+temp#6: 12(d) 24(d) 
+temp#7: 25(b) 42(b) 
+temp#8: 43(b) 65(b) 
+[       OK ] Compiler.Test2 (13 ms)
+[----------] 1 test from Compiler (13 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (13 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = Compiler.Test3
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Compiler
+[ RUN      ] Compiler.Test3
+../compiler correct-programs/example3.imp correct-programs/example3.rm
+../virtual-machine/maszyna-wirtualna-cln correct-programs/example3.rm >correct-programs/example3.result < correct-programs/example3-in.txt
+RANGE main@a[1-5]: 1 2 5 
+RANGE main@b[2-9]: 2 3 4 9 
+RANGE main@c[6-13]: 6 7 8 13 
+RANGE main@d[10-17]: 10 11 12 17 
+RANGE main@e[14-21]: 14 15 16 21 
+RANGE main@f[18-25]: 18 19 20 25 
+RANGE main@g[22-29]: 22 23 24 29 
+RANGE main@h[26-33]: 26 27 28 33 
+RANGE main@i[30-37]: 30 31 32 37 
+RANGE main@j[34-41]: 34 35 36 41 
+RANGE main@k[38-45]: 38 39 40 45 
+RANGE main@l[42-49]: 42 43 44 49 
+RANGE main@m[46-53]: 46 47 48 53 
+RANGE main@n[50-57]: 50 51 52 57 
+RANGE main@o[54-61]: 54 55 56 61 
+RANGE main@p[58-65]: 58 59 60 65 
+RANGE main@q[62-69]: 62 63 64 69 
+RANGE main@r[66-73]: 66 67 68 73 
+RANGE main@s[70-77]: 70 71 72 77 
+RANGE main@t[74-81]: 74 75 76 81 
+RANGE main@u[78-85]: 78 79 80 85 
+RANGE main@v[82-89]: 82 83 84 89 
+RANGE main@w[86-93]: 86 87 88 93 
+RANGE main@x[90-97]: 90 91 92 97 
+RANGE main@y[94-96]: 94 95 96 
+RANGE main@z[98-100]: 98 99 100 
+RANGE temp#1[4-6]: 4 6 
+RANGE temp#10[21-22]: 21 22 
+RANGE temp#11[24-26]: 24 26 
+RANGE temp#12[25-26]: 25 26 
+RANGE temp#13[28-30]: 28 30 
+RANGE temp#14[29-30]: 29 30 
+RANGE temp#15[32-34]: 32 34 
+RANGE temp#16[33-34]: 33 34 
+RANGE temp#17[36-38]: 36 38 
+RANGE temp#18[37-38]: 37 38 
+RANGE temp#19[40-42]: 40 42 
+RANGE temp#2[5-6]: 5 6 
+RANGE temp#20[41-42]: 41 42 
+RANGE temp#21[44-46]: 44 46 
+RANGE temp#22[45-46]: 45 46 
+RANGE temp#23[48-50]: 48 50 
+RANGE temp#24[49-50]: 49 50 
+RANGE temp#25[52-54]: 52 54 
+RANGE temp#26[53-54]: 53 54 
+RANGE temp#27[56-58]: 56 58 
+RANGE temp#28[57-58]: 57 58 
+RANGE temp#29[60-62]: 60 62 
+RANGE temp#3[8-10]: 8 10 
+RANGE temp#30[61-62]: 61 62 
+RANGE temp#31[64-66]: 64 66 
+RANGE temp#32[65-66]: 65 66 
+RANGE temp#33[68-70]: 68 70 
+RANGE temp#34[69-70]: 69 70 
+RANGE temp#35[72-74]: 72 74 
+RANGE temp#36[73-74]: 73 74 
+RANGE temp#37[76-78]: 76 78 
+RANGE temp#38[77-78]: 77 78 
+RANGE temp#39[80-82]: 80 82 
+RANGE temp#4[9-10]: 9 10 
+RANGE temp#40[81-82]: 81 82 
+RANGE temp#41[84-86]: 84 86 
+RANGE temp#42[85-86]: 85 86 
+RANGE temp#43[88-90]: 88 90 
+RANGE temp#44[89-90]: 89 90 
+RANGE temp#45[92-94]: 92 94 
+RANGE temp#46[93-94]: 93 94 
+RANGE temp#47[96-98]: 96 98 
+RANGE temp#48[97-98]: 97 98 
+RANGE temp#5[12-14]: 12 14 
+RANGE temp#6[13-14]: 13 14 
+RANGE temp#7[16-18]: 16 18 
+RANGE temp#8[17-18]: 17 18 
+RANGE temp#9[20-22]: 20 22 
+main@a[1-5]: #####                                                                                                                          
+main@b[2-9]:  ########                                                                                                                      
+temp#1[4-6]:    ###                                                                                                                         
+temp#2[5-6]:     ##                                                                                                                         
+main@c[6-13]:      ########                                                                                                                  
+temp#3[8-10]:        ###                                                                                                                     
+temp#4[9-10]:         ##                                                                                                                     
+main@d[10-17]:          ########                                                                                                              
+temp#5[12-14]:            ###                                                                                                                 
+temp#6[13-14]:             ##                                                                                                                 
+main@e[14-21]:              ########                                                                                                          
+temp#7[16-18]:                ###                                                                                                             
+temp#8[17-18]:                 ##                                                                                                             
+main@f[18-25]:                  ########                                                                                                      
+temp#9[20-22]:                    ###                                                                                                         
+temp#10[21-22]:                     ##                                                                                                         
+main@g[22-29]:                      ########                                                                                                  
+temp#11[24-26]:                        ###                                                                                                     
+temp#12[25-26]:                         ##                                                                                                     
+main@h[26-33]:                          ########                                                                                              
+temp#13[28-30]:                            ###                                                                                                 
+temp#14[29-30]:                             ##                                                                                                 
+main@i[30-37]:                              ########                                                                                          
+temp#15[32-34]:                                ###                                                                                             
+temp#16[33-34]:                                 ##                                                                                             
+main@j[34-41]:                                  ########                                                                                      
+temp#17[36-38]:                                    ###                                                                                         
+temp#18[37-38]:                                     ##                                                                                         
+main@k[38-45]:                                      ########                                                                                  
+temp#19[40-42]:                                        ###                                                                                     
+temp#20[41-42]:                                         ##                                                                                     
+main@l[42-49]:                                          ########                                                                              
+temp#21[44-46]:                                            ###                                                                                 
+temp#22[45-46]:                                             ##                                                                                 
+main@m[46-53]:                                              ########                                                                          
+temp#23[48-50]:                                                ###                                                                             
+temp#24[49-50]:                                                 ##                                                                             
+main@n[50-57]:                                                  ########                                                                      
+temp#25[52-54]:                                                    ###                                                                         
+temp#26[53-54]:                                                     ##                                                                         
+main@o[54-61]:                                                      ########                                                                  
+temp#27[56-58]:                                                        ###                                                                     
+temp#28[57-58]:                                                         ##                                                                     
+main@p[58-65]:                                                          ########                                                              
+temp#29[60-62]:                                                            ###                                                                 
+temp#30[61-62]:                                                             ##                                                                 
+main@q[62-69]:                                                              ########                                                          
+temp#31[64-66]:                                                                ###                                                             
+temp#32[65-66]:                                                                 ##                                                             
+main@r[66-73]:                                                                  ########                                                      
+temp#33[68-70]:                                                                    ###                                                         
+temp#34[69-70]:                                                                     ##                                                         
+main@s[70-77]:                                                                      ########                                                  
+temp#35[72-74]:                                                                        ###                                                     
+temp#36[73-74]:                                                                         ##                                                     
+main@t[74-81]:                                                                          ########                                              
+temp#37[76-78]:                                                                            ###                                                 
+temp#38[77-78]:                                                                             ##                                                 
+main@u[78-85]:                                                                              ########                                          
+temp#39[80-82]:                                                                                ###                                             
+temp#40[81-82]:                                                                                 ##                                             
+main@v[82-89]:                                                                                  ########                                      
+temp#41[84-86]:                                                                                    ###                                         
+temp#42[85-86]:                                                                                     ##                                         
+main@w[86-93]:                                                                                      ########                                  
+temp#43[88-90]:                                                                                        ###                                     
+temp#44[89-90]:                                                                                         ##                                     
+main@x[90-97]:                                                                                          ########                              
+temp#45[92-94]:                                                                                            ###                                 
+temp#46[93-94]:                                                                                             ##                                 
+main@y[94-96]:                                                                                              ###                               
+temp#47[96-98]:                                                                                                ###                             
+temp#48[97-98]:                                                                                                 ##                             
+main@z[98-100]:                                                                                                  ###                           
+Variable usages:
+main@a: 1(L) 2(R) 5(R) 
+main@b: 2(L) 3(B) 4(R) 9(R) 
+main@c: 6(L) 7(B) 8(R) 13(R) 
+main@d: 10(L) 11(B) 12(R) 17(R) 
+main@e: 14(L) 15(B) 16(R) 21(R) 
+main@f: 18(L) 19(B) 20(R) 25(R) 
+main@g: 22(L) 23(B) 24(R) 29(R) 
+main@h: 26(L) 27(B) 28(R) 33(R) 
+main@i: 30(L) 31(B) 32(R) 37(R) 
+main@j: 34(L) 35(B) 36(R) 41(R) 
+main@k: 38(L) 39(B) 40(R) 45(R) 
+main@l: 42(L) 43(B) 44(R) 49(R) 
+main@m: 46(L) 47(B) 48(R) 53(R) 
+main@n: 50(L) 51(B) 52(R) 57(R) 
+main@o: 54(L) 55(B) 56(R) 61(R) 
+main@p: 58(L) 59(B) 60(R) 65(R) 
+main@q: 62(L) 63(B) 64(R) 69(R) 
+main@r: 66(L) 67(B) 68(R) 73(R) 
+main@s: 70(L) 71(B) 72(R) 77(R) 
+main@t: 74(L) 75(B) 76(R) 81(R) 
+main@u: 78(L) 79(B) 80(R) 85(R) 
+main@v: 82(L) 83(B) 84(R) 89(R) 
+main@w: 86(L) 87(B) 88(R) 93(R) 
+main@x: 90(L) 91(B) 92(R) 97(R) 
+main@y: 94(L) 95(B) 96(R) 
+main@z: 98(L) 99(B) 100(R) 
+temp#1: 4(L) 6(R) 
+temp#10: 21(L) 22(R) 
+temp#11: 24(L) 26(R) 
+temp#12: 25(L) 26(R) 
+temp#13: 28(L) 30(R) 
+temp#14: 29(L) 30(R) 
+temp#15: 32(L) 34(R) 
+temp#16: 33(L) 34(R) 
+temp#17: 36(L) 38(R) 
+temp#18: 37(L) 38(R) 
+temp#19: 40(L) 42(R) 
+temp#2: 5(L) 6(R) 
+temp#20: 41(L) 42(R) 
+temp#21: 44(L) 46(R) 
+temp#22: 45(L) 46(R) 
+temp#23: 48(L) 50(R) 
+temp#24: 49(L) 50(R) 
+temp#25: 52(L) 54(R) 
+temp#26: 53(L) 54(R) 
+temp#27: 56(L) 58(R) 
+temp#28: 57(L) 58(R) 
+temp#29: 60(L) 62(R) 
+temp#3: 8(L) 10(R) 
+temp#30: 61(L) 62(R) 
+temp#31: 64(L) 66(R) 
+temp#32: 65(L) 66(R) 
+temp#33: 68(L) 70(R) 
+temp#34: 69(L) 70(R) 
+temp#35: 72(L) 74(R) 
+temp#36: 73(L) 74(R) 
+temp#37: 76(L) 78(R) 
+temp#38: 77(L) 78(R) 
+temp#39: 80(L) 82(R) 
+temp#4: 9(L) 10(R) 
+temp#40: 81(L) 82(R) 
+temp#41: 84(L) 86(R) 
+temp#42: 85(L) 86(R) 
+temp#43: 88(L) 90(R) 
+temp#44: 89(L) 90(R) 
+temp#45: 92(L) 94(R) 
+temp#46: 93(L) 94(R) 
+temp#47: 96(L) 98(R) 
+temp#48: 97(L) 98(R) 
+temp#5: 12(L) 14(R) 
+temp#6: 13(L) 14(R) 
+temp#7: 16(L) 18(R) 
+temp#8: 17(L) 18(R) 
+temp#9: 20(L) 22(R) 
+Final registers usage:
+b: main@a(1-5): 1 2 5 | main@c(6-13): 6 7 8 13 | main@e(14-21): 14 15 16 21 | main@g(22-29): 22 23 24 29 | main@i(30-37): 30 31 32 37 | main@k(38-45): 38 39 40 45 | main@m(46-53): 46 47 48 53 | main@o(54-61): 54 55 56 61 | main@q(62-69): 62 63 64 69 | main@s(70-77): 70 71 72 77 | main@u(78-85): 78 79 80 85 | main@w(86-93): 86 87 88 93 | main@y(94-96): 94 95 96 | temp#48(97-98): 97 98 | 
+c: main@b(2-9): 2 3 4 9 | main@d(10-17): 10 11 12 17 | main@f(18-25): 18 19 20 25 | main@h(26-33): 26 27 28 33 | main@j(34-41): 34 35 36 41 | main@l(42-49): 42 43 44 49 | main@n(50-57): 50 51 52 57 | main@p(58-65): 58 59 60 65 | main@r(66-73): 66 67 68 73 | main@t(74-81): 74 75 76 81 | main@v(82-89): 82 83 84 89 | main@x(90-97): 90 91 92 97 | main@z(98-100): 98 99 100 | 
+d: temp#1(4-6): 4 6 | temp#3(8-10): 8 10 | temp#5(12-14): 12 14 | temp#7(16-18): 16 18 | temp#9(20-22): 20 22 | temp#11(24-26): 24 26 | temp#13(28-30): 28 30 | temp#15(32-34): 32 34 | temp#17(36-38): 36 38 | temp#19(40-42): 40 42 | temp#21(44-46): 44 46 | temp#23(48-50): 48 50 | temp#25(52-54): 52 54 | temp#27(56-58): 56 58 | temp#29(60-62): 60 62 | temp#31(64-66): 64 66 | temp#33(68-70): 68 70 | temp#35(72-74): 72 74 | temp#37(76-78): 76 78 | temp#39(80-82): 80 82 | temp#41(84-86): 84 86 | temp#43(88-90): 88 90 | temp#45(92-94): 92 94 | temp#47(96-98): 96 98 | 
+e: temp#2(5-6): 5 6 | temp#4(9-10): 9 10 | temp#6(13-14): 13 14 | temp#8(17-18): 17 18 | temp#10(21-22): 21 22 | temp#12(25-26): 25 26 | temp#14(29-30): 29 30 | temp#16(33-34): 33 34 | temp#18(37-38): 37 38 | temp#20(41-42): 41 42 | temp#22(45-46): 45 46 | temp#24(49-50): 49 50 | temp#26(53-54): 53 54 | temp#28(57-58): 57 58 | temp#30(61-62): 61 62 | temp#32(65-66): 65 66 | temp#34(69-70): 69 70 | temp#36(73-74): 73 74 | temp#38(77-78): 77 78 | temp#40(81-82): 81 82 | temp#42(85-86): 85 86 | temp#44(89-90): 89 90 | temp#46(93-94): 93 94 | 
+f: 
+g: 
+h: 
+
+main@a: 1(b) 2(b) 5(b) 
+main@b: 2(c) 3(c) 4(c) 9(c) 
+main@c: 6(b) 7(b) 8(b) 13(b) 
+main@d: 10(c) 11(c) 12(c) 17(c) 
+main@e: 14(b) 15(b) 16(b) 21(b) 
+main@f: 18(c) 19(c) 20(c) 25(c) 
+main@g: 22(b) 23(b) 24(b) 29(b) 
+main@h: 26(c) 27(c) 28(c) 33(c) 
+main@i: 30(b) 31(b) 32(b) 37(b) 
+main@j: 34(c) 35(c) 36(c) 41(c) 
+main@k: 38(b) 39(b) 40(b) 45(b) 
+main@l: 42(c) 43(c) 44(c) 49(c) 
+main@m: 46(b) 47(b) 48(b) 53(b) 
+main@n: 50(c) 51(c) 52(c) 57(c) 
+main@o: 54(b) 55(b) 56(b) 61(b) 
+main@p: 58(c) 59(c) 60(c) 65(c) 
+main@q: 62(b) 63(b) 64(b) 69(b) 
+main@r: 66(c) 67(c) 68(c) 73(c) 
+main@s: 70(b) 71(b) 72(b) 77(b) 
+main@t: 74(c) 75(c) 76(c) 81(c) 
+main@u: 78(b) 79(b) 80(b) 85(b) 
+main@v: 82(c) 83(c) 84(c) 89(c) 
+main@w: 86(b) 87(b) 88(b) 93(b) 
+main@x: 90(c) 91(c) 92(c) 97(c) 
+main@y: 94(b) 95(b) 96(b) 
+main@z: 98(c) 99(c) 100(c) 
+temp#1: 4(d) 6(d) 
+temp#10: 21(e) 22(e) 
+temp#11: 24(d) 26(d) 
+temp#12: 25(e) 26(e) 
+temp#13: 28(d) 30(d) 
+temp#14: 29(e) 30(e) 
+temp#15: 32(d) 34(d) 
+temp#16: 33(e) 34(e) 
+temp#17: 36(d) 38(d) 
+temp#18: 37(e) 38(e) 
+temp#19: 40(d) 42(d) 
+temp#2: 5(e) 6(e) 
+temp#20: 41(e) 42(e) 
+temp#21: 44(d) 46(d) 
+temp#22: 45(e) 46(e) 
+temp#23: 48(d) 50(d) 
+temp#24: 49(e) 50(e) 
+temp#25: 52(d) 54(d) 
+temp#26: 53(e) 54(e) 
+temp#27: 56(d) 58(d) 
+temp#28: 57(e) 58(e) 
+temp#29: 60(d) 62(d) 
+temp#3: 8(d) 10(d) 
+temp#30: 61(e) 62(e) 
+temp#31: 64(d) 66(d) 
+temp#32: 65(e) 66(e) 
+temp#33: 68(d) 70(d) 
+temp#34: 69(e) 70(e) 
+temp#35: 72(d) 74(d) 
+temp#36: 73(e) 74(e) 
+temp#37: 76(d) 78(d) 
+temp#38: 77(e) 78(e) 
+temp#39: 80(d) 82(d) 
+temp#4: 9(e) 10(e) 
+temp#40: 81(e) 82(e) 
+temp#41: 84(d) 86(d) 
+temp#42: 85(e) 86(e) 
+temp#43: 88(d) 90(d) 
+temp#44: 89(e) 90(e) 
+temp#45: 92(d) 94(d) 
+temp#46: 93(e) 94(e) 
+temp#47: 96(d) 98(d) 
+temp#48: 97(b) 98(b) 
+temp#5: 12(d) 14(d) 
+temp#6: 13(e) 14(e) 
+temp#7: 16(d) 18(d) 
+temp#8: 17(e) 18(e) 
+temp#9: 20(d) 22(d) 
+[       OK ] Compiler.Test3 (14 ms)
+[----------] 1 test from Compiler (14 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (14 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = Compiler.Test4
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Compiler
+[ RUN      ] Compiler.Test4
+../compiler correct-programs/example4.imp correct-programs/example4.rm
+../virtual-machine/maszyna-wirtualna-cln correct-programs/example4.rm >correct-programs/example4.result < correct-programs/example4-in.txt
+Function s allocated at 0 with size 3
+FUN RECORD: s: 0
+Function bc allocated at 3 with size 4
+FUN RECORD: bc: 3
+FUN RECORD: s: 0
+FUN RECORD: s: 0
+FUN RECORD: s: 0
+FUN RECORD: bc: 3
+ERROR: Variable bc@a not found in result
+ERROR: Variable bc@b not found in result
+ERROR: Variable bc@c not found in result
+ERROR: Variable main@w not found in result
+ERROR: Variable bc@a not found in result
+ERROR: Variable bc@b not found in result
+ERROR: Variable bc@c not found in result
+ERROR: Variable main@w not found in result
+RANGE bc@a[24-26]: 26 
+RANGE bc@a[29-44]: 29 44 
+RANGE bc@b[24-35]: 35 
+RANGE bc@b[38-45]: 38 45 
+RANGE bc@c[24-40]: 40 
+RANGE bc@c[43-49]: 43 49 
+RANGE bc@k[24-40]: 24 31 40 
+RANGE bc@k[43-52]: 43 52 
+RANGE bc@m[24-24]: 24 
+RANGE bc@m[46-48]: 46 47 48 
+RANGE bc@m[50-52]: 50 51 52 
+RANGE bc@n[24-26]: 24 26 
+RANGE bc@n[29-52]: 29 30 52 
+RANGE bc@p[32-35]: 32 33 35 
+RANGE bc@p[38-38]: 38 
+RANGE main@k[55-57]: 55 57 
+RANGE main@k[60-60]: 60 
+RANGE main@n[54-57]: 54 57 
+RANGE main@n[60-60]: 60 
+RANGE main@w[54-57]: 57 
+RANGE main@w[60-61]: 60 61 
+RANGE s@i[4-21]: 4 5 6 7 11 15 19 20 
+RANGE s@m[1-1]: 1 
+RANGE s@m[2-10]: 2 3 10 
+RANGE s@m[12-16]: 12 13 16 
+RANGE s@m[17-22]: 17 18 22 
+RANGE s@n[1-22]: 1 4 22 
+RANGE s@o[7-9]: 7 8 9 
+RANGE temp#1[1-23]: 1 23 
+RANGE temp#10[45-46]: 45 46 
+RANGE temp#11[48-50]: 48 50 
+RANGE temp#12[49-50]: 49 50 
+RANGE temp#13[46-46]: 46 
+RANGE temp#14[46-46]: 46 
+RANGE temp#15[50-50]: 50 
+RANGE temp#16[50-50]: 50 
+RANGE temp#17[12-12]: 12 
+RANGE temp#18[12-12]: 12 
+RANGE temp#19[17-17]: 17 
+RANGE temp#2[10-12]: 10 12 
+RANGE temp#20[17-17]: 17 
+RANGE temp#3[11-12]: 11 12 
+RANGE temp#4[15-17]: 15 17 
+RANGE temp#5[16-17]: 16 17 
+RANGE temp#6[24-53]: 24 53 
+RANGE temp#7[30-32]: 30 32 
+RANGE temp#8[31-32]: 31 32 
+RANGE temp#9[44-46]: 44 46 
+s@n[1-22]: ######################                                                                                                         
+s@m[1-1]: #                                                                                                                              
+temp#1[1-23]: #######################                                                                                                        
+s@m[2-10]:  #########                                                                                                                     
+s@i[4-20]:    #################                                                                                                           
+s@o[7-9]:       ###                                                                                                                      
+temp#2[10-12]:          ###                                                                                                                   
+temp#3[11-12]:           ##                                                                                                                   
+s@m[12-16]:            #####                                                                                                               
+temp#18[12-12]:            #                                                                                                                   
+temp#17[12-12]:            #                                                                                                                   
+temp#4[15-17]:               ###                                                                                                              
+temp#5[16-17]:                ##                                                                                                              
+temp#20[17-17]:                 #                                                                                                              
+temp#19[17-17]:                 #                                                                                                              
+s@m[17-22]:                 ######                                                                                                         
+bc@n[24-26]:                        ###                                                                                                     
+bc@m[24-24]:                        #                                                                                                       
+bc@k[24-40]:                        #################                                                                                       
+temp#6[24-53]:                        ##############################                                                                          
+bc@a[26-26]:                          #                                                                                                     
+bc@a[29-44]:                             ################                                                                                   
+bc@n[29-52]:                             ########################                                                                           
+temp#7[30-32]:                              ###                                                                                               
+temp#8[31-32]:                               ##                                                                                               
+bc@p[32-35]:                                ####                                                                                            
+bc@b[35-35]:                                   #                                                                                            
+bc@b[38-45]:                                      ########                                                                                  
+bc@p[38-38]:                                      #                                                                                         
+bc@c[40-40]:                                        #                                                                                       
+bc@k[43-52]:                                           ##########                                                                           
+bc@c[43-49]:                                           #######                                                                              
+temp#9[44-46]:                                            ###                                                                                 
+temp#10[45-46]:                                             ##                                                                                 
+bc@m[46-48]:                                              ###                                                                               
+temp#14[46-46]:                                              #                                                                                 
+temp#13[46-46]:                                              #                                                                                 
+temp#11[48-50]:                                                ###                                                                             
+temp#12[49-50]:                                                 ##                                                                             
+temp#16[50-50]:                                                  #                                                                             
+bc@m[50-52]:                                                  ###                                                                           
+temp#15[50-50]:                                                  #                                                                             
+main@n[54-57]:                                                      ####                                                                      
+main@k[55-57]:                                                       ###                                                                      
+main@w[57-57]:                                                         #                                                                      
+main@w[60-61]:                                                            ##                                                                  
+main@k[60-60]:                                                            #                                                                   
+main@n[60-60]:                                                            #                                                                   
+Variable usages:
+bc@a: 26(B) 29(L) 44(R) 
+bc@b: 35(B) 38(L) 45(R) 
+bc@c: 40(B) 43(L) 49(R) 
+bc@k: 24(L) 40(B) 43(L) 52(B) 31(R) 
+bc@m: 24(L) 46(L) 47(B) 50(L) 51(B) 52(B) 48(R) 
+bc@n: 24(L) 26(B) 29(L) 52(B) 30(R) 
+bc@p: 32(L) 33(B) 35(B) 38(L) 
+main@k: 55(L) 57(B) 60(L) 
+main@n: 54(L) 57(B) 60(L) 
+main@w: 57(B) 60(L) 61(R) 
+s@i: 4(L) 5(B) 19(B) 20(B) 6(R) 7(R) 11(R) 15(R) 
+s@m: 1(L) 2(L) 3(B) 12(L) 13(B) 17(L) 18(B) 22(B) 10(R) 16(R) 
+s@n: 1(L) 22(B) 4(R) 
+s@o: 7(L) 8(B) 9(R) 
+temp#1: 1(L) 23(R) 
+temp#10: 45(L) 46(R) 
+temp#11: 48(L) 50(R) 
+temp#12: 49(L) 50(R) 
+temp#13: 46(L) 
+temp#14: 46(L) 
+temp#15: 50(L) 
+temp#16: 50(L) 
+temp#17: 12(L) 
+temp#18: 12(L) 
+temp#19: 17(L) 
+temp#2: 10(L) 12(R) 
+temp#20: 17(L) 
+temp#3: 11(L) 12(R) 
+temp#4: 15(L) 17(R) 
+temp#5: 16(L) 17(R) 
+temp#6: 24(L) 53(R) 
+temp#7: 30(L) 32(R) 
+temp#8: 31(L) 32(R) 
+temp#9: 44(L) 46(R) 
+Range temp#17[12-12] usages: 12 
+b: s@m(1-1): 1 | s@m(2-10): 2 3 10 | temp#3(11-12): 11 12 | 
+c: s@n(1-22): 1 4 22 | 
+d: temp#1(1-1): 1 | temp#17(12-12): 12 | temp#1(23-23): 23 | 
+e: s@i(4-20): 4 5 6 7 11 15 19 20 | 
+f: s@o(7-9): 7 8 9 | temp#2(10-12): 10 12 | 
+g: s@m(12-16): 12 13 16 | 
+h: temp#18(12-12): 12 | 
+
+Range temp#14[46-46] usages: 46 
+b: s@m(1-1): 1 | s@m(2-10): 2 3 10 | temp#3(11-12): 11 12 | temp#4(15-17): 15 17 | bc@n(24-26): 24 26 | bc@a(29-44): 29 44 | temp#10(45-46): 45 46 | 
+c: s@n(1-22): 1 4 22 | bc@m(24-24): 24 | bc@a(26-26): 26 | bc@n(29-52): 29 30 52 | 
+d: temp#1(1-1): 1 | temp#17(12-12): 12 | temp#5(16-17): 16 17 | temp#1(23-23): 23 | bc@k(24-40): 24 31 40 | bc@k(43-52): 43 52 | 
+e: s@i(4-20): 4 5 6 7 11 15 19 20 | temp#6(24-24): 24 | temp#14(46-46): 46 | temp#6(53-53): 53 | 
+f: s@o(7-9): 7 8 9 | temp#2(10-12): 10 12 | temp#20(17-17): 17 | temp#7(30-32): 30 32 | bc@b(35-35): 35 | bc@b(38-45): 38 45 | temp#13(46-46): 46 | 
+g: s@m(12-16): 12 13 16 | s@m(17-22): 17 18 22 | temp#8(31-32): 31 32 | bc@p(38-38): 38 | bc@c(40-40): 40 | bc@c(43-49): 43 49 | 
+h: temp#18(12-12): 12 | temp#19(17-17): 17 | bc@p(32-35): 32 33 35 | temp#9(44-46): 44 46 | 
+
+Range bc@m[46-48] usages: 46 47 48 
+b: s@m(1-1): 1 | s@m(2-10): 2 3 10 | temp#3(11-12): 11 12 | temp#4(15-17): 15 17 | bc@n(24-26): 24 26 | bc@a(29-44): 29 44 | temp#10(45-46): 45 46 | 
+c: s@n(1-22): 1 4 22 | bc@m(24-24): 24 | bc@a(26-26): 26 | bc@n(29-30): 29 30 | bc@m(46-48): 46 47 48 | bc@n(52-52): 52 | 
+d: temp#1(1-1): 1 | temp#17(12-12): 12 | temp#5(16-17): 16 17 | temp#1(23-23): 23 | bc@k(24-40): 24 31 40 | bc@k(43-52): 43 52 | 
+e: s@i(4-20): 4 5 6 7 11 15 19 20 | temp#6(24-24): 24 | temp#14(46-46): 46 | temp#6(53-53): 53 | 
+f: s@o(7-9): 7 8 9 | temp#2(10-12): 10 12 | temp#20(17-17): 17 | temp#7(30-32): 30 32 | bc@b(35-35): 35 | bc@b(38-45): 38 45 | temp#13(46-46): 46 | 
+g: s@m(12-16): 12 13 16 | s@m(17-22): 17 18 22 | temp#8(31-32): 31 32 | bc@p(38-38): 38 | bc@c(40-40): 40 | bc@c(43-49): 43 49 | 
+h: temp#18(12-12): 12 | temp#19(17-17): 17 | bc@p(32-35): 32 33 35 | temp#9(44-46): 44 46 | 
+
+Final registers usage:
+b: s@m(1-1): 1 | s@m(2-10): 2 3 10 | temp#3(11-12): 11 12 | temp#4(15-17): 15 17 | bc@n(24-26): 24 26 | bc@a(29-44): 29 44 | temp#10(45-46): 45 46 | temp#11(48-50): 48 50 | main@n(54-57): 54 57 | main@w(60-61): 60 61 | 
+c: s@n(1-22): 1 4 22 | bc@m(24-24): 24 | bc@a(26-26): 26 | bc@n(29-30): 29 30 | bc@m(46-48): 46 47 48 | temp#12(49-50): 49 50 | bc@n(52-52): 52 | main@k(55-57): 55 57 | main@k(60-60): 60 | 
+d: temp#1(1-1): 1 | temp#17(12-12): 12 | temp#5(16-17): 16 17 | temp#1(23-23): 23 | bc@k(24-40): 24 31 40 | bc@k(43-52): 43 52 | main@w(57-57): 57 | main@n(60-60): 60 | 
+e: s@i(4-20): 4 5 6 7 11 15 19 20 | temp#6(24-24): 24 | temp#14(46-46): 46 | temp#16(50-50): 50 | temp#6(53-53): 53 | 
+f: s@o(7-9): 7 8 9 | temp#2(10-12): 10 12 | temp#20(17-17): 17 | temp#7(30-32): 30 32 | bc@b(35-35): 35 | bc@b(38-45): 38 45 | temp#13(46-46): 46 | bc@m(50-52): 50 51 52 | 
+g: s@m(12-16): 12 13 16 | s@m(17-22): 17 18 22 | temp#8(31-32): 31 32 | bc@p(38-38): 38 | bc@c(40-40): 40 | bc@c(43-49): 43 49 | temp#15(50-50): 50 | 
+h: temp#18(12-12): 12 | temp#19(17-17): 17 | bc@p(32-35): 32 33 35 | temp#9(44-46): 44 46 | 
+
+bc@a: 26(c) 29(b) 44(b) 
+bc@b: 35(f) 38(f) 45(f) 
+bc@c: 40(g) 43(g) 49(g) 
+bc@k: 24(d) 31(d) 40(d) 43(d) 52(d) 
+bc@m: 24(c) 46(c) 47(c) 48(c) 50(f) 51(f) 52(f) 
+bc@n: 24(b) 26(b) 29(c) 30(c) 52(c) 
+bc@p: 32(h) 33(h) 35(h) 38(g) 
+main@k: 55(c) 57(c) 60(c) 
+main@n: 54(b) 57(b) 60(d) 
+main@w: 57(d) 60(b) 61(b) 
+s@i: 4(e) 5(e) 6(e) 7(e) 11(e) 15(e) 19(e) 20(e) 
+s@m: 1(b) 2(b) 3(b) 10(b) 12(g) 13(g) 16(g) 17(g) 18(g) 22(g) 
+s@n: 1(c) 4(c) 22(c) 
+s@o: 7(f) 8(f) 9(f) 
+temp#1: 1(d) 23(d) 
+temp#10: 45(b) 46(b) 
+temp#11: 48(b) 50(b) 
+temp#12: 49(c) 50(c) 
+temp#13: 46(f) 
+temp#14: 46(e) 
+temp#15: 50(g) 
+temp#16: 50(e) 
+temp#17: 12(d) 
+temp#18: 12(h) 
+temp#19: 17(h) 
+temp#2: 10(f) 12(f) 
+temp#20: 17(f) 
+temp#3: 11(b) 12(b) 
+temp#4: 15(b) 17(b) 
+temp#5: 16(d) 17(d) 
+temp#6: 24(e) 53(e) 
+temp#7: 30(f) 32(f) 
+temp#8: 31(g) 32(g) 
+temp#9: 44(h) 46(h) 
+[       OK ] Compiler.Test4 (11 ms)
+[----------] 1 test from Compiler (11 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (11 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = Compiler.Test5
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Compiler
+[ RUN      ] Compiler.Test5
+../compiler correct-programs/example5.imp correct-programs/example5.rm
+../virtual-machine/maszyna-wirtualna-cln correct-programs/example5.rm >correct-programs/example5.result < correct-programs/example5-in.txt
+Function power allocated at 0 with size 5
+FUN RECORD: power: 0
+FUN RECORD: power: 0
+ERROR: Variable main@d not found in result
+ERROR: Variable main@d not found in result
+RANGE main@a[35-39]: 35 39 
+RANGE main@a[42-42]: 42 
+RANGE main@b[36-39]: 36 39 
+RANGE main@b[42-42]: 42 
+RANGE main@c[37-39]: 37 39 
+RANGE main@c[42-42]: 42 
+RANGE main@d[35-39]: 39 
+RANGE main@d[42-43]: 42 43 
+RANGE power@a[1-33]: 1 6 33 
+RANGE power@b[1-33]: 1 4 33 
+RANGE power@c[1-33]: 1 7 19 29 33 
+RANGE power@d[1-1]: 1 
+RANGE power@d[2-14]: 2 3 14 
+RANGE power@d[16-18]: 16 17 18 
+RANGE power@d[20-33]: 20 21 33 
+RANGE power@o[11-13]: 11 12 13 
+RANGE power@pot[8-25]: 8 9 15 24 25 
+RANGE power@pot[26-28]: 26 27 28 
+RANGE power@pot[30-32]: 30 31 
+RANGE power@wyk[4-32]: 4 5 10 11 22 23 
+RANGE temp#1[1-34]: 1 34 
+RANGE temp#10[28-30]: 28 30 
+RANGE temp#11[29-30]: 29 30 
+RANGE temp#12[8-8]: 8 
+RANGE temp#13[16-16]: 16 
+RANGE temp#14[16-16]: 16 
+RANGE temp#15[20-20]: 20 
+RANGE temp#16[26-26]: 26 
+RANGE temp#17[26-26]: 26 
+RANGE temp#18[30-30]: 30 
+RANGE temp#2[6-8]: 6 8 
+RANGE temp#3[7-8]: 7 8 
+RANGE temp#4[14-16]: 14 16 
+RANGE temp#5[15-16]: 15 16 
+RANGE temp#6[18-20]: 18 20 
+RANGE temp#7[19-20]: 19 20 
+RANGE temp#8[24-26]: 24 26 
+RANGE temp#9[25-26]: 25 26 
+temp#1[1-34]: ##################################                                                                                             
+power@d[1-1]: #                                                                                                                              
+power@a[1-33]: #################################                                                                                              
+power@b[1-33]: #################################                                                                                              
+power@c[1-33]: #################################                                                                                              
+power@d[2-14]:  #############                                                                                                                 
+power@wyk[4-23]:    ####################                                                                                                        
+temp#2[6-8]:      ###                                                                                                                       
+temp#3[7-8]:       ##                                                                                                                       
+temp#12[8-8]:        #                                                                                                                       
+power@pot[8-25]:        ##################                                                                                                      
+power@o[11-13]:           ###                                                                                                                  
+temp#4[14-16]:              ###                                                                                                               
+temp#5[15-16]:               ##                                                                                                               
+power@d[16-18]:                ###                                                                                                             
+temp#14[16-16]:                #                                                                                                               
+temp#13[16-16]:                #                                                                                                               
+temp#6[18-20]:                  ###                                                                                                           
+temp#7[19-20]:                   ##                                                                                                           
+power@d[20-33]:                    ##############                                                                                              
+temp#15[20-20]:                    #                                                                                                           
+temp#8[24-26]:                        ###                                                                                                     
+temp#9[25-26]:                         ##                                                                                                     
+power@pot[26-28]:                          ###                                                                                                   
+temp#16[26-26]:                          #                                                                                                     
+temp#17[26-26]:                          #                                                                                                     
+temp#10[28-30]:                            ###                                                                                                 
+temp#11[29-30]:                             ##                                                                                                 
+power@pot[30-31]:                              ##                                                                                                
+temp#18[30-30]:                              #                                                                                                 
+main@a[35-39]:                                   #####                                                                                        
+main@b[36-39]:                                    ####                                                                                        
+main@c[37-39]:                                     ###                                                                                        
+main@d[39-39]:                                       #                                                                                        
+main@d[42-43]:                                          ##                                                                                    
+main@c[42-42]:                                          #                                                                                     
+main@b[42-42]:                                          #                                                                                     
+main@a[42-42]:                                          #                                                                                     
+Variable usages:
+main@a: 35(L) 39(B) 42(L) 
+main@b: 36(L) 39(B) 42(L) 
+main@c: 37(L) 39(B) 42(L) 
+main@d: 39(B) 42(L) 43(R) 
+power@a: 1(L) 33(B) 6(R) 
+power@b: 1(L) 33(B) 4(R) 
+power@c: 1(L) 33(B) 7(R) 19(R) 29(R) 
+power@d: 1(L) 2(L) 3(B) 16(L) 17(B) 20(L) 21(B) 33(B) 14(R) 18(R) 
+power@o: 11(L) 12(B) 13(R) 
+power@pot: 8(L) 9(B) 26(L) 27(B) 30(L) 31(B) 15(R) 24(R) 25(R) 28(R) 
+power@wyk: 4(L) 5(B) 22(B) 23(B) 10(R) 11(R) 
+temp#1: 1(L) 34(R) 
+temp#10: 28(L) 30(R) 
+temp#11: 29(L) 30(R) 
+temp#12: 8(L) 
+temp#13: 16(L) 
+temp#14: 16(L) 
+temp#15: 20(L) 
+temp#16: 26(L) 
+temp#17: 26(L) 
+temp#18: 30(L) 
+temp#2: 6(L) 8(R) 
+temp#3: 7(L) 8(R) 
+temp#4: 14(L) 16(R) 
+temp#5: 15(L) 16(R) 
+temp#6: 18(L) 20(R) 
+temp#7: 19(L) 20(R) 
+temp#8: 24(L) 26(R) 
+temp#9: 25(L) 26(R) 
+Range temp#3[7-8] usages: 7 8 
+b: power@d(1-1): 1 | power@d(2-14): 2 3 14 | 
+c: temp#1(1-1): 1 | temp#3(7-8): 7 8 | temp#1(34-34): 34 | 
+d: power@c(1-33): 1 7 19 29 33 | 
+e: power@a(1-33): 1 6 33 | 
+f: power@b(1-33): 1 4 33 | 
+g: power@wyk(4-23): 4 5 10 11 22 23 | 
+h: temp#2(6-8): 6 8 | 
+
+Range temp#12[8-8] usages: 8 
+b: power@d(1-1): 1 | power@d(2-14): 2 3 14 | 
+c: temp#1(1-1): 1 | temp#3(7-8): 7 8 | temp#1(34-34): 34 | 
+d: power@c(1-33): 1 7 19 29 33 | 
+e: power@a(1-33): 1 6 33 | 
+f: power@b(1-4): 1 4 | temp#12(8-8): 8 | power@b(33-33): 33 | 
+g: power@wyk(4-23): 4 5 10 11 22 23 | 
+h: temp#2(6-8): 6 8 | 
+
+Range power@pot[8-25] usages: 8 9 15 24 25 
+b: power@d(1-1): 1 | power@d(2-14): 2 3 14 | 
+c: temp#1(1-1): 1 | temp#3(7-8): 7 8 | temp#1(34-34): 34 | 
+d: power@c(1-33): 1 7 19 29 33 | 
+e: power@a(1-6): 1 6 | power@pot(8-25): 8 9 15 24 25 | power@a(33-33): 33 | 
+f: power@b(1-4): 1 4 | temp#12(8-8): 8 | power@b(33-33): 33 | 
+g: power@wyk(4-23): 4 5 10 11 22 23 | 
+h: temp#2(6-8): 6 8 | 
+
+Range temp#13[16-16] usages: 16 
+b: power@d(1-1): 1 | power@d(2-14): 2 3 14 | temp#5(15-16): 15 16 | 
+c: temp#1(1-1): 1 | temp#3(7-8): 7 8 | power@o(11-13): 11 12 13 | temp#4(14-16): 14 16 | temp#1(34-34): 34 | 
+d: power@c(1-7): 1 7 | temp#13(16-16): 16 | power@c(19-33): 19 29 33 | 
+e: power@a(1-6): 1 6 | power@pot(8-25): 8 9 15 24 25 | power@a(33-33): 33 | 
+f: power@b(1-4): 1 4 | temp#12(8-8): 8 | power@d(16-18): 16 17 18 | power@b(33-33): 33 | 
+g: power@wyk(4-23): 4 5 10 11 22 23 | 
+h: temp#2(6-8): 6 8 | temp#14(16-16): 16 | 
+
+Final registers usage:
+b: power@d(1-1): 1 | power@d(2-14): 2 3 14 | temp#5(15-16): 15 16 | temp#6(18-20): 18 20 | temp#8(24-26): 24 26 | temp#10(28-30): 28 30 | main@a(35-39): 35 39 | main@d(42-43): 42 43 | 
+c: temp#1(1-1): 1 | temp#3(7-8): 7 8 | power@o(11-13): 11 12 13 | temp#4(14-16): 14 16 | temp#7(19-20): 19 20 | temp#9(25-26): 25 26 | temp#11(29-30): 29 30 | temp#1(34-34): 34 | main@b(36-39): 36 39 | main@c(42-42): 42 | 
+d: power@c(1-7): 1 7 | temp#13(16-16): 16 | power@c(19-33): 19 29 33 | main@c(37-39): 37 39 | main@b(42-42): 42 | 
+e: power@a(1-6): 1 6 | power@pot(8-25): 8 9 15 24 25 | power@pot(26-28): 26 27 28 | temp#18(30-30): 30 | power@a(33-33): 33 | main@d(39-39): 39 | main@a(42-42): 42 | 
+f: power@b(1-4): 1 4 | temp#12(8-8): 8 | power@d(16-18): 16 17 18 | temp#15(20-20): 20 | temp#16(26-26): 26 | power@pot(30-31): 30 31 | power@b(33-33): 33 | 
+g: power@wyk(4-23): 4 5 10 11 22 23 | temp#17(26-26): 26 | 
+h: temp#2(6-8): 6 8 | temp#14(16-16): 16 | power@d(20-33): 20 21 33 | 
+
+main@a: 35(b) 39(b) 42(e) 
+main@b: 36(c) 39(c) 42(d) 
+main@c: 37(d) 39(d) 42(c) 
+main@d: 39(e) 42(b) 43(b) 
+power@a: 1(e) 6(e) 33(e) 
+power@b: 1(f) 4(f) 33(f) 
+power@c: 1(d) 7(d) 19(d) 29(d) 33(d) 
+power@d: 1(b) 2(b) 3(b) 14(b) 16(f) 17(f) 18(f) 20(h) 21(h) 33(h) 
+power@o: 11(c) 12(c) 13(c) 
+power@pot: 8(e) 9(e) 15(e) 24(e) 25(e) 26(e) 27(e) 28(e) 30(f) 31(f) 
+power@wyk: 4(g) 5(g) 10(g) 11(g) 22(g) 23(g) 
+temp#1: 1(c) 34(c) 
+temp#10: 28(b) 30(b) 
+temp#11: 29(c) 30(c) 
+temp#12: 8(f) 
+temp#13: 16(d) 
+temp#14: 16(h) 
+temp#15: 20(f) 
+temp#16: 26(f) 
+temp#17: 26(g) 
+temp#18: 30(e) 
+temp#2: 6(h) 8(h) 
+temp#3: 7(c) 8(c) 
+temp#4: 14(c) 16(c) 
+temp#5: 15(b) 16(b) 
+temp#6: 18(b) 20(b) 
+temp#7: 19(c) 20(c) 
+temp#8: 24(b) 26(b) 
+temp#9: 25(c) 26(c) 
+[       OK ] Compiler.Test5 (10 ms)
+[----------] 1 test from Compiler (10 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (10 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = Compiler.Test6
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Compiler
+[ RUN      ] Compiler.Test6
+../compiler correct-programs/example6.imp correct-programs/example6.rm
+../virtual-machine/maszyna-wirtualna-cln correct-programs/example6.rm >correct-programs/example6.result < correct-programs/example6-in.txt
+RANGE main@j[14-34]: 14 15 16 17 23 27 29 31 32 33 
+RANGE main@k[17-28]: 17 18 19 21 24 28 
+RANGE main@l[19-25]: 19 20 25 
+RANGE main@n[1-37]: 1 16 35 37 
+RANGE temp#1[2-3]: 2 3 
+RANGE temp#10[24-26]: 24 26 
+RANGE temp#11[25-26]: 25 26 
+RANGE temp#12[30-31]: 30 31 
+RANGE temp#13[28-30]: 28 30 
+RANGE temp#14[29-30]: 29 30 
+RANGE temp#15[35-36]: 35 36 
+RANGE temp#16[37-38]: 37 38 
+RANGE temp#17[23-23]: 23 
+RANGE temp#18[27-27]: 27 
+RANGE temp#19[30-30]: 30 
+RANGE temp#2[4-5]: 4 5 
+RANGE temp#20[30-30]: 30 
+RANGE temp#21[31-31]: 31 
+RANGE temp#3[6-7]: 6 7 
+RANGE temp#4[8-9]: 8 9 
+RANGE temp#5[10-11]: 10 11 
+RANGE temp#6[12-13]: 12 13 
+RANGE temp#7[22-23]: 22 23 
+RANGE temp#8[21-22]: 21 22 
+RANGE temp#9[26-27]: 26 27 
+main@n[1-37]: #####################################                                                                                          
+temp#1[2-3]:  ##                                                                                                                            
+temp#2[4-5]:    ##                                                                                                                          
+temp#3[6-7]:      ##                                                                                                                        
+temp#4[8-9]:        ##                                                                                                                      
+temp#5[10-11]:          ##                                                                                                                    
+temp#6[12-13]:            ##                                                                                                                  
+main@j[14-33]:              ####################                                                                                              
+main@k[17-28]:                 ############                                                                                                   
+main@l[19-25]:                   #######                                                                                                      
+temp#8[21-22]:                     ##                                                                                                         
+temp#7[22-23]:                      ##                                                                                                        
+temp#17[23-23]:                       #                                                                                                        
+temp#10[24-26]:                        ###                                                                                                     
+temp#11[25-26]:                         ##                                                                                                     
+temp#9[26-27]:                          ##                                                                                                    
+temp#18[27-27]:                           #                                                                                                    
+temp#13[28-30]:                            ###                                                                                                 
+temp#14[29-30]:                             ##                                                                                                 
+temp#19[30-30]:                              #                                                                                                 
+temp#20[30-30]:                              #                                                                                                 
+temp#12[30-31]:                              ##                                                                                                
+temp#21[31-31]:                               #                                                                                                
+temp#15[35-36]:                                   ##                                                                                           
+temp#16[37-38]:                                     ##                                                                                         
+Variable usages:
+main@j: 14(L) 15(B) 32(B) 33(B) 16(R) 17(R) 23(R) 27(R) 29(R) 31(R) 
+main@k: 17(L) 18(B) 19(R) 21(R) 24(R) 28(R) 
+main@l: 19(L) 20(B) 25(R) 
+main@n: 1(L) 16(R) 35(R) 37(R) 
+temp#1: 2(L) 3(B) 
+temp#10: 24(L) 26(R) 
+temp#11: 25(L) 26(R) 
+temp#12: 30(L) 31(R) 
+temp#13: 28(L) 30(R) 
+temp#14: 29(L) 30(R) 
+temp#15: 35(L) 36(R) 
+temp#16: 37(L) 38(R) 
+temp#17: 23(L) 
+temp#18: 27(L) 
+temp#19: 30(L) 
+temp#2: 4(L) 5(B) 
+temp#20: 30(L) 
+temp#21: 31(L) 
+temp#3: 6(L) 7(B) 
+temp#4: 8(L) 9(B) 
+temp#5: 10(L) 11(B) 
+temp#6: 12(L) 13(B) 
+temp#7: 22(L) 23(R) 
+temp#8: 21(L) 22(R) 
+temp#9: 26(L) 27(R) 
+Final registers usage:
+b: main@n(1-37): 1 16 35 37 | 
+c: temp#1(2-3): 2 3 | temp#2(4-5): 4 5 | temp#3(6-7): 6 7 | temp#4(8-9): 8 9 | temp#5(10-11): 10 11 | temp#6(12-13): 12 13 | main@j(14-33): 14 15 16 17 23 27 29 31 32 33 | temp#15(35-36): 35 36 | temp#16(37-38): 37 38 | 
+d: main@k(17-28): 17 18 19 21 24 28 | temp#14(29-30): 29 30 | temp#21(31-31): 31 | 
+e: main@l(19-25): 19 20 25 | temp#9(26-27): 26 27 | temp#13(28-30): 28 30 | 
+f: temp#8(21-22): 21 22 | temp#17(23-23): 23 | temp#10(24-26): 24 26 | temp#18(27-27): 27 | temp#19(30-30): 30 | 
+g: temp#7(22-23): 22 23 | temp#11(25-26): 25 26 | temp#20(30-30): 30 | 
+h: temp#12(30-31): 30 31 | 
+
+main@j: 14(c) 15(c) 16(c) 17(c) 23(c) 27(c) 29(c) 31(c) 32(c) 33(c) 
+main@k: 17(d) 18(d) 19(d) 21(d) 24(d) 28(d) 
+main@l: 19(e) 20(e) 25(e) 
+main@n: 1(b) 16(b) 35(b) 37(b) 
+temp#1: 2(c) 3(c) 
+temp#10: 24(f) 26(f) 
+temp#11: 25(g) 26(g) 
+temp#12: 30(h) 31(h) 
+temp#13: 28(e) 30(e) 
+temp#14: 29(d) 30(d) 
+temp#15: 35(c) 36(c) 
+temp#16: 37(c) 38(c) 
+temp#17: 23(f) 
+temp#18: 27(f) 
+temp#19: 30(f) 
+temp#2: 4(c) 5(c) 
+temp#20: 30(g) 
+temp#21: 31(d) 
+temp#3: 6(c) 7(c) 
+temp#4: 8(c) 9(c) 
+temp#5: 10(c) 11(c) 
+temp#6: 12(c) 13(c) 
+temp#7: 22(g) 23(g) 
+temp#8: 21(f) 22(f) 
+temp#9: 26(e) 27(e) 
+[       OK ] Compiler.Test6 (10 ms)
+[----------] 1 test from Compiler (10 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (10 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = Compiler.Test7
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Compiler
+[ RUN      ] Compiler.Test7
+../compiler correct-programs/example7.imp correct-programs/example7.rm
+../virtual-machine/maszyna-wirtualna-cln correct-programs/example7.rm >correct-programs/example7.result < correct-programs/example7-in.txt
+RANGE main@a[1-13]: 1 13 
+RANGE main@a[15-34]: 15 16 34 
+RANGE main@b[2-20]: 2 20 
+RANGE main@b[22-35]: 22 23 35 
+RANGE main@c[3-27]: 3 27 
+RANGE main@c[29-36]: 29 30 36 
+RANGE main@i[4-33]: 4 5 6 28 31 32 
+RANGE main@j[7-26]: 7 8 9 21 24 25 
+RANGE main@k[10-19]: 10 11 12 14 17 18 
+RANGE temp#1[13-15]: 13 15 
+RANGE temp#2[14-15]: 14 15 
+RANGE temp#3[20-22]: 20 22 
+RANGE temp#4[21-22]: 21 22 
+RANGE temp#5[27-29]: 27 29 
+RANGE temp#6[28-29]: 28 29 
+RANGE temp#7[6-6]: 6 
+RANGE temp#8[12-12]: 12 
+main@a[1-13]: #############                                                                                                                  
+main@b[2-20]:  ###################                                                                                                           
+main@c[3-27]:   #########################                                                                                                    
+main@i[4-32]:    #############################                                                                                               
+temp#7[6-6]:      #                                                                                                                         
+main@j[7-25]:       ###################                                                                                                      
+main@k[10-18]:          #########                                                                                                             
+temp#8[12-12]:            #                                                                                                                   
+temp#1[13-15]:             ###                                                                                                                
+temp#2[14-15]:              ##                                                                                                                
+main@a[15-34]:               ####################                                                                                             
+temp#3[20-22]:                    ###                                                                                                         
+temp#4[21-22]:                     ##                                                                                                         
+main@b[22-35]:                      ##############                                                                                            
+temp#5[27-29]:                           ###                                                                                                  
+temp#6[28-29]:                            ##                                                                                                  
+main@c[29-36]:                             ########                                                                                           
+Variable usages:
+main@a: 1(L) 15(L) 16(B) 13(R) 34(R) 
+main@b: 2(L) 22(L) 23(B) 20(R) 35(R) 
+main@c: 3(L) 29(L) 30(B) 27(R) 36(R) 
+main@i: 4(L) 5(B) 31(B) 32(B) 6(R) 28(R) 
+main@j: 7(L) 8(B) 24(B) 25(B) 9(R) 21(R) 
+main@k: 10(L) 11(B) 17(B) 18(B) 12(R) 14(R) 
+temp#1: 13(L) 15(R) 
+temp#2: 14(L) 15(R) 
+temp#3: 20(L) 22(R) 
+temp#4: 21(L) 22(R) 
+temp#5: 27(L) 29(R) 
+temp#6: 28(L) 29(R) 
+temp#7: 6(L) 
+temp#8: 12(L) 
+Range main@a[15-34] usages: 15 16 34 
+Min conflicting register: c
+b: main@a(1-13): 1 13 | temp#2(14-15): 14 15 | 
+c: main@b(2-2): 2 | main@a(15-34): 15 16 34 | main@a(15-16): 15 16 | main@b(20-20): 20 | main@a(34-34): 34 34 | 
+d: main@c(3-27): 3 27 | 
+e: main@i(4-32): 4 5 6 28 31 32 | 
+f: temp#7(6-6): 6 | main@j(7-25): 7 8 9 21 24 25 | 
+g: main@k(10-18): 10 11 12 14 17 18 | 
+h: temp#8(12-12): 12 | temp#1(13-15): 13 15 | 
+
+Final registers usage:
+b: main@a(1-13): 1 13 | temp#2(14-15): 14 15 | temp#3(20-22): 20 22 | temp#5(27-29): 27 29 | 
+c: main@b(2-2): 2 | main@a(15-34): 15 16 34 | main@a(15-16): 15 16 | main@b(20-20): 20 | main@a(34-34): 34 34 | 
+d: main@c(3-27): 3 27 | temp#6(28-29): 28 29 | 
+e: main@i(4-32): 4 5 6 28 31 32 | 
+f: temp#7(6-6): 6 | main@j(7-25): 7 8 9 21 24 25 | main@c(29-36): 29 30 36 | 
+g: main@k(10-18): 10 11 12 14 17 18 | temp#4(21-22): 21 22 | 
+h: temp#8(12-12): 12 | temp#1(13-15): 13 15 | main@b(22-35): 22 23 35 | 
+
+main@a: 1(b) 13(b) 15(c) 16(c) 34(c) 
+main@b: 2(c) 20(c) 22(h) 23(h) 35(h) 
+main@c: 3(d) 27(d) 29(f) 30(f) 36(f) 
+main@i: 4(e) 5(e) 6(e) 28(e) 31(e) 32(e) 
+main@j: 7(f) 8(f) 9(f) 21(f) 24(f) 25(f) 
+main@k: 10(g) 11(g) 12(g) 14(g) 17(g) 18(g) 
+temp#1: 13(h) 15(h) 
+temp#2: 14(b) 15(b) 
+temp#3: 20(b) 22(b) 
+temp#4: 21(g) 22(g) 
+temp#5: 27(b) 29(b) 
+temp#6: 28(d) 29(d) 
+temp#7: 6(f) 
+temp#8: 12(h) 
+[       OK ] Compiler.Test7 (23 ms)
+[----------] 1 test from Compiler (23 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (24 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = Compiler.Test8
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Compiler
+[ RUN      ] Compiler.Test8
+../compiler correct-programs/example8.imp correct-programs/example8.rm
+../virtual-machine/maszyna-wirtualna-cln correct-programs/example8.rm >correct-programs/example8.result < correct-programs/example8-in.txt
+Function shuffle allocated at 0 with size 3
+FUN RECORD: shuffle: 0
+Function sort allocated at 3 with size 3
+FUN RECORD: sort: 3
+[       OK ] Compiler.Test8 (210 ms)
+[----------] 1 test from Compiler (210 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (211 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = Compiler.Test9
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Compiler
+[ RUN      ] Compiler.Test9
+../compiler correct-programs/example9.imp correct-programs/example9.rm
+../virtual-machine/maszyna-wirtualna-cln correct-programs/example9.rm >correct-programs/example9.result < correct-programs/example9-in.txt
+Function factorial allocated at 0 with size 3
+FUN RECORD: factorial: 0
+Function bc allocated at 3 with size 4
+FUN RECORD: bc: 3
+to-meaningful-programs.cpp:49: Failure
+Expected equality of these values:
+  result.size()
+    Which is: 0
+  expected.size()
+    Which is: 1
+
+[  FAILED  ] Compiler.Test9 (199 ms)
+[----------] 1 test from Compiler (199 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (199 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] Compiler.Test9
+
+ 1 FAILED TEST
+Note: Google Test filter = Compiler.Test10
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Compiler
+[ RUN      ] Compiler.Test10
+../compiler translation-examples/program0.imp translation-examples/program0.rm
+../virtual-machine/maszyna-wirtualna-cln translation-examples/program0.rm >translation-examples/program0.result < translation-examples/program0-in.txt
+RANGE main@n[1-14]: 1 2 6 12 13 14 
+RANGE main@p[2-6]: 2 3 4 5 6 
+RANGE temp#1[7-8]: 7 8 
+RANGE temp#2[10-11]: 10 11 
+main@n[1-14]: ##############                                                                                                                 
+main@p[2-6]:  #####                                                                                                                         
+temp#1[7-8]:       ##                                                                                                                       
+temp#2[10-11]:          ##                                                                                                                    
+Variable usages:
+main@n: 1(L) 12(B) 13(B) 2(R) 6(R) 14(R) 
+main@p: 2(L) 3(B) 4(B) 5(B) 6(R) 
+temp#1: 7(L) 8(R) 
+temp#2: 10(L) 11(R) 
+Final registers usage:
+b: main@n(1-14): 1 2 6 12 13 14 | 
+c: main@p(2-6): 2 3 4 5 6 | temp#1(7-8): 7 8 | temp#2(10-11): 10 11 | 
+d: 
+e: 
+f: 
+g: 
+h: 
+
+main@n: 1(b) 2(b) 6(b) 12(b) 13(b) 14(b) 
+main@p: 2(c) 3(c) 4(c) 5(c) 6(c) 
+temp#1: 7(c) 8(c) 
+temp#2: 10(c) 11(c) 
+[       OK ] Compiler.Test10 (5 ms)
+[----------] 1 test from Compiler (5 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (5 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = Compiler.Test11
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Compiler
+[ RUN      ] Compiler.Test11
+../compiler translation-examples/program1.imp translation-examples/program1.rm
+../virtual-machine/maszyna-wirtualna-cln translation-examples/program1.rm >translation-examples/program1.result < translation-examples/program1-in.txt
+Function gcd allocated at 0 with size 4
+FUN RECORD: gcd: 0
+FUN RECORD: gcd: 0
+FUN RECORD: gcd: 0
+FUN RECORD: gcd: 0
+ERROR: Variable main@x not found in result
+ERROR: Variable main@y not found in result
+ERROR: Variable main@z not found in result
+ERROR: Variable main@x not found in result
+ERROR: Variable main@y not found in result
+ERROR: Variable main@z not found in result
+RANGE gcd@a[1-28]: 1 2 28 
+RANGE gcd@b[1-28]: 1 4 28 
+RANGE gcd@c[1-1]: 1 
+RANGE gcd@c[26-28]: 26 27 28 
+RANGE gcd@x[2-8]: 2 3 7 8 
+RANGE gcd@x[10-13]: 10 11 13 
+RANGE gcd@x[15-21]: 15 16 17 21 
+RANGE gcd@x[23-26]: 23 24 26 
+RANGE gcd@y[4-18]: 4 5 6 7 9 14 18 
+RANGE gcd@y[19-25]: 19 20 22 
+RANGE main@a[30-35]: 30 35 
+RANGE main@a[38-38]: 38 
+RANGE main@b[31-35]: 31 35 
+RANGE main@b[38-38]: 38 
+RANGE main@c[32-40]: 32 40 
+RANGE main@c[43-43]: 43 
+RANGE main@d[33-40]: 33 40 
+RANGE main@d[43-43]: 43 
+RANGE main@x[30-35]: 35 
+RANGE main@x[38-45]: 38 45 
+RANGE main@x[48-48]: 48 
+RANGE main@y[30-40]: 40 
+RANGE main@y[43-45]: 43 45 
+RANGE main@y[48-48]: 48 
+RANGE main@z[30-45]: 45 
+RANGE main@z[48-49]: 48 49 
+RANGE temp#1[1-29]: 1 29 
+RANGE temp#2[8-10]: 8 10 
+RANGE temp#3[9-10]: 9 10 
+RANGE temp#4[13-15]: 13 15 
+RANGE temp#5[14-15]: 14 15 
+RANGE temp#6[17-19]: 17 19 
+RANGE temp#7[18-19]: 18 19 
+RANGE temp#8[21-23]: 21 23 
+RANGE temp#9[22-23]: 22 23 
+gcd@b[1-28]: ############################                                                                                                   
+temp#1[1-29]: #############################                                                                                                  
+gcd@a[1-28]: ############################                                                                                                   
+gcd@c[1-1]: #                                                                                                                              
+gcd@x[2-8]:  #######                                                                                                                       
+gcd@y[4-18]:    ###############                                                                                                             
+temp#2[8-10]:        ###                                                                                                                     
+temp#3[9-10]:         ##                                                                                                                     
+gcd@x[10-13]:          ####                                                                                                                  
+temp#4[13-15]:             ###                                                                                                                
+temp#5[14-15]:              ##                                                                                                                
+gcd@x[15-21]:               #######                                                                                                          
+temp#6[17-19]:                 ###                                                                                                            
+temp#7[18-19]:                  ##                                                                                                            
+gcd@y[19-22]:                   ####                                                                                                         
+temp#8[21-23]:                     ###                                                                                                        
+temp#9[22-23]:                      ##                                                                                                        
+gcd@x[23-26]:                       ####                                                                                                     
+gcd@c[26-28]:                          ###                                                                                                   
+main@a[30-35]:                              ######                                                                                            
+main@b[31-35]:                               #####                                                                                            
+main@c[32-40]:                                #########                                                                                       
+main@d[33-40]:                                 ########                                                                                       
+main@x[35-35]:                                   #                                                                                            
+main@b[38-38]:                                      #                                                                                         
+main@a[38-38]:                                      #                                                                                         
+main@x[38-45]:                                      ########                                                                                  
+main@y[40-40]:                                        #                                                                                       
+main@d[43-43]:                                           #                                                                                    
+main@c[43-43]:                                           #                                                                                    
+main@y[43-45]:                                           ###                                                                                  
+main@z[45-45]:                                             #                                                                                  
+main@y[48-48]:                                                #                                                                               
+main@z[48-49]:                                                ##                                                                              
+main@x[48-48]:                                                #                                                                               
+Variable usages:
+gcd@a: 1(L) 28(B) 2(R) 
+gcd@b: 1(L) 28(B) 4(R) 
+gcd@c: 1(L) 26(L) 27(B) 28(B) 
+gcd@x: 2(L) 3(B) 10(L) 11(B) 15(L) 16(B) 23(L) 24(B) 7(R) 8(R) 13(R) 17(R) 21(R) 26(R) 
+gcd@y: 4(L) 5(B) 19(L) 20(B) 6(R) 7(R) 9(R) 14(R) 18(R) 22(R) 
+main@a: 30(L) 35(B) 38(L) 
+main@b: 31(L) 35(B) 38(L) 
+main@c: 32(L) 40(B) 43(L) 
+main@d: 33(L) 40(B) 43(L) 
+main@x: 35(B) 38(L) 45(B) 48(L) 
+main@y: 40(B) 43(L) 45(B) 48(L) 
+main@z: 45(B) 48(L) 49(R) 
+temp#1: 1(L) 29(R) 
+temp#2: 8(L) 10(R) 
+temp#3: 9(L) 10(R) 
+temp#4: 13(L) 15(R) 
+temp#5: 14(L) 15(R) 
+temp#6: 17(L) 19(R) 
+temp#7: 18(L) 19(R) 
+temp#8: 21(L) 23(R) 
+temp#9: 22(L) 23(R) 
+Final registers usage:
+b: temp#1(1-29): 1 29 | main@a(30-35): 30 35 | main@x(38-45): 38 45 | main@y(48-48): 48 | 
+c: gcd@b(1-28): 1 4 28 | main@b(31-35): 31 35 | main@a(38-38): 38 | main@y(40-40): 40 | main@d(43-43): 43 | main@z(45-45): 45 | main@z(48-49): 48 49 | 
+d: gcd@c(1-1): 1 | gcd@x(2-8): 2 3 7 8 | temp#3(9-10): 9 10 | temp#4(13-15): 13 15 | temp#6(17-19): 17 19 | temp#8(21-23): 21 23 | gcd@c(26-28): 26 27 28 | main@c(32-40): 32 40 | main@c(43-43): 43 | main@x(48-48): 48 | 
+e: gcd@a(1-28): 1 2 28 | main@d(33-40): 33 40 | main@y(43-45): 43 45 | 
+f: gcd@y(4-18): 4 5 6 7 9 14 18 | gcd@y(19-22): 19 20 22 | gcd@x(23-26): 23 24 26 | main@x(35-35): 35 | main@b(38-38): 38 | 
+g: temp#2(8-10): 8 10 | temp#5(14-15): 14 15 | temp#7(18-19): 18 19 | temp#9(22-23): 22 23 | 
+h: gcd@x(10-13): 10 11 13 | gcd@x(15-21): 15 16 17 21 | 
+
+gcd@a: 1(e) 2(e) 28(e) 
+gcd@b: 1(c) 4(c) 28(c) 
+gcd@c: 1(d) 26(d) 27(d) 28(d) 
+gcd@x: 2(d) 3(d) 7(d) 8(d) 10(h) 11(h) 13(h) 15(h) 16(h) 17(h) 21(h) 23(f) 24(f) 26(f) 
+gcd@y: 4(f) 5(f) 6(f) 7(f) 9(f) 14(f) 18(f) 19(f) 20(f) 22(f) 
+main@a: 30(b) 35(b) 38(c) 
+main@b: 31(c) 35(c) 38(f) 
+main@c: 32(d) 40(d) 43(d) 
+main@d: 33(e) 40(e) 43(c) 
+main@x: 35(f) 38(b) 45(b) 48(d) 
+main@y: 40(c) 43(e) 45(e) 48(b) 
+main@z: 45(c) 48(c) 49(c) 
+temp#1: 1(b) 29(b) 
+temp#2: 8(g) 10(g) 
+temp#3: 9(d) 10(d) 
+temp#4: 13(d) 15(d) 
+temp#5: 14(g) 15(g) 
+temp#6: 17(d) 19(d) 
+temp#7: 18(g) 19(g) 
+temp#8: 21(d) 23(d) 
+temp#9: 22(g) 23(g) 
+[       OK ] Compiler.Test11 (7 ms)
+[----------] 1 test from Compiler (7 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (7 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = Compiler.Test12
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Compiler
+[ RUN      ] Compiler.Test12
+../compiler translation-examples/program2.imp translation-examples/program2.rm
+../virtual-machine/maszyna-wirtualna-cln translation-examples/program2.rm >translation-examples/program2.result < translation-examples/program2-in.txt
+Function licz allocated at 0 with size 3
+FUN RECORD: licz: 0
+[       OK ] Compiler.Test12 (92 ms)
+[----------] 1 test from Compiler (92 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (92 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = Compiler.Test13
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Compiler
+[ RUN      ] Compiler.Test13
+../compiler translation-examples/program3.imp translation-examples/program3.rm
+../virtual-machine/maszyna-wirtualna-cln translation-examples/program3.rm >translation-examples/program3.result < translation-examples/program3-in.txt
+Function check allocated at 0 with size 4
+FUN RECORD: check: 0
+FUN RECORD: check: 0
+ERROR: Variable main@potega not found in result
+ERROR: Variable main@potega not found in result
+RANGE check@d[1-20]: 1 5 10 16 20 
+RANGE check@n[1-9]: 1 4 9 
+RANGE check@n[11-20]: 11 12 15 20 
+RANGE check@p[1-1]: 1 
+RANGE check@p[2-20]: 2 3 13 14 20 
+RANGE check@r[6-8]: 6 7 8 
+RANGE check@r[17-19]: 17 18 
+RANGE main@dzielnik[23-31]: 23 24 25 26 31 
+RANGE main@dzielnik[34-44]: 34 36 38 39 40 41 
+RANGE main@m[27-29]: 27 28 29 
+RANGE main@m[42-44]: 42 43 
+RANGE main@n[22-31]: 22 29 31 
+RANGE main@n[34-46]: 34 45 46 
+RANGE main@potega[22-31]: 31 
+RANGE main@potega[34-44]: 34 35 37 
+RANGE temp#1[1-21]: 1 21 
+RANGE temp#10[40-42]: 40 42 
+RANGE temp#11[41-42]: 41 42 
+RANGE temp#12[47-48]: 47 48 
+RANGE temp#13[6-6]: 6 
+RANGE temp#14[11-11]: 11 
+RANGE temp#15[11-11]: 11 
+RANGE temp#16[17-17]: 17 
+RANGE temp#17[27-27]: 27 
+RANGE temp#18[27-27]: 27 
+RANGE temp#19[42-42]: 42 
+RANGE temp#2[4-6]: 4 6 
+RANGE temp#20[42-42]: 42 
+RANGE temp#3[5-6]: 5 6 
+RANGE temp#4[9-11]: 9 11 
+RANGE temp#5[10-11]: 10 11 
+RANGE temp#6[15-17]: 15 17 
+RANGE temp#7[16-17]: 16 17 
+RANGE temp#8[25-27]: 25 27 
+RANGE temp#9[26-27]: 26 27 
+check@n[1-9]: #########                                                                                                                      
+check@p[1-1]: #                                                                                                                              
+check@d[1-20]: ####################                                                                                                           
+temp#1[1-21]: #####################                                                                                                          
+check@p[2-20]:  ###################                                                                                                           
+temp#2[4-6]:    ###                                                                                                                         
+temp#3[5-6]:     ##                                                                                                                         
+check@r[6-8]:      ###                                                                                                                       
+temp#13[6-6]:      #                                                                                                                         
+temp#4[9-11]:         ###                                                                                                                    
+temp#5[10-11]:          ##                                                                                                                    
+temp#15[11-11]:           #                                                                                                                    
+temp#14[11-11]:           #                                                                                                                    
+check@n[11-20]:           ##########                                                                                                           
+temp#6[15-17]:               ###                                                                                                              
+temp#7[16-17]:                ##                                                                                                              
+temp#16[17-17]:                 #                                                                                                              
+check@r[17-18]:                 ##                                                                                                             
+main@n[22-31]:                      ##########                                                                                                
+main@dzielnik[23-31]:                       #########                                                                                                
+temp#8[25-27]:                         ###                                                                                                    
+temp#9[26-27]:                          ##                                                                                                    
+temp#17[27-27]:                           #                                                                                                    
+temp#18[27-27]:                           #                                                                                                    
+main@m[27-29]:                           ###                                                                                                  
+main@potega[31-31]:                               #                                                                                                
+main@potega[34-37]:                                  ####                                                                                          
+main@n[34-46]:                                  #############                                                                                 
+main@dzielnik[34-41]:                                  ########                                                                                      
+temp#10[40-42]:                                        ###                                                                                     
+temp#11[41-42]:                                         ##                                                                                     
+temp#19[42-42]:                                          #                                                                                     
+temp#20[42-42]:                                          #                                                                                     
+main@m[42-43]:                                          ##                                                                                    
+temp#12[47-48]:                                               ##                                                                               
+Variable usages:
+check@d: 1(L) 20(B) 5(R) 10(R) 16(R) 
+check@n: 1(L) 11(L) 12(B) 20(B) 4(R) 9(R) 15(R) 
+check@p: 1(L) 2(L) 3(B) 13(B) 14(B) 20(B) 
+check@r: 6(L) 7(B) 17(L) 18(B) 8(R) 
+main@dzielnik: 23(L) 24(B) 31(B) 34(L) 38(B) 39(B) 25(R) 26(R) 36(R) 40(R) 41(R) 
+main@m: 27(L) 28(B) 42(L) 43(B) 29(R) 
+main@n: 22(L) 31(B) 34(L) 29(R) 45(R) 46(R) 
+main@potega: 31(B) 34(L) 35(R) 37(R) 
+temp#1: 1(L) 21(R) 
+temp#10: 40(L) 42(R) 
+temp#11: 41(L) 42(R) 
+temp#12: 47(L) 48(R) 
+temp#13: 6(L) 
+temp#14: 11(L) 
+temp#15: 11(L) 
+temp#16: 17(L) 
+temp#17: 27(L) 
+temp#18: 27(L) 
+temp#19: 42(L) 
+temp#2: 4(L) 6(R) 
+temp#20: 42(L) 
+temp#3: 5(L) 6(R) 
+temp#4: 9(L) 11(R) 
+temp#5: 10(L) 11(R) 
+temp#6: 15(L) 17(R) 
+temp#7: 16(L) 17(R) 
+temp#8: 25(L) 27(R) 
+temp#9: 26(L) 27(R) 
+Range temp#13[6-6] usages: 6 
+b: check@p(1-1): 1 | check@p(2-20): 2 3 13 14 20 | 
+c: check@n(1-9): 1 4 9 | 
+d: temp#1(1-1): 1 | temp#13(6-6): 6 | temp#1(21-21): 21 | 
+e: check@d(1-20): 1 5 10 16 20 | 
+f: temp#2(4-6): 4 6 | 
+g: temp#3(5-6): 5 6 | 
+h: check@r(6-8): 6 7 8 | 
+
+Final registers usage:
+b: check@p(1-1): 1 | check@p(2-20): 2 3 13 14 20 | main@n(22-31): 22 29 31 | main@potega(34-37): 34 35 37 | temp#10(40-42): 40 42 | temp#12(47-48): 47 48 | 
+c: check@n(1-9): 1 4 9 | temp#5(10-11): 10 11 | temp#6(15-17): 15 17 | main@dzielnik(23-31): 23 24 25 26 31 | main@dzielnik(34-41): 34 36 38 39 40 41 | temp#19(42-42): 42 | 
+d: temp#1(1-1): 1 | temp#13(6-6): 6 | temp#4(9-11): 9 11 | temp#7(16-17): 16 17 | temp#1(21-21): 21 | temp#8(25-27): 25 27 | main@potega(31-31): 31 | main@n(34-46): 34 45 46 | 
+e: check@d(1-20): 1 5 10 16 20 | temp#9(26-27): 26 27 | temp#11(41-42): 41 42 | 
+f: temp#2(4-6): 4 6 | temp#15(11-11): 11 | check@r(17-18): 17 18 | temp#17(27-27): 27 | temp#20(42-42): 42 | 
+g: temp#3(5-6): 5 6 | temp#14(11-11): 11 | temp#16(17-17): 17 | temp#18(27-27): 27 | main@m(42-43): 42 43 | 
+h: check@r(6-8): 6 7 8 | check@n(11-20): 11 12 15 20 | main@m(27-29): 27 28 29 | 
+
+check@d: 1(e) 5(e) 10(e) 16(e) 20(e) 
+check@n: 1(c) 4(c) 9(c) 11(h) 12(h) 15(h) 20(h) 
+check@p: 1(b) 2(b) 3(b) 13(b) 14(b) 20(b) 
+check@r: 6(h) 7(h) 8(h) 17(f) 18(f) 
+main@dzielnik: 23(c) 24(c) 25(c) 26(c) 31(c) 34(c) 36(c) 38(c) 39(c) 40(c) 41(c) 
+main@m: 27(h) 28(h) 29(h) 42(g) 43(g) 
+main@n: 22(b) 29(b) 31(b) 34(d) 45(d) 46(d) 
+main@potega: 31(d) 34(b) 35(b) 37(b) 
+temp#1: 1(d) 21(d) 
+temp#10: 40(b) 42(b) 
+temp#11: 41(e) 42(e) 
+temp#12: 47(b) 48(b) 
+temp#13: 6(d) 
+temp#14: 11(g) 
+temp#15: 11(f) 
+temp#16: 17(g) 
+temp#17: 27(f) 
+temp#18: 27(g) 
+temp#19: 42(c) 
+temp#2: 4(f) 6(f) 
+temp#20: 42(f) 
+temp#3: 5(g) 6(g) 
+temp#4: 9(d) 11(d) 
+temp#5: 10(c) 11(c) 
+temp#6: 15(c) 17(c) 
+temp#7: 16(d) 17(d) 
+temp#8: 25(d) 27(d) 
+temp#9: 26(e) 27(e) 
+[       OK ] Compiler.Test13 (7 ms)
+[----------] 1 test from Compiler (7 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (7 ms total)
+[  PASSED  ] 1 test.

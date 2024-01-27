@@ -1,0 +1,87 @@
+PROGRAM IS
+  a, b, c, d, t[100]
+IN
+    READ a;
+    READ b;
+    READ t[50];
+    READ t[74];
+
+    WRITE a;
+    WRITE b;
+    WRITE t[50];
+    WRITE t[74];
+
+    a := a+1;
+    WRITE a;
+
+    c := 4 + 89;
+    WRITE c;
+
+    c := a + 67;
+    WRITE c;
+
+    c := 32 + b;
+    WRITE c;
+
+    c := a + b;
+    WRITE c;
+
+    c := c+1;
+    WRITE c;
+
+    c := 1+c;
+    WRITE c;
+
+    c := c+c;
+    WRITE c;
+
+    c := c+a;
+    WRITE c;
+
+    c := a+c;
+    WRITE c;
+
+    c := 7 + t[50];
+    WRITE c;
+
+    c := t[50] + 8;
+    WRITE c;
+
+    c := a + t[50];
+    WRITE c;
+
+    c := t[50] + b;
+    WRITE c;
+
+    c := t[50] + t[50];
+    WRITE c;
+
+    WRITE 1;
+    WRITE 2;
+    WRITE 3;
+
+    a := 74;
+
+    WRITE a;
+
+    c := 7 + t[a];
+    WRITE c;
+
+    c := t[a] + 8;
+    WRITE c;
+
+    c := b + t[a];
+    WRITE c;
+
+    c := t[a] + b;
+    WRITE c;
+
+    c := t[a] + t[a];
+    WRITE c;
+
+    c := t[50] + t[a];
+    WRITE c;
+
+    c := t[a] + t[50];
+    WRITE c;
+END

@@ -30,4 +30,4 @@ $compiler $source_file $output_file
 
 echo "Compilation complete. Output file: $output_file"
 
-./virtual-machine/maszyna-wirtualna < $input_file $output_file
+./virtual-machine/maszyna-wirtualna-cln < $input_file $output_file

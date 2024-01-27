@@ -10,11 +10,13 @@
 #include <optional>
 #include <string>
 #include <utility>
+#include <set>
 #include <vector>
 
 #include "Hardware.hpp"
+#include "ControlFlowGraph.hpp"
 
-enum UsageType { RVAL, LVAL };
+enum UsageType { RVAL, LVAL, BOTH };
 
 struct Usage {
   uint64_t position;
@@ -31,35 +33,48 @@ struct Range {
 class RegistersLinearScan {
  private:
   std::shared_ptr<Hardware> hardware;
+  ControlFlowGraph flowGraph;
+  std::map<std::string, std::vector<std::vector<uint64_t>>> liveRanges;
   std::map<std::string, std::vector<Usage>> variablesUsage;
-  std::map<std::string, std::vector<uint64_t>> liveVariables;
+  std::map<std::string, std::set<uint64_t>> requireLoad;
+  std::map<std::string, std::set<uint64_t>> requireStore;
   std::vector<Range> ranges;
   std::map<HardwareRegister, std::vector<Range>> registersUsage;
   std::map<std::string, std::map<uint64_t, std::string>> variableRegisters;
-  std::map<uint64_t, std::vector<std::pair<HardwareInstruction, std::pair<std::string, uint64_t>>>> memoryInteractions;
+  std::map<uint64_t, std::vector<std::pair<std::string, uint64_t>>> memoryStore;
+  std::map<uint64_t, std::vector<std::pair<std::string, uint64_t>>> memoryLoad;
+  std::map<std::string, uint64_t> variableMemoryPosition;
 
  public:
   RegistersLinearScan();
   RegistersLinearScan(std::shared_ptr<Hardware> hardware);
 
-  void addVariableLiveInfo(const std::string& variable, uint64_t position);
   void addVariableUsageInfo(const std::string& variable, uint64_t position, UsageType usageType);
-  void createRanges();
+  void createRanges(ControlFlowGraph& controlFlowGraph);
   void allocateRegisters();
   std::string getVariableRegister(const std::string& variable, uint64_t position);
-  std::vector<std::pair<HardwareInstruction, std::pair<std::string, uint64_t>>> getMemoryInteractions(uint64_t position);
+  std::vector<std::pair<std::string, uint64_t>> getMemoryStore(uint64_t position);
+  std::vector<std::pair<std::string, uint64_t>> getMemoryLoad(uint64_t position);
 
+  private:
   std::optional<HardwareRegister> getFreeRegister(const Range& newRange);
   HardwareRegister splitRanges(const Range& newRange);
   std::vector<uint64_t> getVariableLives(const std::string& variable, const Range& range);
-  std::vector<Usage> getVariableUsage(const std::string& variable, UsageType usageType, const Range& range);
-  std::vector<uint64_t> vectorsIntersection(const std::vector<Usage>& vector1, const std::vector<Usage>& vector2);
+  std::vector<Usage> getVariableUsage(const std::string& variable, const Range& range);
+  std::vector<uint64_t> vectorsIntersection(const std::vector<uint64_t>& vector1, const std::vector<uint64_t>& vector2);
+  UsageType getVariableUsageType(const std::string& variable, uint64_t position);
+  std::pair<Range, Range> divideRange1(const Range& range, uint64_t position);
+  std::pair<Range, Range> divideRange2(const Range& range, uint64_t position);
+  std::pair<Range, Range> divideRange3(const Range& range, uint64_t position);
+  void findProperSuccessors(uint64_t source, std::string variable, std::set<uint64_t>& successors, std::set<uint64_t>& visited);
+  void findProperPredecessors(uint64_t source, std::string variable, std::set<uint64_t>& predecessors, std::set<uint64_t>& visited);
   bool rangesOverlap(const Range& range1, const Range& range2);
   bool rangesInclude(const Range& outerRange, const Range& innerRange);
   uint64_t rangeSize(const Range& range);
   void printRanges();
-  void printLiveVariables();
   void printUsages();
+  void printRegistersUsage();
+  void printVariableRegisters();
 };
 
 #endif  // REGISTERS_LINEAR_SCAN_HPP

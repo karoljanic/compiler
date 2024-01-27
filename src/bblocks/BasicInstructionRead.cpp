@@ -2,15 +2,15 @@
 
 BasicInstructionRead::BasicInstructionRead() {}
 
-BasicInstructionRead::BasicInstructionRead(const std::string& variableName, std::shared_ptr<Hardware> hardware)
-    : BasicInstruction(hardware), leftRegister(variableName) {}
+BasicInstructionRead::BasicInstructionRead(const std::string &variableName, std::shared_ptr<Hardware> hardware)
+	: BasicInstruction(hardware), leftRegister(variableName) {}
 
 void BasicInstructionRead::expandToHardwareInstructions() {
   machineCode.clear();
-  machineCode.push_back(std::make_pair(HardwareInstruction::READ, ""));
-  machineCode.push_back(std::make_pair(HardwareInstruction::PUT, leftRegister));
+  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::READ, ""}});
+  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::PUT, leftRegister}});
 }
 
-void BasicInstructionRead::print(std::ostream& out) const {
+void BasicInstructionRead::print(std::ostream &out) const {
   out << "READ " << leftRegister;
 }

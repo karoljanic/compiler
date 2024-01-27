@@ -1,0 +1,2419 @@
+Note: Google Test filter = toMachineCodeConversion.readWrite
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from toMachineCodeConversion
+[ RUN      ] toMachineCodeConversion.readWrite
+../compiler machine-code-programs/io.imp machine-code-programs/io.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/io.rm > machine-code-programs/io.result < machine-code-programs/io-in.txt
+main@a: 
+1 2 3 4 5 6 7 8 9 10 11 12 
+
+main@c: 
+2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 
+
+temp#1: 
+3 4 
+
+temp#10: 
+23 24 
+
+temp#11: 
+25 26 
+
+temp#12: 
+10 
+
+temp#2: 
+5 6 
+
+temp#3: 
+7 8 
+
+temp#4: 
+9 10 
+
+temp#5: 
+13 14 
+
+temp#6: 
+15 16 
+
+temp#7: 
+17 18 
+
+temp#8: 
+19 20 
+
+temp#9: 
+21 22 
+
+############                                                                                                                   
+ ########################                                                                                                      
+  ##                                                                                                                           
+    ##                                                                                                                         
+      ##                                                                                                                       
+        ##                                                                                                                     
+         #                                                                                                                     
+            ##                                                                                                                 
+              ##                                                                                                               
+                ##                                                                                                             
+                  ##                                                                                                           
+                    ##                                                                                                         
+                      ##                                                                                                       
+                        ##                                                                                                     
+Variable usages:
+main@a: 1(L) 12(R) 
+main@c: 2(L) 10(R) 11(R) 25(R) 
+temp#1: 3(L) 4(B) 
+temp#10: 23(L) 24(R) 
+temp#11: 25(L) 26(R) 
+temp#12: 10(L) 
+temp#2: 5(L) 6(B) 
+temp#3: 7(L) 8(B) 
+temp#4: 9(L) 10(R) 
+temp#5: 13(L) 14(R) 
+temp#6: 15(L) 16(R) 
+temp#7: 17(L) 18(R) 
+temp#8: 19(L) 20(R) 
+temp#9: 21(L) 22(R) 
+Final registers usage:
+b: main@a(1-12): 1 12 | temp#5(13-14): 13 14 | temp#6(15-16): 15 16 | temp#7(17-18): 17 18 | temp#8(19-20): 19 20 | temp#9(21-22): 21 22 | temp#10(23-24): 23 24 | temp#11(25-26): 25 26 | 
+c: main@c(2-25): 2 10 11 25 | 
+d: temp#1(3-4): 3 4 | temp#2(5-6): 5 6 | temp#3(7-8): 7 8 | temp#4(9-10): 9 10 | 
+e: temp#12(10-10): 10 | 
+f: 
+g: 
+h: 
+
+main@a: 1(b) 12(b) 
+main@c: 2(c) 10(c) 11(c) 25(c) 
+temp#1: 3(d) 4(d) 
+temp#10: 23(b) 24(b) 
+temp#11: 25(b) 26(b) 
+temp#12: 10(e) 
+temp#2: 5(d) 6(d) 
+temp#3: 7(d) 8(d) 
+temp#4: 9(d) 10(d) 
+temp#5: 13(b) 14(b) 
+temp#6: 15(b) 16(b) 
+temp#7: 17(b) 18(b) 
+temp#8: 19(b) 20(b) 
+temp#9: 21(b) 22(b) 
+[       OK ] toMachineCodeConversion.readWrite (19 ms)
+[----------] 1 test from toMachineCodeConversion (19 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (20 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = toMachineCodeConversion.assignment
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from toMachineCodeConversion
+[ RUN      ] toMachineCodeConversion.assignment
+../compiler machine-code-programs/assigns.imp machine-code-programs/assigns.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/assigns.rm > machine-code-programs/assigns.result < machine-code-programs/assigns-in.txt
+main@a: 
+1 
+3 4 5 6 7 8 9 10 11 
+17 18 19 20 21 22 23 24 25 26 27 28 
+34 35 36 37 38 39 40 41 42 43 44 45 46 47 
+51 52 53 54 55 56 57 58 59 60 61 62 63 64 
+
+main@b: 
+2 
+5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 
+
+temp#1: 
+7 8 
+
+temp#10: 
+30 31 
+
+temp#11: 
+32 33 
+
+temp#12: 
+36 37 
+
+temp#13: 
+38 39 
+
+temp#14: 
+40 41 
+
+temp#15: 
+43 44 
+
+temp#16: 
+45 46 
+
+temp#17: 
+47 48 
+
+temp#18: 
+49 50 
+
+temp#19: 
+53 54 
+
+temp#2: 
+9 10 
+
+temp#20: 
+55 56 
+
+temp#21: 
+57 58 
+
+temp#22: 
+60 61 
+
+temp#23: 
+62 63 
+
+temp#24: 
+64 65 
+
+temp#25: 
+10 
+
+temp#26: 
+22 
+
+temp#27: 
+24 
+
+temp#28: 
+41 
+
+temp#29: 
+50 
+
+temp#3: 
+13 14 
+
+temp#30: 
+56 
+
+temp#31: 
+58 
+
+temp#4: 
+15 16 
+
+temp#5: 
+19 20 
+
+temp#6: 
+21 22 
+
+temp#7: 
+23 24 
+
+temp#8: 
+26 27 
+
+temp#9: 
+28 29 
+
+#                                                                                                                              
+ #                                                                                                                             
+  #########                                                                                                                    
+    ##########################################################                                                                 
+      ##                                                                                                                       
+        ##                                                                                                                     
+         #                                                                                                                     
+            ##                                                                                                                 
+              ##                                                                                                               
+                ############                                                                                                   
+                  ##                                                                                                           
+                    ##                                                                                                         
+                     #                                                                                                         
+                      ##                                                                                                       
+                       #                                                                                                       
+                         ##                                                                                                    
+                           ##                                                                                                  
+                             ##                                                                                                
+                               ##                                                                                              
+                                 ##############                                                                                
+                                   ##                                                                                          
+                                     ##                                                                                        
+                                       ##                                                                                      
+                                        #                                                                                      
+                                          ##                                                                                   
+                                            ##                                                                                 
+                                              ##                                                                               
+                                                ##                                                                             
+                                                 #                                                                             
+                                                  ##############                                                               
+                                                    ##                                                                         
+                                                      ##                                                                       
+                                                       #                                                                       
+                                                        ##                                                                     
+                                                         #                                                                     
+                                                           ##                                                                  
+                                                             ##                                                                
+                                                               ##                                                              
+Variable usages:
+main@a: 1(L) 3(L) 4(B) 17(L) 18(B) 34(L) 35(B) 51(L) 52(B) 11(R) 22(R) 25(R) 28(R) 41(R) 42(R) 47(R) 58(R) 59(R) 64(R) 
+main@b: 2(L) 5(L) 6(B) 10(R) 12(R) 15(R) 17(R) 19(R) 21(R) 23(R) 24(R) 30(R) 50(R) 51(R) 53(R) 55(R) 56(R) 57(R) 62(R) 
+temp#1: 7(L) 8(B) 
+temp#10: 30(L) 31(R) 
+temp#11: 32(L) 33(B) 
+temp#12: 36(L) 37(B) 
+temp#13: 38(L) 39(B) 
+temp#14: 40(L) 41(R) 
+temp#15: 43(L) 44(R) 
+temp#16: 45(L) 46(R) 
+temp#17: 47(L) 48(R) 
+temp#18: 49(L) 50(R) 
+temp#19: 53(L) 54(B) 
+temp#2: 9(L) 10(R) 
+temp#20: 55(L) 56(R) 
+temp#21: 57(L) 58(R) 
+temp#22: 60(L) 61(R) 
+temp#23: 62(L) 63(R) 
+temp#24: 64(L) 65(R) 
+temp#25: 10(L) 
+temp#26: 22(L) 
+temp#27: 24(L) 
+temp#28: 41(L) 
+temp#29: 50(L) 
+temp#3: 13(L) 14(R) 
+temp#30: 56(L) 
+temp#31: 58(L) 
+temp#4: 15(L) 16(R) 
+temp#5: 19(L) 20(B) 
+temp#6: 21(L) 22(R) 
+temp#7: 23(L) 24(R) 
+temp#8: 26(L) 27(R) 
+temp#9: 28(L) 29(R) 
+Final registers usage:
+b: main@a(1-1): 1 | main@b(2-2): 2 | main@a(3-11): 3 4 11 | temp#3(13-14): 13 14 | temp#4(15-16): 15 16 | main@a(17-28): 17 18 22 25 28 | temp#10(30-31): 30 31 | temp#11(32-33): 32 33 | main@a(34-47): 34 35 41 42 47 | temp#18(49-50): 49 50 | main@a(51-64): 51 52 58 59 64 | 
+c: main@b(5-62): 5 6 10 12 15 17 19 21 23 24 30 50 51 53 55 56 57 62 | temp#24(64-65): 64 65 | 
+d: temp#1(7-8): 7 8 | temp#2(9-10): 9 10 | temp#5(19-20): 19 20 | temp#6(21-22): 21 22 | temp#7(23-24): 23 24 | temp#8(26-27): 26 27 | temp#9(28-29): 28 29 | temp#12(36-37): 36 37 | temp#13(38-39): 38 39 | temp#14(40-41): 40 41 | temp#15(43-44): 43 44 | temp#16(45-46): 45 46 | temp#17(47-48): 47 48 | temp#29(50-50): 50 | temp#19(53-54): 53 54 | temp#20(55-56): 55 56 | temp#21(57-58): 57 58 | temp#22(60-61): 60 61 | temp#23(62-63): 62 63 | 
+e: temp#25(10-10): 10 | temp#26(22-22): 22 | temp#27(24-24): 24 | temp#28(41-41): 41 | temp#30(56-56): 56 | temp#31(58-58): 58 | 
+f: 
+g: 
+h: 
+
+main@a: 1(b) 3(b) 4(b) 11(b) 17(b) 18(b) 22(b) 25(b) 28(b) 34(b) 35(b) 41(b) 42(b) 47(b) 51(b) 52(b) 58(b) 59(b) 64(b) 
+main@b: 2(b) 5(c) 6(c) 10(c) 12(c) 15(c) 17(c) 19(c) 21(c) 23(c) 24(c) 30(c) 50(c) 51(c) 53(c) 55(c) 56(c) 57(c) 62(c) 
+temp#1: 7(d) 8(d) 
+temp#10: 30(b) 31(b) 
+temp#11: 32(b) 33(b) 
+temp#12: 36(d) 37(d) 
+temp#13: 38(d) 39(d) 
+temp#14: 40(d) 41(d) 
+temp#15: 43(d) 44(d) 
+temp#16: 45(d) 46(d) 
+temp#17: 47(d) 48(d) 
+temp#18: 49(b) 50(b) 
+temp#19: 53(d) 54(d) 
+temp#2: 9(d) 10(d) 
+temp#20: 55(d) 56(d) 
+temp#21: 57(d) 58(d) 
+temp#22: 60(d) 61(d) 
+temp#23: 62(d) 63(d) 
+temp#24: 64(c) 65(c) 
+temp#25: 10(e) 
+temp#26: 22(e) 
+temp#27: 24(e) 
+temp#28: 41(e) 
+temp#29: 50(d) 
+temp#3: 13(b) 14(b) 
+temp#30: 56(e) 
+temp#31: 58(e) 
+temp#4: 15(b) 16(b) 
+temp#5: 19(d) 20(d) 
+temp#6: 21(d) 22(d) 
+temp#7: 23(d) 24(d) 
+temp#8: 26(d) 27(d) 
+temp#9: 28(d) 29(d) 
+[       OK ] toMachineCodeConversion.assignment (21 ms)
+[----------] 1 test from toMachineCodeConversion (21 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (21 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = toMachineCodeConversion.registersAllocation
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from toMachineCodeConversion
+[ RUN      ] toMachineCodeConversion.registersAllocation
+../compiler machine-code-programs/reg-alloc.imp machine-code-programs/reg-alloc.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/reg-alloc.rm > machine-code-programs/reg-alloc.result < machine-code-programs/reg-alloc-in.txt
+main@a: 
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 
+
+main@b: 
+2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 
+
+main@c: 
+3 4 5 6 7 8 9 10 11 
+
+main@d: 
+4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 
+
+main@e: 
+5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 
+
+main@f: 
+8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 
+
+main@g: 
+12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 
+
+main@h: 
+16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 
+
+main@i: 
+20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 
+
+main@j: 
+30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 
+
+main@k: 
+36 37 38 39 40 41 42 43 44 45 46 47 48 
+
+main@l: 
+40 41 42 43 44 45 46 47 48 49 
+
+main@m: 
+44 45 46 47 48 49 50 
+
+temp#1: 
+6 7 8 
+
+temp#10: 
+29 30 
+
+temp#11: 
+34 35 36 
+
+temp#12: 
+35 36 
+
+temp#13: 
+38 39 40 
+
+temp#14: 
+39 40 
+
+temp#15: 
+42 43 44 
+
+temp#16: 
+43 44 
+
+temp#2: 
+7 8 
+
+temp#3: 
+10 11 12 
+
+temp#4: 
+11 12 
+
+temp#5: 
+14 15 16 
+
+temp#6: 
+15 16 
+
+temp#7: 
+18 19 20 
+
+temp#8: 
+19 20 
+
+temp#9: 
+28 29 30 
+
+###########################################                                                                                    
+ #########################################                                                                                     
+  #########                                                                                                                    
+   ###############################                                                                                             
+    ###############################                                                                                            
+     ###                                                                                                                       
+      ##                                                                                                                       
+       #####################                                                                                                   
+         ###                                                                                                                   
+          ##                                                                                                                   
+           ###########################                                                                                         
+             ###                                                                                                               
+              ##                                                                                                               
+               ###############################                                                                                 
+                 ###                                                                                                           
+                  ##                                                                                                           
+                   ################################                                                                            
+                           ###                                                                                                 
+                            ##                                                                                                 
+                             ##################                                                                                
+                                 ###                                                                                           
+                                  ##                                                                                           
+                                   #############                                                                               
+                                     ###                                                                                       
+                                      ##                                                                                       
+                                       ##########                                                                              
+                                         ###                                                                                   
+                                          ##                                                                                   
+                                           #######                                                                             
+Variable usages:
+main@a: 1(L) 6(R) 10(R) 43(R) 
+main@b: 2(L) 7(R) 18(R) 42(R) 
+main@c: 3(L) 11(R) 
+main@d: 4(L) 34(R) 
+main@e: 5(L) 29(R) 35(R) 
+main@f: 8(L) 9(B) 15(R) 24(R) 28(R) 
+main@g: 12(L) 13(B) 14(R) 19(R) 25(R) 38(R) 
+main@h: 16(L) 17(B) 26(R) 46(R) 
+main@i: 20(L) 21(B) 22(B) 23(B) 27(R) 51(R) 
+main@j: 30(L) 31(B) 32(B) 33(B) 47(R) 
+main@k: 36(L) 37(B) 39(R) 48(R) 
+main@l: 40(L) 41(B) 49(R) 
+main@m: 44(L) 45(B) 50(R) 
+temp#1: 6(L) 8(R) 
+temp#10: 29(L) 30(R) 
+temp#11: 34(L) 36(R) 
+temp#12: 35(L) 36(R) 
+temp#13: 38(L) 40(R) 
+temp#14: 39(L) 40(R) 
+temp#15: 42(L) 44(R) 
+temp#16: 43(L) 44(R) 
+temp#2: 7(L) 8(R) 
+temp#3: 10(L) 12(R) 
+temp#4: 11(L) 12(R) 
+temp#5: 14(L) 16(R) 
+temp#6: 15(L) 16(R) 
+temp#7: 18(L) 20(R) 
+temp#8: 19(L) 20(R) 
+temp#9: 28(L) 30(R) 
+Range main@f[8-28] usages: 8 9 15 24 28 
+b: main@a(1-43): 1 6 10 43 | 
+c: main@b(2-42): 2 7 18 42 | 
+d: main@c(3-11): 3 11 | 
+e: main@d(4-4): 4 | main@f(8-28): 8 9 15 24 28 | main@d(34-34): 34 | 
+f: main@e(5-35): 5 29 35 | 
+g: temp#1(6-8): 6 8 | 
+h: temp#2(7-8): 7 8 | 
+
+Range main@h[16-46] usages: 16 17 26 46 
+b: main@a(1-10): 1 6 10 | main@h(16-46): 16 17 26 46 | main@h(16-26): 16 26 | main@a(43-43): 43 | main@h(46-46): 46 46 | 
+c: main@b(2-42): 2 7 18 42 | 
+d: main@c(3-11): 3 11 | main@g(12-38): 12 13 14 19 25 38 | 
+e: main@d(4-4): 4 | main@f(8-28): 8 9 15 24 28 | main@d(34-34): 34 | 
+f: main@e(5-35): 5 29 35 | 
+g: temp#1(6-8): 6 8 | temp#3(10-12): 10 12 | temp#5(14-16): 14 16 | 
+h: temp#2(7-8): 7 8 | temp#4(11-12): 11 12 | temp#6(15-16): 15 16 | 
+
+Range main@i[20-51] usages: 20 21 22 23 27 51 
+b: main@a(1-10): 1 6 10 | main@h(16-46): 16 17 26 46 | main@h(16-26): 16 26 | main@a(43-43): 43 | main@h(46-46): 46 46 | 
+c: main@b(2-18): 2 7 18 | main@i(20-51): 20 21 22 23 27 51 | main@i(20-27): 20 27 | main@b(42-42): 42 | main@i(51-51): 51 51 | 
+d: main@c(3-11): 3 11 | main@g(12-38): 12 13 14 19 25 38 | 
+e: main@d(4-4): 4 | main@f(8-28): 8 9 15 24 28 | main@d(34-34): 34 | 
+f: main@e(5-35): 5 29 35 | 
+g: temp#1(6-8): 6 8 | temp#3(10-12): 10 12 | temp#5(14-16): 14 16 | temp#7(18-20): 18 20 | 
+h: temp#2(7-8): 7 8 | temp#4(11-12): 11 12 | temp#6(15-16): 15 16 | temp#8(19-20): 19 20 | 
+
+Range main@m[44-50] usages: 44 45 50 
+b: main@a(1-10): 1 6 10 | main@h(16-46): 16 17 26 46 | main@h(16-26): 16 26 | main@a(43-43): 43 | main@h(46-46): 46 46 | 
+c: main@b(2-18): 2 7 18 | main@i(20-27): 20 21 22 23 27 | main@m(44-50): 44 45 50 | main@i(51-51): 51 | main@i(20-27): 20 27 | main@b(42-42): 42 | main@i(51-51): 51 51 | 
+d: main@c(3-11): 3 11 | main@g(12-38): 12 13 14 19 25 38 | temp#14(39-40): 39 40 | temp#15(42-44): 42 44 | 
+e: main@d(4-4): 4 | main@f(8-28): 8 9 15 24 28 | temp#10(29-30): 29 30 | main@d(34-34): 34 | temp#12(35-36): 35 36 | temp#13(38-40): 38 40 | temp#16(43-44): 43 44 | 
+f: main@e(5-35): 5 29 35 | main@k(36-48): 36 37 39 48 | 
+g: temp#1(6-8): 6 8 | temp#3(10-12): 10 12 | temp#5(14-16): 14 16 | temp#7(18-20): 18 20 | temp#9(28-30): 28 30 | temp#11(34-36): 34 36 | main@l(40-49): 40 41 49 | 
+h: temp#2(7-8): 7 8 | temp#4(11-12): 11 12 | temp#6(15-16): 15 16 | temp#8(19-20): 19 20 | main@j(30-47): 30 31 32 33 47 | 
+
+Final registers usage:
+b: main@a(1-10): 1 6 10 | main@h(16-46): 16 17 26 46 | main@h(16-26): 16 26 | main@a(43-43): 43 | main@h(46-46): 46 46 | 
+c: main@b(2-18): 2 7 18 | main@i(20-27): 20 21 22 23 27 | main@m(44-50): 44 45 50 | main@i(51-51): 51 | main@i(20-27): 20 27 | main@b(42-42): 42 | main@i(51-51): 51 51 | 
+d: main@c(3-11): 3 11 | main@g(12-38): 12 13 14 19 25 38 | temp#14(39-40): 39 40 | temp#15(42-44): 42 44 | 
+e: main@d(4-4): 4 | main@f(8-28): 8 9 15 24 28 | temp#10(29-30): 29 30 | main@d(34-34): 34 | temp#12(35-36): 35 36 | temp#13(38-40): 38 40 | temp#16(43-44): 43 44 | 
+f: main@e(5-35): 5 29 35 | main@k(36-48): 36 37 39 48 | 
+g: temp#1(6-8): 6 8 | temp#3(10-12): 10 12 | temp#5(14-16): 14 16 | temp#7(18-20): 18 20 | temp#9(28-30): 28 30 | temp#11(34-36): 34 36 | main@l(40-49): 40 41 49 | 
+h: temp#2(7-8): 7 8 | temp#4(11-12): 11 12 | temp#6(15-16): 15 16 | temp#8(19-20): 19 20 | main@j(30-47): 30 31 32 33 47 | 
+
+main@a: 1(b) 6(b) 10(b) 43(b) 
+main@b: 2(c) 7(c) 18(c) 42(c) 
+main@c: 3(d) 11(d) 
+main@d: 4(e) 34(e) 
+main@e: 5(f) 29(f) 35(f) 
+main@f: 8(e) 9(e) 15(e) 24(e) 28(e) 
+main@g: 12(d) 13(d) 14(d) 19(d) 25(d) 38(d) 
+main@h: 16(b) 17(b) 26(b) 46(b) 
+main@i: 20(c) 21(c) 22(c) 23(c) 27(c) 51(c) 
+main@j: 30(h) 31(h) 32(h) 33(h) 47(h) 
+main@k: 36(f) 37(f) 39(f) 48(f) 
+main@l: 40(g) 41(g) 49(g) 
+main@m: 44(c) 45(c) 50(c) 
+temp#1: 6(g) 8(g) 
+temp#10: 29(e) 30(e) 
+temp#11: 34(g) 36(g) 
+temp#12: 35(e) 36(e) 
+temp#13: 38(e) 40(e) 
+temp#14: 39(d) 40(d) 
+temp#15: 42(d) 44(d) 
+temp#16: 43(e) 44(e) 
+temp#2: 7(h) 8(h) 
+temp#3: 10(g) 12(g) 
+temp#4: 11(h) 12(h) 
+temp#5: 14(g) 16(g) 
+temp#6: 15(h) 16(h) 
+temp#7: 18(g) 20(g) 
+temp#8: 19(h) 20(h) 
+temp#9: 28(g) 30(g) 
+[       OK ] toMachineCodeConversion.registersAllocation (13 ms)
+[----------] 1 test from toMachineCodeConversion (13 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (13 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = toMachineCodeConversion.addition
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from toMachineCodeConversion
+[ RUN      ] toMachineCodeConversion.addition
+../compiler machine-code-programs/adds.imp machine-code-programs/adds.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/adds.rm > machine-code-programs/adds.result < machine-code-programs/adds-in.txt
+main@a: 
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 
+80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 
+
+main@b: 
+2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 
+
+main@c: 
+16 17 18 
+19 20 21 
+22 23 24 
+27 28 29 30 31 32 33 34 35 36 37 
+38 39 40 41 
+43 44 45 46 47 
+48 49 50 
+52 53 54 
+56 57 58 
+61 62 63 
+66 67 68 
+71 72 73 
+84 85 86 
+88 89 90 
+93 94 95 
+98 99 100 
+103 104 105 
+108 109 110 
+113 114 115 
+
+temp#1: 
+3 4 
+
+temp#10: 
+42 43 
+
+temp#11: 
+46 47 48 
+
+temp#12: 
+47 48 
+
+temp#13: 
+51 52 
+
+temp#14: 
+55 56 
+
+temp#15: 
+59 60 61 
+
+temp#16: 
+60 61 
+
+temp#17: 
+64 65 66 
+
+temp#18: 
+65 66 
+
+temp#19: 
+69 70 71 
+
+temp#2: 
+5 6 
+
+temp#20: 
+70 71 
+
+temp#21: 
+74 75 
+
+temp#22: 
+76 77 
+
+temp#23: 
+78 79 
+
+temp#24: 
+83 84 
+
+temp#25: 
+87 88 
+
+temp#26: 
+91 92 93 
+
+temp#27: 
+92 93 
+
+temp#28: 
+96 97 98 
+
+temp#29: 
+97 98 
+
+temp#3: 
+9 10 
+
+temp#30: 
+101 102 103 
+
+temp#31: 
+102 103 
+
+temp#32: 
+106 107 108 
+
+temp#33: 
+107 108 
+
+temp#34: 
+111 112 113 
+
+temp#35: 
+112 113 
+
+temp#4: 
+11 12 
+
+temp#5: 
+25 26 27 
+
+temp#6: 
+26 27 
+
+temp#7: 
+36 37 38 
+
+temp#8: 
+37 38 
+
+temp#9: 
+41 42 43 
+
+###########################################################                                                                    
+ ################################################################################################                              
+  ##                                                                                                                           
+    ##                                                                                                                         
+        ##                                                                                                                     
+          ##                                                                                                                   
+               ###                                                                                                             
+                  ###                                                                                                          
+                     ###                                                                                                       
+                        ###                                                                                                    
+                         ##                                                                                                    
+                          ###########                                                                                          
+                                   ###                                                                                         
+                                    ##                                                                                         
+                                     ####                                                                                      
+                                        ###                                                                                    
+                                         ##                                                                                    
+                                          #####                                                                                
+                                             ###                                                                               
+                                              ##                                                                               
+                                               ###                                                                             
+                                                  ##                                                                           
+                                                   ###                                                                         
+                                                      ##                                                                       
+                                                       ###                                                                     
+                                                          ###                                                                  
+                                                           ##                                                                  
+                                                            ###                                                                
+                                                               ###                                                             
+                                                                ##                                                             
+                                                                 ###                                                           
+                                                                    ###                                                        
+                                                                     ##                                                        
+                                                                      ###                                                      
+                                                                         ##                                                    
+                                                                           ##                                                  
+                                                                             ##                                                
+                                                                               ################################                
+                                                                                  ##                                           
+                                                                                   ###                                         
+                                                                                      ##                                       
+                                                                                       ###                                     
+                                                                                          ###                                  
+                                                                                           ##                                  
+                                                                                            ###                                
+                                                                                               ###                             
+                                                                                                ##                             
+                                                                                                 ###                           
+                                                                                                    ###                        
+                                                                                                     ##                        
+                                                                                                      ###                      
+                                                                                                         ###                   
+                                                                                                          ##                   
+                                                                                                           ###                 
+                                                                                                              ###              
+                                                                                                               ##              
+                                                                                                                ###            
+Variable usages:
+main@a: 1(L) 13(B) 14(B) 80(L) 81(B) 7(R) 15(R) 19(R) 25(R) 42(R) 46(R) 59(R) 82(R) 83(R) 87(R) 92(R) 96(R) 101(R) 102(R) 107(R) 111(R) 
+main@b: 2(L) 8(R) 22(R) 26(R) 65(R) 91(R) 97(R) 
+main@c: 16(L) 17(B) 19(L) 20(B) 22(L) 23(B) 27(L) 28(B) 30(B) 31(B) 33(B) 34(B) 38(L) 39(B) 43(L) 44(B) 48(L) 49(B) 52(L) 53(B) 56(L) 57(B) 61(L) 62(B) 66(L) 67(B) 71(L) 72(B) 84(L) 85(B) 88(L) 89(B) 93(L) 94(B) 98(L) 99(B) 103(L) 104(B) 108(L) 109(B) 113(L) 114(B) 18(R) 21(R) 24(R) 29(R) 32(R) 35(R) 36(R) 37(R) 40(R) 41(R) 45(R) 47(R) 50(R) 54(R) 58(R) 63(R) 68(R) 73(R) 86(R) 90(R) 95(R) 100(R) 105(R) 110(R) 115(R) 
+temp#1: 3(L) 4(B) 
+temp#10: 42(L) 43(R) 
+temp#11: 46(L) 48(R) 
+temp#12: 47(L) 48(R) 
+temp#13: 51(L) 52(R) 
+temp#14: 55(L) 56(R) 
+temp#15: 59(L) 61(R) 
+temp#16: 60(L) 61(R) 
+temp#17: 64(L) 66(R) 
+temp#18: 65(L) 66(R) 
+temp#19: 69(L) 71(R) 
+temp#2: 5(L) 6(B) 
+temp#20: 70(L) 71(R) 
+temp#21: 74(L) 75(R) 
+temp#22: 76(L) 77(R) 
+temp#23: 78(L) 79(R) 
+temp#24: 83(L) 84(R) 
+temp#25: 87(L) 88(R) 
+temp#26: 91(L) 93(R) 
+temp#27: 92(L) 93(R) 
+temp#28: 96(L) 98(R) 
+temp#29: 97(L) 98(R) 
+temp#3: 9(L) 10(R) 
+temp#30: 101(L) 103(R) 
+temp#31: 102(L) 103(R) 
+temp#32: 106(L) 108(R) 
+temp#33: 107(L) 108(R) 
+temp#34: 111(L) 113(R) 
+temp#35: 112(L) 113(R) 
+temp#4: 11(L) 12(R) 
+temp#5: 25(L) 27(R) 
+temp#6: 26(L) 27(R) 
+temp#7: 36(L) 38(R) 
+temp#8: 37(L) 38(R) 
+temp#9: 41(L) 43(R) 
+Final registers usage:
+b: main@a(1-59): 1 7 13 14 15 19 25 42 46 59 | temp#16(60-61): 60 61 | temp#17(64-66): 64 66 | temp#19(69-71): 69 71 | temp#21(74-75): 74 75 | temp#22(76-77): 76 77 | temp#23(78-79): 78 79 | main@a(80-111): 80 81 82 83 87 92 96 101 102 107 111 | temp#35(112-113): 112 113 | 
+c: main@b(2-97): 2 8 22 26 65 91 97 | main@c(98-100): 98 99 100 | temp#30(101-103): 101 103 | temp#32(106-108): 106 108 | temp#34(111-113): 111 113 | 
+d: temp#1(3-4): 3 4 | temp#2(5-6): 5 6 | temp#3(9-10): 9 10 | temp#4(11-12): 11 12 | main@c(16-18): 16 17 18 | main@c(19-21): 19 20 21 | main@c(22-24): 22 23 24 | temp#5(25-27): 25 27 | temp#7(36-38): 36 38 | temp#9(41-43): 41 43 | temp#11(46-48): 46 48 | temp#13(51-52): 51 52 | temp#14(55-56): 55 56 | temp#15(59-61): 59 61 | temp#18(65-66): 65 66 | temp#20(70-71): 70 71 | temp#24(83-84): 83 84 | temp#25(87-88): 87 88 | temp#26(91-93): 91 93 | temp#28(96-98): 96 98 | temp#31(102-103): 102 103 | temp#33(107-108): 107 108 | main@c(113-115): 113 114 115 | 
+e: temp#6(26-27): 26 27 | temp#8(37-38): 37 38 | temp#10(42-43): 42 43 | temp#12(47-48): 47 48 | main@c(52-54): 52 53 54 | main@c(56-58): 56 57 58 | main@c(61-63): 61 62 63 | main@c(66-68): 66 67 68 | main@c(71-73): 71 72 73 | main@c(84-86): 84 85 86 | main@c(88-90): 88 89 90 | temp#27(92-93): 92 93 | temp#29(97-98): 97 98 | main@c(103-105): 103 104 105 | main@c(108-110): 108 109 110 | 
+f: main@c(27-37): 27 28 29 30 31 32 33 34 35 36 37 | main@c(38-41): 38 39 40 41 | main@c(43-47): 43 44 45 47 | main@c(48-50): 48 49 50 | main@c(93-95): 93 94 95 | 
+g: 
+h: 
+
+main@a: 1(b) 7(b) 13(b) 14(b) 15(b) 19(b) 25(b) 42(b) 46(b) 59(b) 80(b) 81(b) 82(b) 83(b) 87(b) 92(b) 96(b) 101(b) 102(b) 107(b) 111(b) 
+main@b: 2(c) 8(c) 22(c) 26(c) 65(c) 91(c) 97(c) 
+main@c: 16(d) 17(d) 18(d) 19(d) 20(d) 21(d) 22(d) 23(d) 24(d) 27(f) 28(f) 29(f) 30(f) 31(f) 32(f) 33(f) 34(f) 35(f) 36(f) 37(f) 38(f) 39(f) 40(f) 41(f) 43(f) 44(f) 45(f) 47(f) 48(f) 49(f) 50(f) 52(e) 53(e) 54(e) 56(e) 57(e) 58(e) 61(e) 62(e) 63(e) 66(e) 67(e) 68(e) 71(e) 72(e) 73(e) 84(e) 85(e) 86(e) 88(e) 89(e) 90(e) 93(f) 94(f) 95(f) 98(c) 99(c) 100(c) 103(e) 104(e) 105(e) 108(e) 109(e) 110(e) 113(d) 114(d) 115(d) 
+temp#1: 3(d) 4(d) 
+temp#10: 42(e) 43(e) 
+temp#11: 46(d) 48(d) 
+temp#12: 47(e) 48(e) 
+temp#13: 51(d) 52(d) 
+temp#14: 55(d) 56(d) 
+temp#15: 59(d) 61(d) 
+temp#16: 60(b) 61(b) 
+temp#17: 64(b) 66(b) 
+temp#18: 65(d) 66(d) 
+temp#19: 69(b) 71(b) 
+temp#2: 5(d) 6(d) 
+temp#20: 70(d) 71(d) 
+temp#21: 74(b) 75(b) 
+temp#22: 76(b) 77(b) 
+temp#23: 78(b) 79(b) 
+temp#24: 83(d) 84(d) 
+temp#25: 87(d) 88(d) 
+temp#26: 91(d) 93(d) 
+temp#27: 92(e) 93(e) 
+temp#28: 96(d) 98(d) 
+temp#29: 97(e) 98(e) 
+temp#3: 9(d) 10(d) 
+temp#30: 101(c) 103(c) 
+temp#31: 102(d) 103(d) 
+temp#32: 106(c) 108(c) 
+temp#33: 107(d) 108(d) 
+temp#34: 111(c) 113(c) 
+temp#35: 112(b) 113(b) 
+temp#4: 11(d) 12(d) 
+temp#5: 25(d) 27(d) 
+temp#6: 26(e) 27(e) 
+temp#7: 36(d) 38(d) 
+temp#8: 37(e) 38(e) 
+temp#9: 41(d) 43(d) 
+[       OK ] toMachineCodeConversion.addition (13 ms)
+[----------] 1 test from toMachineCodeConversion (13 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (13 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = toMachineCodeConversion.subtraction
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from toMachineCodeConversion
+[ RUN      ] toMachineCodeConversion.subtraction
+../compiler machine-code-programs/subs.imp machine-code-programs/subs.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/subs.rm > machine-code-programs/subs.result < machine-code-programs/subs-in.txt
+main@a: 
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 
+86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 
+
+main@b: 
+2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 
+
+main@c: 
+16 17 18 
+19 20 21 
+22 23 24 
+25 26 27 
+30 31 32 33 34 35 36 37 38 
+39 40 41 42 43 
+44 45 46 47 
+49 50 51 52 53 
+54 55 56 
+58 59 60 
+62 63 64 
+67 68 69 
+72 73 74 
+77 78 79 
+90 91 92 
+94 95 96 
+99 100 101 
+104 105 106 
+109 110 111 
+114 115 116 
+119 120 121 
+
+temp#1: 
+3 4 
+
+temp#10: 
+48 49 
+
+temp#11: 
+52 53 54 
+
+temp#12: 
+53 54 
+
+temp#13: 
+57 58 
+
+temp#14: 
+61 62 
+
+temp#15: 
+65 66 67 
+
+temp#16: 
+66 67 
+
+temp#17: 
+70 71 72 
+
+temp#18: 
+71 72 
+
+temp#19: 
+75 76 77 
+
+temp#2: 
+5 6 
+
+temp#20: 
+76 77 
+
+temp#21: 
+80 81 
+
+temp#22: 
+82 83 
+
+temp#23: 
+84 85 
+
+temp#24: 
+89 90 
+
+temp#25: 
+93 94 
+
+temp#26: 
+97 98 99 
+
+temp#27: 
+98 99 
+
+temp#28: 
+102 103 104 
+
+temp#29: 
+103 104 
+
+temp#3: 
+9 10 
+
+temp#30: 
+107 108 109 
+
+temp#31: 
+108 109 
+
+temp#32: 
+112 113 114 
+
+temp#33: 
+113 114 
+
+temp#34: 
+117 118 119 
+
+temp#35: 
+118 119 
+
+temp#36: 
+22 
+
+temp#4: 
+11 12 
+
+temp#5: 
+28 29 30 
+
+temp#6: 
+29 30 
+
+temp#7: 
+42 43 44 
+
+temp#8: 
+43 44 
+
+temp#9: 
+47 48 49 
+
+#################################################################                                                              
+ ######################################################################################################                        
+  ##                                                                                                                           
+    ##                                                                                                                         
+        ##                                                                                                                     
+          ##                                                                                                                   
+               ###                                                                                                             
+                  ###                                                                                                          
+                     ###                                                                                                       
+                     #                                                                                                         
+                        ###                                                                                                    
+                           ###                                                                                                 
+                            ##                                                                                                 
+                             #########                                                                                         
+                                      #####                                                                                    
+                                         ###                                                                                   
+                                          ##                                                                                   
+                                           ####                                                                                
+                                              ###                                                                              
+                                               ##                                                                              
+                                                #####                                                                          
+                                                   ###                                                                         
+                                                    ##                                                                         
+                                                     ###                                                                       
+                                                        ##                                                                     
+                                                         ###                                                                   
+                                                            ##                                                                 
+                                                             ###                                                               
+                                                                ###                                                            
+                                                                 ##                                                            
+                                                                  ###                                                          
+                                                                     ###                                                       
+                                                                      ##                                                       
+                                                                       ###                                                     
+                                                                          ###                                                  
+                                                                           ##                                                  
+                                                                            ###                                                
+                                                                               ##                                              
+                                                                                 ##                                            
+                                                                                   ##                                          
+                                                                                     ################################          
+                                                                                        ##                                     
+                                                                                         ###                                   
+                                                                                            ##                                 
+                                                                                             ###                               
+                                                                                                ###                            
+                                                                                                 ##                            
+                                                                                                  ###                          
+                                                                                                     ###                       
+                                                                                                      ##                       
+                                                                                                       ###                     
+                                                                                                          ###                  
+                                                                                                           ##                  
+                                                                                                            ###                
+                                                                                                               ###             
+                                                                                                                ##             
+                                                                                                                 ###           
+                                                                                                                    ###        
+                                                                                                                     ##        
+                                                                                                                      ###      
+Variable usages:
+main@a: 1(L) 13(B) 14(B) 86(L) 87(B) 7(R) 15(R) 22(R) 28(R) 48(R) 52(R) 65(R) 88(R) 89(R) 93(R) 98(R) 102(R) 107(R) 108(R) 113(R) 117(R) 
+main@b: 2(L) 8(R) 25(R) 29(R) 71(R) 97(R) 103(R) 
+main@c: 16(L) 17(B) 19(L) 20(B) 22(L) 23(B) 25(L) 26(B) 30(L) 31(B) 33(B) 34(B) 36(B) 37(B) 39(L) 40(B) 44(L) 45(B) 49(L) 50(B) 54(L) 55(B) 58(L) 59(B) 62(L) 63(B) 67(L) 68(B) 72(L) 73(B) 77(L) 78(B) 90(L) 91(B) 94(L) 95(B) 99(L) 100(B) 104(L) 105(B) 109(L) 110(B) 114(L) 115(B) 119(L) 120(B) 18(R) 21(R) 24(R) 27(R) 32(R) 35(R) 38(R) 41(R) 42(R) 43(R) 46(R) 47(R) 51(R) 53(R) 56(R) 60(R) 64(R) 69(R) 74(R) 79(R) 92(R) 96(R) 101(R) 106(R) 111(R) 116(R) 121(R) 
+temp#1: 3(L) 4(B) 
+temp#10: 48(L) 49(R) 
+temp#11: 52(L) 54(R) 
+temp#12: 53(L) 54(R) 
+temp#13: 57(L) 58(R) 
+temp#14: 61(L) 62(R) 
+temp#15: 65(L) 67(R) 
+temp#16: 66(L) 67(R) 
+temp#17: 70(L) 72(R) 
+temp#18: 71(L) 72(R) 
+temp#19: 75(L) 77(R) 
+temp#2: 5(L) 6(B) 
+temp#20: 76(L) 77(R) 
+temp#21: 80(L) 81(R) 
+temp#22: 82(L) 83(R) 
+temp#23: 84(L) 85(R) 
+temp#24: 89(L) 90(R) 
+temp#25: 93(L) 94(R) 
+temp#26: 97(L) 99(R) 
+temp#27: 98(L) 99(R) 
+temp#28: 102(L) 104(R) 
+temp#29: 103(L) 104(R) 
+temp#3: 9(L) 10(R) 
+temp#30: 107(L) 109(R) 
+temp#31: 108(L) 109(R) 
+temp#32: 112(L) 114(R) 
+temp#33: 113(L) 114(R) 
+temp#34: 117(L) 119(R) 
+temp#35: 118(L) 119(R) 
+temp#36: 22(L) 
+temp#4: 11(L) 12(R) 
+temp#5: 28(L) 30(R) 
+temp#6: 29(L) 30(R) 
+temp#7: 42(L) 44(R) 
+temp#8: 43(L) 44(R) 
+temp#9: 47(L) 49(R) 
+Final registers usage:
+b: main@a(1-65): 1 7 13 14 15 22 28 48 52 65 | temp#16(66-67): 66 67 | temp#17(70-72): 70 72 | temp#19(75-77): 75 77 | temp#21(80-81): 80 81 | temp#22(82-83): 82 83 | temp#23(84-85): 84 85 | main@a(86-117): 86 87 88 89 93 98 102 107 108 113 117 | temp#35(118-119): 118 119 | 
+c: main@b(2-103): 2 8 25 29 71 97 103 | main@c(104-106): 104 105 106 | temp#30(107-109): 107 109 | temp#32(112-114): 112 114 | temp#34(117-119): 117 119 | 
+d: temp#1(3-4): 3 4 | temp#2(5-6): 5 6 | temp#3(9-10): 9 10 | temp#4(11-12): 11 12 | main@c(16-18): 16 17 18 | main@c(19-21): 19 20 21 | main@c(22-24): 22 23 24 | main@c(25-27): 25 26 27 | temp#5(28-30): 28 30 | main@c(39-43): 39 40 41 42 43 | main@c(44-47): 44 45 46 47 | temp#10(48-49): 48 49 | temp#11(52-54): 52 54 | temp#13(57-58): 57 58 | temp#14(61-62): 61 62 | temp#15(65-67): 65 67 | temp#18(71-72): 71 72 | temp#20(76-77): 76 77 | temp#24(89-90): 89 90 | temp#25(93-94): 93 94 | temp#26(97-99): 97 99 | temp#28(102-104): 102 104 | temp#31(108-109): 108 109 | temp#33(113-114): 113 114 | main@c(119-121): 119 120 121 | 
+e: temp#36(22-22): 22 | temp#6(29-30): 29 30 | temp#7(42-44): 42 44 | temp#9(47-49): 47 49 | temp#12(53-54): 53 54 | main@c(58-60): 58 59 60 | main@c(62-64): 62 63 64 | main@c(67-69): 67 68 69 | main@c(72-74): 72 73 74 | main@c(77-79): 77 78 79 | main@c(90-92): 90 91 92 | main@c(94-96): 94 95 96 | temp#27(98-99): 98 99 | temp#29(103-104): 103 104 | main@c(109-111): 109 110 111 | main@c(114-116): 114 115 116 | 
+f: main@c(30-38): 30 31 32 33 34 35 36 37 38 | temp#8(43-44): 43 44 | main@c(49-53): 49 50 51 53 | main@c(54-56): 54 55 56 | main@c(99-101): 99 100 101 | 
+g: 
+h: 
+
+main@a: 1(b) 7(b) 13(b) 14(b) 15(b) 22(b) 28(b) 48(b) 52(b) 65(b) 86(b) 87(b) 88(b) 89(b) 93(b) 98(b) 102(b) 107(b) 108(b) 113(b) 117(b) 
+main@b: 2(c) 8(c) 25(c) 29(c) 71(c) 97(c) 103(c) 
+main@c: 16(d) 17(d) 18(d) 19(d) 20(d) 21(d) 22(d) 23(d) 24(d) 25(d) 26(d) 27(d) 30(f) 31(f) 32(f) 33(f) 34(f) 35(f) 36(f) 37(f) 38(f) 39(d) 40(d) 41(d) 42(d) 43(d) 44(d) 45(d) 46(d) 47(d) 49(f) 50(f) 51(f) 53(f) 54(f) 55(f) 56(f) 58(e) 59(e) 60(e) 62(e) 63(e) 64(e) 67(e) 68(e) 69(e) 72(e) 73(e) 74(e) 77(e) 78(e) 79(e) 90(e) 91(e) 92(e) 94(e) 95(e) 96(e) 99(f) 100(f) 101(f) 104(c) 105(c) 106(c) 109(e) 110(e) 111(e) 114(e) 115(e) 116(e) 119(d) 120(d) 121(d) 
+temp#1: 3(d) 4(d) 
+temp#10: 48(d) 49(d) 
+temp#11: 52(d) 54(d) 
+temp#12: 53(e) 54(e) 
+temp#13: 57(d) 58(d) 
+temp#14: 61(d) 62(d) 
+temp#15: 65(d) 67(d) 
+temp#16: 66(b) 67(b) 
+temp#17: 70(b) 72(b) 
+temp#18: 71(d) 72(d) 
+temp#19: 75(b) 77(b) 
+temp#2: 5(d) 6(d) 
+temp#20: 76(d) 77(d) 
+temp#21: 80(b) 81(b) 
+temp#22: 82(b) 83(b) 
+temp#23: 84(b) 85(b) 
+temp#24: 89(d) 90(d) 
+temp#25: 93(d) 94(d) 
+temp#26: 97(d) 99(d) 
+temp#27: 98(e) 99(e) 
+temp#28: 102(d) 104(d) 
+temp#29: 103(e) 104(e) 
+temp#3: 9(d) 10(d) 
+temp#30: 107(c) 109(c) 
+temp#31: 108(d) 109(d) 
+temp#32: 112(c) 114(c) 
+temp#33: 113(d) 114(d) 
+temp#34: 117(c) 119(c) 
+temp#35: 118(b) 119(b) 
+temp#36: 22(e) 
+temp#4: 11(d) 12(d) 
+temp#5: 28(d) 30(d) 
+temp#6: 29(e) 30(e) 
+temp#7: 42(e) 44(e) 
+temp#8: 43(f) 44(f) 
+temp#9: 47(e) 49(e) 
+[       OK ] toMachineCodeConversion.subtraction (15 ms)
+[----------] 1 test from toMachineCodeConversion (15 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (15 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = toMachineCodeConversion.multiplication
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from toMachineCodeConversion
+[ RUN      ] toMachineCodeConversion.multiplication
+../compiler machine-code-programs/muls.imp machine-code-programs/muls.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/muls.rm > machine-code-programs/muls.result < machine-code-programs/muls-in.txt
+main@a: 
+1 2 3 
+8 9 10 
+15 16 17 
+22 23 
+26 
+30 31 
+34 35 
+38 39 
+
+main@b: 
+2 3 4 
+9 10 11 
+16 17 18 
+
+main@c: 
+5 6 7 
+12 13 14 
+19 20 21 
+23 24 25 
+27 28 29 
+31 32 33 
+35 36 37 
+39 40 41 
+42 43 44 
+
+temp#1: 
+3 4 5 
+
+temp#10: 
+12 
+
+temp#11: 
+19 
+
+temp#12: 
+19 
+
+temp#2: 
+4 5 
+
+temp#3: 
+10 11 12 
+
+temp#4: 
+11 12 
+
+temp#5: 
+17 18 19 
+
+temp#6: 
+18 19 
+
+temp#7: 
+5 
+
+temp#8: 
+5 
+
+temp#9: 
+12 
+
+###                                                                                                                            
+ ###                                                                                                                           
+  ###                                                                                                                          
+   ##                                                                                                                          
+    #                                                                                                                          
+    #                                                                                                                          
+    ###                                                                                                                        
+       ###                                                                                                                     
+        ###                                                                                                                    
+         ###                                                                                                                   
+          ##                                                                                                                   
+           #                                                                                                                   
+           #                                                                                                                   
+           ###                                                                                                                 
+              ###                                                                                                              
+               ###                                                                                                             
+                ###                                                                                                            
+                 ##                                                                                                            
+                  #                                                                                                            
+                  #                                                                                                            
+                  ###                                                                                                          
+                     ##                                                                                                        
+                      ###                                                                                                      
+                         #                                                                                                     
+                          ###                                                                                                  
+                             ##                                                                                                
+                              ###                                                                                              
+                                 ##                                                                                            
+                                  ###                                                                                          
+                                     ##                                                                                        
+                                      ###                                                                                      
+                                         ###                                                                                   
+Variable usages:
+main@a: 1(L) 8(L) 15(L) 22(L) 26(L) 30(L) 34(L) 38(L) 3(R) 10(R) 17(R) 23(R) 31(R) 35(R) 39(R) 
+main@b: 2(L) 9(L) 16(L) 4(R) 11(R) 18(R) 
+main@c: 5(L) 6(B) 12(L) 13(B) 19(L) 20(B) 23(L) 24(B) 27(L) 28(B) 31(L) 32(B) 35(L) 36(B) 39(L) 40(B) 42(L) 43(B) 7(R) 14(R) 21(R) 25(R) 29(R) 33(R) 37(R) 41(R) 44(R) 
+temp#1: 3(L) 5(R) 
+temp#10: 12(L) 
+temp#11: 19(L) 
+temp#12: 19(L) 
+temp#2: 4(L) 5(R) 
+temp#3: 10(L) 12(R) 
+temp#4: 11(L) 12(R) 
+temp#5: 17(L) 19(R) 
+temp#6: 18(L) 19(R) 
+temp#7: 5(L) 
+temp#8: 5(L) 
+temp#9: 12(L) 
+Final registers usage:
+b: main@a(1-3): 1 3 | temp#2(4-5): 4 5 | main@a(8-10): 8 10 | temp#4(11-12): 11 12 | main@a(15-17): 15 17 | temp#6(18-19): 18 19 | main@a(22-23): 22 23 | main@a(26-26): 26 | main@c(27-29): 27 28 29 | main@a(30-31): 30 31 | main@a(34-35): 34 35 | main@a(38-39): 38 39 | main@c(42-44): 42 43 44 | 
+c: main@b(2-4): 2 4 | temp#8(5-5): 5 | main@b(9-11): 9 11 | temp#9(12-12): 12 | main@b(16-18): 16 18 | temp#11(19-19): 19 | main@c(23-25): 23 24 25 | main@c(31-33): 31 32 33 | main@c(35-37): 35 36 37 | main@c(39-41): 39 40 41 | 
+d: temp#1(3-5): 3 5 | temp#3(10-12): 10 12 | temp#5(17-19): 17 19 | 
+e: temp#7(5-5): 5 | temp#10(12-12): 12 | temp#12(19-19): 19 | 
+f: main@c(5-7): 5 6 7 | main@c(12-14): 12 13 14 | main@c(19-21): 19 20 21 | 
+g: 
+h: 
+
+main@a: 1(b) 3(b) 8(b) 10(b) 15(b) 17(b) 22(b) 23(b) 26(b) 30(b) 31(b) 34(b) 35(b) 38(b) 39(b) 
+main@b: 2(c) 4(c) 9(c) 11(c) 16(c) 18(c) 
+main@c: 5(f) 6(f) 7(f) 12(f) 13(f) 14(f) 19(f) 20(f) 21(f) 23(c) 24(c) 25(c) 27(b) 28(b) 29(b) 31(c) 32(c) 33(c) 35(c) 36(c) 37(c) 39(c) 40(c) 41(c) 42(b) 43(b) 44(b) 
+temp#1: 3(d) 5(d) 
+temp#10: 12(e) 
+temp#11: 19(c) 
+temp#12: 19(e) 
+temp#2: 4(b) 5(b) 
+temp#3: 10(d) 12(d) 
+temp#4: 11(b) 12(b) 
+temp#5: 17(d) 19(d) 
+temp#6: 18(b) 19(b) 
+temp#7: 5(e) 
+temp#8: 5(c) 
+temp#9: 12(c) 
+[       OK ] toMachineCodeConversion.multiplication (9 ms)
+[----------] 1 test from toMachineCodeConversion (9 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (9 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = toMachineCodeConversion.division
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from toMachineCodeConversion
+[ RUN      ] toMachineCodeConversion.division
+../compiler machine-code-programs/divs.imp machine-code-programs/divs.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/divs.rm > machine-code-programs/divs.result < machine-code-programs/divs-in.txt
+main@a: 
+1 2 3 
+8 9 10 
+15 16 17 
+22 23 24 
+29 30 31 
+36 37 38 
+43 44 45 
+50 51 52 
+57 58 59 
+64 
+68 69 
+72 73 
+76 77 
+80 81 
+84 
+88 
+92 93 
+
+main@b: 
+2 3 4 
+9 10 11 
+16 17 18 
+23 24 25 
+30 31 32 
+37 38 39 
+44 45 46 
+51 52 53 
+58 59 60 
+
+main@c: 
+5 6 7 
+12 13 14 
+19 20 21 
+26 27 28 
+33 34 35 
+40 41 42 
+47 48 49 
+54 55 56 
+61 62 63 
+65 66 67 
+69 70 71 
+73 74 75 
+77 78 79 
+81 82 83 
+85 86 87 
+89 90 91 
+93 94 95 
+96 97 98 
+99 100 101 
+102 103 104 
+
+temp#1: 
+3 4 5 
+
+temp#10: 
+32 33 
+
+temp#11: 
+38 39 40 
+
+temp#12: 
+39 40 
+
+temp#13: 
+45 46 47 
+
+temp#14: 
+46 47 
+
+temp#15: 
+52 53 54 
+
+temp#16: 
+53 54 
+
+temp#17: 
+59 60 61 
+
+temp#18: 
+60 61 
+
+temp#19: 
+5 
+
+temp#2: 
+4 5 
+
+temp#20: 
+5 
+
+temp#21: 
+12 
+
+temp#22: 
+12 
+
+temp#23: 
+19 
+
+temp#24: 
+19 
+
+temp#25: 
+26 
+
+temp#26: 
+26 
+
+temp#27: 
+33 
+
+temp#28: 
+33 
+
+temp#29: 
+40 
+
+temp#3: 
+10 11 12 
+
+temp#30: 
+40 
+
+temp#31: 
+47 
+
+temp#32: 
+47 
+
+temp#33: 
+54 
+
+temp#34: 
+54 
+
+temp#35: 
+61 
+
+temp#36: 
+61 
+
+temp#37: 
+81 
+
+temp#38: 
+81 
+
+temp#39: 
+81 
+
+temp#4: 
+11 12 
+
+temp#40: 
+93 
+
+temp#41: 
+93 
+
+temp#42: 
+93 
+
+temp#5: 
+17 18 19 
+
+temp#6: 
+18 19 
+
+temp#7: 
+24 25 26 
+
+temp#8: 
+25 26 
+
+temp#9: 
+31 32 33 
+
+###                                                                                                                            
+ ###                                                                                                                           
+  ###                                                                                                                          
+   ##                                                                                                                          
+    ###                                                                                                                        
+    #                                                                                                                          
+    #                                                                                                                          
+       ###                                                                                                                     
+        ###                                                                                                                    
+         ###                                                                                                                   
+          ##                                                                                                                   
+           ###                                                                                                                 
+           #                                                                                                                   
+           #                                                                                                                   
+              ###                                                                                                              
+               ###                                                                                                             
+                ###                                                                                                            
+                 ##                                                                                                            
+                  #                                                                                                            
+                  #                                                                                                            
+                  ###                                                                                                          
+                     ###                                                                                                       
+                      ###                                                                                                      
+                       ###                                                                                                     
+                        ##                                                                                                     
+                         #                                                                                                     
+                         #                                                                                                     
+                         ###                                                                                                   
+                            ###                                                                                                
+                             ###                                                                                               
+                              ###                                                                                              
+                               ##                                                                                              
+                                #                                                                                              
+                                #                                                                                              
+                                ###                                                                                            
+                                   ###                                                                                         
+                                    ###                                                                                        
+                                     ###                                                                                       
+                                      ##                                                                                       
+                                       ###                                                                                     
+                                       #                                                                                       
+                                       #                                                                                       
+                                          ###                                                                                  
+                                           ###                                                                                 
+                                            ###                                                                                
+                                             ##                                                                                
+                                              #                                                                                
+                                              ###                                                                              
+                                              #                                                                                
+                                                 ###                                                                           
+                                                  ###                                                                          
+                                                   ###                                                                         
+                                                    ##                                                                         
+                                                     ###                                                                       
+                                                     #                                                                         
+                                                     #                                                                         
+                                                        ###                                                                    
+                                                         ###                                                                   
+                                                          ###                                                                  
+                                                           ##                                                                  
+                                                            #                                                                  
+                                                            ###                                                                
+                                                            #                                                                  
+                                                               #                                                               
+                                                                ###                                                            
+                                                                   ##                                                          
+                                                                    ###                                                        
+                                                                       ##                                                      
+                                                                        ###                                                    
+                                                                           ##                                                  
+                                                                            ###                                                
+                                                                               ##                                              
+                                                                                ###                                            
+                                                                                #                                              
+                                                                                #                                              
+                                                                                #                                              
+                                                                                   #                                           
+                                                                                    ###                                        
+                                                                                       #                                       
+                                                                                        ###                                    
+                                                                                           ##                                  
+                                                                                            #                                  
+                                                                                            #                                  
+                                                                                            #                                  
+                                                                                            ###                                
+                                                                                               ###                             
+                                                                                                  ###                          
+                                                                                                     ###                       
+Variable usages:
+main@a: 1(L) 8(L) 15(L) 22(L) 29(L) 36(L) 43(L) 50(L) 57(L) 64(L) 68(L) 72(L) 76(L) 80(L) 84(L) 88(L) 92(L) 3(R) 10(R) 17(R) 24(R) 31(R) 38(R) 45(R) 52(R) 59(R) 69(R) 73(R) 77(R) 81(R) 93(R) 
+main@b: 2(L) 9(L) 16(L) 23(L) 30(L) 37(L) 44(L) 51(L) 58(L) 4(R) 11(R) 18(R) 25(R) 32(R) 39(R) 46(R) 53(R) 60(R) 
+main@c: 5(L) 6(B) 12(L) 13(B) 19(L) 20(B) 26(L) 27(B) 33(L) 34(B) 40(L) 41(B) 47(L) 48(B) 54(L) 55(B) 61(L) 62(B) 65(L) 66(B) 69(L) 70(B) 73(L) 74(B) 77(L) 78(B) 81(L) 82(B) 85(L) 86(B) 89(L) 90(B) 93(L) 94(B) 96(L) 97(B) 99(L) 100(B) 102(L) 103(B) 7(R) 14(R) 21(R) 28(R) 35(R) 42(R) 49(R) 56(R) 63(R) 67(R) 71(R) 75(R) 79(R) 83(R) 87(R) 91(R) 95(R) 98(R) 101(R) 104(R) 
+temp#1: 3(L) 5(R) 
+temp#10: 32(L) 33(R) 
+temp#11: 38(L) 40(R) 
+temp#12: 39(L) 40(R) 
+temp#13: 45(L) 47(R) 
+temp#14: 46(L) 47(R) 
+temp#15: 52(L) 54(R) 
+temp#16: 53(L) 54(R) 
+temp#17: 59(L) 61(R) 
+temp#18: 60(L) 61(R) 
+temp#19: 5(L) 
+temp#2: 4(L) 5(R) 
+temp#20: 5(L) 
+temp#21: 12(L) 
+temp#22: 12(L) 
+temp#23: 19(L) 
+temp#24: 19(L) 
+temp#25: 26(L) 
+temp#26: 26(L) 
+temp#27: 33(L) 
+temp#28: 33(L) 
+temp#29: 40(L) 
+temp#3: 10(L) 12(R) 
+temp#30: 40(L) 
+temp#31: 47(L) 
+temp#32: 47(L) 
+temp#33: 54(L) 
+temp#34: 54(L) 
+temp#35: 61(L) 
+temp#36: 61(L) 
+temp#37: 81(L) 
+temp#38: 81(L) 
+temp#39: 81(L) 
+temp#4: 11(L) 12(R) 
+temp#40: 93(L) 
+temp#41: 93(L) 
+temp#42: 93(L) 
+temp#5: 17(L) 19(R) 
+temp#6: 18(L) 19(R) 
+temp#7: 24(L) 26(R) 
+temp#8: 25(L) 26(R) 
+temp#9: 31(L) 33(R) 
+Final registers usage:
+b: main@a(1-3): 1 3 | temp#2(4-5): 4 5 | main@a(8-10): 8 10 | temp#4(11-12): 11 12 | main@a(15-17): 15 17 | temp#6(18-19): 18 19 | main@a(22-24): 22 24 | temp#8(25-26): 25 26 | main@a(29-31): 29 31 | temp#10(32-33): 32 33 | main@a(36-38): 36 38 | temp#12(39-40): 39 40 | main@a(43-45): 43 45 | temp#14(46-47): 46 47 | main@a(50-52): 50 52 | temp#16(53-54): 53 54 | main@a(57-59): 57 59 | temp#18(60-61): 60 61 | main@a(64-64): 64 | main@c(65-67): 65 66 67 | main@a(68-69): 68 69 | main@a(72-73): 72 73 | main@a(76-77): 76 77 | main@a(80-81): 80 81 | main@a(84-84): 84 | main@c(85-87): 85 86 87 | main@a(88-88): 88 | main@c(89-91): 89 90 91 | main@a(92-93): 92 93 | main@c(96-98): 96 97 98 | main@c(99-101): 99 100 101 | main@c(102-104): 102 103 104 | 
+c: main@b(2-4): 2 4 | temp#19(5-5): 5 | main@b(9-11): 9 11 | main@c(12-14): 12 13 14 | main@b(16-18): 16 18 | temp#23(19-19): 19 | main@b(23-25): 23 25 | temp#25(26-26): 26 | main@b(30-32): 30 32 | main@c(33-35): 33 34 35 | main@b(37-39): 37 39 | main@c(40-42): 40 41 42 | main@b(44-46): 44 46 | temp#32(47-47): 47 | main@b(51-53): 51 53 | main@c(54-56): 54 55 56 | main@b(58-60): 58 60 | temp#35(61-61): 61 | main@c(69-71): 69 70 71 | main@c(73-75): 73 74 75 | main@c(77-79): 77 78 79 | main@c(81-83): 81 82 83 | temp#40(93-93): 93 | 
+d: temp#1(3-5): 3 5 | temp#3(10-12): 10 12 | temp#5(17-19): 17 19 | temp#7(24-26): 24 26 | temp#9(31-33): 31 33 | temp#11(38-40): 38 40 | temp#13(45-47): 45 47 | temp#15(52-54): 52 54 | temp#17(59-61): 59 61 | temp#39(81-81): 81 | temp#41(93-93): 93 | 
+e: temp#20(5-5): 5 | temp#21(12-12): 12 | temp#24(19-19): 19 | temp#26(26-26): 26 | temp#27(33-33): 33 | temp#29(40-40): 40 | temp#31(47-47): 47 | temp#33(54-54): 54 | main@c(61-63): 61 62 63 | temp#38(81-81): 81 | temp#42(93-93): 93 | 
+f: main@c(5-7): 5 6 7 | temp#22(12-12): 12 | main@c(19-21): 19 20 21 | main@c(26-28): 26 27 28 | temp#28(33-33): 33 | temp#30(40-40): 40 | main@c(47-49): 47 48 49 | temp#34(54-54): 54 | temp#36(61-61): 61 | temp#37(81-81): 81 | main@c(93-95): 93 94 95 | 
+g: 
+h: 
+
+main@a: 1(b) 3(b) 8(b) 10(b) 15(b) 17(b) 22(b) 24(b) 29(b) 31(b) 36(b) 38(b) 43(b) 45(b) 50(b) 52(b) 57(b) 59(b) 64(b) 68(b) 69(b) 72(b) 73(b) 76(b) 77(b) 80(b) 81(b) 84(b) 88(b) 92(b) 93(b) 
+main@b: 2(c) 4(c) 9(c) 11(c) 16(c) 18(c) 23(c) 25(c) 30(c) 32(c) 37(c) 39(c) 44(c) 46(c) 51(c) 53(c) 58(c) 60(c) 
+main@c: 5(f) 6(f) 7(f) 12(c) 13(c) 14(c) 19(f) 20(f) 21(f) 26(f) 27(f) 28(f) 33(c) 34(c) 35(c) 40(c) 41(c) 42(c) 47(f) 48(f) 49(f) 54(c) 55(c) 56(c) 61(e) 62(e) 63(e) 65(b) 66(b) 67(b) 69(c) 70(c) 71(c) 73(c) 74(c) 75(c) 77(c) 78(c) 79(c) 81(c) 82(c) 83(c) 85(b) 86(b) 87(b) 89(b) 90(b) 91(b) 93(f) 94(f) 95(f) 96(b) 97(b) 98(b) 99(b) 100(b) 101(b) 102(b) 103(b) 104(b) 
+temp#1: 3(d) 5(d) 
+temp#10: 32(b) 33(b) 
+temp#11: 38(d) 40(d) 
+temp#12: 39(b) 40(b) 
+temp#13: 45(d) 47(d) 
+temp#14: 46(b) 47(b) 
+temp#15: 52(d) 54(d) 
+temp#16: 53(b) 54(b) 
+temp#17: 59(d) 61(d) 
+temp#18: 60(b) 61(b) 
+temp#19: 5(c) 
+temp#2: 4(b) 5(b) 
+temp#20: 5(e) 
+temp#21: 12(e) 
+temp#22: 12(f) 
+temp#23: 19(c) 
+temp#24: 19(e) 
+temp#25: 26(c) 
+temp#26: 26(e) 
+temp#27: 33(e) 
+temp#28: 33(f) 
+temp#29: 40(e) 
+temp#3: 10(d) 12(d) 
+temp#30: 40(f) 
+temp#31: 47(e) 
+temp#32: 47(c) 
+temp#33: 54(e) 
+temp#34: 54(f) 
+temp#35: 61(c) 
+temp#36: 61(f) 
+temp#37: 81(f) 
+temp#38: 81(e) 
+temp#39: 81(d) 
+temp#4: 11(b) 12(b) 
+temp#40: 93(c) 
+temp#41: 93(d) 
+temp#42: 93(e) 
+temp#5: 17(d) 19(d) 
+temp#6: 18(b) 19(b) 
+temp#7: 24(d) 26(d) 
+temp#8: 25(b) 26(b) 
+temp#9: 31(d) 33(d) 
+[       OK ] toMachineCodeConversion.division (20 ms)
+[----------] 1 test from toMachineCodeConversion (20 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (20 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = toMachineCodeConversion.modulo
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from toMachineCodeConversion
+[ RUN      ] toMachineCodeConversion.modulo
+../compiler machine-code-programs/mods.imp machine-code-programs/mods.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/mods.rm > machine-code-programs/mods.result < machine-code-programs/mods-in.txt
+main@a: 
+1 2 3 
+8 9 10 
+15 16 17 
+22 23 24 
+29 30 31 
+36 37 38 
+43 44 45 
+50 51 52 
+66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 
+110 
+114 115 
+118 119 
+
+main@b: 
+2 3 4 
+9 10 11 
+16 17 18 
+23 24 25 
+30 31 32 
+37 38 39 
+44 45 46 
+51 52 53 
+67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 
+
+main@c: 
+5 6 7 
+12 13 14 
+19 20 21 
+26 27 28 
+33 34 35 
+40 41 42 
+47 48 49 
+54 55 56 
+57 58 59 
+60 61 62 
+63 64 65 
+68 69 70 71 72 
+74 75 76 77 78 
+80 81 82 83 84 
+86 87 88 89 90 
+92 93 94 95 96 
+98 99 100 101 102 
+104 105 106 107 108 
+111 112 113 
+115 116 117 
+119 120 121 
+
+main@d: 
+70 71 72 73 
+76 77 78 79 
+82 83 84 85 
+88 89 90 91 
+94 95 96 97 
+100 101 102 103 
+106 107 108 109 
+
+temp#1: 
+3 4 5 
+
+temp#10: 
+32 33 
+
+temp#11: 
+38 39 40 
+
+temp#12: 
+39 40 
+
+temp#13: 
+45 46 47 
+
+temp#14: 
+46 47 
+
+temp#15: 
+52 53 54 
+
+temp#16: 
+53 54 
+
+temp#17: 
+5 
+
+temp#18: 
+12 
+
+temp#19: 
+19 
+
+temp#2: 
+4 5 
+
+temp#20: 
+26 
+
+temp#21: 
+33 
+
+temp#22: 
+40 
+
+temp#23: 
+47 
+
+temp#24: 
+54 
+
+temp#25: 
+86 
+
+temp#26: 
+86 
+
+temp#27: 
+88 
+
+temp#28: 
+88 
+
+temp#29: 
+104 
+
+temp#3: 
+10 11 12 
+
+temp#30: 
+104 
+
+temp#31: 
+106 
+
+temp#32: 
+106 
+
+temp#33: 
+115 
+
+temp#34: 
+115 
+
+temp#35: 
+119 
+
+temp#36: 
+119 
+
+temp#4: 
+11 12 
+
+temp#5: 
+17 18 19 
+
+temp#6: 
+18 19 
+
+temp#7: 
+24 25 26 
+
+temp#8: 
+25 26 
+
+temp#9: 
+31 32 33 
+
+###                                                                                                                            
+ ###                                                                                                                           
+  ###                                                                                                                          
+   ##                                                                                                                          
+    #                                                                                                                          
+    ###                                                                                                                        
+       ###                                                                                                                     
+        ###                                                                                                                    
+         ###                                                                                                                   
+          ##                                                                                                                   
+           ###                                                                                                                 
+           #                                                                                                                   
+              ###                                                                                                              
+               ###                                                                                                             
+                ###                                                                                                            
+                 ##                                                                                                            
+                  ###                                                                                                          
+                  #                                                                                                            
+                     ###                                                                                                       
+                      ###                                                                                                      
+                       ###                                                                                                     
+                        ##                                                                                                     
+                         ###                                                                                                   
+                         #                                                                                                     
+                            ###                                                                                                
+                             ###                                                                                               
+                              ###                                                                                              
+                               ##                                                                                              
+                                ###                                                                                            
+                                #                                                                                              
+                                   ###                                                                                         
+                                    ###                                                                                        
+                                     ###                                                                                       
+                                      ##                                                                                       
+                                       ###                                                                                     
+                                       #                                                                                       
+                                          ###                                                                                  
+                                           ###                                                                                 
+                                            ###                                                                                
+                                             ##                                                                                
+                                              ###                                                                              
+                                              #                                                                                
+                                                 ###                                                                           
+                                                  ###                                                                          
+                                                   ###                                                                         
+                                                    ##                                                                         
+                                                     #                                                                         
+                                                     ###                                                                       
+                                                        ###                                                                    
+                                                           ###                                                                 
+                                                              ###                                                              
+                                                                 #######################################                       
+                                                                  ########################################                     
+                                                                   #####                                                       
+                                                                     ####                                                      
+                                                                         #####                                                 
+                                                                           ####                                                
+                                                                               #####                                           
+                                                                                 ####                                          
+                                                                                     #                                         
+                                                                                     #                                         
+                                                                                     #####                                     
+                                                                                       #                                       
+                                                                                       #                                       
+                                                                                       ####                                    
+                                                                                           #####                               
+                                                                                             ####                              
+                                                                                                 #####                         
+                                                                                                   ####                        
+                                                                                                       #                       
+                                                                                                       #                       
+                                                                                                       #####                   
+                                                                                                         #                     
+                                                                                                         #                     
+                                                                                                         ####                  
+                                                                                                             #                 
+                                                                                                              ###              
+                                                                                                                 ##            
+                                                                                                                  #            
+                                                                                                                  #            
+                                                                                                                  ###          
+                                                                                                                     ##        
+                                                                                                                      #        
+                                                                                                                      #        
+                                                                                                                      ###      
+Variable usages:
+main@a: 1(L) 8(L) 15(L) 22(L) 29(L) 36(L) 43(L) 50(L) 66(L) 110(L) 114(L) 118(L) 3(R) 10(R) 17(R) 24(R) 31(R) 38(R) 45(R) 52(R) 80(R) 86(R) 92(R) 98(R) 104(R) 115(R) 119(R) 
+main@b: 2(L) 9(L) 16(L) 23(L) 30(L) 37(L) 44(L) 51(L) 67(L) 4(R) 11(R) 18(R) 25(R) 32(R) 39(R) 46(R) 53(R) 82(R) 88(R) 94(R) 100(R) 106(R) 
+main@c: 5(L) 6(B) 12(L) 13(B) 19(L) 20(B) 26(L) 27(B) 33(L) 34(B) 40(L) 41(B) 47(L) 48(B) 54(L) 55(B) 57(L) 58(B) 60(L) 61(B) 63(L) 64(B) 68(L) 69(B) 74(L) 75(B) 80(L) 81(B) 86(L) 87(B) 92(L) 93(B) 98(L) 99(B) 104(L) 105(B) 111(L) 112(B) 115(L) 116(B) 119(L) 120(B) 7(R) 14(R) 21(R) 28(R) 35(R) 42(R) 49(R) 56(R) 59(R) 62(R) 65(R) 72(R) 78(R) 84(R) 90(R) 96(R) 102(R) 108(R) 113(R) 117(R) 121(R) 
+main@d: 70(L) 71(B) 76(L) 77(B) 82(L) 83(B) 88(L) 89(B) 94(L) 95(B) 100(L) 101(B) 106(L) 107(B) 73(R) 79(R) 85(R) 91(R) 97(R) 103(R) 109(R) 
+temp#1: 3(L) 5(R) 
+temp#10: 32(L) 33(R) 
+temp#11: 38(L) 40(R) 
+temp#12: 39(L) 40(R) 
+temp#13: 45(L) 47(R) 
+temp#14: 46(L) 47(R) 
+temp#15: 52(L) 54(R) 
+temp#16: 53(L) 54(R) 
+temp#17: 5(L) 
+temp#18: 12(L) 
+temp#19: 19(L) 
+temp#2: 4(L) 5(R) 
+temp#20: 26(L) 
+temp#21: 33(L) 
+temp#22: 40(L) 
+temp#23: 47(L) 
+temp#24: 54(L) 
+temp#25: 86(L) 
+temp#26: 86(L) 
+temp#27: 88(L) 
+temp#28: 88(L) 
+temp#29: 104(L) 
+temp#3: 10(L) 12(R) 
+temp#30: 104(L) 
+temp#31: 106(L) 
+temp#32: 106(L) 
+temp#33: 115(L) 
+temp#34: 115(L) 
+temp#35: 119(L) 
+temp#36: 119(L) 
+temp#4: 11(L) 12(R) 
+temp#5: 17(L) 19(R) 
+temp#6: 18(L) 19(R) 
+temp#7: 24(L) 26(R) 
+temp#8: 25(L) 26(R) 
+temp#9: 31(L) 33(R) 
+Final registers usage:
+b: main@a(1-3): 1 3 | temp#2(4-5): 4 5 | main@a(8-10): 8 10 | temp#4(11-12): 11 12 | main@a(15-17): 15 17 | temp#6(18-19): 18 19 | main@a(22-24): 22 24 | temp#8(25-26): 25 26 | main@a(29-31): 29 31 | temp#10(32-33): 32 33 | main@a(36-38): 36 38 | temp#12(39-40): 39 40 | main@a(43-45): 43 45 | temp#14(46-47): 46 47 | main@a(50-52): 50 52 | temp#16(53-54): 53 54 | main@c(57-59): 57 58 59 | main@c(60-62): 60 61 62 | main@c(63-65): 63 64 65 | main@a(66-104): 66 80 86 92 98 104 | main@d(106-109): 106 107 109 | main@a(110-110): 110 | main@c(111-113): 111 112 113 | main@a(114-115): 114 115 | main@a(118-119): 118 119 | 
+c: main@b(2-4): 2 4 | main@c(5-7): 5 6 7 | main@b(9-11): 9 11 | main@c(12-14): 12 13 14 | main@b(16-18): 16 18 | main@c(19-21): 19 20 21 | main@b(23-25): 23 25 | main@c(26-28): 26 27 28 | main@b(30-32): 30 32 | main@c(33-35): 33 34 35 | main@b(37-39): 37 39 | main@c(40-42): 40 41 42 | main@b(44-46): 44 46 | main@c(47-49): 47 48 49 | main@b(51-53): 51 53 | temp#24(54-54): 54 | main@b(67-106): 67 82 88 94 100 106 | temp#33(115-115): 115 | temp#35(119-119): 119 | 
+d: temp#1(3-5): 3 5 | temp#3(10-12): 10 12 | temp#5(17-19): 17 19 | temp#7(24-26): 24 26 | temp#9(31-33): 31 33 | temp#11(38-40): 38 40 | temp#13(45-47): 45 47 | temp#15(52-54): 52 54 | main@c(68-72): 68 69 72 | main@c(74-78): 74 75 78 | main@c(80-84): 80 81 84 | temp#26(86-86): 86 | main@d(88-91): 88 89 91 | main@c(92-96): 92 93 96 | main@c(98-102): 98 99 102 | temp#29(104-104): 104 | temp#32(106-106): 106 | temp#34(115-115): 115 | temp#36(119-119): 119 | 
+e: temp#17(5-5): 5 | temp#18(12-12): 12 | temp#19(19-19): 19 | temp#20(26-26): 26 | temp#21(33-33): 33 | temp#22(40-40): 40 | temp#23(47-47): 47 | main@c(54-56): 54 55 56 | main@d(70-73): 70 71 73 | main@d(76-79): 76 77 79 | main@d(82-85): 82 83 85 | temp#25(86-86): 86 | temp#28(88-88): 88 | main@d(94-97): 94 95 97 | main@d(100-103): 100 101 103 | temp#30(104-104): 104 | temp#31(106-106): 106 | main@c(115-117): 115 116 117 | main@c(119-121): 119 120 121 | 
+f: main@c(86-90): 86 87 90 | main@c(104-108): 104 105 108 | 
+g: temp#27(88-88): 88 | 
+h: 
+
+main@a: 1(b) 3(b) 8(b) 10(b) 15(b) 17(b) 22(b) 24(b) 29(b) 31(b) 36(b) 38(b) 43(b) 45(b) 50(b) 52(b) 66(b) 80(b) 86(b) 92(b) 98(b) 104(b) 110(b) 114(b) 115(b) 118(b) 119(b) 
+main@b: 2(c) 4(c) 9(c) 11(c) 16(c) 18(c) 23(c) 25(c) 30(c) 32(c) 37(c) 39(c) 44(c) 46(c) 51(c) 53(c) 67(c) 82(c) 88(c) 94(c) 100(c) 106(c) 
+main@c: 5(c) 6(c) 7(c) 12(c) 13(c) 14(c) 19(c) 20(c) 21(c) 26(c) 27(c) 28(c) 33(c) 34(c) 35(c) 40(c) 41(c) 42(c) 47(c) 48(c) 49(c) 54(e) 55(e) 56(e) 57(b) 58(b) 59(b) 60(b) 61(b) 62(b) 63(b) 64(b) 65(b) 68(d) 69(d) 72(d) 74(d) 75(d) 78(d) 80(d) 81(d) 84(d) 86(f) 87(f) 90(f) 92(d) 93(d) 96(d) 98(d) 99(d) 102(d) 104(f) 105(f) 108(f) 111(b) 112(b) 113(b) 115(e) 116(e) 117(e) 119(e) 120(e) 121(e) 
+main@d: 70(e) 71(e) 73(e) 76(e) 77(e) 79(e) 82(e) 83(e) 85(e) 88(d) 89(d) 91(d) 94(e) 95(e) 97(e) 100(e) 101(e) 103(e) 106(b) 107(b) 109(b) 
+temp#1: 3(d) 5(d) 
+temp#10: 32(b) 33(b) 
+temp#11: 38(d) 40(d) 
+temp#12: 39(b) 40(b) 
+temp#13: 45(d) 47(d) 
+temp#14: 46(b) 47(b) 
+temp#15: 52(d) 54(d) 
+temp#16: 53(b) 54(b) 
+temp#17: 5(e) 
+temp#18: 12(e) 
+temp#19: 19(e) 
+temp#2: 4(b) 5(b) 
+temp#20: 26(e) 
+temp#21: 33(e) 
+temp#22: 40(e) 
+temp#23: 47(e) 
+temp#24: 54(c) 
+temp#25: 86(e) 
+temp#26: 86(d) 
+temp#27: 88(g) 
+temp#28: 88(e) 
+temp#29: 104(d) 
+temp#3: 10(d) 12(d) 
+temp#30: 104(e) 
+temp#31: 106(e) 
+temp#32: 106(d) 
+temp#33: 115(c) 
+temp#34: 115(d) 
+temp#35: 119(c) 
+temp#36: 119(d) 
+temp#4: 11(b) 12(b) 
+temp#5: 17(d) 19(d) 
+temp#6: 18(b) 19(b) 
+temp#7: 24(d) 26(d) 
+temp#8: 25(b) 26(b) 
+temp#9: 31(d) 33(d) 
+[       OK ] toMachineCodeConversion.modulo (19 ms)
+[----------] 1 test from toMachineCodeConversion (19 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (19 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = toMachineCodeConversion.ifElse
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from toMachineCodeConversion
+[ RUN      ] toMachineCodeConversion.ifElse
+../compiler machine-code-programs/if.imp machine-code-programs/if.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/if.rm > machine-code-programs/if.result < machine-code-programs/if-in1.txt
+main@a: 
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 53 
+
+main@b: 
+2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 60 
+
+main@c: 
+3 
+
+main@d: 
+4 
+
+temp#1: 
+32 33 
+
+temp#2: 
+37 38 
+
+temp#3: 
+42 43 
+
+temp#4: 
+47 48 
+
+temp#5: 
+54 55 
+
+temp#6: 
+57 58 
+
+#####################################################                                                                          
+ ###########################################################                                                                   
+  #                                                                                                                            
+   #                                                                                                                           
+                               ##                                                                                              
+                                    ##                                                                                         
+                                         ##                                                                                    
+                                              ##                                                                               
+                                                     ##                                                                        
+                                                        ##                                                                     
+Variable usages:
+main@a: 1(L) 5(R) 6(R) 7(R) 8(R) 11(R) 12(R) 13(R) 14(R) 17(R) 18(R) 19(R) 20(R) 23(R) 24(R) 25(R) 26(R) 29(R) 31(R) 35(R) 39(R) 40(R) 46(R) 49(R) 50(R) 51(R) 53(R) 
+main@b: 2(L) 5(R) 7(R) 10(R) 11(R) 13(R) 16(R) 17(R) 19(R) 22(R) 23(R) 25(R) 28(R) 29(R) 30(R) 36(R) 39(R) 41(R) 45(R) 49(R) 60(R) 
+main@c: 3(L) 
+main@d: 4(L) 
+temp#1: 32(L) 33(R) 
+temp#2: 37(L) 38(R) 
+temp#3: 42(L) 43(R) 
+temp#4: 47(L) 48(R) 
+temp#5: 54(L) 55(R) 
+temp#6: 57(L) 58(R) 
+Final registers usage:
+b: main@a(1-53): 1 5 6 7 8 11 12 13 14 17 18 19 20 23 24 25 26 29 31 35 39 40 46 49 50 51 53 | temp#5(54-55): 54 55 | temp#6(57-58): 57 58 | 
+c: main@b(2-60): 2 5 7 10 11 13 16 17 19 22 23 25 28 29 30 36 39 41 45 49 60 | 
+d: main@c(3-3): 3 | main@d(4-4): 4 | temp#1(32-33): 32 33 | temp#2(37-38): 37 38 | temp#3(42-43): 42 43 | temp#4(47-48): 47 48 | 
+e: 
+f: 
+g: 
+h: 
+
+main@a: 1(b) 5(b) 6(b) 7(b) 8(b) 11(b) 12(b) 13(b) 14(b) 17(b) 18(b) 19(b) 20(b) 23(b) 24(b) 25(b) 26(b) 29(b) 31(b) 35(b) 39(b) 40(b) 46(b) 49(b) 50(b) 51(b) 53(b) 
+main@b: 2(c) 5(c) 7(c) 10(c) 11(c) 13(c) 16(c) 17(c) 19(c) 22(c) 23(c) 25(c) 28(c) 29(c) 30(c) 36(c) 39(c) 41(c) 45(c) 49(c) 60(c) 
+main@c: 3(d) 
+main@d: 4(d) 
+temp#1: 32(d) 33(d) 
+temp#2: 37(d) 38(d) 
+temp#3: 42(d) 43(d) 
+temp#4: 47(d) 48(d) 
+temp#5: 54(b) 55(b) 
+temp#6: 57(b) 58(b) 
+../compiler machine-code-programs/if.imp machine-code-programs/if.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/if.rm > machine-code-programs/if.result < machine-code-programs/if-in2.txt
+main@a: 
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 53 
+
+main@b: 
+2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 60 
+
+main@c: 
+3 
+
+main@d: 
+4 
+
+temp#1: 
+32 33 
+
+temp#2: 
+37 38 
+
+temp#3: 
+42 43 
+
+temp#4: 
+47 48 
+
+temp#5: 
+54 55 
+
+temp#6: 
+57 58 
+
+#####################################################                                                                          
+ ###########################################################                                                                   
+  #                                                                                                                            
+   #                                                                                                                           
+                               ##                                                                                              
+                                    ##                                                                                         
+                                         ##                                                                                    
+                                              ##                                                                               
+                                                     ##                                                                        
+                                                        ##                                                                     
+Variable usages:
+main@a: 1(L) 5(R) 6(R) 7(R) 8(R) 11(R) 12(R) 13(R) 14(R) 17(R) 18(R) 19(R) 20(R) 23(R) 24(R) 25(R) 26(R) 29(R) 31(R) 35(R) 39(R) 40(R) 46(R) 49(R) 50(R) 51(R) 53(R) 
+main@b: 2(L) 5(R) 7(R) 10(R) 11(R) 13(R) 16(R) 17(R) 19(R) 22(R) 23(R) 25(R) 28(R) 29(R) 30(R) 36(R) 39(R) 41(R) 45(R) 49(R) 60(R) 
+main@c: 3(L) 
+main@d: 4(L) 
+temp#1: 32(L) 33(R) 
+temp#2: 37(L) 38(R) 
+temp#3: 42(L) 43(R) 
+temp#4: 47(L) 48(R) 
+temp#5: 54(L) 55(R) 
+temp#6: 57(L) 58(R) 
+Final registers usage:
+b: main@a(1-53): 1 5 6 7 8 11 12 13 14 17 18 19 20 23 24 25 26 29 31 35 39 40 46 49 50 51 53 | temp#5(54-55): 54 55 | temp#6(57-58): 57 58 | 
+c: main@b(2-60): 2 5 7 10 11 13 16 17 19 22 23 25 28 29 30 36 39 41 45 49 60 | 
+d: main@c(3-3): 3 | main@d(4-4): 4 | temp#1(32-33): 32 33 | temp#2(37-38): 37 38 | temp#3(42-43): 42 43 | temp#4(47-48): 47 48 | 
+e: 
+f: 
+g: 
+h: 
+
+main@a: 1(b) 5(b) 6(b) 7(b) 8(b) 11(b) 12(b) 13(b) 14(b) 17(b) 18(b) 19(b) 20(b) 23(b) 24(b) 25(b) 26(b) 29(b) 31(b) 35(b) 39(b) 40(b) 46(b) 49(b) 50(b) 51(b) 53(b) 
+main@b: 2(c) 5(c) 7(c) 10(c) 11(c) 13(c) 16(c) 17(c) 19(c) 22(c) 23(c) 25(c) 28(c) 29(c) 30(c) 36(c) 39(c) 41(c) 45(c) 49(c) 60(c) 
+main@c: 3(d) 
+main@d: 4(d) 
+temp#1: 32(d) 33(d) 
+temp#2: 37(d) 38(d) 
+temp#3: 42(d) 43(d) 
+temp#4: 47(d) 48(d) 
+temp#5: 54(b) 55(b) 
+temp#6: 57(b) 58(b) 
+../compiler machine-code-programs/if.imp machine-code-programs/if.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/if.rm > machine-code-programs/if.result < machine-code-programs/if-in3.txt
+main@a: 
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 53 
+
+main@b: 
+2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 60 
+
+main@c: 
+3 
+
+main@d: 
+4 
+
+temp#1: 
+32 33 
+
+temp#2: 
+37 38 
+
+temp#3: 
+42 43 
+
+temp#4: 
+47 48 
+
+temp#5: 
+54 55 
+
+temp#6: 
+57 58 
+
+#####################################################                                                                          
+ ###########################################################                                                                   
+  #                                                                                                                            
+   #                                                                                                                           
+                               ##                                                                                              
+                                    ##                                                                                         
+                                         ##                                                                                    
+                                              ##                                                                               
+                                                     ##                                                                        
+                                                        ##                                                                     
+Variable usages:
+main@a: 1(L) 5(R) 6(R) 7(R) 8(R) 11(R) 12(R) 13(R) 14(R) 17(R) 18(R) 19(R) 20(R) 23(R) 24(R) 25(R) 26(R) 29(R) 31(R) 35(R) 39(R) 40(R) 46(R) 49(R) 50(R) 51(R) 53(R) 
+main@b: 2(L) 5(R) 7(R) 10(R) 11(R) 13(R) 16(R) 17(R) 19(R) 22(R) 23(R) 25(R) 28(R) 29(R) 30(R) 36(R) 39(R) 41(R) 45(R) 49(R) 60(R) 
+main@c: 3(L) 
+main@d: 4(L) 
+temp#1: 32(L) 33(R) 
+temp#2: 37(L) 38(R) 
+temp#3: 42(L) 43(R) 
+temp#4: 47(L) 48(R) 
+temp#5: 54(L) 55(R) 
+temp#6: 57(L) 58(R) 
+Final registers usage:
+b: main@a(1-53): 1 5 6 7 8 11 12 13 14 17 18 19 20 23 24 25 26 29 31 35 39 40 46 49 50 51 53 | temp#5(54-55): 54 55 | temp#6(57-58): 57 58 | 
+c: main@b(2-60): 2 5 7 10 11 13 16 17 19 22 23 25 28 29 30 36 39 41 45 49 60 | 
+d: main@c(3-3): 3 | main@d(4-4): 4 | temp#1(32-33): 32 33 | temp#2(37-38): 37 38 | temp#3(42-43): 42 43 | temp#4(47-48): 47 48 | 
+e: 
+f: 
+g: 
+h: 
+
+main@a: 1(b) 5(b) 6(b) 7(b) 8(b) 11(b) 12(b) 13(b) 14(b) 17(b) 18(b) 19(b) 20(b) 23(b) 24(b) 25(b) 26(b) 29(b) 31(b) 35(b) 39(b) 40(b) 46(b) 49(b) 50(b) 51(b) 53(b) 
+main@b: 2(c) 5(c) 7(c) 10(c) 11(c) 13(c) 16(c) 17(c) 19(c) 22(c) 23(c) 25(c) 28(c) 29(c) 30(c) 36(c) 39(c) 41(c) 45(c) 49(c) 60(c) 
+main@c: 3(d) 
+main@d: 4(d) 
+temp#1: 32(d) 33(d) 
+temp#2: 37(d) 38(d) 
+temp#3: 42(d) 43(d) 
+temp#4: 47(d) 48(d) 
+temp#5: 54(b) 55(b) 
+temp#6: 57(b) 58(b) 
+../compiler machine-code-programs/if.imp machine-code-programs/if.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/if.rm > machine-code-programs/if.result < machine-code-programs/if-in4.txt
+main@a: 
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 53 
+
+main@b: 
+2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 60 
+
+main@c: 
+3 
+
+main@d: 
+4 
+
+temp#1: 
+32 33 
+
+temp#2: 
+37 38 
+
+temp#3: 
+42 43 
+
+temp#4: 
+47 48 
+
+temp#5: 
+54 55 
+
+temp#6: 
+57 58 
+
+#####################################################                                                                          
+ ###########################################################                                                                   
+  #                                                                                                                            
+   #                                                                                                                           
+                               ##                                                                                              
+                                    ##                                                                                         
+                                         ##                                                                                    
+                                              ##                                                                               
+                                                     ##                                                                        
+                                                        ##                                                                     
+Variable usages:
+main@a: 1(L) 5(R) 6(R) 7(R) 8(R) 11(R) 12(R) 13(R) 14(R) 17(R) 18(R) 19(R) 20(R) 23(R) 24(R) 25(R) 26(R) 29(R) 31(R) 35(R) 39(R) 40(R) 46(R) 49(R) 50(R) 51(R) 53(R) 
+main@b: 2(L) 5(R) 7(R) 10(R) 11(R) 13(R) 16(R) 17(R) 19(R) 22(R) 23(R) 25(R) 28(R) 29(R) 30(R) 36(R) 39(R) 41(R) 45(R) 49(R) 60(R) 
+main@c: 3(L) 
+main@d: 4(L) 
+temp#1: 32(L) 33(R) 
+temp#2: 37(L) 38(R) 
+temp#3: 42(L) 43(R) 
+temp#4: 47(L) 48(R) 
+temp#5: 54(L) 55(R) 
+temp#6: 57(L) 58(R) 
+Final registers usage:
+b: main@a(1-53): 1 5 6 7 8 11 12 13 14 17 18 19 20 23 24 25 26 29 31 35 39 40 46 49 50 51 53 | temp#5(54-55): 54 55 | temp#6(57-58): 57 58 | 
+c: main@b(2-60): 2 5 7 10 11 13 16 17 19 22 23 25 28 29 30 36 39 41 45 49 60 | 
+d: main@c(3-3): 3 | main@d(4-4): 4 | temp#1(32-33): 32 33 | temp#2(37-38): 37 38 | temp#3(42-43): 42 43 | temp#4(47-48): 47 48 | 
+e: 
+f: 
+g: 
+h: 
+
+main@a: 1(b) 5(b) 6(b) 7(b) 8(b) 11(b) 12(b) 13(b) 14(b) 17(b) 18(b) 19(b) 20(b) 23(b) 24(b) 25(b) 26(b) 29(b) 31(b) 35(b) 39(b) 40(b) 46(b) 49(b) 50(b) 51(b) 53(b) 
+main@b: 2(c) 5(c) 7(c) 10(c) 11(c) 13(c) 16(c) 17(c) 19(c) 22(c) 23(c) 25(c) 28(c) 29(c) 30(c) 36(c) 39(c) 41(c) 45(c) 49(c) 60(c) 
+main@c: 3(d) 
+main@d: 4(d) 
+temp#1: 32(d) 33(d) 
+temp#2: 37(d) 38(d) 
+temp#3: 42(d) 43(d) 
+temp#4: 47(d) 48(d) 
+temp#5: 54(b) 55(b) 
+temp#6: 57(b) 58(b) 
+[       OK ] toMachineCodeConversion.ifElse (37 ms)
+[----------] 1 test from toMachineCodeConversion (37 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (37 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = toMachineCodeConversion.whileLoop
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from toMachineCodeConversion
+[ RUN      ] toMachineCodeConversion.whileLoop
+../compiler machine-code-programs/while.imp machine-code-programs/while.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/while.rm > machine-code-programs/while.result < machine-code-programs/while-in.txt
+main@a: 
+1 2 3 4 5 6 7 8 4 
+
+main@b: 
+2 
+
+main@c: 
+3 
+
+########                                                                                                                       
+ #                                                                                                                             
+  #                                                                                                                            
+Variable usages:
+main@a: 1(L) 6(B) 7(B) 4(R) 5(R) 
+main@b: 2(L) 
+main@c: 3(L) 
+Final registers usage:
+b: main@a(1-8): 1 4 5 6 7 | 
+c: main@b(2-2): 2 | main@c(3-3): 3 | 
+d: 
+e: 
+f: 
+g: 
+h: 
+
+main@a: 1(b) 4(b) 5(b) 6(b) 7(b) 
+main@b: 2(c) 
+main@c: 3(c) 
+[       OK ] toMachineCodeConversion.whileLoop (12 ms)
+[----------] 1 test from toMachineCodeConversion (12 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (12 ms total)
+[  PASSED  ] 1 test.
+Note: Google Test filter = toMachineCodeConversion.repeatLoop
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from toMachineCodeConversion
+[ RUN      ] toMachineCodeConversion.repeatLoop
+../compiler machine-code-programs/repeat.imp machine-code-programs/repeat.rm
+../virtual-machine/maszyna-wirtualna machine-code-programs/repeat.rm > machine-code-programs/repeat.result < machine-code-programs/repeat-in.txt
+main@a: 
+1 2 3 4 5 6 7 8 9 10 11 8 12 6 13 4 
+
+main@b: 
+2 3 4 5 6 7 8 9 10 11 8 12 6 13 4 
+
+main@c: 
+3 4 5 6 7 8 9 10 11 8 12 6 13 4 
+
+#############                                                                                                                  
+ ############                                                                                                                  
+  ###########                                                                                                                  
+Variable usages:
+main@a: 1(L) 4(B) 5(B) 13(R) 
+main@b: 2(L) 6(B) 7(B) 12(R) 
+main@c: 3(L) 8(B) 9(B) 10(R) 11(R) 
+Final registers usage:
+b: main@a(1-13): 1 4 5 13 | 
+c: main@b(2-13): 2 6 7 12 | 
+d: main@c(3-13): 3 8 9 10 11 | 
+e: 
+f: 
+g: 
+h: 
+
+main@a: 1(b) 4(b) 5(b) 13(b) 
+main@b: 2(c) 6(c) 7(c) 12(c) 
+main@c: 3(d) 8(d) 9(d) 10(d) 11(d) 
+[       OK ] toMachineCodeConversion.repeatLoop (13 ms)
+[----------] 1 test from toMachineCodeConversion (13 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (13 ms total)
+[  PASSED  ] 1 test.

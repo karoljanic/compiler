@@ -44,6 +44,7 @@
 #include "../bblocks/BasicInstructionCondJumpVV.hpp"
 #include "../bblocks/BasicInstructionHalt.hpp"
 #include "../bblocks/BasicInstructionJump.hpp"
+#include "../bblocks/BasicInstructionJumpFun.hpp"
 #include "../bblocks/BasicInstructionJumpRelative.hpp"
 #include "../bblocks/BasicInstructionLabel.hpp"
 #include "../bblocks/BasicInstructionMathNN.hpp"
@@ -60,6 +61,8 @@
 #include "../bblocks/BasicInstructionPush.hpp"
 #include "../bblocks/BasicInstructionRead.hpp"
 #include "../bblocks/BasicInstructionWrite.hpp"
+#include "../bblocks/BasicInstructionRestoreState.hpp"
+#include "../bblocks/BasicInstructionSaveState.hpp"
 
 #include "../core/ControlFlowGraph.hpp"
 #include "../core/Hardware.hpp"
@@ -74,39 +77,45 @@ class Compiler {
  private:
   std::shared_ptr<AstNode> ast;
   ControlFlowGraph controlFlowGraph;
+  std::vector<ControlFlowGraphNode> machineCodeWithVariablesAndLabels;
+  std::vector<MachineCodeType> machineCodeWithLabels;
   std::vector<std::pair<HardwareInstruction, std::string>> machineCode;
   std::shared_ptr<Hardware> hardware;
   RegistersLinearScan registersLinearScan;
 
   std::stack<std::string> scopes;
   std::map<std::string, std::string> translationTable;
-  std::map<std::string, uint64_t> labels;
   std::vector<uint64_t> parentsIds;
+  std::map<uint64_t, std::vector<std::string>> currLabels;
+  std::map<std::string, std::vector<std::string>> functions;
 
  public:
   Compiler();
   Compiler(std::shared_ptr<AstNode> ast);
 
-  void generateMachineCode(std::ofstream& outputFile);
-  void generateMachineCodeWithDebug(std::ofstream& astFile, std::ofstream& basicBlocksFile, std::ofstream& machineCodeFile,
-                                    std::ofstream& outputFile);
+  void generateMachineCode(std::ofstream &outputFile);
+  void generateMachineCodeWithDebug(std::ofstream &astFile,
+									std::ofstream &basicBlocksFile,
+									std::ofstream &machineCodeFile,
+									std::ofstream &outputFile);
 
  private:
   void convertToControlFlowGraph();
   void optimizeControlFlowGraph();
-  void expandBasicInstructions();
-  void calculateVariablesLiveRanges();
-  void optimizeBasicInstructions();
+  void expandAndOptimizeBasicInstructions();
+  void findRegisters();
   void optimizeMachineCode();
-  void generateOutput(std::ofstream& outputFile);
+  void findLabels();
+  void generateOutput(std::ofstream &outputFile);
 
-  void parseAstMain(std::shared_ptr<AstMain> node, std::pair<std::string, std::vector<ControlFlowGraphNode>>& instructions);
+  void parseAstMain(std::shared_ptr<AstMain> node,
+					std::pair<std::string, std::vector<ControlFlowGraphNode>> &instructions);
   void parseAstProcedure(std::shared_ptr<AstProcedure> node,
-                         std::pair<std::string, std::vector<ControlFlowGraphNode>>& instructions);
+						 std::pair<std::string, std::vector<ControlFlowGraphNode>> &instructions);
   void parseAstDeclarations(std::shared_ptr<AstDeclarations> node);
   void parseAstProcedureHeader(std::shared_ptr<AstProcedureHeader>);
-  void parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<ControlFlowGraphNode>& instructions);
-  ControlFlowGraphNode parseAstCondition(std::shared_ptr<AstCondition> node, const std::string& jumpLabel);
+  void parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<ControlFlowGraphNode> &instructions);
+  ControlFlowGraphNode parseAstCondition(std::shared_ptr<AstCondition> node, const std::string &jumpLabel);
 };
 
 #endif  // COMPILER_HPP

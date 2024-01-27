@@ -1,22 +1,279 @@
-
-LABEL main@begin#
 READ 
-PUT main@a
-READ 
-PUT main@b
-GET main@a
-PUT temp#1
-GET main@b
-PUT temp#2
-GET temp#1
-SUB temp#2
-PUT main@a
-GET main@a
-PUT main@a
-GET main@a
+PUT main@n
+RST main@dzielnik
+INC main@dzielnik
+SHL main@dzielnik
+GET main@dzielnik
+PUT main@dzielnik
+GET main@dzielnik
+PUT temp#8
+GET main@dzielnik
+PUT temp#9
+RST main@m
+GET temp#8
+JZERO mul@end#@18
+PUT temp#17
+GET temp#9
+PUT temp#18
+GET temp#18 [mul@begin#@16 0] 
+JZERO mul@end#@18
+SHR temp#18
+SHL temp#18
+SUB temp#18
+JZERO mul@even#@17
+GET main@m
+ADD temp#17
+PUT main@m
+SHL temp#17 [mul@even#@17 0] 
+SHR temp#18
+JUMP mul@begin#@16 [mul@end#@18 1] 
+GET main@m
+PUT main@m
+[[ main@beginwhile#@3 ]]
+GET main@m
+SUB main@n
+PUT a
+JPOS main@endwhilejump#@4
+ 4
+GET main@n
+RST main@n
+STORE main@n
+PUT main@n
+GET main@dzielnik
+RST main@dzielnik
+INC main@dzielnik
+STORE main@dzielnik
+PUT main@dzielnik
+GET main@potega
+RST main@potega
+INC main@potega
+SHL main@potega
+STORE main@potega
+PUT main@potega
+RST b
+INC b
+SHL b
+INC b
+STRK a
+STORE b
+JUMP check@begin#
+ 4
+RST main@n
+LOAD main@n
+PUT main@n
+RST main@dzielnik
+INC main@dzielnik
+LOAD main@dzielnik
+PUT main@dzielnik
+RST main@potega
+INC main@potega
+SHL main@potega
+LOAD main@potega
+PUT main@potega
+RST a
+INC a
+SHL a
+INC a
+LOAD a
+PUT a
+GET main@potega
+PUT a
+JZERO main@ifelse#@5
+GET main@dzielnik
 WRITE 
-GET main@a
+GET main@potega
 WRITE 
+[[ main@ifelse#@5 ]]
+GET main@dzielnik
+PUT main@dzielnik
+INC main@dzielnik
+GET main@dzielnik
+PUT main@dzielnik
+GET main@dzielnik
+PUT temp#10
+GET main@dzielnik
+PUT temp#11
+RST main@m
+GET temp#10
+JZERO mul@end#@21
+PUT temp#19
+GET temp#11
+PUT temp#20
+GET temp#20 [mul@begin#@19 0] 
+JZERO mul@end#@21
+SHR temp#20
+SHL temp#20
+SUB temp#20
+JZERO mul@even#@20
+GET main@m
+ADD temp#19
+PUT main@m
+SHL temp#19 [mul@even#@20 0] 
+SHR temp#20
+JUMP mul@begin#@19 [mul@end#@21 1] 
+GET main@m
+PUT main@m
+JUMP main@beginwhile#@3
+[[ main@endwhilejump#@4 ]]
+RST a
+INC a
+SUB main@n
+PUT a
+JPOS jump@end#@22
+GET main@n
+PUT a
+DEC a
+JPOS jump@end#@22
+JUMP main@ifelse#@6 [jump@end#@22 1] 
+GET main@n
+WRITE 
+RST temp#12
+INC temp#12
+GET temp#12
+WRITE 
+[[ main@ifelse#@6 ]]
 HALT 
-LABEL main@end#
-
+[[ check@begin# ]]
+RST check@n
+LOAD check@n
+PUT check@n
+RST check@d
+INC check@d
+LOAD check@d
+PUT check@d
+RST check@p
+INC check@p
+SHL check@p
+LOAD check@p
+PUT check@p
+RST temp#1
+INC temp#1
+SHL temp#1
+INC temp#1
+LOAD temp#1
+PUT temp#1
+RST check@p
+GET check@p
+PUT check@p
+GET check@n
+PUT temp#2
+GET check@d
+PUT temp#3
+RST check@r
+GET temp#3
+JZERO mod@end#@9
+PUT temp#13
+GET temp#2
+PUT check@r
+GET temp#13 [mod@prepare#@7 0] 
+SUB check@r
+JPOS mod@loop#@8
+SHL temp#13
+JUMP mod@prepare#@7
+GET temp#13 [mod@loop#@8 0] 
+SUB temp#3
+JZERO mod@end#@9
+SHR temp#13
+GET temp#13
+SUB check@r
+JPOS mod@loop#@8
+GET check@r
+SUB temp#13
+PUT check@r
+JUMP mod@loop#@8 [mod@end#@9 1] 
+GET check@r
+PUT check@r
+[[ check@beginwhile#@1 ]]
+RST a
+SUB check@r
+PUT a
+JPOS check@endwhilejump#@2
+GET check@r
+PUT a
+JPOS check@endwhilejump#@2
+GET check@n
+PUT temp#4
+GET check@d
+PUT temp#5
+RST check@n
+GET temp#5
+JZERO div@end#@12
+PUT temp#15
+GET temp#4
+PUT temp#14
+GET temp#15 [div@prepare#@10 0] 
+SUB temp#14
+JPOS div@loop#@11
+SHL temp#15
+JUMP div@prepare#@10
+GET temp#15 [div@loop#@11 0] 
+SUB temp#5
+JZERO div@end#@12
+SHR temp#15
+SHL check@n
+GET temp#15
+SUB temp#14
+JPOS div@loop#@11
+INC check@n
+GET temp#14
+SUB temp#15
+PUT temp#14
+JUMP div@loop#@11 [div@end#@12 1] 
+GET check@n
+PUT check@n
+GET check@p
+PUT check@p
+INC check@p
+GET check@p
+PUT check@p
+GET check@n
+PUT temp#6
+GET check@d
+PUT temp#7
+RST check@r
+GET temp#7
+JZERO mod@end#@15
+PUT temp#16
+GET temp#6
+PUT check@r
+GET temp#16 [mod@prepare#@13 0] 
+SUB check@r
+JPOS mod@loop#@14
+SHL temp#16
+JUMP mod@prepare#@13
+GET temp#16 [mod@loop#@14 0] 
+SUB temp#7
+JZERO mod@end#@15
+SHR temp#16
+GET temp#16
+SUB check@r
+JPOS mod@loop#@14
+GET check@r
+SUB temp#16
+PUT check@r
+JUMP mod@loop#@14 [mod@end#@15 1] 
+GET check@r
+PUT check@r
+JUMP check@beginwhile#@1
+[[ check@endwhilejump#@2 ]]
+GET check@n
+RST check@n
+STORE check@n
+PUT check@n
+GET check@d
+RST check@d
+INC check@d
+STORE check@d
+PUT check@d
+GET check@p
+RST check@p
+INC check@p
+SHL check@p
+STORE check@p
+PUT check@p
+RST a
+INC a
+SHL a
+INC a
+ADD temp#1
+JUMPR a

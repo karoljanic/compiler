@@ -1,0 +1,103 @@
+PROGRAM IS
+  a, b, c, d
+IN
+    READ a;
+    READ b;
+    c := a % b;
+    WRITE c;
+
+    READ a;
+    READ b;
+    c := a % b;
+    WRITE c;
+
+    READ a;
+    READ b;
+    c := a % b;
+    WRITE c;
+
+    READ a;
+    READ b;
+    c := a % b;
+    WRITE c;
+
+    READ a;
+    READ b;
+    c := a % b;
+    WRITE c;
+
+    READ a;
+    READ b;
+    c := a % b;
+    WRITE c;
+
+    READ a;
+    READ b;
+    c := a % b;
+    WRITE c;
+
+    READ a;
+    READ b;
+    c := a % b;
+    WRITE c;
+
+    c := 4374 % 222;
+    WRITE c;
+
+    c := 4374 % 0;
+    WRITE c;
+
+    c := 0 % 222;
+    WRITE c;
+
+    READ a;
+    READ b;
+
+    c := a % 0;
+    d := b % 0;
+    WRITE c;
+    WRITE d;
+
+    c := a % 1;
+    d := b % 1;
+    WRITE c;
+    WRITE d;
+
+    c := a % 2;
+    d := b % 2;
+    WRITE c;
+    WRITE d;
+
+    c := a % 3;
+    d := b % 3;
+    WRITE c;
+    WRITE d;
+
+    c := a % 4;
+    d := b % 4;
+    WRITE c;
+    WRITE d;
+
+    c := a % 8;
+    d := b % 8;
+    WRITE c;
+    WRITE d;
+
+    c := a % 10;
+    d := b % 10;
+    WRITE c;
+    WRITE d;
+
+    READ a;
+    c := 0 % a;
+    WRITE c;
+
+    READ a;
+    c := 1 % a;
+    WRITE c;
+
+    READ a;
+    c := 2 % a;
+    WRITE c;
+
+END

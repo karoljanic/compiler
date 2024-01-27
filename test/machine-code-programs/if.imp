@@ -1,8 +1,70 @@
 PROGRAM IS
-  a, b
+  a, b, c, d
 IN
     READ a;
     READ b;
+    READ c;
+    READ d;
+
+    IF a > b THEN
+        WRITE a;
+    ENDIF
+
+    IF a > b THEN
+        WRITE a;
+    ELSE
+        WRITE b;
+    ENDIF
+
+    IF a < b THEN
+        WRITE a;
+    ENDIF
+
+    IF a < b THEN
+        WRITE a;
+    ELSE
+        WRITE b;
+    ENDIF
+
+    IF a >= b THEN
+        WRITE a;
+    ENDIF
+
+    IF a >= b THEN
+        WRITE a;
+    ELSE
+        WRITE b;
+    ENDIF
+
+    IF a <= b THEN
+        WRITE a;
+    ENDIF
+
+    IF a <= b THEN
+        WRITE a;
+    ELSE
+        WRITE b;
+    ENDIF
+
+    IF a != b THEN
+        WRITE b;
+        WRITE a;
+        WRITE 1;
+    ELSE
+        WRITE a;
+        WRITE b;
+        WRITE 0;
+    ENDIF
+
+    IF a = b THEN
+        WRITE a;
+        WRITE b;
+        WRITE 1;
+    ELSE
+        WRITE b;
+        WRITE a;
+        WRITE 0;
+    ENDIF
 
     IF a > b THEN
         IF a > 2 THEN

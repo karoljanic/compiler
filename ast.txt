@@ -15,30 +15,43 @@ PROGRAM
         var m
         var n
         var o
+        var p
+        var q
+        var r
+        var s
+        var t
+        var u
+        var v
+        var w
+        var x
+        var y
+        var z
         READ var a
-        READ var b
-        READ var c
-        READ var d
-        READ var e
-        ASSIGN var f := var a + var b
-        ASSIGN var g := var a - var c
+        ASSIGN var b := var a
+        ASSIGN var c := var b + var a
+        ASSIGN var d := var c + var b
+        ASSIGN var e := var d + var c
+        ASSIGN var f := var e + var d
+        ASSIGN var g := var f + var e
         ASSIGN var h := var g + var f
-        ASSIGN var i := var b - var g
-        ASSIGN var i := var i + num 1
-        WRITE var f
-        WRITE var g
-        WRITE var h
-        WRITE var i
-        ASSIGN var j := var e - var d
-        ASSIGN var j := var j - num 2
-        ASSIGN var k := var d + var e
-        ASSIGN var l := var g + var k
-        ASSIGN var m := var b - var a
-        WRITE var h
-        WRITE var j
-        WRITE var k
-        WRITE var l
-        WRITE var m
-        WRITE var i
+        ASSIGN var i := var h + var g
+        ASSIGN var j := var i + var h
+        ASSIGN var k := var j + var i
+        ASSIGN var l := var k + var j
+        ASSIGN var m := var l + var k
+        ASSIGN var n := var m + var l
+        ASSIGN var o := var n + var m
+        ASSIGN var p := var o + var n
+        ASSIGN var q := var p + var o
+        ASSIGN var r := var q + var p
+        ASSIGN var s := var r + var q
+        ASSIGN var t := var s + var r
+        ASSIGN var u := var t + var s
+        ASSIGN var v := var u + var t
+        ASSIGN var w := var v + var u
+        ASSIGN var x := var w + var v
+        ASSIGN var y := var x + var w
+        ASSIGN var z := var y + var x
+        WRITE var z
     ENDMAIN
 ENDPROGRAM

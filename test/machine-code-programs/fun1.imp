@@ -1,0 +1,46 @@
+PROCEDURE fun(a,b) IS
+    x,y,z
+IN
+    WRITE a;
+    WRITE b;
+
+    a := a + 1;
+    b := b + 1;
+END
+
+PROGRAM IS
+    a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z
+IN
+    READ a;
+    READ b;
+
+    c := a + b;
+    d := a - b;
+    e := a * b;
+    f := a / b;
+    g := a % b;
+    h := c - d;
+    i := c * d;
+
+    WRITE a;
+    WRITE b;
+    WRITE c;
+    WRITE d;
+    WRITE e;
+    WRITE f;
+    WRITE g;
+    WRITE h;
+    WRITE i;
+
+    fun(e,f);
+
+    WRITE a;
+    WRITE b;
+    WRITE c;
+    WRITE d;
+    WRITE e;
+    WRITE f;
+    WRITE g;
+    WRITE h;
+    WRITE i;
+END

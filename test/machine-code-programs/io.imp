@@ -1,20 +1,22 @@
 PROGRAM IS
-  a, b[10], c
+  a, b[100], c
 IN
     READ a;
     READ c;
-    #READ b[0];
-    #READ b[5];
-    #READ b[9];
-    #READ b[c];
+    READ b[0];
+    READ b[5];
+    READ b[99];
+    READ b[c];
 
-    #WRITE b[9];
-    #WRITE b[0];
-    #WRITE b[5];
-    WRITE a;
-    #WRITE b[c];
     WRITE c;
+    WRITE a;
+
     WRITE 0;
     WRITE 5;
     WRITE 38982;
+
+    WRITE b[99];
+    WRITE b[0];
+    WRITE b[5];
+    WRITE b[c];
 END

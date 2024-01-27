@@ -1,0 +1,50 @@
+PROGRAM IS
+  a, b, c, d, t[100]
+IN
+    READ a;
+    READ b;
+
+   a := 13;
+   b := 14;
+   t[10] := 11;
+   t[b] := 7;
+
+   WRITE a;
+   WRITE b;
+   WRITE t[10];
+   WRITE t[b];
+
+   a := b;
+   t[9] := b;
+   t[a] := b;
+   t[b] := b;
+
+   WRITE a;
+   WRITE t[9];
+   WRITE t[a];
+   WRITE t[b];
+
+   t[9] := 128;
+
+   a := t[9];
+   t[11] := t[9];
+   t[9] := t[9];
+   t[a] := t[9];
+
+    WRITE a;
+    WRITE t[11];
+    WRITE t[9];
+    WRITE t[a];
+
+    t[b] := 15;
+
+    a := t[b];
+    t[11] := t[b];
+    t[b] := t[b];
+    t[a] := t[b];
+
+    WRITE a;
+    WRITE t[11];
+    WRITE t[b];
+    WRITE t[a];
+END

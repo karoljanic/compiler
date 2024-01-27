@@ -6,9 +6,9 @@ BasicInstructionHalt::BasicInstructionHalt(std::shared_ptr<Hardware> hardware) :
 
 void BasicInstructionHalt::expandToHardwareInstructions() {
   machineCode.clear();
-  machineCode.push_back(std::make_pair(HardwareInstruction::HALT, ""));
+  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::HALT, ""}});
 }
 
-void BasicInstructionHalt::print(std::ostream& out) const {
+void BasicInstructionHalt::print(std::ostream &out) const {
   out << "HALT";
 }

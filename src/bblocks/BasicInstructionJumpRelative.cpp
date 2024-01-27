@@ -3,13 +3,21 @@
 BasicInstructionJumpRelative::BasicInstructionJumpRelative() {}
 
 BasicInstructionJumpRelative::BasicInstructionJumpRelative(std::string variableName, std::shared_ptr<Hardware> hardware)
-    : BasicInstruction(hardware), rightVariableName(variableName) {}
+	: BasicInstruction(hardware), rightVariableName(variableName) {}
 
 void BasicInstructionJumpRelative::expandToHardwareInstructions() {
   machineCode.clear();
-  machineCode.push_back(std::make_pair(HardwareInstruction::JUMPR, rightVariableName));
+  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::RST, Hardware::registerMap[RA].name}});
+  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::INC, Hardware::registerMap[RA].name}});
+  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::SHL, Hardware::registerMap[RA].name}});
+  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::INC, Hardware::registerMap[RA].name}});
+//  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::WRITE, Hardware::registerMap[RA].name}});
+  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::ADD, rightVariableName}});
+//  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::WRITE, Hardware::registerMap[RA].name}});
+//  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::WRITE, ""}});
+  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::JUMPR, Hardware::registerMap[RA].name}});
 }
 
-void BasicInstructionJumpRelative::print(std::ostream& out) const {
+void BasicInstructionJumpRelative::print(std::ostream &out) const {
   out << "JUMP AT ADDRESS FROM " << rightVariableName;
 }

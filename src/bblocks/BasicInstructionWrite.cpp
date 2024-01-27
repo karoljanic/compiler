@@ -2,15 +2,15 @@
 
 BasicInstructionWrite::BasicInstructionWrite() {}
 
-BasicInstructionWrite::BasicInstructionWrite(const std::string& variableName, std::shared_ptr<Hardware> hardware)
-    : BasicInstruction(hardware), rightRegister(variableName) {}
+BasicInstructionWrite::BasicInstructionWrite(const std::string &variableName, std::shared_ptr<Hardware> hardware)
+	: BasicInstruction(hardware), rightRegister(variableName) {}
 
 void BasicInstructionWrite::expandToHardwareInstructions() {
   machineCode.clear();
-  machineCode.push_back(std::make_pair(HardwareInstruction::GET, rightRegister));
-  machineCode.push_back(std::make_pair(HardwareInstruction::WRITE, ""));
+  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::GET, rightRegister}});
+  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::WRITE, ""}});
 }
 
-void BasicInstructionWrite::print(std::ostream& out) const {
+void BasicInstructionWrite::print(std::ostream &out) const {
   out << "WRITE " << rightRegister;
 }

@@ -15,7 +15,6 @@ IN
 	WHILE i<=111110 DO
 		j:=209;
 		WHILE j>=200 DO
-		    #WRITE j;
 			k:=11;
 			WHILE k<=20 DO
 				a:=a+k;
@@ -30,7 +29,4 @@ IN
 	WRITE a;
 	WRITE b;
 	WRITE c;
-	#WRITE i;
-	#WRITE j;
-	#WRITE k;
 END
