@@ -10,12 +10,13 @@ class AstRightValue : public AstValue {
   AstRightValue();
   AstRightValue(NodeType type);
   virtual ~AstRightValue() = default;
-  AstRightValue(const AstRightValue& from) = default;
-  AstRightValue& operator=(const AstRightValue& from) = default;
-  AstRightValue(AstRightValue&&) = default;
-  AstRightValue& operator=(AstRightValue&&) = default;
+  AstRightValue(const AstRightValue &from) = default;
+  AstRightValue &operator=(const AstRightValue &from) = default;
+  AstRightValue(AstRightValue &&) = default;
+  AstRightValue &operator=(AstRightValue &&) = default;
 
-  virtual void print(std::ostream& out, int tab) const;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  virtual void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_RIGHT_VALUE_HPP

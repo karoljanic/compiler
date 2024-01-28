@@ -11,10 +11,7 @@ void BasicInstructionJumpRelative::expandToHardwareInstructions() {
   machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::INC, Hardware::registerMap[RA].name}});
   machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::SHL, Hardware::registerMap[RA].name}});
   machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::INC, Hardware::registerMap[RA].name}});
-//  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::WRITE, Hardware::registerMap[RA].name}});
   machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::ADD, rightVariableName}});
-//  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::WRITE, Hardware::registerMap[RA].name}});
-//  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::WRITE, ""}});
   machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::JUMPR, Hardware::registerMap[RA].name}});
 }
 

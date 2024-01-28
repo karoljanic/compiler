@@ -18,18 +18,22 @@ class AstProcedure : public AstNode {
  public:
   AstProcedure();
   AstProcedure(std::shared_ptr<AstProcedureHeader> header, std::shared_ptr<AstDeclarations> declarations,
-               std::shared_ptr<AstCommands> commands);
+			   std::shared_ptr<AstCommands> commands);
   virtual ~AstProcedure() = default;
-  AstProcedure(const AstProcedure& from) = default;
-  AstProcedure& operator=(const AstProcedure& from) = default;
-  AstProcedure(AstProcedure&&) = default;
-  AstProcedure& operator=(AstProcedure&&) = default;
+  AstProcedure(const AstProcedure &from) = default;
+  AstProcedure &operator=(const AstProcedure &from) = default;
+  AstProcedure(AstProcedure &&) = default;
+  AstProcedure &operator=(AstProcedure &&) = default;
 
-  const std::shared_ptr<AstProcedureHeader>& getHeader();
-  const std::shared_ptr<AstDeclarations>& getDeclarations();
-  const std::shared_ptr<AstCommands>& getCommands();
+  void setDeclarations(std::shared_ptr<AstDeclarations> declarations);
+  void setCommands(std::shared_ptr<AstCommands> commands);
 
-  void print(std::ostream& out, int tab) const override;
+  const std::shared_ptr<AstProcedureHeader> &getHeader();
+  const std::shared_ptr<AstDeclarations> &getDeclarations();
+  const std::shared_ptr<AstCommands> &getCommands();
+
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_PROCEDURE_HPP

@@ -53,14 +53,18 @@ void RegistersLinearScan::createRanges(ControlFlowGraph& controlFlowGraph) {
 
 	  Range range{variable, lowBound, highBound, {}};
 	  range.usages = getVariableUsage(variable, range);
+	  if(range.usages.empty()) {
+		continue;
+	  }
 	  range.start = range.usages.front().position;
 	  range.end = range.usages.back().position;
 
-	  std::cout << "RANGE " << variable << "[" << lowBound << "-" << highBound << "]: ";
+	  std::cout << "RANGE " << variable << "[" << range.start << "-" << range.end << "]: ";
 	  for(const auto& usage: range.usages) {
 		std::cout << usage.position << " ";
 	  }
 	  std::cout << std::endl;
+
 	  ranges.push_back(range);
 	}
   }

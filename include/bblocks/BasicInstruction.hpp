@@ -33,6 +33,7 @@ class BasicInstruction {
 
   const std::vector<MachineCodeType> &getMachineCode() const;
 
+  size_t estimateMachineCodeSize();
   virtual void expandToHardwareInstructions();
   virtual void print(std::ostream &out) const;
 };

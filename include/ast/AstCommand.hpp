@@ -17,14 +17,15 @@ class AstCommand : public AstNode {
   AstCommand();
   AstCommand(CommandType type);
   virtual ~AstCommand() = default;
-  AstCommand(const AstCommand& from) = default;
-  AstCommand& operator=(const AstCommand& from) = default;
-  AstCommand(AstCommand&&) = default;
-  AstCommand& operator=(AstCommand&&) = default;
+  AstCommand(const AstCommand &from) = default;
+  AstCommand &operator=(const AstCommand &from) = default;
+  AstCommand(AstCommand &&) = default;
+  AstCommand &operator=(AstCommand &&) = default;
 
   virtual CommandType getCommandType() const;
 
-  virtual void print(std::ostream& out, int tab) const;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  virtual void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_COMMAND_HPP

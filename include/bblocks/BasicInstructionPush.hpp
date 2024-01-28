@@ -13,15 +13,17 @@ class BasicInstructionPush : public BasicInstruction {
 
  public:
   BasicInstructionPush();
-  BasicInstructionPush(uint64_t beginAddress, const std::vector<std::string>& source, std::shared_ptr<Hardware> hardware);
+  BasicInstructionPush(uint64_t beginAddress,
+					   const std::vector<std::string> &source,
+					   std::shared_ptr<Hardware> hardware);
   virtual ~BasicInstructionPush() = default;
-  BasicInstructionPush(const BasicInstructionPush& from) = default;
-  BasicInstructionPush& operator=(const BasicInstructionPush& from) = default;
-  BasicInstructionPush(BasicInstructionPush&&) = default;
-  BasicInstructionPush& operator=(BasicInstructionPush&&) = default;
+  BasicInstructionPush(const BasicInstructionPush &from) = default;
+  BasicInstructionPush &operator=(const BasicInstructionPush &from) = default;
+  BasicInstructionPush(BasicInstructionPush &&) = default;
+  BasicInstructionPush &operator=(BasicInstructionPush &&) = default;
 
   virtual void expandToHardwareInstructions();
-  virtual void print(std::ostream& out) const;
+  virtual void print(std::ostream &out) const;
 };
 
 #endif  // BASIC_INSTRUCTION_PUSH_HPP

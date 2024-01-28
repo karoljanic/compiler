@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "AstLeftValue.hpp"
+#include "AstArray.hpp"
 #include "AstNode.hpp"
 
 class AstArgsList : public AstNode {
@@ -16,15 +17,16 @@ class AstArgsList : public AstNode {
   AstArgsList();
   AstArgsList(std::shared_ptr<AstLeftValue> arg);
   virtual ~AstArgsList() = default;
-  AstArgsList(const AstArgsList& from) = default;
-  AstArgsList& operator=(const AstArgsList& from) = default;
-  AstArgsList(AstArgsList&&) = default;
-  AstArgsList& operator=(AstArgsList&&) = default;
+  AstArgsList(const AstArgsList &from) = default;
+  AstArgsList &operator=(const AstArgsList &from) = default;
+  AstArgsList(AstArgsList &&) = default;
+  AstArgsList &operator=(AstArgsList &&) = default;
 
   void addArg(std::shared_ptr<AstLeftValue> arg);
-  const std::vector<std::shared_ptr<AstLeftValue>>& getArgs() const;
+  const std::vector<std::shared_ptr<AstLeftValue>> &getArgs() const;
 
-  virtual void print(std::ostream& out, int tab) const override;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  virtual void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_ARGS_LIST_HPP

@@ -17,15 +17,19 @@ class AstProgram : public AstNode {
   AstProgram();
   AstProgram(std::shared_ptr<AstProcedures> procedures, std::shared_ptr<AstMain> main);
   ~AstProgram() override = default;
-  AstProgram(const AstProgram& from) = default;
-  AstProgram& operator=(const AstProgram& from) = default;
-  AstProgram(AstProgram&&) = default;
-  AstProgram& operator=(AstProgram&&) = default;
+  AstProgram(const AstProgram &from) = default;
+  AstProgram &operator=(const AstProgram &from) = default;
+  AstProgram(AstProgram &&) = default;
+  AstProgram &operator=(AstProgram &&) = default;
 
-  const std::shared_ptr<AstProcedures>& getProcedures() const;
-  const std::shared_ptr<AstMain>& getMain() const;
+  void setMain(std::shared_ptr<AstMain> main);
+  void setProcedures(std::shared_ptr<AstProcedures> procedures);
 
-  void print(std::ostream& out, int tab) const override;
+  const std::shared_ptr<AstProcedures> &getProcedures() const;
+  const std::shared_ptr<AstMain> &getMain() const;
+
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_PROGRAM_HPP

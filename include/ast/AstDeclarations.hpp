@@ -16,15 +16,16 @@ class AstDeclarations : public AstNode {
   AstDeclarations();
   AstDeclarations(std::shared_ptr<AstLeftValue> declaration);
   ~AstDeclarations() override = default;
-  AstDeclarations(const AstDeclarations& from) = default;
-  AstDeclarations& operator=(const AstDeclarations& from) = default;
-  AstDeclarations(AstDeclarations&&) = default;
-  AstDeclarations& operator=(AstDeclarations&&) = default;
+  AstDeclarations(const AstDeclarations &from) = default;
+  AstDeclarations &operator=(const AstDeclarations &from) = default;
+  AstDeclarations(AstDeclarations &&) = default;
+  AstDeclarations &operator=(AstDeclarations &&) = default;
 
   void addDeclaration(std::shared_ptr<AstLeftValue> declaration);
-  const std::vector<std::shared_ptr<AstLeftValue>>& getDeclarations() const;
+  const std::vector<std::shared_ptr<AstLeftValue>> &getDeclarations() const;
 
-  void print(std::ostream& out, int tab) const override;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_DECLARATIONS_HPP

@@ -15,16 +15,19 @@ class BasicInstructionMathVV : public BasicInstruction {
 
  public:
   BasicInstructionMathVV();
-  BasicInstructionMathVV(BasicInstructionMathType operationType, const std::string& leftOperand, const std::string& rightOperand,
-                         const std::string& result, std::shared_ptr<Hardware> hardware);
+  BasicInstructionMathVV(BasicInstructionMathType operationType,
+						 const std::string &leftOperand,
+						 const std::string &rightOperand,
+						 const std::string &result,
+						 std::shared_ptr<Hardware> hardware);
   virtual ~BasicInstructionMathVV() = default;
-  BasicInstructionMathVV(const BasicInstructionMathVV& from) = default;
-  BasicInstructionMathVV& operator=(const BasicInstructionMathVV& from) = default;
-  BasicInstructionMathVV(BasicInstructionMathVV&&) = default;
-  BasicInstructionMathVV& operator=(BasicInstructionMathVV&&) = default;
+  BasicInstructionMathVV(const BasicInstructionMathVV &from) = default;
+  BasicInstructionMathVV &operator=(const BasicInstructionMathVV &from) = default;
+  BasicInstructionMathVV(BasicInstructionMathVV &&) = default;
+  BasicInstructionMathVV &operator=(BasicInstructionMathVV &&) = default;
 
   virtual void expandToHardwareInstructions();
-  virtual void print(std::ostream& out) const;
+  virtual void print(std::ostream &out) const;
 };
 
 #endif  // BASIC_INSTRUCTION_MATH_VV_HPP

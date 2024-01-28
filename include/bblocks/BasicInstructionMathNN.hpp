@@ -13,15 +13,15 @@ class BasicInstructionMathNN : public BasicInstruction {
  public:
   BasicInstructionMathNN();
   BasicInstructionMathNN(BasicInstructionMathType operationType, uint64_t leftOperand, uint64_t rightOperand,
-                         const std::string& result, std::shared_ptr<Hardware> hardware);
+						 const std::string &result, std::shared_ptr<Hardware> hardware);
   virtual ~BasicInstructionMathNN() = default;
-  BasicInstructionMathNN(const BasicInstructionMathNN& from) = default;
-  BasicInstructionMathNN& operator=(const BasicInstructionMathNN& from) = default;
-  BasicInstructionMathNN(BasicInstructionMathNN&&) = default;
-  BasicInstructionMathNN& operator=(BasicInstructionMathNN&&) = default;
+  BasicInstructionMathNN(const BasicInstructionMathNN &from) = default;
+  BasicInstructionMathNN &operator=(const BasicInstructionMathNN &from) = default;
+  BasicInstructionMathNN(BasicInstructionMathNN &&) = default;
+  BasicInstructionMathNN &operator=(BasicInstructionMathNN &&) = default;
 
   virtual void expandToHardwareInstructions();
-  virtual void print(std::ostream& out) const;
+  virtual void print(std::ostream &out) const;
 };
 
 #endif  // BASIC_INSTRUCTION_MATH_NN_HPP

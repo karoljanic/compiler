@@ -8,6 +8,10 @@ uint64_t AstNumber::getValue() const {
   return value;
 }
 
-void AstNumber::print(std::ostream& out, int tab) const {
+std::shared_ptr<AstNode> AstNumber::copy(const std::map<std::string, std::string> & /*rewriteTable*/) const {
+  return std::make_shared<AstNumber>(value);
+}
+
+void AstNumber::print(std::ostream &out, int tab) const {
   out << std::string(tab, ' ') << "num " << value;
 }

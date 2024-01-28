@@ -14,14 +14,15 @@ class AstNumber : public AstRightValue {
   AstNumber();
   AstNumber(uint64_t val);
   virtual ~AstNumber() = default;
-  AstNumber(const AstNumber& from) = default;
-  AstNumber& operator=(const AstNumber& from) = default;
-  AstNumber(AstNumber&&) = default;
-  AstNumber& operator=(AstNumber&&) = default;
+  AstNumber(const AstNumber &from) = default;
+  AstNumber &operator=(const AstNumber &from) = default;
+  AstNumber(AstNumber &&) = default;
+  AstNumber &operator=(AstNumber &&) = default;
 
   uint64_t getValue() const;
 
-  virtual void print(std::ostream& out, int tab) const;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  virtual void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_NUMBER_HPP

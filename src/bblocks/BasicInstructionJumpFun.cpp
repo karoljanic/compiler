@@ -14,15 +14,9 @@ void BasicInstructionJumpFun::expandToHardwareInstructions() {
   const auto acc = Hardware::registerMap[RA].name;
   const auto retAddr = Hardware::registerMap[RB].name;
   const auto genAddr = Utils::generateNumber(returnAddress, retAddr);
-//  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::RST, acc}});
-//  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::INC, acc}});
-//  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::SHL, acc}});
-//  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::SHL, acc}});
   machineCode.insert(machineCode.end(), genAddr.begin(), genAddr.end());
   machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::STRK, acc}});
   machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::STORE, retAddr}});
-//  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::ADD, ret}});
-//  machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::PUT, ret}});
   machineCode.push_back(MachineCodeType{{}, {HardwareInstruction::JUMP, label}});
 }
 

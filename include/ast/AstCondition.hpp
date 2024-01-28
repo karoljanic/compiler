@@ -21,16 +21,17 @@ class AstCondition : public AstNode {
   AstCondition();
   AstCondition(ConditionType conditionType, std::shared_ptr<AstValue> left, std::shared_ptr<AstValue> right);
   virtual ~AstCondition() = default;
-  AstCondition(const AstCondition& from) = default;
-  AstCondition& operator=(const AstCondition& from) = default;
-  AstCondition(AstCondition&&) = default;
-  AstCondition& operator=(AstCondition&&) = default;
+  AstCondition(const AstCondition &from) = default;
+  AstCondition &operator=(const AstCondition &from) = default;
+  AstCondition(AstCondition &&) = default;
+  AstCondition &operator=(AstCondition &&) = default;
 
   ConditionType getConditionType() const;
-  const std::shared_ptr<AstValue>& getLeft() const;
-  const std::shared_ptr<AstValue>& getRight() const;
+  const std::shared_ptr<AstValue> &getLeft() const;
+  const std::shared_ptr<AstValue> &getRight() const;
 
-  virtual void print(std::ostream& out, int tab) const;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  virtual void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_CONDITION_HPP

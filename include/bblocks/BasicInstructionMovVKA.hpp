@@ -8,19 +8,21 @@ class BasicInstructionMovVKA : public BasicInstruction {
   std::string rightRegister;
   std::string arrayName;
   uint64_t index;
+  bool indirectArrayBeginAddress;
 
  public:
   BasicInstructionMovVKA();
-  BasicInstructionMovVKA(const std::string& variableName, const std::string& arrayName, uint64_t indexValue,
-                         std::shared_ptr<Hardware> hardware);
+  BasicInstructionMovVKA(const std::string &variableName, const std::string &arrayName,
+						 uint64_t indexValue, bool indirectArray,
+						 std::shared_ptr<Hardware> hardware);
   virtual ~BasicInstructionMovVKA() = default;
-  BasicInstructionMovVKA(const BasicInstructionMovVKA& from) = default;
-  BasicInstructionMovVKA& operator=(const BasicInstructionMovVKA& from) = default;
-  BasicInstructionMovVKA(BasicInstructionMovVKA&&) = default;
-  BasicInstructionMovVKA& operator=(BasicInstructionMovVKA&&) = default;
+  BasicInstructionMovVKA(const BasicInstructionMovVKA &from) = default;
+  BasicInstructionMovVKA &operator=(const BasicInstructionMovVKA &from) = default;
+  BasicInstructionMovVKA(BasicInstructionMovVKA &&) = default;
+  BasicInstructionMovVKA &operator=(BasicInstructionMovVKA &&) = default;
 
   virtual void expandToHardwareInstructions();
-  virtual void print(std::ostream& out) const;
+  virtual void print(std::ostream &out) const;
 };
 
 #endif  // BASIC_INSTRUCTION_MOV_VKA_HPP

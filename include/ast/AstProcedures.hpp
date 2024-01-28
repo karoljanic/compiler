@@ -16,15 +16,17 @@ class AstProcedures : public AstNode {
   AstProcedures();
   AstProcedures(std::shared_ptr<AstProcedure> procedure);
   virtual ~AstProcedures() = default;
-  AstProcedures(const AstProcedures& from) = default;
-  AstProcedures& operator=(const AstProcedures& from) = default;
-  AstProcedures(AstProcedures&&) = default;
-  AstProcedures& operator=(AstProcedures&&) = default;
+  AstProcedures(const AstProcedures &from) = default;
+  AstProcedures &operator=(const AstProcedures &from) = default;
+  AstProcedures(AstProcedures &&) = default;
+  AstProcedures &operator=(AstProcedures &&) = default;
 
   void addProcedure(std::shared_ptr<AstProcedure> procedure);
-  const std::vector<std::shared_ptr<AstProcedure>>& getProcedures() const;
+  const std::vector<std::shared_ptr<AstProcedure>> &getProcedures() const;
+  const std::shared_ptr<AstProcedure> &getProcedure(const std::string &name) const;
 
-  void print(std::ostream& out, int tab) const override;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_PROCEDURES_HPP

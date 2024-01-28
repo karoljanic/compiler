@@ -16,15 +16,16 @@ class AstCommands : public AstNode {
   AstCommands();
   AstCommands(std::shared_ptr<AstCommand> command);
   virtual ~AstCommands() = default;
-  AstCommands(const AstCommands& from) = default;
-  AstCommands& operator=(const AstCommands& from) = default;
-  AstCommands(AstCommands&&) = default;
-  AstCommands& operator=(AstCommands&&) = default;
+  AstCommands(const AstCommands &from) = default;
+  AstCommands &operator=(const AstCommands &from) = default;
+  AstCommands(AstCommands &&) = default;
+  AstCommands &operator=(AstCommands &&) = default;
 
   void addCommand(std::shared_ptr<AstCommand> command);
-  const std::vector<std::shared_ptr<AstCommand>>& getCommands();
+  const std::vector<std::shared_ptr<AstCommand>> &getCommands();
 
-  void print(std::ostream& out, int tab) const override;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_COMMANDS_HPP

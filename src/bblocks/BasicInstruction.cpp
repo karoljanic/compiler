@@ -8,6 +8,10 @@ const std::vector<MachineCodeType> &BasicInstruction::getMachineCode() const {
   return machineCode;
 }
 
+size_t BasicInstruction::estimateMachineCodeSize() {
+  return machineCode.size();
+}
+
 void BasicInstruction::expandToHardwareInstructions() {
   machineCode.clear();
 }

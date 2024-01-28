@@ -15,14 +15,15 @@ class AstRead : public AstCommand {
   AstRead();
   AstRead(std::shared_ptr<AstLeftValue> lvalue);
   virtual ~AstRead() = default;
-  AstRead(const AstRead& from) = default;
-  AstRead& operator=(const AstRead& from) = default;
-  AstRead(AstRead&&) = default;
-  AstRead& operator=(AstRead&&) = default;
+  AstRead(const AstRead &from) = default;
+  AstRead &operator=(const AstRead &from) = default;
+  AstRead(AstRead &&) = default;
+  AstRead &operator=(AstRead &&) = default;
 
-  const std::shared_ptr<AstLeftValue>& getLvalue() const;
+  const std::shared_ptr<AstLeftValue> &getLvalue() const;
 
-  virtual void print(std::ostream& out, int tab) const;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  virtual void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_READ_HPP

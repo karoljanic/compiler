@@ -1,0 +1,70 @@
+PROGRAM IS
+  a,b,c,t[10],i
+IN
+    READ a;
+    READ b;
+    READ c;
+
+    i := 0;
+    WHILE i < 10 DO
+        t[i] := i;
+        i := i + 1;
+    ENDWHILE
+
+    IF t[5] > 4 THEN
+        WRITE 1;
+    ENDIF
+
+    IF t[7] > 9 THEN
+        WRITE 2;
+    ELSE
+        WRITE 3;
+    ENDIF
+
+    b:= 7;
+    IF t[b] < 5 THEN
+        WRITE 4;
+    ENDIF
+
+    b:= 1;
+    IF t[b] < 4 THEN
+        WRITE 5;
+    ELSE
+        WRITE 6;
+    ENDIF
+
+    IF t[5] >= 5 THEN
+        WRITE 7;
+    ENDIF
+
+    IF t[2] >= 7 THEN
+        WRITE 8;
+    ELSE
+        WRITE 9;
+    ENDIF
+
+    c:=8;
+    IF t[c] <= 5 THEN
+        WRITE 10;
+    ENDIF
+
+    c:= 5;
+    IF t[c] <= 5 THEN
+        WRITE 11;
+    ELSE
+        WRITE 12;
+    ENDIF
+
+    c := 0;
+    IF 5 != t[c] THEN
+        WRITE 13;
+    ELSE
+        WRITE 14;
+    ENDIF
+
+    IF t[9] = 10 THEN
+        WRITE 15;
+    ELSE
+        WRITE 16;
+    ENDIF
+END

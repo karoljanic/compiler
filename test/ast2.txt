@@ -1,0 +1,40 @@
+PROGRAM
+    PROC check( ArgsDeclaration: (var n, var d, var p, ) )
+        var r
+        ASSIGN var p := num 0
+        ASSIGN var r := var n % var d
+        WHILE var r == num 0 DO
+            ASSIGN var n := var n / var d
+            ASSIGN var p := var p + num 1
+            ASSIGN var r := var n % var d
+        ENDWHILE
+
+    ENDPROC
+    MAIN
+        var n
+        var m
+        var potega
+        var dzielnik
+        READ var n
+        ASSIGN var dzielnik := num 2
+        ASSIGN var m := var dzielnik * var dzielnik
+        WHILE var n >= var m DO
+            CALL check(ArgsList: (var n, var dzielnik, var potega, ))
+            IF var potega > num 0
+            THEN
+                WRITE var dzielnik
+                WRITE var potega
+            ENDIF
+
+            ASSIGN var dzielnik := var dzielnik + num 1
+            ASSIGN var m := var dzielnik * var dzielnik
+        ENDWHILE
+
+        IF var n != num 1
+        THEN
+            WRITE var n
+            WRITE num 1
+        ENDIF
+
+    ENDMAIN
+ENDPROGRAM

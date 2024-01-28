@@ -2,20 +2,28 @@
 
 BasicInstructionMovVKA::BasicInstructionMovVKA() {}
 
-BasicInstructionMovVKA::BasicInstructionMovVKA(const std::string &variableName,
-											   const std::string &arrayName,
-											   uint64_t indexValue,
+BasicInstructionMovVKA::BasicInstructionMovVKA(const std::string &variableName, const std::string &arrayName,
+											   uint64_t indexValue, bool indirectArray,
 											   std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware), rightRegister(variableName), arrayName(arrayName), index(indexValue) {}
+	: BasicInstruction(hardware),
+	  rightRegister(variableName),
+	  arrayName(arrayName),
+	  index(indexValue),
+	  indirectArrayBeginAddress(indirectArray) {}
 
 void BasicInstructionMovVKA::expandToHardwareInstructions() {
   machineCode.clear();
-  const auto &arrayBeginAddress =
-	  Utils::generateNumber(hardware->getArrayAddress(arrayName) + index, rightRegister);
-
+  const auto &temp = hardware->getTempRegister();
+  if (indirectArrayBeginAddress) {
+	const auto &arrayBeginAddress = Utils::generateVNAddition(arrayName, index, temp);
+	machineCode.insert(machineCode.end(), arrayBeginAddress.begin(), arrayBeginAddress.end());
+  } else {
+	const auto &arrayBeginAddress =
+		Utils::generateNumber(hardware->getArrayAddress(arrayName) + index, temp);
+	machineCode.insert(machineCode.end(), arrayBeginAddress.begin(), arrayBeginAddress.end());
+  }
   machineCode.push_back({{}, {HardwareInstruction::GET, rightRegister}});
-  machineCode.insert(machineCode.end(), arrayBeginAddress.begin(), arrayBeginAddress.end());
-  machineCode.push_back({{}, {HardwareInstruction::STORE, rightRegister}});
+  machineCode.push_back({{}, {HardwareInstruction::STORE, temp}});
 }
 
 void BasicInstructionMovVKA::print(std::ostream &out) const {

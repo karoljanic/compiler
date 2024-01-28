@@ -126,6 +126,22 @@ TEST(toMachineCodeConversion, ifElse) {
 #endif
 }
 
+TEST(toMachineCodeConversion, ifElse2) {
+#ifdef CLN
+  compileRunAndCheck("if2", "maszyna-wirtualna-cln");
+#else
+  compileRunAndCheck("if2", "maszyna-wirtualna");
+#endif
+}
+
+TEST(toMachineCodeConversion, ifElse3) {
+#ifdef CLN
+  compileRunAndCheck("if3", "maszyna-wirtualna-cln");
+#else
+  compileRunAndCheck("if3", "maszyna-wirtualna");
+#endif
+}
+
 TEST(toMachineCodeConversion, whileLoop) {
 #ifdef CLN
   compileRunAndCheck("while", "maszyna-wirtualna-cln");
@@ -155,5 +171,21 @@ TEST(toMachineCodeConversion, functionCall2) {
   compileRunAndCheck("fun2", "maszyna-wirtualna-cln");
 #else
   compileRunAndCheck("fun2", "maszyna-wirtualna");
+#endif
+}
+
+TEST(toMachineCodeConversion, functionCall3) {
+#ifdef CLN
+  compileRunAndCheck("fun3", "maszyna-wirtualna-cln");
+#else
+  compileRunAndCheck("fun3", "maszyna-wirtualna");
+#endif
+}
+
+TEST(toMachineCodeConversion, functionCall4) {
+#ifdef CLN
+  compileRunAndCheck("fun4", "maszyna-wirtualna-cln");
+#else
+  compileRunAndCheck("fun4", "maszyna-wirtualna");
 #endif
 }

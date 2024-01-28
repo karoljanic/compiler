@@ -1,21 +1,56 @@
-PROCEDURE fun(a,b) IS
-    x,y,z
+PROCEDURE write(T t, n, T u) IS
+  i,p
 IN
-    WRITE a;
-    WRITE b;
+  WRITE n;
+  i:=0;
+  WHILE i<n DO
+    WRITE t[i];
+    i:=i+1;
+  ENDWHILE
 
-    a := a + 1;
-    b := b + 1;
+  WRITE u[0];
+  WRITE u[1];
+  WRITE u[2];
+  WRITE u[3];
+  WRITE u[4];
+  WRITE u[5];
+  WRITE u[6];
+  WRITE u[7];
+  WRITE u[8];
+  WRITE u[9];
+
+  u[0]:=10;
+  u[1]:=9;
+  u[2]:=8;
+  u[3]:=7;
+  u[4]:=6;
+  u[5]:=5;
+  u[6]:=4;
+  u[7]:=3;
+  u[8]:=2;
+  u[9]:=1;
+
+  i:=0;
+  WHILE i<n DO
+    t[i] := 100 - i;
+    i:=i+1;
+  ENDWHILE
 END
 
 PROGRAM IS
-  a, b, c
+  a, n, i, x[13], tab[10], y[10]
 IN
     READ a;
-    READ b;
+    READ n;
 
-    fun(a,b);
+    i := 0;
+    WHILE i < n DO
+        tab[i] := a;
+        y[i] := i;
+        i := i + 1;
+        a := a + 1;
+    ENDWHILE
 
-    WRITE a;
-    WRITE b;
+    write(tab,n,y);
+    write(tab,n,y);
 END

@@ -1,0 +1,71 @@
+PROGRAM IS
+  a
+IN
+    READ a;
+
+    IF a > 4 THEN
+        WRITE 1;
+    ENDIF
+
+    IF a > 9 THEN
+        WRITE 2;
+    ELSE
+        WRITE 0;
+    ENDIF
+
+    IF a < 5 THEN
+        WRITE 3;
+    ENDIF
+
+    IF a < 4 THEN
+        WRITE 4;
+    ELSE
+        WRITE 0;
+    ENDIF
+
+    IF a >= 5 THEN
+        WRITE 5;
+    ENDIF
+
+    IF a >= 7 THEN
+        WRITE 6;
+    ELSE
+        WRITE 7;
+    ENDIF
+
+    IF a <= 5 THEN
+        WRITE 8;
+    ENDIF
+
+    IF a <= 5 THEN
+        WRITE 0;
+    ELSE
+        WRITE 10;
+    ENDIF
+
+    IF a != 5 THEN
+        WRITE 0;
+    ELSE
+        WRITE 1;
+    ENDIF
+
+    IF a = 5 THEN
+        WRITE a;
+    ELSE
+        WRITE 0;
+    ENDIF
+
+    IF a > 4 THEN
+        IF a > 2 THEN
+            WRITE a;
+        ELSE
+            IF a = 2 THEN
+                WRITE 1;
+            ELSE
+                WRITE 0;
+            ENDIF
+        ENDIF
+    ELSE
+        WRITE 0;
+    ENDIF
+END

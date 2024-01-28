@@ -17,15 +17,16 @@ class AstWhile : public AstCommand {
   AstWhile();
   AstWhile(std::shared_ptr<AstCondition> condition, std::shared_ptr<AstCommands> commands);
   ~AstWhile() override = default;
-  AstWhile(const AstWhile& from) = default;
-  AstWhile& operator=(const AstWhile& from) = default;
-  AstWhile(AstWhile&&) = default;
-  AstWhile& operator=(AstWhile&&) = default;
+  AstWhile(const AstWhile &from) = default;
+  AstWhile &operator=(const AstWhile &from) = default;
+  AstWhile(AstWhile &&) = default;
+  AstWhile &operator=(AstWhile &&) = default;
 
-  const std::shared_ptr<AstCondition>& getCondition() const;
-  const std::shared_ptr<AstCommands>& getCommands() const;
+  const std::shared_ptr<AstCondition> &getCondition() const;
+  const std::shared_ptr<AstCommands> &getCommands() const;
 
-  void print(std::ostream& out, int tab) const override;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_WHILE_HPP

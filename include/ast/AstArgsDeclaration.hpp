@@ -16,15 +16,16 @@ class AstArgsDeclaration : public AstNode {
   AstArgsDeclaration();
   AstArgsDeclaration(std::shared_ptr<AstLeftValue> arg);
   virtual ~AstArgsDeclaration() = default;
-  AstArgsDeclaration(const AstArgsDeclaration& from) = default;
-  AstArgsDeclaration& operator=(const AstArgsDeclaration& from) = default;
-  AstArgsDeclaration(AstArgsDeclaration&&) = default;
-  AstArgsDeclaration& operator=(AstArgsDeclaration&&) = default;
+  AstArgsDeclaration(const AstArgsDeclaration &from) = default;
+  AstArgsDeclaration &operator=(const AstArgsDeclaration &from) = default;
+  AstArgsDeclaration(AstArgsDeclaration &&) = default;
+  AstArgsDeclaration &operator=(AstArgsDeclaration &&) = default;
 
   void addArg(std::shared_ptr<AstLeftValue> arg);
-  const std::vector<std::shared_ptr<AstLeftValue>>& getArgs() const;
+  const std::vector<std::shared_ptr<AstLeftValue>> &getArgs() const;
 
-  virtual void print(std::ostream& out, int tab) const override;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  virtual void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_ARGS_DECLARATION_HPP

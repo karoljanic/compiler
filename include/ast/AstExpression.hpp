@@ -22,16 +22,17 @@ class AstExpression : public AstNode {
   AstExpression(ExpressionType type, std::shared_ptr<AstValue> left);
   AstExpression(ExpressionType type, std::shared_ptr<AstValue> left, std::shared_ptr<AstValue> right);
   virtual ~AstExpression() = default;
-  AstExpression(const AstExpression& from) = default;
-  AstExpression& operator=(const AstExpression& from) = default;
-  AstExpression(AstExpression&&) = default;
-  AstExpression& operator=(AstExpression&&) = default;
+  AstExpression(const AstExpression &from) = default;
+  AstExpression &operator=(const AstExpression &from) = default;
+  AstExpression(AstExpression &&) = default;
+  AstExpression &operator=(AstExpression &&) = default;
 
   ExpressionType getExpressionType() const;
-  const std::shared_ptr<AstValue>& getLeft() const;
-  const std::shared_ptr<AstValue>& getRight() const;
+  const std::shared_ptr<AstValue> &getLeft() const;
+  const std::shared_ptr<AstValue> &getRight() const;
 
-  virtual void print(std::ostream& out, int tab) const;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  virtual void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_EXPRESSION_HPP

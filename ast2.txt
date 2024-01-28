@@ -1,0 +1,44 @@
+PROGRAM
+    PROC pa( ArgsDeclaration: (var a, var b, ) )
+        ASSIGN var a := var a + var b
+        ASSIGN var b := var a - var b
+    ENDPROC
+    PROC pb( ArgsDeclaration: (var a, var b, ) )
+        ASSIGN var a := var a + var b
+        ASSIGN var b := var a - var b
+        ASSIGN var a := var a + var b
+        ASSIGN var b := var a - var b
+    ENDPROC
+    PROC pc( ArgsDeclaration: (var a, var b, ) )
+        ASSIGN var a := var a + var b
+        ASSIGN var b := var a - var b
+        ASSIGN var a := var a + var b
+        ASSIGN var b := var a - var b
+        ASSIGN var a := var a + var b
+        ASSIGN var b := var a - var b
+        ASSIGN var a := var a + var b
+        ASSIGN var b := var a - var b
+        ASSIGN var a := var a + var b
+        ASSIGN var b := var a - var b
+        ASSIGN var a := var a + var b
+        ASSIGN var b := var a - var b
+    ENDPROC
+    PROC pd( ArgsDeclaration: (var a, var b, ) )
+        CALL pc(ArgsList: (var a, var b, ))
+        CALL pc(ArgsList: (var a, var b, ))
+        CALL pc(ArgsList: (var a, var b, ))
+        CALL pc(ArgsList: (var a, var b, ))
+    ENDPROC
+    MAIN
+        var a
+        var b
+        READ var a
+        READ var b
+        CALL pc(ArgsList: (var a, var b, ))
+        CALL pc(ArgsList: (var a, var b, ))
+        CALL pc(ArgsList: (var a, var b, ))
+        CALL pc(ArgsList: (var a, var b, ))
+        WRITE var a
+        WRITE var b
+    ENDMAIN
+ENDPROGRAM

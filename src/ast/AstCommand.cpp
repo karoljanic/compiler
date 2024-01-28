@@ -8,6 +8,10 @@ AstCommand::CommandType AstCommand::getCommandType() const {
   return commandType;
 }
 
-void AstCommand::print(std::ostream& out, int tab) const {
+std::shared_ptr<AstNode> AstCommand::copy(const std::map<std::string, std::string> & /*&rewriteTable*/) const {
+  return std::make_shared<AstCommand>(commandType);
+}
+
+void AstCommand::print(std::ostream &out, int tab) const {
   out << std::string(tab, ' ') << "command";
 }

@@ -1,0 +1,19 @@
+PROCEDURE fun(n, m) IS
+    i
+IN
+  WRITE n;
+  WRITE m;
+  n:=n+1;
+  WRITE n;
+  WRITE m;
+END
+
+PROGRAM IS
+  a,b
+IN
+    READ a;
+    fun(a, a);
+    WRITE a;
+    fun(a, a);
+    WRITE a;
+END

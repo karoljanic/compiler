@@ -7,6 +7,8 @@ Compiler::Compiler() {}
 Compiler::Compiler(std::shared_ptr<AstNode> ast) : ast(ast), hardware(std::make_shared<Hardware>()) {}
 
 void Compiler::generateMachineCode(std::ofstream &outputFile) {
+  convertToFirstControlFlowGraph();
+  pasteProcedures();
   convertToControlFlowGraph();
   optimizeControlFlowGraph();
   expandAndOptimizeBasicInstructions();
@@ -18,6 +20,10 @@ void Compiler::generateMachineCode(std::ofstream &outputFile) {
 
 void Compiler::generateMachineCodeWithDebug(std::ofstream &astFile, std::ofstream &basicBlocksFile,
 											std::ofstream &machineCodeFile, std::ofstream &outputFile) {
+  ast->print(astFile, 0);
+
+  convertToFirstControlFlowGraph();
+  pasteProcedures();
   convertToControlFlowGraph();
   optimizeControlFlowGraph();
   expandAndOptimizeBasicInstructions();
@@ -26,9 +32,7 @@ void Compiler::generateMachineCodeWithDebug(std::ofstream &astFile, std::ofstrea
   findLabels();
   generateOutput(outputFile);
 
-  ast->print(astFile, 0);
   controlFlowGraph.printGraph(basicBlocksFile);
-  //controlFlowGraph.printInstructions(machineCodeFile);
   for (const auto &instruction : machineCodeWithVariablesAndLabels) {
 	for (const auto &label : instruction.getLabels()) {
 	  machineCodeFile << "[[ " << label << " ]]" << std::endl;
@@ -43,27 +47,120 @@ void Compiler::generateMachineCodeWithDebug(std::ofstream &astFile, std::ofstrea
   }
 }
 
+void Compiler::pasteProcedures() {
+  const std::shared_ptr<AstProgram> &program = std::dynamic_pointer_cast<AstProgram>(ast);
+  const std::shared_ptr<AstMain> &main = program->getMain();
+  const std::shared_ptr<AstProcedures> &procedures = program->getProcedures();
+
+  for (auto &procedure : procedures->getProcedures()) {
+	std::shared_ptr<AstDeclarations> newProcedureDeclarations = std::make_shared<AstDeclarations>();
+	std::shared_ptr<AstCommands> newProcedureCommands = std::make_shared<AstCommands>();
+	pasteProceduresUtil(procedure->getDeclarations(), procedure->getCommands(), procedures,
+						newProcedureDeclarations, newProcedureCommands);
+	procedure->setDeclarations(newProcedureDeclarations);
+	procedure->setCommands(newProcedureCommands);
+  }
+
+  std::shared_ptr<AstDeclarations> newMainDeclarations = std::make_shared<AstDeclarations>();
+  std::shared_ptr<AstCommands> newMainCommands = std::make_shared<AstCommands>();
+  pasteProceduresUtil(main->getDeclarations(), main->getCommands(), procedures, newMainDeclarations, newMainCommands);
+  main->setDeclarations(newMainDeclarations);
+  main->setCommands(newMainCommands);
+
+  std::fstream astFile;
+  astFile.open("ast2.txt", std::ios::out);
+  ast->print(astFile, 0);
+}
+
+void Compiler::pasteProceduresUtil(const std::shared_ptr<AstDeclarations> &declarations,
+								   const std::shared_ptr<AstCommands> &commands,
+								   const std::shared_ptr<AstProcedures> &procedures,
+								   std::shared_ptr<AstDeclarations> &newDeclarations,
+								   std::shared_ptr<AstCommands> &newCommands) {
+
+  std::map<std::string, std::string> emptyRewrite;
+  for (const auto &declaration : declarations->getDeclarations()) {
+	newDeclarations->addDeclaration(std::dynamic_pointer_cast<AstLeftValue>(declaration->copy(emptyRewrite)));
+  }
+
+  for (const auto &command : commands->getCommands()) {
+	if (command->getCommandType() == AstCommandType::PROCEDURE_CALL) {
+	  const auto &procedureCall = std::dynamic_pointer_cast<AstProcedureCall>(command);
+	  const auto &procedureName = procedureCall->getName();
+	  const auto &args = procedureCall->getArgsList()->getArgs();
+
+	  std::set<std::string> argsSet;
+	  for (const auto &arg : args) {
+		argsSet.insert(arg->getName());
+	  }
+	  bool areArgsUnique = argsSet.size() == args.size();
+
+	  if (!pasteProcedureEfficiency(procedureName) && areArgsUnique) {
+		newCommands->addCommand(std::dynamic_pointer_cast<AstCommand>(command->copy(emptyRewrite)));
+		usedProcedures.push_back(procedureName);
+		continue;
+	  }
+
+	  // paste procedure
+	  const auto &procedure = procedures->getProcedure(procedureName);
+	  const auto &procedureHeader = procedure->getHeader();
+	  const auto &procedureArgs = procedureHeader->getArgsDeclaration()->getArgs();
+	  const auto &procedureDeclarations = procedure->getDeclarations()->getDeclarations();
+
+	  std::map<std::string, std::string> namesRewrite;
+	  for (size_t i = 0; i < procedureArgs.size(); i++) {
+		namesRewrite[procedureArgs[i]->getName()] = args[i]->getName();
+	  }
+
+	  for (const auto &declaration : procedureDeclarations) {
+		const auto decName = declaration->getName();
+		const auto decNewName = procedureName + "#" + decName;
+		namesRewrite[decName] = decNewName;
+		newDeclarations->addDeclaration(std::dynamic_pointer_cast<AstLeftValue>(declaration->copy(namesRewrite)));
+	  }
+
+	  for (const auto &command : procedure->getCommands()->getCommands()) {
+		newCommands->addCommand(std::dynamic_pointer_cast<AstCommand>(command->copy(namesRewrite)));
+	  }
+	} else {
+	  newCommands->addCommand(std::dynamic_pointer_cast<AstCommand>(command->copy(emptyRewrite)));
+	}
+  }
+}
+
+void Compiler::convertToFirstControlFlowGraph() {
+  const std::shared_ptr<AstProgram> program = std::dynamic_pointer_cast<AstProgram>(ast);
+  const std::shared_ptr<AstProcedures> &procedures = program->getProcedures();
+
+  for (const auto &procedure : procedures->getProcedures()) {
+	currProcedureArgs.clear();
+	std::pair<std::string, std::vector<ControlFlowGraphNode>> blockInstructions;
+	parseAstProcedure(procedure, blockInstructions);
+	currProcedureArgs.clear();
+	firstControlFlowGraph.addSubgraph(blockInstructions.first, blockInstructions.second);
+  }
+
+  firstControlFlowGraph.expandInstructions();
+
+  hardware = std::make_shared<Hardware>();
+  scopes = std::stack<std::string>();
+  translationTable = std::map<std::string, std::string>();
+  parentsIds = std::vector<uint64_t>();
+  currLabels = std::map < uint64_t, std::vector < std::string >> ();
+  currProcedureArgs = std::vector<std::string>();
+//  proceduresArgs = std::map < std::string, std::vector < std::string >> ();
+}
+
 void Compiler::convertToControlFlowGraph() {
   const std::shared_ptr<AstProgram> program = std::dynamic_pointer_cast<AstProgram>(ast);
   const std::shared_ptr<AstMain> &main = program->getMain();
   const std::shared_ptr<AstProcedures> &procedures = program->getProcedures();
 
   for (const auto &procedure : procedures->getProcedures()) {
-	const auto procedureName = procedure->getHeader()->getName();
-	const auto procedureArgs = procedure->getHeader()->getArgsDeclaration()->getArgs();
-	std::vector<std::string> args;
-	for (const auto &arg : procedureArgs) {
-	  if (arg->getNodeType() == AstNodeType::VARIABLE) {
-		const auto varName = std::dynamic_pointer_cast<AstVariable>(arg)->getName();
-		args.push_back(hardware->getGlobalLabel(procedureName, varName));
-	  }
-	}
-	functions[procedureName] = args;
-  }
-
-  for (const auto &procedure : procedures->getProcedures()) {
+	currProcedureArgs.clear();
 	std::pair<std::string, std::vector<ControlFlowGraphNode>> blockInstructions;
 	parseAstProcedure(procedure, blockInstructions);
+	currProcedureArgs.clear();
 	controlFlowGraph.addSubgraph(blockInstructions.first, blockInstructions.second);
   }
 
@@ -86,7 +183,6 @@ void Compiler::convertToControlFlowGraph() {
 	if (subgraphName == "main") {
 	  continue;
 	}
-
 	for (auto &node : controlFlowGraph.getNodes(subgraphName)) {
 	  if (currLabels.find(node.getId()) != currLabels.end()) {
 		for (const auto &label : currLabels[node.getId()]) {
@@ -114,6 +210,9 @@ void Compiler::expandAndOptimizeBasicInstructions() {
 	if (subgraphName == "main") {
 	  continue;
 	}
+	if (std::find(usedProcedures.begin(), usedProcedures.end(), subgraphName) == usedProcedures.end()) {
+	  continue;
+	}
 	const auto functionCode = controlFlowGraph.getNodes(subgraphName);
 	machineCodeWithVariablesAndLabels.insert(machineCodeWithVariablesAndLabels.end(), functionCode.begin(),
 											 functionCode.end());
@@ -136,13 +235,6 @@ void Compiler::findRegisters() {
   const auto &definedVariables = controlFlowGraph.getDefinedVariables();
   const auto &usedVariables = controlFlowGraph.getUsedVariables();
 
-//  for (const auto &var : definedVariables) {
-//	std::cout << "def " << var.first << " " << var.second << std::endl;
-//  }
-//  for (const auto &var : usedVariables) {
-//	std::cout << "use " << var.first << " " << var.second << std::endl;
-//  }
-
   registersLinearScan = RegistersLinearScan{hardware};
   for (const auto &var : definedVariables) {
 	registersLinearScan.addVariableUsageInfo(var.second, var.first, UsageType::LVAL);
@@ -161,35 +253,9 @@ void Compiler::findRegisters() {
 
 	if (node.getInstruction()->getMachineCode().size() == 1
 		&& node.getInstruction()->getMachineCode()[0].second.first == HardwareInstruction::SAVE_STATE) {
-
-//	  const std::vector<HardwareRegister> regs{RB, RC, RD, RE, RF, RG, RH};
-//	  size_t counter = static_cast<size_t>(std::stoi(node.getInstruction()->getMachineCode()[0].second.second));
-//	  for (size_t i = 0; i < regs.size(); i++) {
-//		const auto regName = Hardware::registerMap[regs[i]].name;
-//		const auto genAddr = Utils::generateNumber(counter + i, regName);
-//		machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::GET, regName)});
-////		machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::WRITE, "")});
-//		machineCodeWithLabels.insert(machineCodeWithLabels.end(), genAddr.begin(), genAddr.end());
-//		machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::STORE, regName)});
-//		machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::PUT, regName)});
-////		machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::WRITE, "")});
-//		std::cout << "SAVE: " << regName << " " << counter + i << " " << node.getId() << std::endl;
-//	  }
 	  continue;
 	} else if (node.getInstruction()->getMachineCode().size() == 1
 		&& node.getInstruction()->getMachineCode()[0].second.first == HardwareInstruction::RESTORE_STATE) {
-
-//	  const std::vector<HardwareRegister> regs{RB, RC, RD, RE, RF, RG, RH};
-//	  size_t counter = static_cast<size_t>(std::stoi(node.getInstruction()->getMachineCode()[0].second.second));
-//	  for (size_t i = 0; i < regs.size(); i++) {
-//		const auto regName = Hardware::registerMap[regs[i]].name;
-//		const auto genAddr = Utils::generateNumber(counter + i, regName);
-//		machineCodeWithLabels.insert(machineCodeWithLabels.end(), genAddr.begin(), genAddr.end());
-//		machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::LOAD, regName)});
-//		machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::PUT, regName)});
-////		machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::WRITE, "")});
-//		std::cout << "RESTORE: " << regName << " " << counter + i << " " << node.getId() << std::endl;
-//	  }
 	  continue;
 	}
 
@@ -261,6 +327,10 @@ void Compiler::findLabels() {
 	lineCounter++;
   }
 
+  for (const auto &label : labels) {
+	std::cout << label.first << " " << label.second << std::endl;
+  }
+
   for (auto &instruction : machineCode) {
 	if (labels.find(instruction.second) != labels.end()) {
 	  instruction.second = std::to_string(labels[instruction.second]);
@@ -323,7 +393,6 @@ void Compiler::parseAstProcedure(std::shared_ptr<AstProcedure> node,
   }
 
   const auto functionRecordAddress = hardware->getFunctionRecordAddress(procedureName);
-  std::cout << "FUN RECORD: " << procedureName << ": " << functionRecordAddress << std::endl;
   const auto &functionBeginLabel = hardware->getGlobalLabel(procedureName, "begin#");
   const auto returnAddress = hardware->getTempRegister();
 
@@ -388,8 +457,11 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 		  parentsIds = {readNode.getId()};
 
 		  ControlFlowGraphNode moveNode;
-		  moveNode.setInstruction(std::make_shared<BasicInstructionMovVKA>(temp, translationTable[arr->getName()],
-																		   arrIndexNum->getValue(), hardware));
+		  moveNode.setInstruction(std::make_shared<BasicInstructionMovVKA>(temp,
+																		   translationTable[arr->getName()],
+																		   arrIndexNum->getValue(),
+																		   isProcedureArgument(translationTable[arr->getName()]),
+																		   hardware));
 		  moveNode.addPredecessors(parentsIds);
 		  instructions.push_back(moveNode);
 		  parentsIds = {moveNode.getId()};
@@ -407,6 +479,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 		  moveNode.setInstruction(std::make_shared<BasicInstructionMovVA>(temp,
 																		  translationTable[arr->getName()],
 																		  translationTable[arrIndexVar->getName()],
+																		  isProcedureArgument(translationTable[arr->getName()]),
 																		  hardware));
 		  moveNode.addPredecessors(parentsIds);
 		  instructions.push_back(moveNode);
@@ -452,6 +525,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 		  moveNode.setInstruction(std::make_shared<BasicInstructionMovKAV>(translationTable[arr->getName()],
 																		   arrIndexNum->getValue(),
 																		   temp,
+																		   isProcedureArgument(translationTable[arr->getName()]),
 																		   hardware));
 		  moveNode.addPredecessors(parentsIds);
 		  instructions.push_back(moveNode);
@@ -470,6 +544,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 		  moveNode.setInstruction(std::make_shared<BasicInstructionMovAV>(translationTable[arr->getName()],
 																		  translationTable[arrIndexVar->getName()],
 																		  temp,
+																		  isProcedureArgument(translationTable[arr->getName()]),
 																		  hardware));
 		  moveNode.addPredecessors(parentsIds);
 		  instructions.push_back(moveNode);
@@ -513,13 +588,13 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 			tmpMoveNode.setInstruction(std::make_shared<BasicInstructionMovKAV>(
 				translationTable[newArr->getName()],
 				std::dynamic_pointer_cast<AstNumber>(newArrIndex)->getValue(),
-				tempResult,
+				tempResult, isProcedureArgument(translationTable[newArr->getName()]),
 				hardware));
 		  } else {
 			tmpMoveNode.setInstruction(std::make_shared<BasicInstructionMovAV>(
 				translationTable[newArr->getName()],
 				translationTable[std::dynamic_pointer_cast<AstVariable>(newArrIndex)->getName()],
-				tempResult,
+				tempResult, isProcedureArgument(translationTable[newArr->getName()]),
 				hardware));
 		  }
 		}
@@ -540,6 +615,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 			resultMoveNode.setInstruction(std::make_shared<BasicInstructionMovVKA>(tempResult,
 																				   translationTable[arr->getName()],
 																				   arrIndexNum->getValue(),
+																				   isProcedureArgument(translationTable[arr->getName()]),
 																				   hardware));
 		  } else {
 			const auto &arrIndexVar = std::dynamic_pointer_cast<AstVariable>(arrIndex);
@@ -547,6 +623,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 			resultMoveNode.setInstruction(std::make_shared<BasicInstructionMovVA>(tempResult,
 																				  translationTable[arr->getName()],
 																				  translationTable[arrIndexVar->getName()],
+																				  isProcedureArgument(translationTable[arr->getName()]),
 																				  hardware));
 		  }
 		}
@@ -625,6 +702,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 			  rightMoveNode.setInstruction(std::make_shared<BasicInstructionMovKAV>(translationTable[rightArr->getName()],
 																					rightArrIndexNum->getValue(),
 																					rightTemp,
+																					isProcedureArgument(translationTable[rightArr->getName()]),
 																					hardware));
 			} else {
 			  const auto &rightArrIndexVar = std::dynamic_pointer_cast<AstVariable>(rightArrIndex);
@@ -632,7 +710,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 			  rightMoveNode.setInstruction(std::make_shared<BasicInstructionMovAV>(
 				  translationTable[rightArr->getName()],
 				  translationTable[rightArrIndexVar->getName()],
-				  rightTemp,
+				  rightTemp, isProcedureArgument(translationTable[rightArr->getName()]),
 				  hardware));
 			}
 
@@ -674,6 +752,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 			  leftMoveNode.setInstruction(std::make_shared<BasicInstructionMovKAV>(translationTable[leftArr->getName()],
 																				   leftArrIndexNum->getValue(),
 																				   leftTemp,
+																				   isProcedureArgument(translationTable[leftArr->getName()]),
 																				   hardware));
 			} else {
 			  const auto &leftArrIndexVar = std::dynamic_pointer_cast<AstVariable>(leftArrIndex);
@@ -681,7 +760,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 			  leftMoveNode.setInstruction(std::make_shared<BasicInstructionMovAV>(
 				  translationTable[leftArr->getName()],
 				  translationTable[leftArrIndexVar->getName()],
-				  leftTemp,
+				  leftTemp, isProcedureArgument(translationTable[leftArr->getName()]),
 				  hardware));
 			}
 
@@ -716,6 +795,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 			  leftMoveNode.setInstruction(std::make_shared<BasicInstructionMovKAV>(translationTable[leftArr->getName()],
 																				   leftArrIndexNum->getValue(),
 																				   leftTemp,
+																				   isProcedureArgument(translationTable[leftArr->getName()]),
 																				   hardware));
 			} else {
 			  const auto &leftArrIndexVar = std::dynamic_pointer_cast<AstVariable>(leftArrIndex);
@@ -723,7 +803,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 			  leftMoveNode.setInstruction(std::make_shared<BasicInstructionMovAV>(
 				  translationTable[leftArr->getName()],
 				  translationTable[leftArrIndexVar->getName()],
-				  leftTemp,
+				  leftTemp, isProcedureArgument(translationTable[leftArr->getName()]),
 				  hardware));
 			}
 		  }
@@ -749,6 +829,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 			  rightMoveNode.setInstruction(std::make_shared<BasicInstructionMovKAV>(translationTable[rightArr->getName()],
 																					rightArrIndexNum->getValue(),
 																					rightTemp,
+																					isProcedureArgument(translationTable[rightArr->getName()]),
 																					hardware));
 			} else {
 			  const auto &rightArrIndexVar = std::dynamic_pointer_cast<AstVariable>(rightArrIndex);
@@ -756,7 +837,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 			  rightMoveNode.setInstruction(std::make_shared<BasicInstructionMovAV>(
 				  translationTable[rightArr->getName()],
 				  translationTable[rightArrIndexVar->getName()],
-				  rightTemp,
+				  rightTemp, isProcedureArgument(translationTable[rightArr->getName()]),
 				  hardware));
 			}
 		  }
@@ -792,6 +873,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 			resultMoveNode.setInstruction(std::make_shared<BasicInstructionMovVKA>(tempResult,
 																				   translationTable[arr->getName()],
 																				   arrIndexNum->getValue(),
+																				   isProcedureArgument(translationTable[arr->getName()]),
 																				   hardware));
 		  } else {
 			const auto &arrIndexVar = std::dynamic_pointer_cast<AstVariable>(arrIndex);
@@ -799,6 +881,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 			resultMoveNode.setInstruction(std::make_shared<BasicInstructionMovVA>(tempResult,
 																				  translationTable[arr->getName()],
 																				  translationTable[arrIndexVar->getName()],
+																				  isProcedureArgument(translationTable[arr->getName()]),
 																				  hardware));
 		  }
 		}
@@ -821,15 +904,15 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 	  auto commandsInstructions = std::vector<ControlFlowGraphNode>();
 	  auto elseCommandsInstructions = std::vector<ControlFlowGraphNode>();
 
-	  ControlFlowGraphNode condNode = parseAstCondition(condition, elseifLabel);
-	  condNode.addPredecessors(parentsIds);
-	  parentsIds = {condNode.getId()};
+	  auto condNodes = parseAstCondition(condition, elseifLabel);
+	  condNodes.front().addPredecessors(parentsIds);
+	  parentsIds = {condNodes.back().getId()};
 
 	  for (size_t index = 0; index < commands.size(); index++) {
 		parseAstCommand(commands[index], commandsInstructions);
 	  }
 
-	  instructions.push_back(condNode);
+	  instructions.insert(instructions.end(), condNodes.begin(), condNodes.end());
 	  instructions.insert(instructions.end(), commandsInstructions.begin(), commandsInstructions.end());
 
 	  if (elseCommands.empty()) {
@@ -840,7 +923,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 		  currLabels[elseIfLabelId].push_back(elseifLabel);
 		}
 
-		parentsIds = {condNode.getId(), instructions.back().getId()};
+		parentsIds = {condNodes.back().getId(), instructions.back().getId()};
 	  } else {
 		ControlFlowGraphNode jumpEndNode;
 		jumpEndNode.setInstruction(std::make_shared<BasicInstructionJump>(endifLabel, hardware));
@@ -853,7 +936,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 		  currLabels[elseIfLabelId].push_back(elseifLabel);
 		}
 
-		parentsIds = {condNode.getId()};
+		parentsIds = {condNodes.back().getId()};
 
 		for (size_t index = 0; index < elseCommands.size(); index++) {
 		  parseAstCommand(elseCommands[index], elseCommandsInstructions);
@@ -882,10 +965,10 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 
 	  auto commandsInstructions = std::vector<ControlFlowGraphNode>();
 
-	  ControlFlowGraphNode condNode = parseAstCondition(condition, endLabel);
-	  condNode.addPredecessors(parentsIds);
+	  auto condNodes = parseAstCondition(condition, endLabel);
+	  condNodes.front().addPredecessors(parentsIds);
 
-	  parentsIds = {condNode.getId()};
+	  parentsIds = {condNodes.back().getId()};
 
 	  for (size_t index = 0; index < commands.size(); index++) {
 		parseAstCommand(commands[index], commandsInstructions);
@@ -895,13 +978,13 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 	  jumpNode.setInstruction(std::make_shared<BasicInstructionJump>(beginLabel, hardware));
 	  jumpNode.addPredecessors({commandsInstructions.back().getId()});
 
-	  condNode.addPredecessors({jumpNode.getId()});
+	  condNodes.front().addPredecessors({jumpNode.getId()});
 
-	  instructions.push_back(condNode);
+	  instructions.insert(instructions.end(), condNodes.begin(), condNodes.end());
 	  instructions.insert(instructions.end(), commandsInstructions.begin(), commandsInstructions.end());
 	  instructions.push_back(jumpNode);
 
-	  uint64_t beginLabelId = condNode.getId();
+	  uint64_t beginLabelId = condNodes.front().getId();
 	  if (currLabels.find(beginLabelId) == currLabels.end()) {
 		currLabels[beginLabelId] = {beginLabel};
 	  } else {
@@ -915,7 +998,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 		currLabels[endLabelId].push_back(endLabel);
 	  }
 
-	  parentsIds = {condNode.getId(), jumpNode.getId()};
+	  parentsIds = {condNodes.front().getId(), jumpNode.getId()};
 	  break;
 	}
 	case AstCommandType::REPEAT: {
@@ -930,13 +1013,13 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 		parseAstCommand(commands[index], commandsInstructions);
 	  }
 
-	  ControlFlowGraphNode condNode = parseAstCondition(condition, repeatLabel);
-	  condNode.addPredecessors(parentsIds);
+	  auto condNodes = parseAstCondition(condition, repeatLabel);
+	  condNodes.front().addPredecessors(parentsIds);
 
-	  commandsInstructions.front().addPredecessors({condNode.getId()});
+	  commandsInstructions.front().addPredecessors({condNodes.back().getId()});
 
 	  instructions.insert(instructions.end(), commandsInstructions.begin(), commandsInstructions.end());
-	  instructions.push_back(condNode);
+	  instructions.insert(instructions.end(), condNodes.begin(), condNodes.end());
 
 	  uint64_t repeatLabelId = commandsInstructions.front().getId();
 	  if (currLabels.find(repeatLabelId) == currLabels.end()) {
@@ -945,7 +1028,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 		currLabels[repeatLabelId].push_back(repeatLabel);
 	  }
 
-	  parentsIds = {condNode.getId()};
+	  parentsIds = {condNodes.back().getId()};
 	  break;
 	}
 	case AstCommandType::PROCEDURE_CALL: {
@@ -955,19 +1038,31 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 
 	  auto argNames = std::vector<std::string>();
 	  for (auto arg : args) {
-		const auto &var = std::dynamic_pointer_cast<AstVariable>(arg);
-		argNames.emplace_back(translationTable[var->getName()]);
+		if (arg->getNodeType() == AstNodeType::VARIABLE) {
+		  const auto &var = std::dynamic_pointer_cast<AstVariable>(arg);
+		  argNames.emplace_back(translationTable[var->getName()]);
+		} else {
+		  const auto &arr = std::dynamic_pointer_cast<AstArray>(arg);
+
+		  if (isProcedureArgument(translationTable[arr->getName()])) {
+			argNames.emplace_back(translationTable[arr->getName()]);
+		  } else {
+			const auto arrBeginTemp = hardware->getTempRegister();
+			const auto arrBeginNumber = hardware->getArrayAddress(translationTable[arr->getName()]);
+			argNames.emplace_back(arrBeginTemp);
+
+			ControlFlowGraphNode moveAddrNode;
+			moveAddrNode.setInstruction(std::make_shared<BasicInstructionMovNV>(arrBeginNumber,
+																				arrBeginTemp,
+																				hardware));
+			moveAddrNode.addPredecessors(parentsIds);
+			instructions.push_back(moveAddrNode);
+			parentsIds = {moveAddrNode.getId()};
+		  }
+		}
 	  }
 
-	  const auto stateAddress = hardware->allocateStateRecord(Hardware::registersNumber);
 	  const auto functionRecordAddress = hardware->getFunctionRecordAddress(procedureName);
-	  std::cout << "FUN RECORD: " << procedureName << ": " << functionRecordAddress << std::endl;
-
-	  ControlFlowGraphNode saveStateNode;
-	  saveStateNode.setInstruction(std::make_shared<BasicInstructionSaveState>(stateAddress, hardware));
-	  saveStateNode.addPredecessors(parentsIds);
-	  instructions.push_back(saveStateNode);
-	  parentsIds = {saveStateNode.getId()};
 
 	  ControlFlowGraphNode pushArgsNode;
 	  pushArgsNode.setInstruction(std::make_shared<BasicInstructionPush>(functionRecordAddress, argNames, hardware));
@@ -975,6 +1070,8 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 	  instructions.push_back(pushArgsNode);
 	  parentsIds = {pushArgsNode.getId()};
 
+	  usedProcedures.push_back(procedureName);
+	  procedureCallsInProcedure[scopes.top()].push_back(procedureName);
 	  ControlFlowGraphNode jumpNode;
 	  jumpNode.setInstruction(std::make_shared<BasicInstructionJumpFun>(procedureName,
 																		functionRecordAddress + args.size(),
@@ -983,12 +1080,6 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 	  instructions.push_back(jumpNode);
 	  parentsIds = {jumpNode.getId()};
 
-	  ControlFlowGraphNode restoreStateNode;
-	  restoreStateNode.setInstruction(std::make_shared<BasicInstructionRestoreState>(stateAddress, hardware));
-	  restoreStateNode.addPredecessors(parentsIds);
-	  instructions.push_back(restoreStateNode);
-	  parentsIds = {restoreStateNode.getId()};
-
 	  std::string unused = Hardware::registerMap[RA].name;
 	  ControlFlowGraphNode popArgsNode;
 	  popArgsNode.setInstruction(std::make_shared<BasicInstructionPop>(functionRecordAddress, argNames,
@@ -996,6 +1087,7 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 	  popArgsNode.addPredecessors(parentsIds);
 	  instructions.push_back(popArgsNode);
 	  parentsIds = {popArgsNode.getId()};
+
 	  break;
 	}
 	case AstCommandType::UNDEFINED: {
@@ -1018,16 +1110,20 @@ void Compiler::parseAstDeclarations(std::shared_ptr<AstDeclarations> node) {
 }
 
 void Compiler::parseAstProcedureHeader(std::shared_ptr<AstProcedureHeader> node) {
+  currProcedureArgs.clear();
   for (auto arg : node->getArgsDeclaration()->getArgs()) {
 	const auto &name = arg->getName();
 	translationTable[name] = hardware->getGlobalLabel(scopes.top(), name);
+	currProcedureArgs.push_back(translationTable[name]);
   }
+  proceduresArgs[node->getName()] = currProcedureArgs;
 
   size_t recordSize = node->getArgsDeclaration()->getArgs().size() + 1;
   hardware->allocateFunctionRecord(scopes.top(), recordSize);
 }
 
-ControlFlowGraphNode Compiler::parseAstCondition(std::shared_ptr<AstCondition> node, const std::string &jumpLabel) {
+std::vector<ControlFlowGraphNode> Compiler::parseAstCondition(std::shared_ptr<AstCondition> node,
+															  const std::string &jumpLabel) {
   std::shared_ptr<AstValue> left;
   std::shared_ptr<AstValue> right;
   BasicInstructionConditionType jumpCondition;
@@ -1071,46 +1167,132 @@ ControlFlowGraphNode Compiler::parseAstCondition(std::shared_ptr<AstCondition> n
 	}
   }
 
-  ControlFlowGraphNode result;
+  std::vector<ControlFlowGraphNode> result;
 
   if (left->getNodeType() == AstNodeType::NUMBER && right->getNodeType() == AstNodeType::NUMBER) {
 	const auto &leftNum = std::dynamic_pointer_cast<AstNumber>(left);
 	const auto &rightNum = std::dynamic_pointer_cast<AstNumber>(right);
 
-	result.setInstruction(std::make_shared<BasicInstructionCondJumpNN>(leftNum->getValue(),
-																	   rightNum->getValue(),
-																	   jumpCondition,
-																	   jumpLabel,
-																	   hardware));
+	ControlFlowGraphNode condNode;
+	condNode.setInstruction(std::make_shared<BasicInstructionCondJumpNN>(leftNum->getValue(),
+																		 rightNum->getValue(),
+																		 jumpCondition,
+																		 jumpLabel,
+																		 hardware));
+	result.push_back(condNode);
   } else if (left->getNodeType() == AstNodeType::NUMBER) {
 	const auto &leftNum = std::dynamic_pointer_cast<AstNumber>(left);
-	const auto &rightVar = std::dynamic_pointer_cast<AstVariable>(right);
+	const auto rightTmp = hardware->getTempRegister();
+	auto moveNode = parseMoveLvalueToVariable(std::dynamic_pointer_cast<AstLeftValue>(right), rightTmp);
 
-	result.setInstruction(std::make_shared<BasicInstructionCondJumpNV>(leftNum->getValue(),
-																	   translationTable[rightVar->getName()],
-																	   jumpCondition,
-																	   jumpLabel,
-																	   hardware));
+	ControlFlowGraphNode condNode;
+	condNode.setInstruction(std::make_shared<BasicInstructionCondJumpNV>(leftNum->getValue(),
+																		 rightTmp,
+																		 jumpCondition,
+																		 jumpLabel,
+																		 hardware));
+	result.push_back(moveNode);
+	condNode.addPredecessors({moveNode.getId()});
+	result.push_back(condNode);
   } else if (right->getNodeType() == AstNodeType::NUMBER) {
-	const auto &leftVar = std::dynamic_pointer_cast<AstVariable>(left);
+	const auto leftTmp = hardware->getTempRegister();
+	auto moveNode = parseMoveLvalueToVariable(std::dynamic_pointer_cast<AstLeftValue>(left), leftTmp);
 	const auto &rightNum = std::dynamic_pointer_cast<AstNumber>(right);
 
-	result.setInstruction(std::make_shared<BasicInstructionCondJumpVN>(translationTable[leftVar->getName()],
-																	   rightNum->getValue(),
-																	   jumpCondition,
-																	   jumpLabel,
-																	   hardware));
+	ControlFlowGraphNode condNode;
+	condNode.setInstruction(std::make_shared<BasicInstructionCondJumpVN>(leftTmp,
+																		 rightNum->getValue(),
+																		 jumpCondition,
+																		 jumpLabel,
+																		 hardware));
+	result.push_back(moveNode);
+	condNode.addPredecessors({moveNode.getId()});
+	result.push_back(condNode);
   } else {
-	const auto &leftVar = std::dynamic_pointer_cast<AstVariable>(left);
-	const auto &rightVar = std::dynamic_pointer_cast<AstVariable>(right);
+	const auto leftTmp = hardware->getTempRegister();
+	auto moveLeftNode = parseMoveLvalueToVariable(std::dynamic_pointer_cast<AstLeftValue>(left), leftTmp);
+	const auto rightTmp = hardware->getTempRegister();
+	auto moveRightNode = parseMoveLvalueToVariable(std::dynamic_pointer_cast<AstLeftValue>(right), rightTmp);
 
-	result.setInstruction(std::make_shared<BasicInstructionCondJumpVV>(
-		translationTable[leftVar->getName()],
-		translationTable[rightVar->getName()],
+	ControlFlowGraphNode condNode;
+	condNode.setInstruction(std::make_shared<BasicInstructionCondJumpVV>(
+		leftTmp,
+		rightTmp,
 		jumpCondition,
 		jumpLabel,
 		hardware));
+
+	result.push_back(moveLeftNode);
+	moveRightNode.addPredecessors({moveLeftNode.getId()});
+	result.push_back(moveRightNode);
+	condNode.addPredecessors({moveRightNode.getId()});
+	result.push_back(condNode);
   }
 
   return result;
+}
+
+ControlFlowGraphNode Compiler::parseMoveLvalueToVariable(std::shared_ptr<AstLeftValue> lvalue,
+														 std::string variableName) {
+  if (lvalue->getNodeType() == AstNodeType::VARIABLE) {
+	const auto &var = std::dynamic_pointer_cast<AstVariable>(lvalue);
+	ControlFlowGraphNode moveNode;
+	moveNode.setInstruction(std::make_shared<BasicInstructionMovVV>(translationTable[var->getName()],
+																	variableName, hardware));
+	return moveNode;
+  }
+
+  const auto &arr = std::dynamic_pointer_cast<AstArray>(lvalue);
+  const auto &arrIndex = arr->getArgument();
+  if (arrIndex->getNodeType() == AstNodeType::NUMBER) {
+	const auto arrIndexNum = std::dynamic_pointer_cast<AstNumber>(arrIndex);
+	ControlFlowGraphNode moveNode;
+	moveNode.setInstruction(std::make_shared<BasicInstructionMovKAV>(translationTable[arr->getName()],
+																	 arrIndexNum->getValue(),
+																	 variableName,
+																	 isProcedureArgument(translationTable[arr->getName()]),
+																	 hardware));
+	return moveNode;
+  }
+
+  const auto &arrIndexVar = std::dynamic_pointer_cast<AstVariable>(arrIndex);
+  ControlFlowGraphNode moveNode;
+  moveNode.setInstruction(std::make_shared<BasicInstructionMovAV>(translationTable[arr->getName()],
+																  translationTable[arrIndexVar->getName()],
+																  variableName,
+																  isProcedureArgument(translationTable[arr->getName()]),
+																  hardware));
+  return moveNode;
+}
+
+bool Compiler::isProcedureArgument(const std::string &name) {
+  return std::find(currProcedureArgs.begin(), currProcedureArgs.end(), name) != currProcedureArgs.end();
+}
+
+bool Compiler::pasteProcedureEfficiency(const std::string &name) {
+  size_t functionEstimatedSize{0};
+
+  std::stack<std::string> usedProceduresInProcedure;
+  usedProceduresInProcedure.push(name);
+  while (!usedProceduresInProcedure.empty()) {
+	auto proc = usedProceduresInProcedure.top();
+	usedProceduresInProcedure.pop();
+
+	for (const auto &node : firstControlFlowGraph.getNodes(proc)) {
+	  functionEstimatedSize += node.getInstruction()->estimateMachineCodeSize();
+	}
+
+	if (procedureCallsInProcedure.find(proc) != procedureCallsInProcedure.end()) {
+	  for (auto call : procedureCallsInProcedure[proc]) {
+		usedProceduresInProcedure.push(call);
+	  }
+	}
+  }
+  std::cout << "ESTIMATED SIZE " << name << ": " << functionEstimatedSize << std::endl;
+  if(AstProcedureCall::getFunctionCallsCounter().at(name) == 1) {
+	std::cout << "FAST PASTE " << name << std::endl;
+	return true;
+  }
+  return functionEstimatedSize <= 200 * (proceduresArgs[name].size());
+//  return false;
 }

@@ -9,15 +9,15 @@ class BasicInstructionRead : public BasicInstruction {
 
  public:
   BasicInstructionRead();
-  BasicInstructionRead(const std::string& variableName, std::shared_ptr<Hardware> hardware);
+  BasicInstructionRead(const std::string &variableName, std::shared_ptr<Hardware> hardware);
   virtual ~BasicInstructionRead() = default;
-  BasicInstructionRead(const BasicInstructionRead& from) = default;
-  BasicInstructionRead& operator=(const BasicInstructionRead& from) = default;
-  BasicInstructionRead(BasicInstructionRead&&) = default;
-  BasicInstructionRead& operator=(BasicInstructionRead&&) = default;
+  BasicInstructionRead(const BasicInstructionRead &from) = default;
+  BasicInstructionRead &operator=(const BasicInstructionRead &from) = default;
+  BasicInstructionRead(BasicInstructionRead &&) = default;
+  BasicInstructionRead &operator=(BasicInstructionRead &&) = default;
 
   virtual void expandToHardwareInstructions();
-  virtual void print(std::ostream& out) const;
+  virtual void print(std::ostream &out) const;
 };
 
 #endif  // BASIC_INSTRUCTION_READ_HPP

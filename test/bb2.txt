@@ -6,35 +6,38 @@ SHL main@dzielnik
 GET main@dzielnik
 PUT main@dzielnik
 GET main@dzielnik
-PUT temp#8
-GET main@dzielnik
 PUT temp#9
+GET main@dzielnik
+PUT temp#10
 RST main@m
-GET temp#8
-JZERO mul@end#@18
-PUT temp#17
 GET temp#9
-PUT temp#18
-GET temp#18 [mul@begin#@16 0] 
 JZERO mul@end#@18
-SHR temp#18
-SHL temp#18
-SUB temp#18
+PUT temp#22
+GET temp#10
+PUT temp#23
+GET temp#23 [mul@begin#@16 0] 
+JZERO mul@end#@18
+SHR temp#23
+SHL temp#23
+SUB temp#23
 JZERO mul@even#@17
 GET main@m
-ADD temp#17
+ADD temp#22
 PUT main@m
-SHL temp#17 [mul@even#@17 0] 
-SHR temp#18
+SHL temp#22 [mul@even#@17 0] 
+SHR temp#23
 JUMP mul@begin#@16 [mul@end#@18 1] 
 GET main@m
 PUT main@m
 [[ main@beginwhile#@3 ]]
+GET main@n
+PUT temp#11
 GET main@m
-SUB main@n
+PUT temp#12
+GET temp#12
+SUB temp#11
 PUT a
 JPOS main@endwhilejump#@4
- 4
 GET main@n
 RST main@n
 STORE main@n
@@ -57,7 +60,6 @@ INC b
 STRK a
 STORE b
 JUMP check@begin#
- 4
 RST main@n
 LOAD main@n
 PUT main@n
@@ -77,6 +79,8 @@ INC a
 LOAD a
 PUT a
 GET main@potega
+PUT temp#13
+GET temp#13
 PUT a
 JZERO main@ifelse#@5
 GET main@dzielnik
@@ -90,46 +94,48 @@ INC main@dzielnik
 GET main@dzielnik
 PUT main@dzielnik
 GET main@dzielnik
-PUT temp#10
+PUT temp#14
 GET main@dzielnik
-PUT temp#11
+PUT temp#15
 RST main@m
-GET temp#10
+GET temp#14
 JZERO mul@end#@21
-PUT temp#19
-GET temp#11
-PUT temp#20
-GET temp#20 [mul@begin#@19 0] 
+PUT temp#24
+GET temp#15
+PUT temp#25
+GET temp#25 [mul@begin#@19 0] 
 JZERO mul@end#@21
-SHR temp#20
-SHL temp#20
-SUB temp#20
+SHR temp#25
+SHL temp#25
+SUB temp#25
 JZERO mul@even#@20
 GET main@m
-ADD temp#19
+ADD temp#24
 PUT main@m
-SHL temp#19 [mul@even#@20 0] 
-SHR temp#20
+SHL temp#24 [mul@even#@20 0] 
+SHR temp#25
 JUMP mul@begin#@19 [mul@end#@21 1] 
 GET main@m
 PUT main@m
 JUMP main@beginwhile#@3
 [[ main@endwhilejump#@4 ]]
+GET main@n
+PUT temp#16
 RST a
 INC a
-SUB main@n
+SUB temp#16
 PUT a
 JPOS jump@end#@22
-GET main@n
+GET temp#16
 PUT a
 DEC a
 JPOS jump@end#@22
 JUMP main@ifelse#@6 [jump@end#@22 1] 
 GET main@n
 WRITE 
-RST temp#12
-INC temp#12
-GET temp#12
+RST temp#17
+INC temp#17
+GET temp#17
 WRITE 
 [[ main@ifelse#@6 ]]
 HALT 
@@ -162,62 +168,64 @@ PUT temp#3
 RST check@r
 GET temp#3
 JZERO mod@end#@9
-PUT temp#13
+PUT temp#18
 GET temp#2
 PUT check@r
-GET temp#13 [mod@prepare#@7 0] 
+GET temp#18 [mod@prepare#@7 0] 
 SUB check@r
 JPOS mod@loop#@8
-SHL temp#13
+SHL temp#18
 JUMP mod@prepare#@7
-GET temp#13 [mod@loop#@8 0] 
+GET temp#18 [mod@loop#@8 0] 
 SUB temp#3
 JZERO mod@end#@9
-SHR temp#13
-GET temp#13
+SHR temp#18
+GET temp#18
 SUB check@r
 JPOS mod@loop#@8
 GET check@r
-SUB temp#13
+SUB temp#18
 PUT check@r
 JUMP mod@loop#@8 [mod@end#@9 1] 
 GET check@r
 PUT check@r
 [[ check@beginwhile#@1 ]]
+GET check@r
+PUT temp#4
 RST a
-SUB check@r
+SUB temp#4
 PUT a
 JPOS check@endwhilejump#@2
-GET check@r
+GET temp#4
 PUT a
 JPOS check@endwhilejump#@2
 GET check@n
-PUT temp#4
-GET check@d
 PUT temp#5
+GET check@d
+PUT temp#6
 RST check@n
+GET temp#6
+JZERO div@end#@12
+PUT temp#20
 GET temp#5
-JZERO div@end#@12
-PUT temp#15
-GET temp#4
-PUT temp#14
-GET temp#15 [div@prepare#@10 0] 
-SUB temp#14
+PUT temp#19
+GET temp#20 [div@prepare#@10 0] 
+SUB temp#19
 JPOS div@loop#@11
-SHL temp#15
+SHL temp#20
 JUMP div@prepare#@10
-GET temp#15 [div@loop#@11 0] 
-SUB temp#5
+GET temp#20 [div@loop#@11 0] 
+SUB temp#6
 JZERO div@end#@12
-SHR temp#15
+SHR temp#20
 SHL check@n
-GET temp#15
-SUB temp#14
+GET temp#20
+SUB temp#19
 JPOS div@loop#@11
 INC check@n
-GET temp#14
-SUB temp#15
-PUT temp#14
+GET temp#19
+SUB temp#20
+PUT temp#19
 JUMP div@loop#@11 [div@end#@12 1] 
 GET check@n
 PUT check@n
@@ -227,29 +235,29 @@ INC check@p
 GET check@p
 PUT check@p
 GET check@n
-PUT temp#6
-GET check@d
 PUT temp#7
+GET check@d
+PUT temp#8
 RST check@r
-GET temp#7
+GET temp#8
 JZERO mod@end#@15
-PUT temp#16
-GET temp#6
+PUT temp#21
+GET temp#7
 PUT check@r
-GET temp#16 [mod@prepare#@13 0] 
+GET temp#21 [mod@prepare#@13 0] 
 SUB check@r
 JPOS mod@loop#@14
-SHL temp#16
+SHL temp#21
 JUMP mod@prepare#@13
-GET temp#16 [mod@loop#@14 0] 
-SUB temp#7
+GET temp#21 [mod@loop#@14 0] 
+SUB temp#8
 JZERO mod@end#@15
-SHR temp#16
-GET temp#16
+SHR temp#21
+GET temp#21
 SUB check@r
 JPOS mod@loop#@14
 GET check@r
-SUB temp#16
+SUB temp#21
 PUT check@r
 JUMP mod@loop#@14 [mod@end#@15 1] 
 GET check@r

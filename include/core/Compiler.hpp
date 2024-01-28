@@ -76,6 +76,7 @@ typedef AstCondition::ConditionType AstConditionType;
 class Compiler {
  private:
   std::shared_ptr<AstNode> ast;
+  ControlFlowGraph firstControlFlowGraph;
   ControlFlowGraph controlFlowGraph;
   std::vector<ControlFlowGraphNode> machineCodeWithVariablesAndLabels;
   std::vector<MachineCodeType> machineCodeWithLabels;
@@ -87,7 +88,10 @@ class Compiler {
   std::map<std::string, std::string> translationTable;
   std::vector<uint64_t> parentsIds;
   std::map<uint64_t, std::vector<std::string>> currLabels;
-  std::map<std::string, std::vector<std::string>> functions;
+  std::vector<std::string> currProcedureArgs;
+  std::map<std::string, std::vector<std::string>> proceduresArgs;
+  std::vector<std::string> usedProcedures;
+  std::map<std::string, std::vector<std::string>> procedureCallsInProcedure;
 
  public:
   Compiler();
@@ -100,6 +104,13 @@ class Compiler {
 									std::ofstream &outputFile);
 
  private:
+  void pasteProcedures();
+  void pasteProceduresUtil(const std::shared_ptr<AstDeclarations> &declarations,
+						   const std::shared_ptr<AstCommands> &commands,
+						   const std::shared_ptr<AstProcedures> &procedures,
+						   std::shared_ptr<AstDeclarations> &newDeclarations,
+						   std::shared_ptr<AstCommands> &newCommands);
+  void convertToFirstControlFlowGraph();
   void convertToControlFlowGraph();
   void optimizeControlFlowGraph();
   void expandAndOptimizeBasicInstructions();
@@ -115,7 +126,10 @@ class Compiler {
   void parseAstDeclarations(std::shared_ptr<AstDeclarations> node);
   void parseAstProcedureHeader(std::shared_ptr<AstProcedureHeader>);
   void parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<ControlFlowGraphNode> &instructions);
-  ControlFlowGraphNode parseAstCondition(std::shared_ptr<AstCondition> node, const std::string &jumpLabel);
+  std::vector<ControlFlowGraphNode> parseAstCondition(std::shared_ptr<AstCondition> node, const std::string &jumpLabel);
+  ControlFlowGraphNode parseMoveLvalueToVariable(std::shared_ptr<AstLeftValue> lvalue, std::string variableName);
+  bool isProcedureArgument(const std::string &name);
+  bool pasteProcedureEfficiency(const std::string &name);
 };
 
 #endif  // COMPILER_HPP

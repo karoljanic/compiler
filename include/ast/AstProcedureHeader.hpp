@@ -15,17 +15,18 @@ class AstProcedureHeader : public AstNode {
 
  public:
   AstProcedureHeader();
-  AstProcedureHeader(const std::string& name, std::shared_ptr<AstArgsDeclaration> argsDeclaration);
+  AstProcedureHeader(const std::string &name, std::shared_ptr<AstArgsDeclaration> argsDeclaration);
   virtual ~AstProcedureHeader() = default;
-  AstProcedureHeader(const AstProcedureHeader& from) = default;
-  AstProcedureHeader& operator=(const AstProcedureHeader& from) = default;
-  AstProcedureHeader(AstProcedureHeader&&) = default;
-  AstProcedureHeader& operator=(AstProcedureHeader&&) = default;
+  AstProcedureHeader(const AstProcedureHeader &from) = default;
+  AstProcedureHeader &operator=(const AstProcedureHeader &from) = default;
+  AstProcedureHeader(AstProcedureHeader &&) = default;
+  AstProcedureHeader &operator=(AstProcedureHeader &&) = default;
 
-  const std::string& getName() const;
-  const std::shared_ptr<AstArgsDeclaration>& getArgsDeclaration() const;
+  const std::string &getName() const;
+  const std::shared_ptr<AstArgsDeclaration> &getArgsDeclaration() const;
 
-  virtual void print(std::ostream& out, int tab) const;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  virtual void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_PROCEDURE_HEADER_HPP

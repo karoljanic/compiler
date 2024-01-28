@@ -17,18 +17,19 @@ class AstIf : public AstCommand {
  public:
   AstIf();
   AstIf(std::shared_ptr<AstCondition> condition, std::shared_ptr<AstCommands> commands,
-        std::shared_ptr<AstCommands> elseCommands);
+		std::shared_ptr<AstCommands> elseCommands);
   ~AstIf() override = default;
-  AstIf(const AstIf& from) = default;
-  AstIf& operator=(const AstIf& from) = default;
-  AstIf(AstIf&&) = default;
-  AstIf& operator=(AstIf&&) = default;
+  AstIf(const AstIf &from) = default;
+  AstIf &operator=(const AstIf &from) = default;
+  AstIf(AstIf &&) = default;
+  AstIf &operator=(AstIf &&) = default;
 
-  const std::shared_ptr<AstCondition>& getCondition() const;
-  const std::shared_ptr<AstCommands>& getCommands() const;
-  const std::shared_ptr<AstCommands>& getElseCommands() const;
+  const std::shared_ptr<AstCondition> &getCondition() const;
+  const std::shared_ptr<AstCommands> &getCommands() const;
+  const std::shared_ptr<AstCommands> &getElseCommands() const;
 
-  void print(std::ostream& out, int tab) const override;
+  virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
+  void print(std::ostream &out, int tab) const override;
 };
 
 #endif  // AST_IF_HPP

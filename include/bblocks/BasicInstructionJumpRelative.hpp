@@ -11,13 +11,13 @@ class BasicInstructionJumpRelative : public BasicInstruction {
   BasicInstructionJumpRelative();
   BasicInstructionJumpRelative(std::string variableName, std::shared_ptr<Hardware> hardware);
   virtual ~BasicInstructionJumpRelative() = default;
-  BasicInstructionJumpRelative(const BasicInstructionJumpRelative& from) = default;
-  BasicInstructionJumpRelative& operator=(const BasicInstructionJumpRelative& from) = default;
-  BasicInstructionJumpRelative(BasicInstructionJumpRelative&&) = default;
-  BasicInstructionJumpRelative& operator=(BasicInstructionJumpRelative&&) = default;
+  BasicInstructionJumpRelative(const BasicInstructionJumpRelative &from) = default;
+  BasicInstructionJumpRelative &operator=(const BasicInstructionJumpRelative &from) = default;
+  BasicInstructionJumpRelative(BasicInstructionJumpRelative &&) = default;
+  BasicInstructionJumpRelative &operator=(BasicInstructionJumpRelative &&) = default;
 
   virtual void expandToHardwareInstructions();
-  virtual void print(std::ostream& out) const;
+  virtual void print(std::ostream &out) const;
 };
 
 #endif  // BASIC_INSTRUCTION_JUMP_RELATIVE_HPP
