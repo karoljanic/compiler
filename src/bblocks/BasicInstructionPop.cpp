@@ -4,7 +4,10 @@ BasicInstructionPop::BasicInstructionPop() {}
 
 BasicInstructionPop::BasicInstructionPop(uint64_t beginAddress, const std::vector<std::string> &destination,
 										 std::string returnAddress, std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware), begin(beginAddress), destination(destination), ret(returnAddress) {}
+	: BasicInstruction(hardware, BasicInstructionType::POP),
+	  begin(beginAddress),
+	  destination(destination),
+	  ret(returnAddress) {}
 
 void BasicInstructionPop::expandToHardwareInstructions() {
   machineCode.clear();

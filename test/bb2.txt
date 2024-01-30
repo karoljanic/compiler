@@ -53,6 +53,7 @@ INC main@potega
 SHL main@potega
 STORE main@potega
 PUT main@potega
+ 0
 RST b
 INC b
 SHL b
@@ -60,6 +61,7 @@ INC b
 STRK a
 STORE b
 JUMP check@begin#
+ 0
 RST main@n
 LOAD main@n
 PUT main@n

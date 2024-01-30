@@ -3,7 +3,7 @@
 BasicInstructionJump::BasicInstructionJump() {}
 
 BasicInstructionJump::BasicInstructionJump(std::string label, std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware), label(label) {}
+	: BasicInstruction(hardware, BasicInstructionType::JUMP), label(label) {}
 
 void BasicInstructionJump::expandToHardwareInstructions() {
   machineCode.clear();

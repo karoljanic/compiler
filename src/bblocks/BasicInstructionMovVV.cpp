@@ -4,7 +4,9 @@ BasicInstructionMovVV::BasicInstructionMovVV() {}
 
 BasicInstructionMovVV::BasicInstructionMovVV(const std::string &rightVariableName, const std::string &leftVariableName,
 											 std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware), leftRegister(leftVariableName), rightRegister(rightVariableName) {}
+	: BasicInstruction(hardware, BasicInstructionType::MOV_VV),
+	  leftRegister(leftVariableName),
+	  rightRegister(rightVariableName) {}
 
 void BasicInstructionMovVV::expandToHardwareInstructions() {
   machineCode.clear();

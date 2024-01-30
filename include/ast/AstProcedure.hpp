@@ -14,6 +14,7 @@ class AstProcedure : public AstNode {
   std::shared_ptr<AstProcedureHeader> header;
   std::shared_ptr<AstDeclarations> declarations;
   std::shared_ptr<AstCommands> commands;
+  int line;
 
  public:
   AstProcedure();
@@ -27,6 +28,9 @@ class AstProcedure : public AstNode {
 
   void setDeclarations(std::shared_ptr<AstDeclarations> declarations);
   void setCommands(std::shared_ptr<AstCommands> commands);
+
+  void setLine(int line) { this->line = line; }
+  int getLine() const { return line; }
 
   const std::shared_ptr<AstProcedureHeader> &getHeader();
   const std::shared_ptr<AstDeclarations> &getDeclarations();

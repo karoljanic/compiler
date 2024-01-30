@@ -49,8 +49,7 @@ class RegistersLinearScan {
 
   void addVariableUsageInfo(const std::string& variable, uint64_t position, UsageType usageType);
   void createRanges(ControlFlowGraph& controlFlowGraph);
-  void allocateRegisters(const std::vector<std::pair<std::string, uint64_t>>& requiredLoads,
-						 const std::vector<std::pair<std::string, uint64_t>>& requiredStores);
+  void allocateRegisters();
   std::string getVariableRegister(const std::string& variable, uint64_t position);
   std::vector<std::pair<std::string, uint64_t>> getMemoryStore(uint64_t position);
   std::vector<std::pair<std::string, uint64_t>> getMemoryLoad(uint64_t position);
@@ -72,6 +71,8 @@ class RegistersLinearScan {
   uint64_t rangeSize(const Range& range);
   std::vector<Usage> findRangeUsages(const std::string& variable, uint64_t position);
   std::vector<Range> findRangesWithVariable(const std::string& variable);
+  bool loadIsRequired(const Range& range);
+  bool storeIsRequired(const Range& range);
   void printRanges();
   void printUsages();
   void printRegistersUsage();

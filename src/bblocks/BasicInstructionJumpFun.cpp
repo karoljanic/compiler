@@ -5,7 +5,7 @@ BasicInstructionJumpFun::BasicInstructionJumpFun() {}
 BasicInstructionJumpFun::BasicInstructionJumpFun(std::string functionName,
 												 uint64_t retAddress,
 												 std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware), name(functionName), returnAddress(retAddress) {}
+	: BasicInstruction(hardware, BasicInstructionType::JUMP_FUN), name(functionName), returnAddress(retAddress) {}
 
 void BasicInstructionJumpFun::expandToHardwareInstructions() {
   machineCode.clear();

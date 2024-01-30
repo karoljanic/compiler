@@ -3,7 +3,7 @@
 BasicInstructionRestoreState::BasicInstructionRestoreState() {}
 
 BasicInstructionRestoreState::BasicInstructionRestoreState(uint64_t beginAddress, std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware), begin(beginAddress) {}
+	: BasicInstruction(hardware, BasicInstructionType::RESTORE), begin(beginAddress) {}
 
 void BasicInstructionRestoreState::expandToHardwareInstructions() {
   machineCode.clear();

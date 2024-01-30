@@ -3,7 +3,7 @@
 BasicInstructionSaveState::BasicInstructionSaveState() {}
 
 BasicInstructionSaveState::BasicInstructionSaveState(uint64_t beginAddress, std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware), begin(beginAddress) {}
+	: BasicInstruction(hardware, BasicInstructionType::SAVE), begin(beginAddress) {}
 
 void BasicInstructionSaveState::expandToHardwareInstructions() {
   machineCode.clear();

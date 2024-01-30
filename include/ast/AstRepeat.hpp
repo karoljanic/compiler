@@ -25,6 +25,9 @@ class AstRepeat : public AstCommand {
   const std::shared_ptr<AstCondition> &getCondition() const;
   const std::shared_ptr<AstCommands> &getCommands() const;
 
+  void setCondition(const std::shared_ptr<AstCondition> &condition);
+  void setCommands(const std::shared_ptr<AstCommands> &commands);
+
   virtual std::shared_ptr<AstNode> copy(const std::map<std::string, std::string> &rewriteTable) const override;
   void print(std::ostream &out, int tab) const override;
 };

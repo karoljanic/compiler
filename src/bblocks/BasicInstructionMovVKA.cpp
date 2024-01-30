@@ -5,7 +5,7 @@ BasicInstructionMovVKA::BasicInstructionMovVKA() {}
 BasicInstructionMovVKA::BasicInstructionMovVKA(const std::string &variableName, const std::string &arrayName,
 											   uint64_t indexValue, bool indirectArray,
 											   std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware),
+	: BasicInstruction(hardware, BasicInstructionType::MOV_VKA),
 	  rightRegister(variableName),
 	  arrayName(arrayName),
 	  index(indexValue),

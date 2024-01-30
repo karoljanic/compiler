@@ -2,7 +2,8 @@
 
 BasicInstructionHalt::BasicInstructionHalt() {}
 
-BasicInstructionHalt::BasicInstructionHalt(std::shared_ptr<Hardware> hardware) : BasicInstruction(hardware) {}
+BasicInstructionHalt::BasicInstructionHalt(std::shared_ptr<Hardware> hardware) :
+	BasicInstruction(hardware, BasicInstructionType::HALT) {}
 
 void BasicInstructionHalt::expandToHardwareInstructions() {
   machineCode.clear();

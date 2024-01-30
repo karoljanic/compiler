@@ -18,6 +18,18 @@ const std::shared_ptr<AstCommands> &AstIf::getElseCommands() const {
   return elseCommands;
 }
 
+void AstIf::setCondition(const std::shared_ptr<AstCondition> &condition) {
+  AstIf::condition = condition;
+}
+
+void AstIf::setCommands(const std::shared_ptr<AstCommands> &commands) {
+  AstIf::commands = commands;
+}
+
+void AstIf::setElseCommands(const std::shared_ptr<AstCommands> &elseCommands) {
+  AstIf::elseCommands = elseCommands;
+}
+
 std::shared_ptr<AstNode> AstIf::copy(const std::map<std::string, std::string> &rewriteTable) const {
   if (elseCommands == nullptr) {
 	return std::make_shared<AstIf>(std::dynamic_pointer_cast<AstCondition>(condition->copy(rewriteTable)),

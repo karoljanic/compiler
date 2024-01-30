@@ -3,7 +3,7 @@
 BasicInstructionJumpRelative::BasicInstructionJumpRelative() {}
 
 BasicInstructionJumpRelative::BasicInstructionJumpRelative(std::string variableName, std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware), rightVariableName(variableName) {}
+	: BasicInstruction(hardware, BasicInstructionType::JUMP_RELATIVE), rightVariableName(variableName) {}
 
 void BasicInstructionJumpRelative::expandToHardwareInstructions() {
   machineCode.clear();

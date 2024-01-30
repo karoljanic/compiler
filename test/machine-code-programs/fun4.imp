@@ -1,19 +1,37 @@
-PROCEDURE fun(n, m) IS
-    i
+PROCEDURE write(x) IS
+
 IN
-  WRITE n;
-  WRITE m;
-  n:=n+1;
-  WRITE n;
-  WRITE m;
+  WRITE x;
 END
 
 PROGRAM IS
-  a,b
+  a,b,c,d
 IN
     READ a;
-    fun(a, a);
-    WRITE a;
-    fun(a, a);
-    WRITE a;
+    READ b;
+    READ c;
+    READ d;
+
+    WHILE a < 4 DO
+      write(a);
+      a := a + 1;
+    ENDWHILE
+
+    REPEAT
+      write(b);
+      b := b + 1;
+    UNTIL b > 5;
+
+    IF c < 10 THEN
+      write(c);
+    ELSE
+      write(d);
+    ENDIF
+
+    IF d = 2 THEN
+        IF d < 10 THEN
+          write(d);
+        ENDIF
+        write(d);
+    ENDIF
 END

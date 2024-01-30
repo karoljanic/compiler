@@ -3,7 +3,7 @@
 BasicInstructionRead::BasicInstructionRead() {}
 
 BasicInstructionRead::BasicInstructionRead(const std::string &variableName, std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware), leftRegister(variableName) {}
+	: BasicInstruction(hardware, BasicInstructionType::READ), leftRegister(variableName) {}
 
 void BasicInstructionRead::expandToHardwareInstructions() {
   machineCode.clear();

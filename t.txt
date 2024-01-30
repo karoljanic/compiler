@@ -1,475 +1,90 @@
-Function gcd allocated at 0 with size 4
-ESTIMATED SIZE gcd: 102
-FAST PASTE gcd
-Variable main@a branch: 0 jump: 0
-ERROR: Variable main@z not found in result
-Variable main@z branch: 0 jump: 0
-Variable main@a branch: 0 jump: 0
-Variable main@b branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@a branch: 0 jump: 0
-Variable main@b branch: 0 jump: 0
-Variable main@c branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@a branch: 0 jump: 0
-Variable main@b branch: 0 jump: 0
-Variable main@d branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@a branch: 0 jump: 0
-Variable main@b branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@b branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@b branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@gcd#x branch: 1 jump: 1
-Variable main@gcd#y branch: 1 jump: 1
-Variable main@z branch: 1 jump: 1
-Variable temp#1 branch: 1 jump: 1
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#1 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#2 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#2 branch: 0 jump: 0
-Variable temp#3 branch: 0 jump: 0
-Variable main@gcd#x branch: 1 jump: 0
-Variable main@gcd#y branch: 1 jump: 0
-Variable main@z branch: 1 jump: 0
-Variable temp#2 branch: 1 jump: 0
-Variable temp#3 branch: 1 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable temp#4 branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable temp#4 branch: 0 jump: 0
-Variable temp#5 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable temp#4 branch: 0 jump: 0
-Variable temp#5 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#6 branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#6 branch: 0 jump: 0
-Variable temp#7 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#6 branch: 0 jump: 0
-Variable temp#7 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#8 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#8 branch: 0 jump: 0
-Variable temp#9 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#8 branch: 0 jump: 0
-Variable temp#9 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#10 branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#10 branch: 0 jump: 0
-Variable temp#11 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#10 branch: 0 jump: 0
-Variable temp#11 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@gcd#x branch: 1 jump: 0
-Variable main@gcd#y branch: 1 jump: 0
-Variable main@z branch: 1 jump: 0
-Variable main@gcd#x branch: 0 jump: 1
-Variable main@x branch: 0 jump: 1
-Variable main@z branch: 0 jump: 1
-Variable main@x branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-LIVE RANGES: 
-main@a: 
-33 34 35 36 37 
-
-main@b: 
-34 35 36 37 38 39 
-
-main@c: 
-35 
-
-main@d: 
-36 
-
-main@gcd#x: 
-37 38 39 40 
-41 42 43 44 
-45 46 
-48 49 51 
-53 54 55 56 57 58 59 
-61 62 
-63 64 
-
-
-main@gcd#y: 
-39 40 
-41 42 43 44 
-45 46 47 51 52 53 54 55 56 
-57 58 59 60 61 62 
-63 
-
-main@x: 
-64 
-65 
-
-main@z: 
-33 34 35 36 37 38 39 40 
-41 42 43 44 
-45 51 52 53 54 55 56 57 58 59 60 61 62 
-63 64 
-65 66 
-
-temp#1: 
-
-41 42 
-
-temp#10: 
-59 60 61 
-
-temp#11: 
-60 61 
-
-temp#2: 
-43 44 
-45 
-
-temp#3: 
-44 
-45 
-
-temp#4: 
-46 47 48 
-
-temp#5: 
-47 48 
-
-temp#6: 
-51 52 53 
-
-temp#7: 
-52 53 
-
-temp#8: 
-55 56 57 
-
-temp#9: 
-56 57 
-
-Variable main@a branch: 0 jump: 0
-ERROR: Variable main@z not found in result
-Variable main@z branch: 0 jump: 0
-Variable main@a branch: 0 jump: 0
-Variable main@b branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@a branch: 0 jump: 0
-Variable main@b branch: 0 jump: 0
-Variable main@c branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@a branch: 0 jump: 0
-Variable main@b branch: 0 jump: 0
-Variable main@d branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@a branch: 0 jump: 0
-Variable main@b branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@b branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@b branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@gcd#x branch: 1 jump: 1
-Variable main@gcd#y branch: 1 jump: 1
-Variable main@z branch: 1 jump: 1
-Variable temp#1 branch: 1 jump: 1
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#1 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#2 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#2 branch: 0 jump: 0
-Variable temp#3 branch: 0 jump: 0
-Variable main@gcd#x branch: 1 jump: 0
-Variable main@gcd#y branch: 1 jump: 0
-Variable main@z branch: 1 jump: 0
-Variable temp#2 branch: 1 jump: 0
-Variable temp#3 branch: 1 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable temp#4 branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable temp#4 branch: 0 jump: 0
-Variable temp#5 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable temp#4 branch: 0 jump: 0
-Variable temp#5 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#6 branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#6 branch: 0 jump: 0
-Variable temp#7 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#6 branch: 0 jump: 0
-Variable temp#7 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#8 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#8 branch: 0 jump: 0
-Variable temp#9 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#8 branch: 0 jump: 0
-Variable temp#9 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#10 branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#10 branch: 0 jump: 0
-Variable temp#11 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable temp#10 branch: 0 jump: 0
-Variable temp#11 branch: 0 jump: 0
-Variable main@gcd#x branch: 0 jump: 0
-Variable main@gcd#y branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@gcd#x branch: 1 jump: 0
-Variable main@gcd#y branch: 1 jump: 0
-Variable main@z branch: 1 jump: 0
-Variable main@gcd#x branch: 0 jump: 1
-Variable main@x branch: 0 jump: 1
-Variable main@z branch: 0 jump: 1
-Variable main@x branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Variable main@z branch: 0 jump: 0
-Range main@a[33-37]: 33 37 
-Range main@b[34-39]: 34 39 
-Range main@c[35-35]: 35 
-Range main@d[36-36]: 36 
-Range main@gcd#x[37-38]: 37 38 
-Range main@gcd#x[43-43]: 43 
-Range main@gcd#x[46-46]: 46 
-Range main@gcd#x[48-51]: 48 49 51 
-Range main@gcd#x[53-59]: 53 54 55 59 
-Range main@gcd#x[61-62]: 61 62 
-Range main@gcd#x[64-64]: 64 
-Range main@gcd#y[39-40]: 39 40 
-Range main@gcd#y[41-44]: 41 44 
-Range main@gcd#y[47-56]: 47 52 56 
-Range main@gcd#y[57-60]: 57 58 60 
-Range main@x[64-64]: 64 
-Range main@x[65-65]: 65 
-Range main@z[66-66]: 66 
-Range temp#1[41-42]: 41 42 
-Range temp#10[59-61]: 59 61 
-Range temp#11[60-61]: 60 61 
-Range temp#2[43-43]: 43 
-Range temp#2[45-45]: 45 
-Range temp#3[44-44]: 44 
-Range temp#3[45-45]: 45 
-Range temp#4[46-48]: 46 48 
-Range temp#5[47-48]: 47 48 
-Range temp#6[51-53]: 51 53 
-Range temp#7[52-53]: 52 53 
-Range temp#8[55-57]: 55 57 
-Range temp#9[56-57]: 56 57 
-main@a[33-37]:                                 #####                                                                                          
-main@b[34-39]:                                  ######                                                                                        
-main@c[35-35]:                                   #                                                                                            
-main@d[36-36]:                                    #                                                                                           
-main@gcd#x[37-38]:                                     ##                                                                                         
-main@gcd#y[39-40]:                                       ##                                                                                       
-main@gcd#y[41-44]:                                         ####                                                                                   
-temp#1[41-42]:                                         ##                                                                                     
-main@gcd#x[43-43]:                                           #                                                                                    
-temp#2[43-43]:                                           #                                                                                    
-temp#3[44-44]:                                            #                                                                                   
-temp#2[45-45]:                                             #                                                                                  
-temp#3[45-45]:                                             #                                                                                  
-main@gcd#x[46-46]:                                              #                                                                                 
-temp#4[46-48]:                                              ###                                                                               
-main@gcd#y[47-56]:                                               ##########                                                                       
-temp#5[47-48]:                                               ##                                                                               
-main@gcd#x[48-51]:                                                ####                                                                            
-temp#6[51-53]:                                                   ###                                                                          
-temp#7[52-53]:                                                    ##                                                                          
-main@gcd#x[53-59]:                                                     #######                                                                    
-temp#8[55-57]:                                                       ###                                                                      
-temp#9[56-57]:                                                        ##                                                                      
-main@gcd#y[57-60]:                                                         ####                                                                   
-temp#10[59-61]:                                                           ###                                                                  
-temp#11[60-61]:                                                            ##                                                                  
-main@gcd#x[61-62]:                                                             ##                                                                 
-main@x[64-64]:                                                                #                                                               
-main@gcd#x[64-64]:                                                                #                                                               
-main@x[65-65]:                                                                 #                                                              
-main@z[66-66]:                                                                  #                                                             
-Variable usages:
-main@a: 33(L) 37(R) 
-main@b: 34(L) 39(R) 
-main@c: 35(L) 
-main@d: 36(L) 
-main@gcd#x: 37(L) 38(B) 48(L) 49(B) 53(L) 54(B) 61(L) 62(B) 43(R) 46(R) 51(R) 55(R) 59(R) 64(R) 
-main@gcd#y: 39(L) 40(B) 57(L) 58(B) 41(R) 44(R) 47(R) 52(R) 56(R) 60(R) 
-main@x: 64(L) 65(B) 
-main@z: 66(R) 
-temp#1: 41(L) 42(R) 
-temp#10: 59(L) 61(R) 
-temp#11: 60(L) 61(R) 
-temp#2: 43(L) 45(R) 
-temp#3: 44(L) 45(R) 
-temp#4: 46(L) 48(R) 
-temp#5: 47(L) 48(R) 
-temp#6: 51(L) 53(R) 
-temp#7: 52(L) 53(R) 
-temp#8: 55(L) 57(R) 
-temp#9: 56(L) 57(R) 
-Final registers usage:
-b: main@a(33-37): 33 37 | main@gcd#y(39-40): 39 40 | main@gcd#y(41-44): 41 44 | temp#2(45-45): 45 | main@gcd#x(46-46): 46 | main@gcd#y(47-56): 47 52 56 | main@gcd#y(57-60): 57 58 60 | main@gcd#x(61-62): 61 62 | main@x(64-64): 64 | main@x(65-65): 65 | main@z(66-66): 66 | 
-c: main@b(34-39): 34 39 | temp#1(41-42): 41 42 | main@gcd#x(43-43): 43 | temp#3(44-44): 44 | temp#3(45-45): 45 | temp#4(46-48): 46 48 | temp#6(51-53): 51 53 | temp#8(55-57): 55 57 | temp#10(59-61): 59 61 | main@gcd#x(64-64): 64 | 
-d: main@c(35-35): 35 | main@d(36-36): 36 | main@gcd#x(37-38): 37 38 | temp#2(43-43): 43 | temp#5(47-48): 47 48 | temp#7(52-53): 52 53 | temp#9(56-57): 56 57 | temp#11(60-61): 60 61 | 
-e: main@gcd#x(48-51): 48 49 51 | main@gcd#x(53-59): 53 54 55 59 | 
-f: 
-g: 
-h: 
-
-main@a: 33(b) 37(b) 
-main@b: 34(c) 39(c) 
-main@c: 35(d) 
-main@d: 36(d) 
-main@gcd#x: 37(d) 38(d) 43(c) 46(b) 48(e) 49(e) 51(e) 53(e) 54(e) 55(e) 59(e) 61(b) 62(b) 64(c) 
-main@gcd#y: 39(b) 40(b) 41(b) 44(b) 47(b) 52(b) 56(b) 57(b) 58(b) 60(b) 
-main@x: 64(b) 65(b) 
-main@z: 66(b) 
-temp#1: 41(c) 42(c) 
-temp#10: 59(c) 61(c) 
-temp#11: 60(d) 61(d) 
-temp#2: 43(d) 45(b) 
-temp#3: 44(c) 45(c) 
-temp#4: 46(c) 48(c) 
-temp#5: 47(d) 48(d) 
-temp#6: 51(c) 53(c) 
-temp#7: 52(d) 53(d) 
-temp#8: 55(c) 57(c) 
-temp#9: 56(d) 57(d) 
-STORE b main@a to 1 at 37
-STORE b main@gcd#y to 6 at 40
-LOAD b main@gcd#y to 6 at 41
-STORE b main@gcd#y to 6 at 44
-LOAD b temp#2 to 8 at 45
-STORE b temp#2 to 8 at 45
-LOAD b main@gcd#x to 5 at 46
-STORE b main@gcd#x to 5 at 46
-LOAD b main@gcd#y to 6 at 47
-STORE b main@gcd#y to 6 at 56
-STORE b main@gcd#y to 6 at 60
-STORE b main@gcd#x to 5 at 62
-STORE b main@x to 18 at 64
-LOAD b main@x to 18 at 65
-STORE b main@x to 18 at 65
-LOAD b main@z to 19 at 66
-STORE b main@z to 19 at 66
-STORE c main@b to 2 at 39
-STORE c temp#1 to 7 at 42
-LOAD c main@gcd#x to 5 at 43
-STORE c main@gcd#x to 5 at 43
-STORE c temp#3 to 9 at 44
-LOAD c temp#3 to 9 at 45
-STORE c temp#3 to 9 at 45
-STORE c temp#4 to 10 at 48
-STORE c temp#6 to 12 at 53
-STORE c temp#8 to 14 at 57
-STORE c temp#10 to 16 at 61
-LOAD c main@gcd#x to 5 at 64
-STORE c main@gcd#x to 5 at 64
-STORE d main@c to 3 at 35
-STORE d main@d to 4 at 36
-STORE d main@gcd#x to 5 at 38
-STORE d temp#2 to 8 at 43
-STORE d temp#5 to 11 at 48
-STORE d temp#7 to 13 at 53
-STORE d temp#9 to 15 at 57
-STORE d temp#11 to 17 at 61
-STORE e main@gcd#x to 5 at 51
-STORE e main@gcd#x to 5 at 59
-main@beginwhile#@1 57
-main@endif#@3 335
-main@endwhilejump#@2 336
-main@ifelse#@3 209
+DODANE DO MAPY shuffle@q shuffle@q
+DODANE DO MAPY shuffle@w shuffle@w
+DODANE DO MAPY shuffle@i shuffle@i
+DODANE DO MAPY temp#2 shuffle@n
+DODANE DO MAPY temp#3 shuffle@i
+DODANE DO MAPY temp#4 shuffle@w
+DODANE DO MAPY temp#5 shuffle@q
+DODANE DO MAPY shuffle@w shuffle@w
+DODANE DO MAPY temp#6 shuffle@w
+DODANE DO MAPY temp#7 shuffle@n
+DODANE DO MAPY shuffle@w shuffle@w
+DODANE DO MAPY temp#8 shuffle@w
+DODANE DO MAPY shuffle@i shuffle@i
+DODANE DO MAPY shuffle@i shuffle@i
+DODANE DO MAPY sort@i sort@i
+DODANE DO MAPY temp#11 sort@n
+DODANE DO MAPY temp#12 sort@i
+DODANE DO MAPY sort@x sort@x
+DODANE DO MAPY sort@j sort@i
+DODANE DO MAPY sort@j sort@j
+DODANE DO MAPY temp#13 sort@j
+DODANE DO MAPY sort@k sort@k
+DODANE DO MAPY temp#15 sort@x
+DODANE DO MAPY sort@j sort@j
+DODANE DO MAPY sort@k sort@j
+DODANE DO MAPY sort@k sort@k
+DODANE DO MAPY sort@j sort@j
+DODANE DO MAPY temp#17 sort@x
+DODANE DO MAPY sort@i sort@i
+DODANE DO MAPY write@i write@i
+DODANE DO MAPY temp#19 write@n
+DODANE DO MAPY temp#20 write@i
+DODANE DO MAPY write@i write@i
+DODANE DO MAPY shuffle@q shuffle@q
+DODANE DO MAPY shuffle@w shuffle@w
+DODANE DO MAPY shuffle@i shuffle@i
+DODANE DO MAPY temp#2 shuffle@n
+DODANE DO MAPY temp#3 shuffle@i
+DODANE DO MAPY temp#4 shuffle@w
+DODANE DO MAPY temp#5 shuffle@q
+DODANE DO MAPY shuffle@w shuffle@w
+DODANE DO MAPY temp#6 shuffle@w
+DODANE DO MAPY temp#7 shuffle@n
+DODANE DO MAPY shuffle@w shuffle@w
+DODANE DO MAPY temp#8 shuffle@w
+DODANE DO MAPY shuffle@i shuffle@i
+DODANE DO MAPY shuffle@i shuffle@i
+DODANE DO MAPY sort@i sort@i
+DODANE DO MAPY temp#11 sort@n
+DODANE DO MAPY temp#12 sort@i
+DODANE DO MAPY sort@x sort@x
+DODANE DO MAPY sort@j sort@i
+DODANE DO MAPY sort@j sort@j
+DODANE DO MAPY temp#13 sort@j
+DODANE DO MAPY sort@k sort@k
+DODANE DO MAPY temp#15 sort@x
+DODANE DO MAPY sort@j sort@j
+DODANE DO MAPY sort@k sort@j
+DODANE DO MAPY sort@k sort@k
+DODANE DO MAPY sort@j sort@j
+DODANE DO MAPY temp#17 sort@x
+DODANE DO MAPY sort@i sort@i
+DODANE DO MAPY write@i write@i
+DODANE DO MAPY temp#19 write@n
+DODANE DO MAPY temp#20 write@i
+DODANE DO MAPY write@i write@i
+DODANE DO MAPY main@n main@n
+USELESS TEMPORARY: temp#12
+USELESS TEMPORARY: temp#13
+USELESS TEMPORARY: temp#16
+USELESS TEMPORARY: temp#17
+USELESS TEMPORARY: temp#20
+USELESS TEMPORARY: temp#21
+USELESS TEMPORARY: temp#24
+USELESS TEMPORARY: temp#27
+USELESS TEMPORARY: temp#28
+USELESS TEMPORARY: temp#29
+USELESS TEMPORARY: temp#3
+USELESS TEMPORARY: temp#30
+USELESS TEMPORARY: temp#31
+USELESS TEMPORARY: temp#32
+USELESS TEMPORARY: temp#33
+USELESS TEMPORARY: temp#5
+USELESS TEMPORARY: temp#7
+USELESS TEMPORARY: temp#8
+USELESS TEMPORARY: temp#9
 Compilation complete. Output file: out.rm
 Czytanie kodu.
-Skończono czytanie kodu (liczba rozkazów: 408).
+Skończono czytanie kodu (liczba rozkazów: 0).
 Uruchamianie programu.
-? ? ? ? 

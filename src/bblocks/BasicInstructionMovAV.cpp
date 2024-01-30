@@ -5,7 +5,7 @@ BasicInstructionMovAV::BasicInstructionMovAV() {}
 BasicInstructionMovAV::BasicInstructionMovAV(const std::string &arrayName, const std::string &indexVariableName,
 											 const std::string &variableName, bool indirectArray,
 											 std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware),
+	: BasicInstruction(hardware, BasicInstructionType::MOV_AV),
 	  arrayName(arrayName),
 	  indexRegister(indexVariableName),
 	  leftRegister(variableName),

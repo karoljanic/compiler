@@ -5,7 +5,7 @@ BasicInstructionMovKAV::BasicInstructionMovKAV() {}
 BasicInstructionMovKAV::BasicInstructionMovKAV(const std::string &arrayName, uint64_t indexValue,
 											   const std::string &variableName, bool indirectArray,
 											   std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware),
+	: BasicInstruction(hardware, BasicInstructionType::MOV_KAV),
 	  arrayName(arrayName),
 	  index(indexValue),
 	  leftRegister(variableName),

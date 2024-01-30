@@ -1,5 +1,4 @@
 # sortowanie
-
 PROCEDURE shuffle(T t, n) IS
   i, q, w
 IN

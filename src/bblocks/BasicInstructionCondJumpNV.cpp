@@ -5,7 +5,7 @@ BasicInstructionCondJumpNV::BasicInstructionCondJumpNV() {}
 BasicInstructionCondJumpNV::BasicInstructionCondJumpNV(std::uint64_t leftNumber, std::string rightVariableName,
 													   BasicInstructionConditionType jumpCondition, std::string label,
 													   std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware),
+	: BasicInstruction(hardware, BasicInstructionType::COND_JUMP_NV),
 	  leftNumber(leftNumber),
 	  rightVariableName(rightVariableName),
 	  jumpCondition(jumpCondition),

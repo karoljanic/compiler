@@ -13,6 +13,14 @@ const std::shared_ptr<AstCommands> &AstRepeat::getCommands() const {
   return commands;
 }
 
+void AstRepeat::setCondition(const std::shared_ptr<AstCondition> &condition) {
+  AstRepeat::condition = condition;
+}
+
+void AstRepeat::setCommands(const std::shared_ptr<AstCommands> &commands) {
+  AstRepeat::commands = commands;
+}
+
 std::shared_ptr<AstNode> AstRepeat::copy(const std::map<std::string, std::string> &rewriteTable) const {
   return std::make_shared<AstRepeat>(std::dynamic_pointer_cast<AstCondition>(condition->copy(rewriteTable)),
 									 std::dynamic_pointer_cast<AstCommands>(commands->copy(rewriteTable)));

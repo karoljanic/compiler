@@ -41,18 +41,15 @@ std::string Hardware::getLabel(const std::string &scopeName, const std::string &
 }
 
 std::string Hardware::getGlobalLabel(const std::string &scopeName, const std::string &labelName) {
-  auto upperLabelName = labelName;
-
   return scopeName + "@" + labelName;
 }
 
 void Hardware::allocateArray(const std::string &arrayName, uint64_t size) {
-#ifdef BEGIN_ON_POWER_OF_TWO_BOUNDARY
+//#ifdef BEGIN_ON_POWER_OF_TWO_BOUNDARY
   memoryOffset = Hardware::nearestPowerOfTwo(memoryOffset);
-#endif
+//#endif
 
   arrays[arrayName] = std::make_pair(memoryOffset, size);
-  //std::cout << "Array " << arrayName << " allocated at " << memoryOffset << " with size " << size << std::endl;
   memoryOffset += size;
 }
 
@@ -62,7 +59,6 @@ void Hardware::allocateFunctionRecord(const std::string &functionName, uint64_t 
 #endif
 
   functions[functionName] = std::make_pair(memoryOffset, size);
-  std::cout << "Function " << functionName << " allocated at " << memoryOffset << " with size " << size << std::endl;
   memoryOffset += size;
 }
 

@@ -3,7 +3,7 @@
 BasicInstructionWrite::BasicInstructionWrite() {}
 
 BasicInstructionWrite::BasicInstructionWrite(const std::string &variableName, std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware), rightRegister(variableName) {}
+	: BasicInstruction(hardware, BasicInstructionType::WRITE), rightRegister(variableName) {}
 
 void BasicInstructionWrite::expandToHardwareInstructions() {
   machineCode.clear();

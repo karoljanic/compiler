@@ -1,0 +1,90 @@
+DODANE DO MAPY shuffle@q shuffle@q
+DODANE DO MAPY shuffle@w shuffle@w
+DODANE DO MAPY shuffle@i shuffle@i
+DODANE DO MAPY temp#2 shuffle@n
+DODANE DO MAPY temp#3 shuffle@i
+DODANE DO MAPY temp#4 shuffle@w
+DODANE DO MAPY temp#5 shuffle@q
+DODANE DO MAPY shuffle@w shuffle@w
+DODANE DO MAPY temp#6 shuffle@w
+DODANE DO MAPY temp#7 shuffle@n
+DODANE DO MAPY shuffle@w shuffle@w
+DODANE DO MAPY temp#8 shuffle@w
+DODANE DO MAPY shuffle@i shuffle@i
+DODANE DO MAPY shuffle@i shuffle@i
+DODANE DO MAPY sort@i sort@i
+DODANE DO MAPY temp#11 sort@n
+DODANE DO MAPY temp#12 sort@i
+DODANE DO MAPY sort@x sort@x
+DODANE DO MAPY sort@j sort@i
+DODANE DO MAPY sort@j sort@j
+DODANE DO MAPY temp#13 sort@j
+DODANE DO MAPY sort@k sort@k
+DODANE DO MAPY temp#15 sort@x
+DODANE DO MAPY sort@j sort@j
+DODANE DO MAPY sort@k sort@j
+DODANE DO MAPY sort@k sort@k
+DODANE DO MAPY sort@j sort@j
+DODANE DO MAPY temp#17 sort@x
+DODANE DO MAPY sort@i sort@i
+DODANE DO MAPY write@i write@i
+DODANE DO MAPY temp#19 write@n
+DODANE DO MAPY temp#20 write@i
+DODANE DO MAPY write@i write@i
+DODANE DO MAPY shuffle@q shuffle@q
+DODANE DO MAPY shuffle@w shuffle@w
+DODANE DO MAPY shuffle@i shuffle@i
+DODANE DO MAPY temp#2 shuffle@n
+DODANE DO MAPY temp#3 shuffle@i
+DODANE DO MAPY temp#4 shuffle@w
+DODANE DO MAPY temp#5 shuffle@q
+DODANE DO MAPY shuffle@w shuffle@w
+DODANE DO MAPY temp#6 shuffle@w
+DODANE DO MAPY temp#7 shuffle@n
+DODANE DO MAPY shuffle@w shuffle@w
+DODANE DO MAPY temp#8 shuffle@w
+DODANE DO MAPY shuffle@i shuffle@i
+DODANE DO MAPY shuffle@i shuffle@i
+DODANE DO MAPY sort@i sort@i
+DODANE DO MAPY temp#11 sort@n
+DODANE DO MAPY temp#12 sort@i
+DODANE DO MAPY sort@x sort@x
+DODANE DO MAPY sort@j sort@i
+DODANE DO MAPY sort@j sort@j
+DODANE DO MAPY temp#13 sort@j
+DODANE DO MAPY sort@k sort@k
+DODANE DO MAPY temp#15 sort@x
+DODANE DO MAPY sort@j sort@j
+DODANE DO MAPY sort@k sort@j
+DODANE DO MAPY sort@k sort@k
+DODANE DO MAPY sort@j sort@j
+DODANE DO MAPY temp#17 sort@x
+DODANE DO MAPY sort@i sort@i
+DODANE DO MAPY write@i write@i
+DODANE DO MAPY temp#19 write@n
+DODANE DO MAPY temp#20 write@i
+DODANE DO MAPY write@i write@i
+DODANE DO MAPY main@n main@n
+USELESS TEMPORARY: temp#12
+USELESS TEMPORARY: temp#13
+USELESS TEMPORARY: temp#16
+USELESS TEMPORARY: temp#17
+USELESS TEMPORARY: temp#20
+USELESS TEMPORARY: temp#21
+USELESS TEMPORARY: temp#24
+USELESS TEMPORARY: temp#27
+USELESS TEMPORARY: temp#28
+USELESS TEMPORARY: temp#29
+USELESS TEMPORARY: temp#3
+USELESS TEMPORARY: temp#30
+USELESS TEMPORARY: temp#31
+USELESS TEMPORARY: temp#32
+USELESS TEMPORARY: temp#33
+USELESS TEMPORARY: temp#5
+USELESS TEMPORARY: temp#7
+USELESS TEMPORARY: temp#8
+USELESS TEMPORARY: temp#9
+Compilation complete. Output file: out.rm
+Czytanie kodu.
+Skończono czytanie kodu (liczba rozkazów: 0).
+Uruchamianie programu.

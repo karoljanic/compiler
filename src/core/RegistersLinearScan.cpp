@@ -35,7 +35,6 @@ void RegistersLinearScan::createRanges(ControlFlowGraph &controlFlowGraph) {
 	  if (liveRange.empty()) {
 		continue;
 	  }
-
 	  Range range{variable, liveRange.front(), liveRange.back(), {}};
 	  range.usages = getVariableUsage(variable, range);
 	  if (range.usages.empty()) {
@@ -44,31 +43,19 @@ void RegistersLinearScan::createRanges(ControlFlowGraph &controlFlowGraph) {
 	  range.start = range.usages.front().position;
 	  range.end = range.usages.back().position;
 
-	  std::cout << "Range " << variable << "[" << range.start << "-" << range.end << "]: ";
-	  for (const auto &usage : range.usages) {
-		std::cout << usage.position << " ";
-	  }
-	  std::cout << std::endl;
-
 	  ranges.push_back(range);
 	}
   }
 
   std::sort(ranges.begin(), ranges.end(), [](const Range &a, const Range &b) { return a.start < b.start; });
-
-  printRanges();
 }
 
-void RegistersLinearScan::allocateRegisters(const std::vector<std::pair<std::string, uint64_t>> &/*requiredLoads*/,
-											const std::vector<std::pair<std::string, uint64_t>> &/*requiredStores*/) {
+void RegistersLinearScan::allocateRegisters() {
   registersUsage =
 	  std::map < HardwareRegister, std::vector
 	  < Range >> {{RB, {}}, {RC, {}}, {RD, {}}, {RE, {}}, {RF, {}}, {RG, {}}, {RH, {}}};
 
   std::sort(ranges.begin(), ranges.end(), [](const Range &a, const Range &b) { return a.start < b.start; });
-
-  std::cout << "Variable usages:" << std::endl;
-  printUsages();
 
   for (auto &range : ranges) {
 	const auto freeReg = getFreeRegister(range);
@@ -86,10 +73,80 @@ void RegistersLinearScan::allocateRegisters(const std::vector<std::pair<std::str
 	}
   }
 
-  std::cout << "Final registers usage:" << std::endl;
-  printRegistersUsage();
-  std::cout << std::endl;
-  printVariableRegisters();
+  std::vector<std::string> vars;
+  for (const auto &iter : variablesUsage) {
+	vars.push_back(iter.first);
+  }
+
+  std::vector<std::vector<Range>> finalRanges;
+  for (const auto &var : vars) {
+	finalRanges.push_back(findRangesWithVariable(var));
+  }
+
+  std::sort(finalRanges.begin(), finalRanges.end(),
+			[this](const std::vector<Range> &a, const std::vector<Range> &b) {
+			  size_t aActions = 0;
+			  size_t bActions = 0;
+
+			  for (const auto &range : a) {
+				if (this->loadIsRequired(range)) {
+				  aActions++;
+				}
+				if (this->storeIsRequired(range)) {
+				  aActions++;
+				}
+			  }
+
+			  for (const auto &range : b) {
+				if (this->loadIsRequired(range)) {
+				  bActions++;
+				}
+				if (this->storeIsRequired(range)) {
+				  bActions++;
+				}
+			  }
+
+			  return aActions > bActions;
+			});
+
+  for (const auto &finalRange : finalRanges) {
+	if (finalRange.size() < 3) {
+	  continue;
+	}
+
+	Range merged;
+	for (const auto &fr : finalRange) {
+	  merged.usages.insert(merged.usages.end(), fr.usages.begin(), fr.usages.end());
+	}
+	std::sort(merged.usages.begin(), merged.usages.end(), [](const auto &a, const auto &b) {
+	  return a.position < b.position;
+	});
+
+	merged.owner = finalRange.front().owner;
+	merged.start = merged.usages.front().position;
+	merged.end = merged.usages.back().position;
+
+	const auto freeRegisterForRange = getFreeRegister(merged);
+	if (freeRegisterForRange.has_value()) {
+	  const auto freeRegName = Hardware::registerMap[freeRegisterForRange.value()].name;
+	  for (const auto &usage : merged.usages) {
+		variableRegisters[merged.owner][usage.position] = freeRegName;
+	  }
+
+	  for (auto &reg : registersUsage) {
+		std::vector<Range> newRanges;
+		for (const auto &range : reg.second) {
+		  if (range.start == merged.start && range.end == merged.end && range.owner == merged.owner) {
+			newRanges.push_back(range);
+		  } else if (range.owner != merged.owner) {
+			newRanges.push_back(range);
+		  }
+		}
+		std::sort(newRanges.begin(), newRanges.end(), [](const Range &a, const Range &b) { return a.start < b.start; });
+		reg.second = newRanges;
+	  }
+	}
+  }
 
   memoryLoad.clear();
   memoryStore.clear();
@@ -98,32 +155,18 @@ void RegistersLinearScan::allocateRegisters(const std::vector<std::pair<std::str
 	for (const auto &range : reg.second) {
 	  const auto variableName = range.owner;
 	  const auto registerName = getVariableRegister(variableName, range.start);
-	  if (range.usages.front().type != UsageType::LVAL) {
+	  if (loadIsRequired(range)) {
 		memoryLoad[range.usages.front().position].push_back(std::make_pair(registerName,
 																		   variableMemoryPosition[variableName]));
-		std::cout << "LOAD " << registerName << " " << variableName << " to "
-				  << variableMemoryPosition[variableName] << " at " << range.usages.front().position << std::endl;
+//		std::cout << "LOAD: " << variableName << "(" << range.start << "-" << range.end << "): ";
+//		std::cout << range.usages.front().position << std::endl;
 	  }
 
-	  auto otherUsages = findRangesWithVariable(variableName);
-	  bool anyOtherUsage = false;
-	  for (const auto &otherUsage : otherUsages) {
-		if (otherUsage.start != range.start || otherUsage.end != range.end) {
-		  anyOtherUsage = true;
-		  break;
-		} else if (otherUsage.start == range.start && otherUsage.end == range.end
-			&& otherUsage.usages.front().type != UsageType::LVAL) {
-		  anyOtherUsage = true;
-		  break;
-		}
-	  }
-
-	  if (anyOtherUsage) {
+	  if (storeIsRequired(range)) {
 		memoryStore[range.usages.back().position].push_back(std::make_pair(registerName,
 																		   variableMemoryPosition[variableName]));
-
-		std::cout << "STORE " << registerName << " " << variableName << " to "
-				  << variableMemoryPosition[variableName] << " at " << range.usages.back().position << std::endl;
+//		std::cout << "STORE: " << variableName << "(" << range.start << "-" << range.end << "): ";
+//		std::cout << range.usages.back().position << std::endl;
 	  }
 	}
   }
@@ -216,12 +259,6 @@ HardwareRegister RegistersLinearScan::splitRanges(const Range &newRange) {
 	newRangeUsages.push_back(usage.position);
   }
 
-  std::cout << "Range " << newRange.owner << "[" << newRange.start << "-" << newRange.end << "] usages: ";
-  for (auto &usage : newRangeUsages) {
-	std::cout << usage << " ";
-  }
-  std::cout << std::endl;
-
   HardwareRegister maxRangeRegister = RA;
   size_t maxRangeIndex = 0;
   size_t maxUsageIndex = 0;
@@ -261,23 +298,11 @@ HardwareRegister RegistersLinearScan::splitRanges(const Range &newRange) {
 
 	registersUsage[maxRangeRegister] = newRanges;
 
-//	memoryStore[dividedRanges.first.usages.back().position].push_back(
-//		std::make_pair(Hardware::registerMap[maxRangeRegister].name,
-//					   variableMemoryPosition[dividedRanges.first.owner]));
-//
-//	memoryLoad[dividedRanges.second.usages.front().position].push_back(
-//		std::make_pair(Hardware::registerMap[maxRangeRegister].name,
-//					   variableMemoryPosition[dividedRanges.second.owner]));
-
-	printRegistersUsage();
-	std::cout << std::endl;
-
 	return maxRangeRegister;
   }
 
   HardwareRegister minConflictingRegister = RA;
   size_t minConflictingUsagesNumber = std::numeric_limits<size_t>::max();
-  std::vector<std::pair<std::string, Usage>> minConflictingUsages;
   for (const auto &reg : registersUsage) {
 	std::vector<std::pair<std::string, Usage>> currentUsages;
 	std::vector<uint64_t> currentUsagesPositions;
@@ -297,14 +322,11 @@ HardwareRegister RegistersLinearScan::splitRanges(const Range &newRange) {
 	if (currentUsages.size() < minConflictingUsagesNumber) {
 	  minConflictingRegister = reg.first;
 	  minConflictingUsagesNumber = currentUsages.size();
-	  minConflictingUsages = currentUsages;
 	}
   }
 
-  std::cout << "Min conflicting register: " << Hardware::registerMap[minConflictingRegister].name << std::endl;
-
   std::vector<Range> finalRanges;
-  minConflictingUsages = std::vector < std::pair < std::string, Usage >> ();
+  std::vector<std::pair<std::string, Usage>> minConflictingUsages;
   for (const auto &usage : newRange.usages) {
 	minConflictingUsages.push_back(std::make_pair(newRange.owner, usage));
   }
@@ -331,13 +353,6 @@ HardwareRegister RegistersLinearScan::splitRanges(const Range &newRange) {
 	  Range nextRange{currProblemVariable, currProblemUsages.front().position, currProblemUsages.back().position,
 					  currProblemUsages};
 	  finalRanges.push_back(nextRange);
-
-//	  memoryStore[minConflictingUsages[currProblemIndex - 1].second.position].push_back(
-//		  std::make_pair(Hardware::registerMap[minConflictingRegister].name,
-//						 variableMemoryPosition[minConflictingUsages[currProblemIndex - 1].first]));
-//	  memoryLoad[minConflictingUsages[currProblemIndex].second.position].push_back(std::make_pair(
-//		  Hardware::registerMap[minConflictingRegister].name,
-//		  variableMemoryPosition[minConflictingUsages[currProblemIndex].first]));
 
 	  currProblemVariable = minConflictingUsages[currProblemIndex].first;
 	  currProblemUsages = {minConflictingUsages[currProblemIndex].second};
@@ -369,9 +384,6 @@ HardwareRegister RegistersLinearScan::splitRanges(const Range &newRange) {
   }
 
   registersUsage[minConflictingRegister] = finalRangesWithoutDuplicates;
-
-  printRegistersUsage();
-  std::cout << std::endl;
 
   return minConflictingRegister;
 }
@@ -561,13 +573,37 @@ std::vector<Range> RegistersLinearScan::findRangesWithVariable(const std::string
   std::vector<Range> result;
   for (const auto &registerUsage : registersUsage) {
 	for (const auto &range : registerUsage.second) {
-	  if (range.owner == variable && range.usages.front().type != UsageType::LVAL) {
+	  if (range.owner == variable/* && range.usages.front().type != UsageType::LVAL*/) {
 		result.push_back(range);
 	  }
 	}
   }
 
   return result;
+}
+
+bool RegistersLinearScan::loadIsRequired(const Range &range) {
+  if (range.usages.front().type != UsageType::LVAL) {
+	return true;
+  }
+
+  return false;
+}
+
+bool RegistersLinearScan::storeIsRequired(const Range &range) {
+  auto otherUsages = findRangesWithVariable(range.owner);
+  for (const auto &otherUsage : otherUsages) {
+	if (otherUsage.usages.front().type == UsageType::LVAL) {
+	  continue;
+	} else if (otherUsage.start != range.start || otherUsage.end != range.end) {
+	  return true;
+	} else if (otherUsage.start == range.start && otherUsage.end == range.end
+		&& otherUsage.usages.front().type != UsageType::LVAL) {
+	  return true;
+	}
+  }
+
+  return false;
 }
 
 void RegistersLinearScan::printRanges() {

@@ -524,11 +524,3 @@ std::vector<std::string> ControlFlowGraph::getSubgraphNames() const {
 std::vector<ControlFlowGraphNode> &ControlFlowGraph::getNodes(std::string subgraphName) {
   return graph.at(subgraphName);
 }
-
-const std::vector<std::pair<std::string, uint64_t>> &ControlFlowGraph::getRequiredLoads() const {
-  return requiredLoads;
-}
-
-const std::vector<std::pair<std::string, uint64_t>> &ControlFlowGraph::getRequiredStores() const {
-  return requiredStores;
-}

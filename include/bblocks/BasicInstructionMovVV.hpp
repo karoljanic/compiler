@@ -18,6 +18,12 @@ class BasicInstructionMovVV : public BasicInstruction {
   BasicInstructionMovVV(BasicInstructionMovVV &&) = default;
   BasicInstructionMovVV &operator=(BasicInstructionMovVV &&) = default;
 
+  const std::string &getLeftRegister() const { return leftRegister; }
+  const std::string &getRightRegister() const { return rightRegister; }
+
+  void setLeftRegister(const std::string &leftRegister) { this->leftRegister = leftRegister; }
+  void setRightRegister(const std::string &rightRegister) { this->rightRegister = rightRegister; }
+
   virtual void expandToHardwareInstructions();
   virtual void print(std::ostream &out) const;
 };

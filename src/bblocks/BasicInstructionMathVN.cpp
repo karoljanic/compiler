@@ -5,7 +5,7 @@ BasicInstructionMathVN::BasicInstructionMathVN() {}
 BasicInstructionMathVN::BasicInstructionMathVN(BasicInstructionMathType operationType, const std::string &leftOperand,
 											   uint64_t rightOperand, const std::string &result,
 											   std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware),
+	: BasicInstruction(hardware, BasicInstructionType::MATH_VN),
 	  operationType(operationType),
 	  leftOperand(leftOperand),
 	  rightOperand(rightOperand),

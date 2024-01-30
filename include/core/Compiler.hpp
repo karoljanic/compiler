@@ -93,6 +93,7 @@ class Compiler {
   std::vector<std::string> usedProcedures;
   std::vector<std::string> proceduresToPaste;
   std::map<std::string, std::vector<std::string>> procedureCallsInProcedure;
+  std::map<std::string, std::string> uselessTemporariesMapping;
 
  public:
   Compiler();

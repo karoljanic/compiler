@@ -7,20 +7,7 @@ STORE b
 PUT b
 READ 
 PUT b
-GET b
-RST b
-INC b
-SHL b
-STORE b
-PUT b
 READ 
-PUT b
-GET b
-RST b
-INC b
-SHL b
-INC b
-STORE b
 PUT b
 RST a
 INC a
@@ -29,7 +16,6 @@ PUT b
 GET b
 PUT c
 GET c
-PUT a
 DEC a
 DEC a
 DEC a
@@ -40,25 +26,16 @@ DEC a
 DEC a
 DEC a
 DEC a
-JPOS 63
-GET c
-RST c
-INC c
-SHL c
-SHL c
-STORE c
-PUT c
+JPOS 40
 GET b
 WRITE 
 GET b
 PUT b
 INC b
 GET b
-PUT b
-GET b
 RST b
 INC b
 STORE b
 PUT b
-JUMP 24
+JUMP 11
 HALT 

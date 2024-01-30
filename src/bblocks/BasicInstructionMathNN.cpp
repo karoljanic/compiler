@@ -5,7 +5,7 @@ BasicInstructionMathNN::BasicInstructionMathNN() {}
 BasicInstructionMathNN::BasicInstructionMathNN(BasicInstructionMathType operationType, uint64_t leftOperand,
 											   uint64_t rightOperand, const std::string &result,
 											   std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware),
+	: BasicInstruction(hardware, BasicInstructionType::MATH_NN),
 	  operationType(operationType),
 	  leftOperand(leftOperand),
 	  rightOperand(rightOperand),

@@ -5,7 +5,7 @@ BasicInstructionCondJumpVV::BasicInstructionCondJumpVV() {}
 BasicInstructionCondJumpVV::BasicInstructionCondJumpVV(std::string leftVariableName, std::string rightVariableName,
 													   BasicInstructionConditionType jumpCondition, std::string label,
 													   std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware),
+	: BasicInstruction(hardware, BasicInstructionType::COND_JUMP_VV),
 	  leftVariableName(leftVariableName),
 	  rightVariableName(rightVariableName),
 	  jumpCondition(jumpCondition),

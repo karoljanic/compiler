@@ -7,7 +7,7 @@ BasicInstructionMovVA::BasicInstructionMovVA(const std::string &variableName,
 											 const std::string &indexVariableName,
 											 bool indirectArray,
 											 std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware),
+	: BasicInstruction(hardware, BasicInstructionType::MOV_VA),
 	  rightRegister(variableName),
 	  arrayName(arrayName),
 	  indexRegister(indexVariableName),

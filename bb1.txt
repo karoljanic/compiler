@@ -1,1108 +1,195 @@
 Subgraph: main
-READ main@a
-Id: 1
-Labels: 
-Predecessors: 
-Successors: 2 
-Used variables: 
-Defined variables: main@a 
-Live in variables: 
-Live out variables: main@a 
-Live now variables: 
-
-MOV main@a TO main@b
-Id: 2
-Labels: 
-Predecessors: 1 
-Successors: 3 
-Used variables: main@a 
-Defined variables: main@b 
-Live in variables: main@a 
-Live out variables: main@a main@b 
-Live now variables: 
-
-MOV main@b TO main@b
-Id: 3
-Labels: 
-Predecessors: 2 
-Successors: 4 
-Used variables: main@b 
-Defined variables: main@b 
-Live in variables: main@a main@b 
-Live out variables: main@a main@b 
-Live now variables: 
-
-MOV main@b TO temp#1
-Id: 4
-Labels: 
-Predecessors: 3 
-Successors: 5 
-Used variables: main@b 
-Defined variables: temp#1 
-Live in variables: main@a main@b 
-Live out variables: main@a main@b temp#1 
-Live now variables: 
-
-MOV main@a TO temp#2
-Id: 5
-Labels: 
-Predecessors: 4 
-Successors: 6 
-Used variables: main@a 
-Defined variables: temp#2 
-Live in variables: main@a main@b temp#1 
-Live out variables: main@b temp#1 temp#2 
-Live now variables: 
-
-main@c = temp#1 + temp#2
-Id: 6
-Labels: 
-Predecessors: 5 
-Successors: 7 
-Used variables: temp#1 temp#2 
-Defined variables: main@c 
-Live in variables: main@b temp#1 temp#2 
-Live out variables: main@b main@c 
-Live now variables: 
-
-MOV main@c TO main@c
-Id: 7
-Labels: 
-Predecessors: 6 
-Successors: 8 
-Used variables: main@c 
-Defined variables: main@c 
-Live in variables: main@b main@c 
-Live out variables: main@b main@c 
-Live now variables: 
-
-MOV main@c TO temp#3
-Id: 8
-Labels: 
-Predecessors: 7 
-Successors: 9 
-Used variables: main@c 
-Defined variables: temp#3 
-Live in variables: main@b main@c 
-Live out variables: main@b main@c temp#3 
-Live now variables: 
-
-MOV main@b TO temp#4
-Id: 9
-Labels: 
-Predecessors: 8 
-Successors: 10 
-Used variables: main@b 
-Defined variables: temp#4 
-Live in variables: main@b main@c temp#3 
-Live out variables: main@c temp#3 temp#4 
-Live now variables: 
-
-main@d = temp#3 + temp#4
-Id: 10
-Labels: 
-Predecessors: 9 
-Successors: 11 
-Used variables: temp#3 temp#4 
-Defined variables: main@d 
-Live in variables: main@c temp#3 temp#4 
-Live out variables: main@c main@d 
-Live now variables: 
-
-MOV main@d TO main@d
-Id: 11
-Labels: 
-Predecessors: 10 
-Successors: 12 
-Used variables: main@d 
-Defined variables: main@d 
-Live in variables: main@c main@d 
-Live out variables: main@c main@d 
-Live now variables: 
-
-MOV main@d TO temp#5
-Id: 12
-Labels: 
-Predecessors: 11 
-Successors: 13 
-Used variables: main@d 
-Defined variables: temp#5 
-Live in variables: main@c main@d 
-Live out variables: main@c main@d temp#5 
-Live now variables: 
-
-MOV main@c TO temp#6
-Id: 13
-Labels: 
-Predecessors: 12 
-Successors: 14 
-Used variables: main@c 
-Defined variables: temp#6 
-Live in variables: main@c main@d temp#5 
-Live out variables: main@d temp#5 temp#6 
-Live now variables: 
-
-main@e = temp#5 + temp#6
-Id: 14
-Labels: 
-Predecessors: 13 
-Successors: 15 
-Used variables: temp#5 temp#6 
-Defined variables: main@e 
-Live in variables: main@d temp#5 temp#6 
-Live out variables: main@d main@e 
-Live now variables: 
-
-MOV main@e TO main@e
-Id: 15
-Labels: 
-Predecessors: 14 
-Successors: 16 
-Used variables: main@e 
-Defined variables: main@e 
-Live in variables: main@d main@e 
-Live out variables: main@d main@e 
-Live now variables: 
-
-MOV main@e TO temp#7
-Id: 16
-Labels: 
-Predecessors: 15 
-Successors: 17 
-Used variables: main@e 
-Defined variables: temp#7 
-Live in variables: main@d main@e 
-Live out variables: main@d main@e temp#7 
-Live now variables: 
-
-MOV main@d TO temp#8
-Id: 17
-Labels: 
-Predecessors: 16 
-Successors: 18 
-Used variables: main@d 
-Defined variables: temp#8 
-Live in variables: main@d main@e temp#7 
-Live out variables: main@e temp#7 temp#8 
-Live now variables: 
-
-main@f = temp#7 + temp#8
-Id: 18
-Labels: 
-Predecessors: 17 
-Successors: 19 
-Used variables: temp#7 temp#8 
-Defined variables: main@f 
-Live in variables: main@e temp#7 temp#8 
-Live out variables: main@e main@f 
-Live now variables: 
-
-MOV main@f TO main@f
-Id: 19
-Labels: 
-Predecessors: 18 
-Successors: 20 
-Used variables: main@f 
-Defined variables: main@f 
-Live in variables: main@e main@f 
-Live out variables: main@e main@f 
-Live now variables: 
-
-MOV main@f TO temp#9
+MOV 0 TO main@test#c
 Id: 20
 Labels: 
-Predecessors: 19 
+Predecessors: 
 Successors: 21 
-Used variables: main@f 
-Defined variables: temp#9 
-Live in variables: main@e main@f 
-Live out variables: main@e main@f temp#9 
+Used variables: 
+Defined variables: main@test#c 
+Live in variables: main@test#b 
+Live out variables: main@test#b main@test#c 
 Live now variables: 
 
-MOV main@e TO temp#10
+MOV main@test#c TO main@test#c
 Id: 21
 Labels: 
 Predecessors: 20 
 Successors: 22 
-Used variables: main@e 
-Defined variables: temp#10 
-Live in variables: main@e main@f temp#9 
-Live out variables: main@f temp#10 temp#9 
+Used variables: main@test#c 
+Defined variables: main@test#c 
+Live in variables: main@test#b main@test#c 
+Live out variables: main@test#b main@test#c 
 Live now variables: 
 
-main@g = temp#9 + temp#10
+MOV main@test#c TO temp#1
 Id: 22
-Labels: 
-Predecessors: 21 
-Successors: 23 
-Used variables: temp#10 temp#9 
-Defined variables: main@g 
-Live in variables: main@f temp#10 temp#9 
-Live out variables: main@f main@g 
+Labels: main@beginwhile#@1 
+Predecessors: 21 33 
+Successors: 23 34 
+Used variables: main@test#c 
+Defined variables: temp#1 
+Live in variables: main@test#b main@test#c 
+Live out variables: main@test#b main@test#c temp#1 
 Live now variables: 
 
-MOV main@g TO main@g
+JUMP IF 5 <= temp#1 TO main@endwhilejump#@2
 Id: 23
 Labels: 
 Predecessors: 22 
 Successors: 24 
-Used variables: main@g 
-Defined variables: main@g 
-Live in variables: main@f main@g 
-Live out variables: main@f main@g 
+Used variables: temp#1 
+Defined variables: 
+Live in variables: main@test#b main@test#c temp#1 
+Live out variables: main@test#b main@test#c 
 Live now variables: 
 
-MOV main@g TO temp#11
+MOV main@test#c TO temp#2
 Id: 24
 Labels: 
 Predecessors: 23 
 Successors: 25 
-Used variables: main@g 
-Defined variables: temp#11 
-Live in variables: main@f main@g 
-Live out variables: main@f main@g temp#11 
+Used variables: main@test#c 
+Defined variables: temp#2 
+Live in variables: main@test#b main@test#c 
+Live out variables: main@test#b main@test#c temp#2 
 Live now variables: 
 
-MOV main@f TO temp#12
+JUMP IF temp#2 != 0 TO main@ifelse#@3
 Id: 25
 Labels: 
 Predecessors: 24 
-Successors: 26 
-Used variables: main@f 
-Defined variables: temp#12 
-Live in variables: main@f main@g temp#11 
-Live out variables: main@g temp#11 temp#12 
+Successors: 26 29 
+Used variables: temp#2 
+Defined variables: 
+Live in variables: main@test#b main@test#c temp#2 
+Live out variables: main@test#b main@test#c 
 Live now variables: 
 
-main@h = temp#11 + temp#12
+MOV 5 TO main@test#b
 Id: 26
 Labels: 
 Predecessors: 25 
 Successors: 27 
-Used variables: temp#11 temp#12 
-Defined variables: main@h 
-Live in variables: main@g temp#11 temp#12 
-Live out variables: main@g main@h 
+Used variables: 
+Defined variables: main@test#b 
+Live in variables: main@test#c 
+Live out variables: main@test#b main@test#c 
 Live now variables: 
 
-MOV main@h TO main@h
+MOV main@test#b TO main@test#b
 Id: 27
 Labels: 
 Predecessors: 26 
 Successors: 28 
-Used variables: main@h 
-Defined variables: main@h 
-Live in variables: main@g main@h 
-Live out variables: main@g main@h 
+Used variables: main@test#b 
+Defined variables: main@test#b 
+Live in variables: main@test#b main@test#c 
+Live out variables: main@test#b main@test#c 
 Live now variables: 
 
-MOV main@h TO temp#13
+JUMP TO main@endif#@3
 Id: 28
 Labels: 
 Predecessors: 27 
-Successors: 29 
-Used variables: main@h 
-Defined variables: temp#13 
-Live in variables: main@g main@h 
-Live out variables: main@g main@h temp#13 
+Successors: 31 
+Used variables: 
+Defined variables: 
+Live in variables: main@test#b main@test#c 
+Live out variables: main@test#b main@test#c 
 Live now variables: 
 
-MOV main@g TO temp#14
+MOV 1 TO temp#3
 Id: 29
-Labels: 
-Predecessors: 28 
+Labels: main@ifelse#@3 
+Predecessors: 25 
 Successors: 30 
-Used variables: main@g 
-Defined variables: temp#14 
-Live in variables: main@g main@h temp#13 
-Live out variables: main@h temp#13 temp#14 
+Used variables: 
+Defined variables: temp#3 
+Live in variables: main@test#b main@test#c 
+Live out variables: main@test#b main@test#c temp#3 
 Live now variables: 
 
-main@i = temp#13 + temp#14
+WRITE temp#3
 Id: 30
 Labels: 
 Predecessors: 29 
 Successors: 31 
-Used variables: temp#13 temp#14 
-Defined variables: main@i 
-Live in variables: main@h temp#13 temp#14 
-Live out variables: main@h main@i 
+Used variables: temp#3 
+Defined variables: 
+Live in variables: main@test#b main@test#c temp#3 
+Live out variables: main@test#b main@test#c 
 Live now variables: 
 
-MOV main@i TO main@i
+main@test#c = main@test#c + 1
 Id: 31
-Labels: 
-Predecessors: 30 
+Labels: main@endif#@3 
+Predecessors: 28 30 
 Successors: 32 
-Used variables: main@i 
-Defined variables: main@i 
-Live in variables: main@h main@i 
-Live out variables: main@h main@i 
+Used variables: main@test#c 
+Defined variables: main@test#c 
+Live in variables: main@test#b main@test#c 
+Live out variables: main@test#b main@test#c 
 Live now variables: 
 
-MOV main@i TO temp#15
+MOV main@test#c TO main@test#c
 Id: 32
 Labels: 
 Predecessors: 31 
 Successors: 33 
-Used variables: main@i 
-Defined variables: temp#15 
-Live in variables: main@h main@i 
-Live out variables: main@h main@i temp#15 
+Used variables: main@test#c 
+Defined variables: main@test#c 
+Live in variables: main@test#b main@test#c 
+Live out variables: main@test#b main@test#c 
 Live now variables: 
 
-MOV main@h TO temp#16
+JUMP TO main@beginwhile#@1
 Id: 33
 Labels: 
 Predecessors: 32 
-Successors: 34 
-Used variables: main@h 
-Defined variables: temp#16 
-Live in variables: main@h main@i temp#15 
-Live out variables: main@i temp#15 temp#16 
+Successors: 22 34 
+Used variables: 
+Defined variables: 
+Live in variables: main@test#b main@test#c 
+Live out variables: main@test#b main@test#c 
 Live now variables: 
 
-main@j = temp#15 + temp#16
+MOV main@test#b TO main@a
 Id: 34
-Labels: 
-Predecessors: 33 
+Labels: main@endwhilejump#@2 
+Predecessors: 22 33 
 Successors: 35 
-Used variables: temp#15 temp#16 
-Defined variables: main@j 
-Live in variables: main@i temp#15 temp#16 
-Live out variables: main@i main@j 
+Used variables: main@test#b 
+Defined variables: main@a 
+Live in variables: main@test#b 
+Live out variables: main@a 
 Live now variables: 
 
-MOV main@j TO main@j
+MOV main@a TO main@a
 Id: 35
 Labels: 
 Predecessors: 34 
 Successors: 36 
-Used variables: main@j 
-Defined variables: main@j 
-Live in variables: main@i main@j 
-Live out variables: main@i main@j 
+Used variables: main@a 
+Defined variables: main@a 
+Live in variables: main@a 
+Live out variables: main@a 
 Live now variables: 
 
-MOV main@j TO temp#17
+WRITE main@a
 Id: 36
 Labels: 
 Predecessors: 35 
 Successors: 37 
-Used variables: main@j 
-Defined variables: temp#17 
-Live in variables: main@i main@j 
-Live out variables: main@i main@j temp#17 
-Live now variables: 
-
-MOV main@i TO temp#18
-Id: 37
-Labels: 
-Predecessors: 36 
-Successors: 38 
-Used variables: main@i 
-Defined variables: temp#18 
-Live in variables: main@i main@j temp#17 
-Live out variables: main@j temp#17 temp#18 
-Live now variables: 
-
-main@k = temp#17 + temp#18
-Id: 38
-Labels: 
-Predecessors: 37 
-Successors: 39 
-Used variables: temp#17 temp#18 
-Defined variables: main@k 
-Live in variables: main@j temp#17 temp#18 
-Live out variables: main@j main@k 
-Live now variables: 
-
-MOV main@k TO main@k
-Id: 39
-Labels: 
-Predecessors: 38 
-Successors: 40 
-Used variables: main@k 
-Defined variables: main@k 
-Live in variables: main@j main@k 
-Live out variables: main@j main@k 
-Live now variables: 
-
-MOV main@k TO temp#19
-Id: 40
-Labels: 
-Predecessors: 39 
-Successors: 41 
-Used variables: main@k 
-Defined variables: temp#19 
-Live in variables: main@j main@k 
-Live out variables: main@j main@k temp#19 
-Live now variables: 
-
-MOV main@j TO temp#20
-Id: 41
-Labels: 
-Predecessors: 40 
-Successors: 42 
-Used variables: main@j 
-Defined variables: temp#20 
-Live in variables: main@j main@k temp#19 
-Live out variables: main@k temp#19 temp#20 
-Live now variables: 
-
-main@l = temp#19 + temp#20
-Id: 42
-Labels: 
-Predecessors: 41 
-Successors: 43 
-Used variables: temp#19 temp#20 
-Defined variables: main@l 
-Live in variables: main@k temp#19 temp#20 
-Live out variables: main@k main@l 
-Live now variables: 
-
-MOV main@l TO main@l
-Id: 43
-Labels: 
-Predecessors: 42 
-Successors: 44 
-Used variables: main@l 
-Defined variables: main@l 
-Live in variables: main@k main@l 
-Live out variables: main@k main@l 
-Live now variables: 
-
-MOV main@l TO temp#21
-Id: 44
-Labels: 
-Predecessors: 43 
-Successors: 45 
-Used variables: main@l 
-Defined variables: temp#21 
-Live in variables: main@k main@l 
-Live out variables: main@k main@l temp#21 
-Live now variables: 
-
-MOV main@k TO temp#22
-Id: 45
-Labels: 
-Predecessors: 44 
-Successors: 46 
-Used variables: main@k 
-Defined variables: temp#22 
-Live in variables: main@k main@l temp#21 
-Live out variables: main@l temp#21 temp#22 
-Live now variables: 
-
-main@m = temp#21 + temp#22
-Id: 46
-Labels: 
-Predecessors: 45 
-Successors: 47 
-Used variables: temp#21 temp#22 
-Defined variables: main@m 
-Live in variables: main@l temp#21 temp#22 
-Live out variables: main@l main@m 
-Live now variables: 
-
-MOV main@m TO main@m
-Id: 47
-Labels: 
-Predecessors: 46 
-Successors: 48 
-Used variables: main@m 
-Defined variables: main@m 
-Live in variables: main@l main@m 
-Live out variables: main@l main@m 
-Live now variables: 
-
-MOV main@m TO temp#23
-Id: 48
-Labels: 
-Predecessors: 47 
-Successors: 49 
-Used variables: main@m 
-Defined variables: temp#23 
-Live in variables: main@l main@m 
-Live out variables: main@l main@m temp#23 
-Live now variables: 
-
-MOV main@l TO temp#24
-Id: 49
-Labels: 
-Predecessors: 48 
-Successors: 50 
-Used variables: main@l 
-Defined variables: temp#24 
-Live in variables: main@l main@m temp#23 
-Live out variables: main@m temp#23 temp#24 
-Live now variables: 
-
-main@n = temp#23 + temp#24
-Id: 50
-Labels: 
-Predecessors: 49 
-Successors: 51 
-Used variables: temp#23 temp#24 
-Defined variables: main@n 
-Live in variables: main@m temp#23 temp#24 
-Live out variables: main@m main@n 
-Live now variables: 
-
-MOV main@n TO main@n
-Id: 51
-Labels: 
-Predecessors: 50 
-Successors: 52 
-Used variables: main@n 
-Defined variables: main@n 
-Live in variables: main@m main@n 
-Live out variables: main@m main@n 
-Live now variables: 
-
-MOV main@n TO temp#25
-Id: 52
-Labels: 
-Predecessors: 51 
-Successors: 53 
-Used variables: main@n 
-Defined variables: temp#25 
-Live in variables: main@m main@n 
-Live out variables: main@m main@n temp#25 
-Live now variables: 
-
-MOV main@m TO temp#26
-Id: 53
-Labels: 
-Predecessors: 52 
-Successors: 54 
-Used variables: main@m 
-Defined variables: temp#26 
-Live in variables: main@m main@n temp#25 
-Live out variables: main@n temp#25 temp#26 
-Live now variables: 
-
-main@o = temp#25 + temp#26
-Id: 54
-Labels: 
-Predecessors: 53 
-Successors: 55 
-Used variables: temp#25 temp#26 
-Defined variables: main@o 
-Live in variables: main@n temp#25 temp#26 
-Live out variables: main@n main@o 
-Live now variables: 
-
-MOV main@o TO main@o
-Id: 55
-Labels: 
-Predecessors: 54 
-Successors: 56 
-Used variables: main@o 
-Defined variables: main@o 
-Live in variables: main@n main@o 
-Live out variables: main@n main@o 
-Live now variables: 
-
-MOV main@o TO temp#27
-Id: 56
-Labels: 
-Predecessors: 55 
-Successors: 57 
-Used variables: main@o 
-Defined variables: temp#27 
-Live in variables: main@n main@o 
-Live out variables: main@n main@o temp#27 
-Live now variables: 
-
-MOV main@n TO temp#28
-Id: 57
-Labels: 
-Predecessors: 56 
-Successors: 58 
-Used variables: main@n 
-Defined variables: temp#28 
-Live in variables: main@n main@o temp#27 
-Live out variables: main@o temp#27 temp#28 
-Live now variables: 
-
-main@p = temp#27 + temp#28
-Id: 58
-Labels: 
-Predecessors: 57 
-Successors: 59 
-Used variables: temp#27 temp#28 
-Defined variables: main@p 
-Live in variables: main@o temp#27 temp#28 
-Live out variables: main@o main@p 
-Live now variables: 
-
-MOV main@p TO main@p
-Id: 59
-Labels: 
-Predecessors: 58 
-Successors: 60 
-Used variables: main@p 
-Defined variables: main@p 
-Live in variables: main@o main@p 
-Live out variables: main@o main@p 
-Live now variables: 
-
-MOV main@p TO temp#29
-Id: 60
-Labels: 
-Predecessors: 59 
-Successors: 61 
-Used variables: main@p 
-Defined variables: temp#29 
-Live in variables: main@o main@p 
-Live out variables: main@o main@p temp#29 
-Live now variables: 
-
-MOV main@o TO temp#30
-Id: 61
-Labels: 
-Predecessors: 60 
-Successors: 62 
-Used variables: main@o 
-Defined variables: temp#30 
-Live in variables: main@o main@p temp#29 
-Live out variables: main@p temp#29 temp#30 
-Live now variables: 
-
-main@q = temp#29 + temp#30
-Id: 62
-Labels: 
-Predecessors: 61 
-Successors: 63 
-Used variables: temp#29 temp#30 
-Defined variables: main@q 
-Live in variables: main@p temp#29 temp#30 
-Live out variables: main@p main@q 
-Live now variables: 
-
-MOV main@q TO main@q
-Id: 63
-Labels: 
-Predecessors: 62 
-Successors: 64 
-Used variables: main@q 
-Defined variables: main@q 
-Live in variables: main@p main@q 
-Live out variables: main@p main@q 
-Live now variables: 
-
-MOV main@q TO temp#31
-Id: 64
-Labels: 
-Predecessors: 63 
-Successors: 65 
-Used variables: main@q 
-Defined variables: temp#31 
-Live in variables: main@p main@q 
-Live out variables: main@p main@q temp#31 
-Live now variables: 
-
-MOV main@p TO temp#32
-Id: 65
-Labels: 
-Predecessors: 64 
-Successors: 66 
-Used variables: main@p 
-Defined variables: temp#32 
-Live in variables: main@p main@q temp#31 
-Live out variables: main@q temp#31 temp#32 
-Live now variables: 
-
-main@r = temp#31 + temp#32
-Id: 66
-Labels: 
-Predecessors: 65 
-Successors: 67 
-Used variables: temp#31 temp#32 
-Defined variables: main@r 
-Live in variables: main@q temp#31 temp#32 
-Live out variables: main@q main@r 
-Live now variables: 
-
-MOV main@r TO main@r
-Id: 67
-Labels: 
-Predecessors: 66 
-Successors: 68 
-Used variables: main@r 
-Defined variables: main@r 
-Live in variables: main@q main@r 
-Live out variables: main@q main@r 
-Live now variables: 
-
-MOV main@r TO temp#33
-Id: 68
-Labels: 
-Predecessors: 67 
-Successors: 69 
-Used variables: main@r 
-Defined variables: temp#33 
-Live in variables: main@q main@r 
-Live out variables: main@q main@r temp#33 
-Live now variables: 
-
-MOV main@q TO temp#34
-Id: 69
-Labels: 
-Predecessors: 68 
-Successors: 70 
-Used variables: main@q 
-Defined variables: temp#34 
-Live in variables: main@q main@r temp#33 
-Live out variables: main@r temp#33 temp#34 
-Live now variables: 
-
-main@s = temp#33 + temp#34
-Id: 70
-Labels: 
-Predecessors: 69 
-Successors: 71 
-Used variables: temp#33 temp#34 
-Defined variables: main@s 
-Live in variables: main@r temp#33 temp#34 
-Live out variables: main@r main@s 
-Live now variables: 
-
-MOV main@s TO main@s
-Id: 71
-Labels: 
-Predecessors: 70 
-Successors: 72 
-Used variables: main@s 
-Defined variables: main@s 
-Live in variables: main@r main@s 
-Live out variables: main@r main@s 
-Live now variables: 
-
-MOV main@s TO temp#35
-Id: 72
-Labels: 
-Predecessors: 71 
-Successors: 73 
-Used variables: main@s 
-Defined variables: temp#35 
-Live in variables: main@r main@s 
-Live out variables: main@r main@s temp#35 
-Live now variables: 
-
-MOV main@r TO temp#36
-Id: 73
-Labels: 
-Predecessors: 72 
-Successors: 74 
-Used variables: main@r 
-Defined variables: temp#36 
-Live in variables: main@r main@s temp#35 
-Live out variables: main@s temp#35 temp#36 
-Live now variables: 
-
-main@t = temp#35 + temp#36
-Id: 74
-Labels: 
-Predecessors: 73 
-Successors: 75 
-Used variables: temp#35 temp#36 
-Defined variables: main@t 
-Live in variables: main@s temp#35 temp#36 
-Live out variables: main@s main@t 
-Live now variables: 
-
-MOV main@t TO main@t
-Id: 75
-Labels: 
-Predecessors: 74 
-Successors: 76 
-Used variables: main@t 
-Defined variables: main@t 
-Live in variables: main@s main@t 
-Live out variables: main@s main@t 
-Live now variables: 
-
-MOV main@t TO temp#37
-Id: 76
-Labels: 
-Predecessors: 75 
-Successors: 77 
-Used variables: main@t 
-Defined variables: temp#37 
-Live in variables: main@s main@t 
-Live out variables: main@s main@t temp#37 
-Live now variables: 
-
-MOV main@s TO temp#38
-Id: 77
-Labels: 
-Predecessors: 76 
-Successors: 78 
-Used variables: main@s 
-Defined variables: temp#38 
-Live in variables: main@s main@t temp#37 
-Live out variables: main@t temp#37 temp#38 
-Live now variables: 
-
-main@u = temp#37 + temp#38
-Id: 78
-Labels: 
-Predecessors: 77 
-Successors: 79 
-Used variables: temp#37 temp#38 
-Defined variables: main@u 
-Live in variables: main@t temp#37 temp#38 
-Live out variables: main@t main@u 
-Live now variables: 
-
-MOV main@u TO main@u
-Id: 79
-Labels: 
-Predecessors: 78 
-Successors: 80 
-Used variables: main@u 
-Defined variables: main@u 
-Live in variables: main@t main@u 
-Live out variables: main@t main@u 
-Live now variables: 
-
-MOV main@u TO temp#39
-Id: 80
-Labels: 
-Predecessors: 79 
-Successors: 81 
-Used variables: main@u 
-Defined variables: temp#39 
-Live in variables: main@t main@u 
-Live out variables: main@t main@u temp#39 
-Live now variables: 
-
-MOV main@t TO temp#40
-Id: 81
-Labels: 
-Predecessors: 80 
-Successors: 82 
-Used variables: main@t 
-Defined variables: temp#40 
-Live in variables: main@t main@u temp#39 
-Live out variables: main@u temp#39 temp#40 
-Live now variables: 
-
-main@v = temp#39 + temp#40
-Id: 82
-Labels: 
-Predecessors: 81 
-Successors: 83 
-Used variables: temp#39 temp#40 
-Defined variables: main@v 
-Live in variables: main@u temp#39 temp#40 
-Live out variables: main@u main@v 
-Live now variables: 
-
-MOV main@v TO main@v
-Id: 83
-Labels: 
-Predecessors: 82 
-Successors: 84 
-Used variables: main@v 
-Defined variables: main@v 
-Live in variables: main@u main@v 
-Live out variables: main@u main@v 
-Live now variables: 
-
-MOV main@v TO temp#41
-Id: 84
-Labels: 
-Predecessors: 83 
-Successors: 85 
-Used variables: main@v 
-Defined variables: temp#41 
-Live in variables: main@u main@v 
-Live out variables: main@u main@v temp#41 
-Live now variables: 
-
-MOV main@u TO temp#42
-Id: 85
-Labels: 
-Predecessors: 84 
-Successors: 86 
-Used variables: main@u 
-Defined variables: temp#42 
-Live in variables: main@u main@v temp#41 
-Live out variables: main@v temp#41 temp#42 
-Live now variables: 
-
-main@w = temp#41 + temp#42
-Id: 86
-Labels: 
-Predecessors: 85 
-Successors: 87 
-Used variables: temp#41 temp#42 
-Defined variables: main@w 
-Live in variables: main@v temp#41 temp#42 
-Live out variables: main@v main@w 
-Live now variables: 
-
-MOV main@w TO main@w
-Id: 87
-Labels: 
-Predecessors: 86 
-Successors: 88 
-Used variables: main@w 
-Defined variables: main@w 
-Live in variables: main@v main@w 
-Live out variables: main@v main@w 
-Live now variables: 
-
-MOV main@w TO temp#43
-Id: 88
-Labels: 
-Predecessors: 87 
-Successors: 89 
-Used variables: main@w 
-Defined variables: temp#43 
-Live in variables: main@v main@w 
-Live out variables: main@v main@w temp#43 
-Live now variables: 
-
-MOV main@v TO temp#44
-Id: 89
-Labels: 
-Predecessors: 88 
-Successors: 90 
-Used variables: main@v 
-Defined variables: temp#44 
-Live in variables: main@v main@w temp#43 
-Live out variables: main@w temp#43 temp#44 
-Live now variables: 
-
-main@x = temp#43 + temp#44
-Id: 90
-Labels: 
-Predecessors: 89 
-Successors: 91 
-Used variables: temp#43 temp#44 
-Defined variables: main@x 
-Live in variables: main@w temp#43 temp#44 
-Live out variables: main@w main@x 
-Live now variables: 
-
-MOV main@x TO main@x
-Id: 91
-Labels: 
-Predecessors: 90 
-Successors: 92 
-Used variables: main@x 
-Defined variables: main@x 
-Live in variables: main@w main@x 
-Live out variables: main@w main@x 
-Live now variables: 
-
-MOV main@x TO temp#45
-Id: 92
-Labels: 
-Predecessors: 91 
-Successors: 93 
-Used variables: main@x 
-Defined variables: temp#45 
-Live in variables: main@w main@x 
-Live out variables: main@w main@x temp#45 
-Live now variables: 
-
-MOV main@w TO temp#46
-Id: 93
-Labels: 
-Predecessors: 92 
-Successors: 94 
-Used variables: main@w 
-Defined variables: temp#46 
-Live in variables: main@w main@x temp#45 
-Live out variables: main@x temp#45 temp#46 
-Live now variables: 
-
-main@y = temp#45 + temp#46
-Id: 94
-Labels: 
-Predecessors: 93 
-Successors: 95 
-Used variables: temp#45 temp#46 
-Defined variables: main@y 
-Live in variables: main@x temp#45 temp#46 
-Live out variables: main@x main@y 
-Live now variables: 
-
-MOV main@y TO main@y
-Id: 95
-Labels: 
-Predecessors: 94 
-Successors: 96 
-Used variables: main@y 
-Defined variables: main@y 
-Live in variables: main@x main@y 
-Live out variables: main@x main@y 
-Live now variables: 
-
-MOV main@y TO temp#47
-Id: 96
-Labels: 
-Predecessors: 95 
-Successors: 97 
-Used variables: main@y 
-Defined variables: temp#47 
-Live in variables: main@x main@y 
-Live out variables: main@x temp#47 
-Live now variables: 
-
-MOV main@x TO temp#48
-Id: 97
-Labels: 
-Predecessors: 96 
-Successors: 98 
-Used variables: main@x 
-Defined variables: temp#48 
-Live in variables: main@x temp#47 
-Live out variables: temp#47 temp#48 
-Live now variables: 
-
-main@z = temp#47 + temp#48
-Id: 98
-Labels: 
-Predecessors: 97 
-Successors: 99 
-Used variables: temp#47 temp#48 
-Defined variables: main@z 
-Live in variables: temp#47 temp#48 
-Live out variables: main@z 
-Live now variables: 
-
-MOV main@z TO main@z
-Id: 99
-Labels: 
-Predecessors: 98 
-Successors: 100 
-Used variables: main@z 
-Defined variables: main@z 
-Live in variables: main@z 
-Live out variables: main@z 
-Live now variables: 
-
-WRITE main@z
-Id: 100
-Labels: 
-Predecessors: 99 
-Successors: 101 
-Used variables: main@z 
+Used variables: main@a 
 Defined variables: 
-Live in variables: main@z 
+Live in variables: main@a 
 Live out variables: 
 Live now variables: 
 
 HALT
-Id: 101
+Id: 37
 Labels: 
-Predecessors: 100 
+Predecessors: 36 
 Successors: 
 Used variables: 
 Defined variables: 

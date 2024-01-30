@@ -4,7 +4,7 @@ BasicInstructionMovNV::BasicInstructionMovNV() {}
 
 BasicInstructionMovNV::BasicInstructionMovNV(uint64_t numValue, const std::string &variableName,
 											 std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware), numValue(numValue), leftRegister(variableName) {}
+	: BasicInstruction(hardware, BasicInstructionType::MOV_NV), numValue(numValue), leftRegister(variableName) {}
 
 void BasicInstructionMovNV::expandToHardwareInstructions() {
   machineCode.clear();

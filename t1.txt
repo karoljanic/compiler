@@ -1,0 +1,215 @@
+CZYTA INDIRECT ARRAY BEGIN ADDRESS
+CZYTA INDIRECT ARRAY BEGIN ADDRESS
+CZYTA INDIRECT ARRAY BEGIN ADDRESS
+CZYTA INDIRECT ARRAY BEGIN ADDRESS
+REGISTERS USAGE 1:
+b: shuffle@t(77-77): 77 | shuffle@q(78-79): 78 79 | shuffle@w(80-81): 80 81 | shuffle@i(82-83): 82 83 | temp#2(84-86): 84 86 | shuffle@w(87-87): 87 | shuffle@q(88-88): 88 | shuffle@w(89-91): 89 90 91 | temp#7(92-93): 92 93 | temp#8(95-96): 95 96 | shuffle@i(100-103): 100 101 103 | temp#1(105-105): 105 | sort@t(106-106): 106 | sort@i(107-108): 107 108 | sort@n(109-109): 109 | temp#12(110-111): 110 111 | sort@t(112-112): 112 | sort@j(114-115): 114 115 | temp#13(116-117): 116 117 | sort@k(118-120): 118 119 120 | temp#15(121-121): 121 | temp#14(122-122): 122 | sort@t(123-124): 123 124 | sort@j(128-128): 128 | sort@j(130-131): 130 131 | sort@x(133-133): 133 | temp#33(134-134): 134 | sort@i(135-136): 135 136 | sort@t(138-138): 138 | temp#10(139-139): 139 | write@t(140-140): 140 | write@i(141-142): 141 142 | temp#19(143-145): 143 145 | temp#21(146-147): 146 147 | write@t(151-151): 151 | temp#18(152-152): 152 | main@n(153-156): 153 154 156 | temp#22(160-160): 160 | temp#23(161-162): 161 162 | temp#23(166-166): 166 | temp#24(167-168): 167 168 | temp#25(169-170): 169 170 | temp#25(174-174): 174 | temp#26(175-176): 175 176 | temp#26(180-180): 180 | 
+c: temp#1(77-77): 77 | shuffle@n(84-92): 84 92 | shuffle@w(93-95): 93 94 95 | temp#30(96-96): 96 | shuffle@n(100-104): 100 104 | temp#10(106-106): 106 | temp#11(109-111): 109 111 | sort@x(112-113): 112 113 | sort@j(116-118): 116 118 | temp#14(120-120): 120 | sort@x(121-121): 121 | temp#15(122-122): 122 | temp#16(123-124): 123 124 | sort@k(128-129): 128 129 | temp#17(133-134): 133 134 | sort@n(138-138): 138 | write@n(140-140): 140 | write@n(143-143): 143 | write@i(144-149): 144 146 148 149 | write@n(151-151): 151 | temp#22(155-156): 155 156 | main@n(160-162): 160 162 | main@n(166-170): 166 170 | main@n(174-176): 174 176 | main@n(180-180): 180 | 
+d: shuffle@n(77-77): 77 | shuffle@i(85-98): 85 96 97 98 | temp#9(102-103): 102 103 | sort@n(106-106): 106 | sort@i(110-114): 110 112 114 | sort@t(120-120): 120 | sort@k(123-123): 123 | sort@j(124-126): 124 125 126 | sort@k(134-134): 134 | temp#18(140-140): 140 | temp#20(144-145): 144 145 | write@t(146-146): 146 | 
+e: temp#3(85-86): 85 86 | temp#4(87-89): 87 89 | temp#6(91-93): 91 93 | shuffle@t(96-96): 96 | temp#31(103-103): 103 | temp#32(124-124): 124 | sort@t(134-134): 134 | 
+f: temp#5(88-89): 88 89 | temp#29(93-93): 93 | shuffle@t(103-104): 103 104 | 
+g: temp#28(89-89): 89 | 
+h: temp#27(89-89): 89 | 
+MERGED: 
+sort@t(106-138): 106 112 120 123 124 134 138 
+MERGED: 
+sort@j(114-131): 114 115 116 118 124 125 126 128 130 131 
+MERGED: 
+sort@k(118-134): 118 119 120 123 128 129 134 
+MERGED: 
+write@t(140-151): 140 146 151 
+MERGED: 
+write@n(140-151): 140 143 151 
+MERGED: 
+shuffle@q(78-88): 78 79 88 
+MERGED: 
+write@i(141-149): 141 142 144 146 148 149 
+MERGED: 
+temp#14(120-122): 120 122 
+MERGED: 
+temp#15(121-122): 121 122 
+MERGED: 
+temp#18(140-152): 140 152 
+MERGED: 
+main@n(153-180): 153 154 156 160 162 166 170 174 176 180 
+MERGED: 
+temp#26(175-180): 175 176 180 
+MERGED: 
+temp#25(169-174): 169 170 174 
+MERGED: 
+temp#23(161-166): 161 162 166 
+MERGED: 
+temp#22(155-160): 155 156 160 
+REGISTERS USAGE 2:
+b: shuffle@t(77-77): 77 | shuffle@w(80-81): 80 81 | shuffle@i(82-83): 82 83 | temp#2(84-86): 84 86 | shuffle@w(87-87): 87 | shuffle@w(89-91): 89 90 91 | temp#7(92-93): 92 93 | temp#8(95-96): 95 96 | shuffle@i(100-103): 100 101 103 | temp#1(105-105): 105 | sort@i(107-108): 107 108 | sort@n(109-109): 109 | temp#12(110-111): 110 111 | temp#13(116-117): 116 117 | sort@x(133-133): 133 | temp#33(134-134): 134 | sort@i(135-136): 135 136 | temp#10(139-139): 139 | temp#19(143-145): 143 145 | temp#21(146-147): 146 147 | temp#24(167-168): 167 168 | 
+c: temp#1(77-77): 77 | shuffle@n(84-92): 84 92 | shuffle@w(93-95): 93 94 95 | temp#30(96-96): 96 | shuffle@n(100-104): 100 104 | temp#10(106-106): 106 | temp#11(109-111): 109 111 | sort@x(112-113): 112 113 | sort@x(121-121): 121 | temp#16(123-124): 123 124 | temp#17(133-134): 133 134 | sort@n(138-138): 138 | temp#18(140-152): 140 152 | temp#23(161-166): 161 162 166 | temp#25(169-174): 169 170 174 | temp#26(175-180): 175 176 180 | 
+d: shuffle@n(77-77): 77 | shuffle@i(85-98): 85 96 97 98 | temp#9(102-103): 102 103 | sort@n(106-106): 106 | sort@i(110-114): 110 112 114 | temp#14(120-122): 120 122 | temp#20(144-145): 144 145 | main@n(153-180): 153 154 156 160 162 166 170 174 176 180 | 
+e: temp#3(85-86): 85 86 | temp#4(87-89): 87 89 | temp#6(91-93): 91 93 | shuffle@t(96-96): 96 | temp#31(103-103): 103 | temp#15(121-122): 121 122 | temp#32(124-124): 124 | write@t(140-151): 140 146 151 | temp#22(155-160): 155 156 160 | 
+f: temp#5(88-89): 88 89 | temp#29(93-93): 93 | shuffle@t(103-104): 103 104 | sort@t(106-138): 106 112 120 123 124 134 138 | write@n(140-151): 140 143 151 | 
+g: shuffle@q(78-88): 78 79 88 | temp#28(89-89): 89 | sort@j(114-131): 114 115 116 118 124 125 126 128 130 131 | write@i(141-149): 141 142 144 146 148 149 | 
+h: temp#27(89-89): 89 | sort@k(118-134): 118 119 120 123 128 129 134 | 
+VARIABLE REGISTERS:
+main@n: 153(d) 154(d) 156(d) 160(d) 162(d) 166(d) 170(d) 174(d) 176(d) 180(d) 
+shuffle@i: 82(b) 83(b) 85(d) 96(d) 97(d) 98(d) 100(b) 101(b) 103(b) 
+shuffle@n: 77(d) 84(c) 92(c) 100(c) 104(c) 
+shuffle@q: 78(g) 79(g) 88(g) 
+shuffle@t: 77(b) 96(e) 103(f) 104(f) 
+shuffle@w: 80(b) 81(b) 87(b) 89(b) 90(b) 91(b) 93(c) 94(c) 95(c) 
+sort@i: 107(b) 108(b) 110(d) 112(d) 114(d) 135(b) 136(b) 
+sort@j: 114(g) 115(g) 116(g) 118(g) 124(g) 125(g) 126(g) 128(g) 130(g) 131(g) 
+sort@k: 118(h) 119(h) 120(h) 123(h) 128(h) 129(h) 134(h) 
+sort@n: 106(d) 109(b) 138(c) 
+sort@t: 106(f) 112(f) 120(f) 123(f) 124(f) 134(f) 138(f) 
+sort@x: 112(c) 113(c) 121(c) 133(b) 
+temp#1: 77(c) 105(b) 
+temp#10: 106(c) 139(b) 
+temp#11: 109(c) 111(c) 
+temp#12: 110(b) 111(b) 
+temp#13: 116(b) 117(b) 
+temp#14: 120(d) 122(d) 
+temp#15: 121(e) 122(e) 
+temp#16: 123(c) 124(c) 
+temp#17: 133(c) 134(c) 
+temp#18: 140(c) 152(c) 
+temp#19: 143(b) 145(b) 
+temp#2: 84(b) 86(b) 
+temp#20: 144(d) 145(d) 
+temp#21: 146(b) 147(b) 
+temp#22: 155(e) 156(e) 160(e) 
+temp#23: 161(c) 162(c) 166(c) 
+temp#24: 167(b) 168(b) 
+temp#25: 169(c) 170(c) 174(c) 
+temp#26: 175(c) 176(c) 180(c) 
+temp#27: 89(h) 
+temp#28: 89(g) 
+temp#29: 93(f) 
+temp#3: 85(e) 86(e) 
+temp#30: 96(c) 
+temp#31: 103(e) 
+temp#32: 124(e) 
+temp#33: 134(b) 
+temp#4: 87(e) 89(e) 
+temp#5: 88(f) 89(f) 
+temp#6: 91(e) 93(e) 
+temp#7: 92(b) 93(b) 
+temp#8: 95(b) 96(b) 
+temp#9: 102(d) 103(d) 
+write@i: 141(g) 142(g) 144(g) 146(g) 148(g) 149(g) 
+write@n: 140(f) 143(f) 151(f) 
+write@t: 140(e) 146(e) 151(e) 
+STORE: shuffle@t(77-77): 77
+STORE: shuffle@w(80-81): 81
+STORE: shuffle@i(82-83): 83
+LOAD: shuffle@w(87-87): 87
+STORE: shuffle@w(87-87): 87
+STORE: shuffle@w(89-91): 91
+STORE: shuffle@i(100-103): 103
+LOAD: temp#1(105-105): 105
+STORE: temp#1(105-105): 105
+STORE: sort@i(107-108): 108
+LOAD: sort@n(109-109): 109
+STORE: sort@n(109-109): 109
+LOAD: sort@x(133-133): 133
+STORE: sort@x(133-133): 133
+LOAD: sort@i(135-136): 135
+STORE: sort@i(135-136): 136
+LOAD: temp#10(139-139): 139
+STORE: temp#10(139-139): 139
+STORE: temp#1(77-77): 77
+LOAD: shuffle@n(84-92): 84
+STORE: shuffle@n(84-92): 92
+STORE: shuffle@w(93-95): 95
+LOAD: shuffle@n(100-104): 100
+STORE: shuffle@n(100-104): 104
+STORE: temp#10(106-106): 106
+STORE: sort@x(112-113): 113
+LOAD: sort@x(121-121): 121
+STORE: sort@x(121-121): 121
+LOAD: sort@n(138-138): 138
+STORE: sort@n(138-138): 138
+STORE: shuffle@n(77-77): 77
+LOAD: shuffle@i(85-98): 85
+STORE: shuffle@i(85-98): 98
+STORE: sort@n(106-106): 106
+LOAD: sort@i(110-114): 110
+STORE: sort@i(110-114): 114
+LOAD: shuffle@t(96-96): 96
+STORE: shuffle@t(96-96): 96
+LOAD: shuffle@t(103-104): 103
+STORE: shuffle@t(103-104): 104
+LABELS SIZE: 0 0
+LABELS SIZE: 0 0
+LABELS SIZE: 0 0
+LABELS SIZE: 0 0
+LABELS SIZE: 0 0
+LABELS SIZE: 0 0
+LABELS SIZE: 0 0
+LABELS SIZE: 0 0
+LABELS SIZE: 0 0
+LABELS SIZE: 0 0
+LABELS SIZE: 0 0
+LABELS SIZE: 0
+LABELS SIZE: 0
+LABELS SIZE: 0
+LABELS SIZE: 0
+LABELS SIZE: 0
+LABELS SIZE: 0
+LABELS SIZE: 0
+LABELS SIZE: 0
+LABELS SIZE: 0
+LABELS SIZE: 0
+LABELS SIZE: 0
+LABELS SIZE: 0
+LABELS SIZE: 0
+Compilation complete. Output file: out.rm
+Czytanie kodu.
+Skończono czytanie kodu (liczba rozkazów: 1784).
+Uruchamianie programu.
+> 5
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 1234567890
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 0
+> 5
+Skończono program (koszt: 59,905; w tym i/o: 4,700).

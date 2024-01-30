@@ -203,7 +203,7 @@ procedures:
     #endif
 
         const auto proc = std::make_shared<AstProcedure>($2->getHeader(), $2->getDeclarations(), $3->getCommands());
-        if(declareProcedure(proc.get(), 2137)) {
+        if(declareProcedure(proc.get(), $2->getLine())) {
             $$->addProcedure(proc);
 
             lookupTable.removeTopScope();
@@ -227,7 +227,7 @@ procedures:
     #endif
 
         const auto proc = std::make_shared<AstProcedure>($2->getHeader(), $2->getDeclarations(), $3->getCommands());
-        if(declareProcedure(proc.get(), 2137)) {
+        if(declareProcedure(proc.get(), $2->getLine())) {
             $$->addProcedure(proc);
 
             lookupTable.removeTopScope();
@@ -261,6 +261,7 @@ simple_procedure_begin:
     #endif
 
         $$ = new AstProcedure(std::make_shared<AstProcedureHeader>(*$2), std::make_shared<AstDeclarations>(), nullptr);
+        $$->setLine($1.line);
     }
 ;
 
@@ -271,6 +272,7 @@ complex_procedure_begin:
     #endif
 
         $$ = new AstProcedure(std::make_shared<AstProcedureHeader>(*$2), std::make_shared<AstDeclarations>(*$4), nullptr);
+        $$->setLine($1.line);
     }
 ;
 

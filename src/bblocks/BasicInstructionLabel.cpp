@@ -3,7 +3,7 @@
 BasicInstructionLabel::BasicInstructionLabel() {}
 
 BasicInstructionLabel::BasicInstructionLabel(std::string label, std::shared_ptr<Hardware> hardware)
-	: BasicInstruction(hardware), label(label) {}
+	: BasicInstruction(hardware, BasicInstructionType::LABEL), label(label) {}
 
 void BasicInstructionLabel::expandToHardwareInstructions() {
   machineCode.clear();
