@@ -12,9 +12,6 @@ compiler:
 test-ast:
 	$(CXX) $(CXXFLAGS) ../src/core/*.cpp ../src/ast/*.cpp ../src/bblocks/*.cpp ../out/*.cpp main.cpp to-ast-conversion.cpp -o ast-test -lgtest
 
-test-bblocks:
-	$(CXX) $(CXXFLAGS) ../src/core/*.cpp ../src/ast/*.cpp ../src/bblocks/*.cpp ../out/*.cpp main.cpp to-bblocks-conversion.cpp -o bblocks-test -lgtest
-
 test-machine-code:
 	$(CXX) $(CXXFLAGS) ../src/core/*.cpp ../src/ast/*.cpp ../src/bblocks/*.cpp ../out/*.cpp main.cpp to-machine-code-conversion.cpp -o machine-code-test -lgtest
 
@@ -23,8 +20,8 @@ test-meaningful-programs:
 
 clean:
 	rm -f ast-test
-	rm -f bblocks-test
 	rm -f machine-code-test
+	rm -f meaningful-programs-test
 	rm -f tmp.ast
 
 cleanall:

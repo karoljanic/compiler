@@ -56,6 +56,14 @@ void ControlFlowGraphNode::expand() {
   instruction->expandToHardwareInstructions();
 }
 
+void ControlFlowGraphNode::clear() {
+  usedVariables.clear();
+  definedVariables.clear();
+  liveInVariables.clear();
+  liveOutVariables.clear();
+  liveNowVariables.clear();
+}
+
 uint64_t ControlFlowGraphNode::getId() const {
   return id;
 }
@@ -124,6 +132,22 @@ void ControlFlowGraph::expandInstructions() {
   for (auto &subgraph : graph) {
 	for (auto &node : subgraph.second) {
 	  node.expand();
+	}
+  }
+}
+
+void ControlFlowGraph::clear() {
+  for (auto &subgraph : graph) {
+	for (auto &node : subgraph.second) {
+	  node.clear();
+	}
+  }
+}
+
+void ControlFlowGraph::replace(const std::map<std::string, std::string>& uselessTemporariesMapping) {
+  for (auto &subgraph : graph) {
+	for (auto &node : subgraph.second) {
+	  node.getInstruction()->replace(uselessTemporariesMapping);
 	}
   }
 }

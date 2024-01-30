@@ -42,6 +42,7 @@ class ControlFlowGraphNode {
   void setLiveNowVariables(const std::set<std::string> &liveNowVariables);
 
   void expand();
+  void clear();
 
   uint64_t getId() const;
   const std::vector<uint64_t> &getPredecessors() const;
@@ -63,6 +64,8 @@ class ControlFlowGraph {
   void initializeSuccessorsBasedOnPredecessors();
   void optimize();
   void expandInstructions();
+  void clear();
+  void replace(const std::map<std::string, std::string>& uselessTemporariesMapping);
   std::map<std::string, std::vector<std::vector<uint64_t>>> calculateVariablesLiveRanges();
   void printGraph(std::ostream &stream) const;
   void printInstructions(std::ostream &stream) const;

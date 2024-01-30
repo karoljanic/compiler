@@ -158,15 +158,11 @@ void RegistersLinearScan::allocateRegisters() {
 	  if (loadIsRequired(range)) {
 		memoryLoad[range.usages.front().position].push_back(std::make_pair(registerName,
 																		   variableMemoryPosition[variableName]));
-//		std::cout << "LOAD: " << variableName << "(" << range.start << "-" << range.end << "): ";
-//		std::cout << range.usages.front().position << std::endl;
 	  }
 
 	  if (storeIsRequired(range)) {
 		memoryStore[range.usages.back().position].push_back(std::make_pair(registerName,
 																		   variableMemoryPosition[variableName]));
-//		std::cout << "STORE: " << variableName << "(" << range.start << "-" << range.end << "): ";
-//		std::cout << range.usages.back().position << std::endl;
 	  }
 	}
   }

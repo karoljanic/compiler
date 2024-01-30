@@ -106,10 +106,8 @@ GET g
 WRITE 
 GET b
 PUT d
-GET c
-PUT e
 GET d
-ADD e
+ADD c
 PUT g
 GET g
 WRITE 
@@ -125,28 +123,22 @@ GET g
 WRITE 
 GET g
 PUT d
-GET g
-PUT e
 GET d
-ADD e
+ADD g
 PUT g
 GET g
 WRITE 
 GET g
 PUT d
-GET b
-PUT e
 GET d
-ADD e
+ADD b
 PUT g
 GET g
 WRITE 
 GET b
 PUT d
-GET g
-PUT e
 GET d
-ADD e
+ADD g
 PUT g
 GET g
 WRITE 
@@ -224,10 +216,8 @@ INC a
 SHL a
 LOAD a
 PUT b
-GET c
-PUT d
 GET b
-ADD d
+ADD c
 PUT g
 GET g
 WRITE 
@@ -327,10 +317,8 @@ WRITE
 GET b
 LOAD a
 PUT d
-GET c
-PUT e
 GET d
-ADD e
+ADD c
 PUT g
 GET g
 WRITE 

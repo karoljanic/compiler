@@ -67,6 +67,7 @@ class BasicInstruction {
 
   const std::vector<MachineCodeType> &getMachineCode() const;
   BasicInstructionType getType() const;
+  void replace(const std::map<std::string, std::string> &uselessTemporariesMapping);
 
   size_t estimateMachineCodeSize();
   virtual void expandToHardwareInstructions();

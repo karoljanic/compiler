@@ -13,6 +13,14 @@ BasicInstructionType BasicInstruction::getType() const {
   return type;
 }
 
+void BasicInstruction::replace(const std::map<std::string, std::string> &uselessTemporariesMapping) {
+  for (auto &machineCodeLine : machineCode) {
+	if (uselessTemporariesMapping.find(machineCodeLine.second.second) != uselessTemporariesMapping.end()) {
+	  machineCodeLine.second.second = uselessTemporariesMapping.at(machineCodeLine.second.second);
+	}
+  }
+}
+
 size_t BasicInstruction::estimateMachineCodeSize() {
   return machineCode.size();
 }

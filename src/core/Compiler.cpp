@@ -26,10 +26,6 @@ void Compiler::generateMachineCodeWithDebug(std::ofstream &astFile, std::ofstrea
   convertToFirstControlFlowGraph();
   pasteProcedures();
 
-  std::fstream ast2File;
-  ast2File.open("ast2.txt", std::ios::out);
-  ast->print(ast2File, 0);
-
   convertToControlFlowGraph();
   optimizeControlFlowGraph();
   expandAndOptimizeBasicInstructions();
@@ -136,17 +132,15 @@ std::shared_ptr<AstCommands> Compiler::pasteProceduresUtilCommands(const std::ve
 	  for (const auto &command : procedure->getCommands()->getCommands()) {
 		newCommands->addCommand(std::dynamic_pointer_cast<AstCommand>(command->copy(namesRewrite)));
 	  }
-	}
-	else if(command->getCommandType() == AstCommandType::REPEAT) {
-		auto castedCommand = std::dynamic_pointer_cast<AstRepeat>(command);
+	} else if (command->getCommandType() == AstCommandType::REPEAT) {
+	  auto castedCommand = std::dynamic_pointer_cast<AstRepeat>(command);
 	  auto repeatCommands =
 		  pasteProceduresUtilCommands(castedCommand->getCommands()->getCommands(), procedures, newDeclarations);
 
 	  auto castedCommandCopy = std::dynamic_pointer_cast<AstRepeat>(command->copy(emptyRewrite));
 	  castedCommandCopy->setCommands(repeatCommands);
 	  newCommands->addCommand(std::dynamic_pointer_cast<AstCommand>(castedCommandCopy));
-	}
-	else if (command->getCommandType() == AstCommandType::WHILE) {
+	} else if (command->getCommandType() == AstCommandType::WHILE) {
 	  auto castedCommand = std::dynamic_pointer_cast<AstWhile>(command);
 	  auto whileCommands =
 		  pasteProceduresUtilCommands(castedCommand->getCommands()->getCommands(), procedures, newDeclarations);
@@ -154,9 +148,8 @@ std::shared_ptr<AstCommands> Compiler::pasteProceduresUtilCommands(const std::ve
 	  auto castedCommandCopy = std::dynamic_pointer_cast<AstWhile>(command->copy(emptyRewrite));
 	  castedCommandCopy->setCommands(whileCommands);
 	  newCommands->addCommand(std::dynamic_pointer_cast<AstCommand>(castedCommandCopy));
-	}
-	else if(command->getCommandType() == AstCommandType::IF) {
-		auto castedCommand = std::dynamic_pointer_cast<AstIf>(command);
+	} else if (command->getCommandType() == AstCommandType::IF) {
+	  auto castedCommand = std::dynamic_pointer_cast<AstIf>(command);
 	  auto ifCommands =
 		  pasteProceduresUtilCommands(castedCommand->getCommands()->getCommands(), procedures, newDeclarations);
 	  auto ifElseCommands =
@@ -166,8 +159,7 @@ std::shared_ptr<AstCommands> Compiler::pasteProceduresUtilCommands(const std::ve
 	  castedCommandCopy->setCommands(ifCommands);
 	  castedCommandCopy->setElseCommands(ifElseCommands);
 	  newCommands->addCommand(std::dynamic_pointer_cast<AstCommand>(castedCommandCopy));
-	}
-	else {
+	} else {
 	  newCommands->addCommand(std::dynamic_pointer_cast<AstCommand>(command->copy(emptyRewrite)));
 	}
   }
@@ -185,81 +177,6 @@ void Compiler::convertToFirstControlFlowGraph() {
 	parseAstProcedure(procedure, blockInstructions);
 	currProcedureArgs.clear();
 	firstControlFlowGraph.addSubgraph(blockInstructions.first, blockInstructions.second);
-  }
-
-  const auto liveRanges = firstControlFlowGraph.calculateVariablesLiveRanges();
-  const auto definedVariables = firstControlFlowGraph.getDefinedVariables();
-  const auto usedVariables = firstControlFlowGraph.getUsedVariables();
-  const auto liveIn = firstControlFlowGraph.getLiveInVariables();
-  for (const auto &liveRangeList : liveRanges) {
-	std::string name = liveRangeList.first;
-	auto ranges = std::vector < std::vector < uint64_t >> ();
-	for (const auto &liveRange : liveRangeList.second) {
-	  if (!liveRange.empty()) {
-		ranges.push_back(liveRange);
-	  }
-	}
-
-	if (ranges.size() != 1) {
-	  continue;
-	}
-	auto currRange = ranges.front();
-
-	// first usage must be l-value
-	auto defined =
-		std::find_if(definedVariables.begin(),
-					 definedVariables.end(),
-					 [&currRange, &name](const std::pair<uint64_t, std::string> &var) {
-					   return var.first == currRange.front() && var.second == name;
-					 });
-
-	auto used =
-		std::find_if(usedVariables.begin(),
-					 usedVariables.end(),
-					 [&currRange, &name](const std::pair<uint64_t, std::string> &var) {
-					   return var.first == currRange.front() && var.second == name;
-					 });
-
-	if (defined == definedVariables.end() || used != usedVariables.end()) {
-	  continue;
-	}
-
-	// rest usages must be r-value
-	bool fail = false;
-	for (size_t i = 1; i < currRange.size(); i++) {
-	  auto defined =
-		  std::find_if(definedVariables.begin(),
-					   definedVariables.end(),
-					   [&currRange, &name, &i](const std::pair<uint64_t, std::string> &var) {
-						 return var.first == currRange[i] && var.second == name;
-					   });
-
-	  auto used =
-		  std::find_if(usedVariables.begin(),
-					   usedVariables.end(),
-					   [&currRange, &name, &i](const std::pair<uint64_t, std::string> &var) {
-						 return var.first == currRange[i] && var.second == name;
-					   });
-
-	  if (defined != definedVariables.end() || used == usedVariables.end()) {
-		fail = true;
-		break;
-	  }
-	}
-
-	if (fail) {
-	  continue;
-	}
-
-	if (firstControlFlowGraph.getNode(currRange.front()).getInstruction()->getType() != BasicInstructionType::MOV_VV) {
-	  continue;
-	}
-
-	const auto ins =
-		std::dynamic_pointer_cast<BasicInstructionMovVV>(firstControlFlowGraph.getNode(currRange.front()).getInstruction());
-
-	uselessTemporariesMapping[name] = ins->getRightRegister();
-	std::cout << "DODAJ " << name << " " << ins->getRightRegister() << std::endl;
   }
 
   hardware = std::make_shared<Hardware>();
@@ -351,10 +268,86 @@ void Compiler::optimizeBasicInstructions() {
 }
 
 void Compiler::findRegisters() {
-  const auto liveRanges = controlFlowGraph.calculateVariablesLiveRanges();
+  auto liveRanges = controlFlowGraph.calculateVariablesLiveRanges();
+  auto definedVariables = controlFlowGraph.getDefinedVariables();
+  auto usedVariables = controlFlowGraph.getUsedVariables();
 
-  const auto &definedVariables = controlFlowGraph.getDefinedVariables();
-  const auto &usedVariables = controlFlowGraph.getUsedVariables();
+  for (const auto &liveRangeList : liveRanges) {
+	std::string name = liveRangeList.first;
+	auto ranges = std::vector < std::vector < uint64_t >> ();
+	for (const auto &liveRange : liveRangeList.second) {
+	  if (!liveRange.empty()) {
+		ranges.push_back(liveRange);
+	  }
+	}
+
+	if (ranges.size() != 1) {
+	  continue;
+	}
+	auto currRange = ranges.front();
+
+	// first usage must be l-value
+	auto defined =
+		std::find_if(definedVariables.begin(),
+					 definedVariables.end(),
+					 [&currRange, &name](const std::pair<uint64_t, std::string> &var) {
+					   return var.first == currRange.front() && var.second == name;
+					 });
+
+	auto used =
+		std::find_if(usedVariables.begin(),
+					 usedVariables.end(),
+					 [&currRange, &name](const std::pair<uint64_t, std::string> &var) {
+					   return var.first == currRange.front() && var.second == name;
+					 });
+
+	if (defined == definedVariables.end() || used != usedVariables.end()) {
+	  continue;
+	}
+
+	// rest usages must be r-value
+	bool fail = false;
+	for (size_t i = 1; i < currRange.size(); i++) {
+	  auto defined =
+		  std::find_if(definedVariables.begin(),
+					   definedVariables.end(),
+					   [&currRange, &name, &i](const std::pair<uint64_t, std::string> &var) {
+						 return var.first == currRange[i] && var.second == name;
+					   });
+
+	  auto used =
+		  std::find_if(usedVariables.begin(),
+					   usedVariables.end(),
+					   [&currRange, &name, &i](const std::pair<uint64_t, std::string> &var) {
+						 return var.first == currRange[i] && var.second == name;
+					   });
+
+	  if (defined != definedVariables.end() || used == usedVariables.end()) {
+		fail = true;
+		break;
+	  }
+	}
+
+	if (fail) {
+	  continue;
+	}
+
+	if (controlFlowGraph.getNode(currRange.front()).getInstruction()->getType() != BasicInstructionType::MOV_VV) {
+	  continue;
+	}
+
+	const auto ins =
+		std::dynamic_pointer_cast<BasicInstructionMovVV>(controlFlowGraph.getNode(currRange.front()).getInstruction());
+
+	uselessTemporariesMapping[name] = ins->getRightRegister();
+  }
+
+//  controlFlowGraph.clear();
+//  controlFlowGraph.replace(uselessTemporariesMapping);
+
+  liveRanges = controlFlowGraph.calculateVariablesLiveRanges();
+  definedVariables = controlFlowGraph.getDefinedVariables();
+  usedVariables = controlFlowGraph.getUsedVariables();
 
   registersLinearScan = RegistersLinearScan{hardware};
   for (const auto &var : definedVariables) {
@@ -435,7 +428,7 @@ void Compiler::findRegisters() {
 	  }
 
 	  instructionCopy.second.second =
-		  registersLinearScan.getVariableRegister(instruction.second.second, node.getId());
+		  registersLinearScan.getVariableRegister(instructionCopy.second.second, node.getId());
 	  machineCodeWithLabels.push_back(instructionCopy);
 	}
 
@@ -1496,5 +1489,5 @@ bool Compiler::pasteProcedureEfficiency(const std::string &name) {
   if (AstProcedureCall::getFunctionCallsCounter().at(name) == 1) {
 	return true;
   }
-  return functionEstimatedSize <= 200 * (proceduresArgs[name].size() + 3);
+  return functionEstimatedSize <= 200 * (proceduresArgs[name].size() + 4);
 }
