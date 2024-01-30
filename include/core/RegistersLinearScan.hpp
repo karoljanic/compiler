@@ -36,8 +36,6 @@ class RegistersLinearScan {
   ControlFlowGraph flowGraph;
   std::map<std::string, std::vector<std::vector<uint64_t>>> liveRanges;
   std::map<std::string, std::vector<Usage>> variablesUsage;
-  std::map<std::string, std::set<uint64_t>> requireLoad;
-  std::map<std::string, std::set<uint64_t>> requireStore;
   std::vector<Range> ranges;
   std::map<HardwareRegister, std::vector<Range>> registersUsage;
   std::map<std::string, std::map<uint64_t, std::string>> variableRegisters;
@@ -51,7 +49,8 @@ class RegistersLinearScan {
 
   void addVariableUsageInfo(const std::string& variable, uint64_t position, UsageType usageType);
   void createRanges(ControlFlowGraph& controlFlowGraph);
-  void allocateRegisters();
+  void allocateRegisters(const std::vector<std::pair<std::string, uint64_t>>& requiredLoads,
+						 const std::vector<std::pair<std::string, uint64_t>>& requiredStores);
   std::string getVariableRegister(const std::string& variable, uint64_t position);
   std::vector<std::pair<std::string, uint64_t>> getMemoryStore(uint64_t position);
   std::vector<std::pair<std::string, uint64_t>> getMemoryLoad(uint64_t position);
@@ -71,6 +70,8 @@ class RegistersLinearScan {
   bool rangesOverlap(const Range& range1, const Range& range2);
   bool rangesInclude(const Range& outerRange, const Range& innerRange);
   uint64_t rangeSize(const Range& range);
+  std::vector<Usage> findRangeUsages(const std::string& variable, uint64_t position);
+  std::vector<Range> findRangesWithVariable(const std::string& variable);
   void printRanges();
   void printUsages();
   void printRegistersUsage();

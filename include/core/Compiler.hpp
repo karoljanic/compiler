@@ -91,6 +91,7 @@ class Compiler {
   std::vector<std::string> currProcedureArgs;
   std::map<std::string, std::vector<std::string>> proceduresArgs;
   std::vector<std::string> usedProcedures;
+  std::vector<std::string> proceduresToPaste;
   std::map<std::string, std::vector<std::string>> procedureCallsInProcedure;
 
  public:
@@ -110,10 +111,14 @@ class Compiler {
 						   const std::shared_ptr<AstProcedures> &procedures,
 						   std::shared_ptr<AstDeclarations> &newDeclarations,
 						   std::shared_ptr<AstCommands> &newCommands);
+  std::shared_ptr<AstCommands> pasteProceduresUtilCommands(const std::vector<std::shared_ptr<AstCommand>> &commands,
+														   const std::shared_ptr<AstProcedures> &procedures,
+														   std::shared_ptr<AstDeclarations> &newDeclarations);
   void convertToFirstControlFlowGraph();
   void convertToControlFlowGraph();
   void optimizeControlFlowGraph();
   void expandAndOptimizeBasicInstructions();
+  void optimizeBasicInstructions();
   void findRegisters();
   void optimizeMachineCode();
   void findLabels();

@@ -67,6 +67,11 @@ void Compiler::pasteProcedures() {
   main->setDeclarations(newMainDeclarations);
   main->setCommands(newMainCommands);
 
+  proceduresToPaste = usedProcedures;
+  for (const auto &procedure : proceduresToPaste) {
+	std::cout << procedure << std::endl;
+  }
+
   std::fstream astFile;
   astFile.open("ast2.txt", std::ios::out);
   ast->print(astFile, 0);
@@ -83,7 +88,16 @@ void Compiler::pasteProceduresUtil(const std::shared_ptr<AstDeclarations> &decla
 	newDeclarations->addDeclaration(std::dynamic_pointer_cast<AstLeftValue>(declaration->copy(emptyRewrite)));
   }
 
-  for (const auto &command : commands->getCommands()) {
+  newCommands = pasteProceduresUtilCommands(commands->getCommands(), procedures, newDeclarations);
+}
+
+std::shared_ptr<AstCommands> Compiler::pasteProceduresUtilCommands(const std::vector<std::shared_ptr<AstCommand>> &commands,
+																   const std::shared_ptr<AstProcedures> &procedures,
+																   std::shared_ptr<AstDeclarations> &newDeclarations) {
+  std::shared_ptr<AstCommands> newCommands = std::make_shared<AstCommands>();
+  std::map<std::string, std::string> emptyRewrite;
+
+  for (const auto &command : commands) {
 	if (command->getCommandType() == AstCommandType::PROCEDURE_CALL) {
 	  const auto &procedureCall = std::dynamic_pointer_cast<AstProcedureCall>(command);
 	  const auto &procedureName = procedureCall->getName();
@@ -122,10 +136,22 @@ void Compiler::pasteProceduresUtil(const std::shared_ptr<AstDeclarations> &decla
 	  for (const auto &command : procedure->getCommands()->getCommands()) {
 		newCommands->addCommand(std::dynamic_pointer_cast<AstCommand>(command->copy(namesRewrite)));
 	  }
-	} else {
+	}
+	else if(command->getCommandType() == AstCommandType::REPEAT) {
+
+	}
+	else if(command->getCommandType() == AstCommandType::WHILE) {
+
+	}
+	else if(command->getCommandType() == AstCommandType::IF) {
+
+	}
+	else {
 	  newCommands->addCommand(std::dynamic_pointer_cast<AstCommand>(command->copy(emptyRewrite)));
 	}
   }
+
+  return newCommands;
 }
 
 void Compiler::convertToFirstControlFlowGraph() {
@@ -148,6 +174,7 @@ void Compiler::convertToFirstControlFlowGraph() {
   parentsIds = std::vector<uint64_t>();
   currLabels = std::map < uint64_t, std::vector < std::string >> ();
   currProcedureArgs = std::vector<std::string>();
+  usedProcedures = std::vector<std::string>();
 //  proceduresArgs = std::map < std::string, std::vector < std::string >> ();
 }
 
@@ -157,6 +184,11 @@ void Compiler::convertToControlFlowGraph() {
   const std::shared_ptr<AstProcedures> &procedures = program->getProcedures();
 
   for (const auto &procedure : procedures->getProcedures()) {
+	if (std::find(proceduresToPaste.begin(), proceduresToPaste.end(), procedure->getHeader()->getName())
+		== proceduresToPaste.end()) {
+	  continue;
+	}
+
 	currProcedureArgs.clear();
 	std::pair<std::string, std::vector<ControlFlowGraphNode>> blockInstructions;
 	parseAstProcedure(procedure, blockInstructions);
@@ -210,6 +242,7 @@ void Compiler::expandAndOptimizeBasicInstructions() {
 	if (subgraphName == "main") {
 	  continue;
 	}
+	std::cout << "SZUKAM " << subgraphName << std::endl;
 	if (std::find(usedProcedures.begin(), usedProcedures.end(), subgraphName) == usedProcedures.end()) {
 	  continue;
 	}
@@ -219,18 +252,23 @@ void Compiler::expandAndOptimizeBasicInstructions() {
   }
 }
 
+void Compiler::optimizeBasicInstructions() {
+
+}
+
 void Compiler::findRegisters() {
   const auto liveRanges = controlFlowGraph.calculateVariablesLiveRanges();
-//  for (const auto &liveRange : liveRanges) {
-//	std::cout << liveRange.first << ": " << std::endl;
-//	for (const auto &range : liveRange.second) {
-//	  for (const auto &el : range) {
-//		std::cout << el << " ";
-//	  }
-//	  std::cout << std::endl;
-//	}
-//	std::cout << std::endl;
-//  }
+  std::cout << "LIVE RANGES: " << std::endl;
+  for (const auto &liveRange : liveRanges) {
+	std::cout << liveRange.first << ": " << std::endl;
+	for (const auto &range : liveRange.second) {
+	  for (const auto &el : range) {
+		std::cout << el << " ";
+	  }
+	  std::cout << std::endl;
+	}
+	std::cout << std::endl;
+  }
 
   const auto &definedVariables = controlFlowGraph.getDefinedVariables();
   const auto &usedVariables = controlFlowGraph.getUsedVariables();
@@ -245,17 +283,38 @@ void Compiler::findRegisters() {
   }
 
   registersLinearScan.createRanges(controlFlowGraph);
-  registersLinearScan.allocateRegisters();
+  registersLinearScan.allocateRegisters(controlFlowGraph.getRequiredLoads(), controlFlowGraph.getRequiredStores());
 
   for (const auto &node : machineCodeWithVariablesAndLabels) {
 	const auto memoryLoads = registersLinearScan.getMemoryLoad(node.getId());
 	const auto memoryStores = registersLinearScan.getMemoryStore(node.getId());
 
+	const std::vector<HardwareRegister> regsToSave = {RB, RC, RD, RE, RF, RG, RH};
+
 	if (node.getInstruction()->getMachineCode().size() == 1
 		&& node.getInstruction()->getMachineCode()[0].second.first == HardwareInstruction::SAVE_STATE) {
+	  uint64_t address = std::stoi(node.getInstruction()->getMachineCode()[0].second.second);
+
+	  for (size_t i = 0; i < regsToSave.size(); i++) {
+		const auto reg = Hardware::registerMap[regsToSave[i]].name;
+		const auto genNum = Utils::generateNumber(address + i, reg);
+		machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::GET, reg)});
+		machineCodeWithLabels.insert(machineCodeWithLabels.end(), genNum.begin(), genNum.end());
+		machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::STORE, reg)});
+		machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::PUT, reg)});
+	  }
 	  continue;
 	} else if (node.getInstruction()->getMachineCode().size() == 1
 		&& node.getInstruction()->getMachineCode()[0].second.first == HardwareInstruction::RESTORE_STATE) {
+	  uint64_t address = std::stoi(node.getInstruction()->getMachineCode()[0].second.second);
+
+	  for (size_t i = 0; i < regsToSave.size(); i++) {
+		const auto reg = Hardware::registerMap[regsToSave[i]].name;
+		const auto genNum = Utils::generateNumber(address + i, reg);
+		machineCodeWithLabels.insert(machineCodeWithLabels.end(), genNum.begin(), genNum.end());
+		machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::LOAD, reg)});
+		machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::PUT, reg)});
+	  }
 	  continue;
 	}
 
@@ -266,7 +325,7 @@ void Compiler::findRegisters() {
 	}
 
 	for (const auto &memoryLoad : memoryLoads) {
-	  //std::cout << "LOAD: " << memoryLoad.first << " " << memoryLoad.second << " " << node.getId() << std::endl;
+//	  std::cout << "LOAD: [" << node.getId() << "] " << memoryLoad.first << " " << memoryLoad.second << std::endl;
 
 	  const auto accumulator = Hardware::registerMap[Hardware::accumulator].name;
 	  const auto generateNumber = Utils::generateNumber(memoryLoad.second, accumulator);
@@ -299,7 +358,7 @@ void Compiler::findRegisters() {
 	}
 
 	for (const auto &memoryStore : memoryStores) {
-	  //std::cout << "STORE: " << memoryStore.first << " " << memoryStore.second << " " << node.getId() << std::endl;
+//	  std::cout << "STORE: [" << node.getId() << "] " << memoryStore.first << " " << memoryStore.second << std::endl;
 
 	  const auto generateNumber = Utils::generateNumber(memoryStore.second, memoryStore.first);
 	  machineCodeWithLabels.push_back(MachineCodeType{{}, std::make_pair(HardwareInstruction::GET, memoryStore.first)});
@@ -311,7 +370,52 @@ void Compiler::findRegisters() {
   }
 }
 
-void Compiler::optimizeMachineCode() {}
+void Compiler::optimizeMachineCode() {
+  std::vector<bool> trash(machineCodeWithLabels.size(), false);
+
+  for (size_t i = 2; i < machineCodeWithLabels.size(); i++) {
+	auto in1 = machineCodeWithLabels[i - 2].second;
+	auto labels1 = machineCodeWithLabels[i - 2].first;
+	auto in2 = machineCodeWithLabels[i - 1].second;
+	auto labels2 = machineCodeWithLabels[i - 1].first;
+	auto in3 = machineCodeWithLabels[i].second;
+
+	if (in1.first == HardwareInstruction::GET &&
+		in2.first == HardwareInstruction::PUT &&
+		in3.first == HardwareInstruction::GET &&
+		in1.second == in2.second) {
+	  trash[i - 2] = true;
+	  trash[i - 1] = true;
+	  machineCodeWithLabels[i].first.insert(machineCodeWithLabels[i].first.end(), labels1.begin(), labels1.end());
+	  machineCodeWithLabels[i].first.insert(machineCodeWithLabels[i].first.end(), labels2.begin(), labels2.end());
+	  i++;
+	}
+  }
+
+  for (size_t i = 0; i < (machineCodeWithLabels.size() - 1); i++) {
+	auto in1 = machineCodeWithLabels[i].second;
+	if (in1.first == HardwareInstruction::GET && in1.second == Hardware::registerMap[Hardware::accumulator].name) {
+	  trash[i] = true;
+	  machineCodeWithLabels[i + 1].first.insert(machineCodeWithLabels[i + 1].first.end(),
+												machineCodeWithLabels[i].first.begin(),
+												machineCodeWithLabels[i].first.end());
+	}
+	if (in1.first == HardwareInstruction::PUT && in1.second == Hardware::registerMap[Hardware::accumulator].name) {
+	  trash[i] = true;
+	  machineCodeWithLabels[i + 1].first.insert(machineCodeWithLabels[i + 1].first.end(),
+												machineCodeWithLabels[i].first.begin(),
+												machineCodeWithLabels[i].first.end());
+	}
+  }
+
+  std::vector<MachineCodeType> optimizedMachineCode;
+  for (size_t i = 0; i < machineCodeWithLabels.size(); i++) {
+	if (!trash[i]) {
+	  optimizedMachineCode.push_back(machineCodeWithLabels[i]);
+	}
+  }
+  machineCodeWithLabels = optimizedMachineCode;
+}
 
 void Compiler::findLabels() {
   std::map<std::string, uint64_t> labels;
@@ -1070,6 +1174,13 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 	  instructions.push_back(pushArgsNode);
 	  parentsIds = {pushArgsNode.getId()};
 
+	  const uint64_t stateAddress = hardware->allocateStateRecord(7);
+	  ControlFlowGraphNode saveStateNode;
+	  saveStateNode.setInstruction(std::make_shared<BasicInstructionSaveState>(stateAddress, hardware));
+	  saveStateNode.addPredecessors(parentsIds);
+	  instructions.push_back(saveStateNode);
+	  parentsIds = {saveStateNode.getId()};
+
 	  usedProcedures.push_back(procedureName);
 	  procedureCallsInProcedure[scopes.top()].push_back(procedureName);
 	  ControlFlowGraphNode jumpNode;
@@ -1079,6 +1190,12 @@ void Compiler::parseAstCommand(std::shared_ptr<AstCommand> node, std::vector<Con
 	  jumpNode.addPredecessors(parentsIds);
 	  instructions.push_back(jumpNode);
 	  parentsIds = {jumpNode.getId()};
+
+	  ControlFlowGraphNode loadStateNode;
+	  loadStateNode.setInstruction(std::make_shared<BasicInstructionRestoreState>(stateAddress, hardware));
+	  loadStateNode.addPredecessors(parentsIds);
+	  instructions.push_back(loadStateNode);
+	  parentsIds = {loadStateNode.getId()};
 
 	  std::string unused = Hardware::registerMap[RA].name;
 	  ControlFlowGraphNode popArgsNode;
@@ -1289,10 +1406,10 @@ bool Compiler::pasteProcedureEfficiency(const std::string &name) {
 	}
   }
   std::cout << "ESTIMATED SIZE " << name << ": " << functionEstimatedSize << std::endl;
-  if(AstProcedureCall::getFunctionCallsCounter().at(name) == 1) {
+  if (AstProcedureCall::getFunctionCallsCounter().at(name) == 1) {
 	std::cout << "FAST PASTE " << name << std::endl;
 	return true;
   }
-  return functionEstimatedSize <= 200 * (proceduresArgs[name].size());
+  return functionEstimatedSize <= 200 * (proceduresArgs[name].size() + 2);
 //  return false;
 }

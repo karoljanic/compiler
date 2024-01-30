@@ -74,9 +74,13 @@ class ControlFlowGraph {
   ControlFlowGraphNode &getNode(uint64_t id);
   std::vector<std::string> getSubgraphNames() const;
   std::vector<ControlFlowGraphNode> &getNodes(std::string subgraphName);
+  const std::vector<std::pair<std::string, uint64_t>> &getRequiredLoads() const;
+  const std::vector<std::pair<std::string, uint64_t>> &getRequiredStores() const;
 
  private:
   std::map<std::string, std::vector<ControlFlowGraphNode>> graph;
+  std::vector<std::pair<std::string, uint64_t>> requiredLoads;
+  std::vector<std::pair<std::string, uint64_t>> requiredStores;
 };
 
 #endif  // CONTROL_FLOW_GRAPH_HPP

@@ -13,8 +13,8 @@ void RegistersLinearScan::addVariableUsageInfo(const std::string &variable, uint
 	  std::find_if(variablesUsage[variable].begin(), variablesUsage[variable].end(),
 				   [position](const Usage &u) { return u.position == position; });
 
-  if(sameUsage != variablesUsage[variable].end()) {
-	if(sameUsage->type != usageType) {
+  if (sameUsage != variablesUsage[variable].end()) {
+	if (sameUsage->type != usageType) {
 	  sameUsage->type = UsageType::BOTH;
 	}
   } else {
@@ -22,45 +22,30 @@ void RegistersLinearScan::addVariableUsageInfo(const std::string &variable, uint
   }
 }
 
-void RegistersLinearScan::createRanges(ControlFlowGraph& controlFlowGraph) {
+void RegistersLinearScan::createRanges(ControlFlowGraph &controlFlowGraph) {
   flowGraph = controlFlowGraph;
   liveRanges = flowGraph.calculateVariablesLiveRanges();
 
-  for(auto& liveRangeForVariable : liveRanges) {
+  for (auto &liveRangeForVariable : liveRanges) {
 	const auto variable = liveRangeForVariable.first;
-	if(Hardware::isRegName(variable)) {
+	if (Hardware::isRegName(variable)) {
 	  continue;
 	}
-	for(auto& liveRange : liveRangeForVariable.second) {
-	  uint64_t lowBound = liveRange.front();
-	  uint64_t highBound = liveRange.back();
-	  for(auto& position : liveRange) {
-		if(position >= highBound) {
-		  highBound = position;
-		}
-		else {
-		  if(requireLoad.find(variable) == requireLoad.end()) {
-			requireLoad[variable] = std::set<uint64_t>();
-		  }
-		  requireLoad[variable].insert(position);
-
-		  if(requireStore.find(variable) == requireStore.end()) {
-			requireStore[variable] = std::set<uint64_t>();
-		  }
-		  requireStore[variable].insert(highBound);
-		}
+	for (auto &liveRange : liveRangeForVariable.second) {
+	  if (liveRange.empty()) {
+		continue;
 	  }
 
-	  Range range{variable, lowBound, highBound, {}};
+	  Range range{variable, liveRange.front(), liveRange.back(), {}};
 	  range.usages = getVariableUsage(variable, range);
-	  if(range.usages.empty()) {
+	  if (range.usages.empty()) {
 		continue;
 	  }
 	  range.start = range.usages.front().position;
 	  range.end = range.usages.back().position;
 
-	  std::cout << "RANGE " << variable << "[" << range.start << "-" << range.end << "]: ";
-	  for(const auto& usage: range.usages) {
+	  std::cout << "Range " << variable << "[" << range.start << "-" << range.end << "]: ";
+	  for (const auto &usage : range.usages) {
 		std::cout << usage.position << " ";
 	  }
 	  std::cout << std::endl;
@@ -74,7 +59,8 @@ void RegistersLinearScan::createRanges(ControlFlowGraph& controlFlowGraph) {
   printRanges();
 }
 
-void RegistersLinearScan::allocateRegisters() {
+void RegistersLinearScan::allocateRegisters(const std::vector<std::pair<std::string, uint64_t>> &/*requiredLoads*/,
+											const std::vector<std::pair<std::string, uint64_t>> &/*requiredStores*/) {
   registersUsage =
 	  std::map < HardwareRegister, std::vector
 	  < Range >> {{RB, {}}, {RC, {}}, {RD, {}}, {RE, {}}, {RF, {}}, {RG, {}}, {RH, {}}};
@@ -108,46 +94,43 @@ void RegistersLinearScan::allocateRegisters() {
   memoryLoad.clear();
   memoryStore.clear();
 
-  for(const auto& variableUsage: variablesUsage) {
-	const auto variableName = variableUsage.first;
-	const auto variableUsages = variableUsage.second;
-	for(const auto& usage: variableUsages) {
-	  const auto registerName = getVariableRegister(variableName, usage.position);
-	  memoryLoad[usage.position].push_back(std::make_pair(registerName, variableMemoryPosition[variableName]));
-	  memoryStore[usage.position].push_back(std::make_pair(registerName, variableMemoryPosition[variableName]));
+  for (const auto &reg : registersUsage) {
+	for (const auto &range : reg.second) {
+	  const auto variableName = range.owner;
+	  const auto registerName = getVariableRegister(variableName, range.start);
+	  if (range.usages.front().type != UsageType::LVAL) {
+		memoryLoad[range.usages.front().position].push_back(std::make_pair(registerName,
+																		   variableMemoryPosition[variableName]));
+		std::cout << "LOAD " << registerName << " " << variableName << " to "
+				  << variableMemoryPosition[variableName] << " at " << range.usages.front().position << std::endl;
+	  }
+
+	  auto otherUsages = findRangesWithVariable(variableName);
+	  bool anyOtherUsage = false;
+	  for (const auto &otherUsage : otherUsages) {
+		if (otherUsage.start != range.start || otherUsage.end != range.end) {
+		  anyOtherUsage = true;
+		  break;
+		} else if (otherUsage.start == range.start && otherUsage.end == range.end
+			&& otherUsage.usages.front().type != UsageType::LVAL) {
+		  anyOtherUsage = true;
+		  break;
+		}
+	  }
+
+	  if (anyOtherUsage) {
+		memoryStore[range.usages.back().position].push_back(std::make_pair(registerName,
+																		   variableMemoryPosition[variableName]));
+
+		std::cout << "STORE " << registerName << " " << variableName << " to "
+				  << variableMemoryPosition[variableName] << " at " << range.usages.back().position << std::endl;
+	  }
 	}
   }
 
-//  for(const auto &variable: requireLoad) {
-//	const auto variableName = variable.first;
-//
-//	for(const auto &position: variable.second) {
-//	  auto properSuccessors = std::set<uint64_t>();
-//	  auto visited = std::set<uint64_t>();
-//	  findProperSuccessors(position, variableName, properSuccessors, visited);
-//	  for(const auto& successor: properSuccessors) {
-//		const auto registerName = getVariableRegister(variableName, successor);
-//		memoryLoad[successor].push_back(std::make_pair(registerName, variableMemoryPosition[variable.first]));
-//	  }
-//	}
-//  }
-//
-//  for(const auto &variable: requireStore) {
-//	const auto variableName = variable.first;
-//
-//	for(const auto &position: variable.second) {
-//	  auto properSuccessors = std::set<uint64_t>();
-//	  auto visited = std::set<uint64_t>();
-//	  findProperPredecessors(position, variableName, properSuccessors, visited);
-//	  for(const auto& successor: properSuccessors) {
-//		const auto registerName = getVariableRegister(variableName, successor);
-//		memoryStore[successor].push_back(std::make_pair(registerName, variableMemoryPosition[variable.first]));
-//	  }
-//	}
-//  }
-
-  std::map<uint64_t, std::vector<std::pair<std::string, uint64_t>>> uniqueMemoryStore;
-  for(const auto& store: memoryStore) {
+  std::map < uint64_t, std::vector < std::pair < std::string, uint64_t>>>
+  uniqueMemoryStore;
+  for (const auto &store : memoryStore) {
 	const auto position = store.first;
 	for (const auto &storeInfo : store.second) {
 	  const auto found = std::find_if(uniqueMemoryStore[position].begin(), uniqueMemoryStore[position].end(),
@@ -161,8 +144,9 @@ void RegistersLinearScan::allocateRegisters() {
   }
   memoryStore = uniqueMemoryStore;
 
-  std::map<uint64_t, std::vector<std::pair<std::string, uint64_t>>> uniqueMemoryLoad;
-  for(const auto& load: memoryLoad) {
+  std::map < uint64_t, std::vector < std::pair < std::string, uint64_t>>>
+  uniqueMemoryLoad;
+  for (const auto &load : memoryLoad) {
 	const auto position = load.first;
 	for (const auto &loadInfo : load.second) {
 	  const auto found = std::find_if(uniqueMemoryLoad[position].begin(), uniqueMemoryLoad[position].end(),
@@ -216,7 +200,9 @@ std::optional<HardwareRegister> RegistersLinearScan::getFreeRegister(const Range
 
 	if (!anyOverlap) {
 	  reg.second.push_back(newRange);
-	  std::sort(reg.second.begin(), reg.second.end(), [](const Range &a, const Range &b) { return a.start < b.start; });
+	  std::sort(reg.second.begin(),
+				reg.second.end(),
+				[](const Range &a, const Range &b) { return a.start < b.start; });
 	  return reg.first;
 	}
   }
@@ -241,7 +227,7 @@ HardwareRegister RegistersLinearScan::splitRanges(const Range &newRange) {
   size_t maxUsageIndex = 0;
   size_t maxRangeSize = 0;
   for (const auto &reg : registersUsage) {
-	for(size_t rangeIndex = 0; rangeIndex < reg.second.size(); rangeIndex++) {
+	for (size_t rangeIndex = 0; rangeIndex < reg.second.size(); rangeIndex++) {
 	  const auto range = reg.second[rangeIndex];
 	  for (size_t usageIndex = 1; usageIndex < range.usages.size(); usageIndex++) {
 		if (range.usages[usageIndex - 1].position < newRange.start
@@ -269,44 +255,46 @@ HardwareRegister RegistersLinearScan::splitRanges(const Range &newRange) {
 	newRanges.push_back(newRange);
 	newRanges.push_back(dividedRanges.second);
 
-	for(size_t i = maxRangeIndex + 1; i < registersUsage[maxRangeRegister].size(); i++) {
+	for (size_t i = maxRangeIndex + 1; i < registersUsage[maxRangeRegister].size(); i++) {
 	  newRanges.push_back(registersUsage[maxRangeRegister][i]);
 	}
 
 	registersUsage[maxRangeRegister] = newRanges;
 
-	memoryStore[dividedRanges.first.usages.back().position].push_back(
-		std::make_pair(Hardware::registerMap[maxRangeRegister].name, variableMemoryPosition[dividedRanges.first.owner]));
-
-	memoryLoad[dividedRanges.second.usages.front().position].push_back(
-		std::make_pair(Hardware::registerMap[maxRangeRegister].name, variableMemoryPosition[dividedRanges.second.owner]));
+//	memoryStore[dividedRanges.first.usages.back().position].push_back(
+//		std::make_pair(Hardware::registerMap[maxRangeRegister].name,
+//					   variableMemoryPosition[dividedRanges.first.owner]));
+//
+//	memoryLoad[dividedRanges.second.usages.front().position].push_back(
+//		std::make_pair(Hardware::registerMap[maxRangeRegister].name,
+//					   variableMemoryPosition[dividedRanges.second.owner]));
 
 	printRegistersUsage();
 	std::cout << std::endl;
 
 	return maxRangeRegister;
   }
-  
+
   HardwareRegister minConflictingRegister = RA;
   size_t minConflictingUsagesNumber = std::numeric_limits<size_t>::max();
   std::vector<std::pair<std::string, Usage>> minConflictingUsages;
-  for(const auto& reg: registersUsage) {
+  for (const auto &reg : registersUsage) {
 	std::vector<std::pair<std::string, Usage>> currentUsages;
 	std::vector<uint64_t> currentUsagesPositions;
-	for(const auto& range: reg.second) {
-	  for(const auto& usage: range.usages) {
-		if(usage.position >= newRange.start && usage.position <= newRange.end) {
+	for (const auto &range : reg.second) {
+	  for (const auto &usage : range.usages) {
+		if (usage.position >= newRange.start && usage.position <= newRange.end) {
 		  currentUsages.push_back(std::make_pair(range.owner, usage));
 		  currentUsagesPositions.push_back(usage.position);
 		}
 	  }
 	}
 
-	if(!vectorsIntersection(newRangeUsages, currentUsagesPositions).empty()) {
+	if (!vectorsIntersection(newRangeUsages, currentUsagesPositions).empty()) {
 	  continue;
 	}
 
-	if(currentUsages.size() < minConflictingUsagesNumber) {
+	if (currentUsages.size() < minConflictingUsagesNumber) {
 	  minConflictingRegister = reg.first;
 	  minConflictingUsagesNumber = currentUsages.size();
 	  minConflictingUsages = currentUsages;
@@ -315,137 +303,53 @@ HardwareRegister RegistersLinearScan::splitRanges(const Range &newRange) {
 
   std::cout << "Min conflicting register: " << Hardware::registerMap[minConflictingRegister].name << std::endl;
 
-  for(const auto& usage: newRange.usages) {
+  std::vector<Range> finalRanges;
+  minConflictingUsages = std::vector < std::pair < std::string, Usage >> ();
+  for (const auto &usage : newRange.usages) {
 	minConflictingUsages.push_back(std::make_pair(newRange.owner, usage));
+  }
+  for (const auto &reg : registersUsage[minConflictingRegister]) {
+	if (rangesOverlap(reg, newRange)) {
+	  for (const auto &usage : reg.usages) {
+		minConflictingUsages.push_back(std::make_pair(reg.owner, usage));
+	  }
+	} else {
+	  finalRanges.push_back(reg);
+	}
   }
 
   std::sort(minConflictingUsages.begin(), minConflictingUsages.end(), [](const auto &a, const auto &b) {
 	return a.second.position < b.second.position;
   });
 
-  bool mostLeftUsageFound = false;
-  uint64_t mostLeftUsage = 0;
-  uint64_t mostLeftUsageRangeIndex = 0;
-  uint64_t mostLeftUsageUsageIndex = 0;
-  std::string mostLeftUsageVariable;
-
-  for (uint64_t rangeIndex = 0; rangeIndex < registersUsage[minConflictingRegister].size(); rangeIndex++) {
-	const auto range = registersUsage[minConflictingRegister][rangeIndex];
-	for (uint64_t usageIndex = 0; usageIndex < range.usages.size(); usageIndex++) {
-	  const auto usage = range.usages[usageIndex];
-	  if (range.end >= newRange.start && usage.position < newRange.start
-		  && (usage.position > mostLeftUsage || !mostLeftUsageFound)) {
-		mostLeftUsage = usage.position;
-		mostLeftUsageRangeIndex = rangeIndex;
-		mostLeftUsageUsageIndex = usageIndex;
-		mostLeftUsageVariable = range.owner;
-		mostLeftUsageFound = true;
-	  }
-	}
-  }
-
-//  std::cout << "FOUND LEFT: " << mostLeftUsageFound << " " << mostLeftUsage << " " << mostLeftUsageRangeIndex << " " << mostLeftUsageUsageIndex << std::endl;
-//  std::cout << "FOUND RIGHT: " << mostRightUsageFound << " " << mostRightUsage << " " << mostRightUsageRangeIndex << " " << mostRightUsageUsageIndex << std::endl;
-
-  if (mostLeftUsageFound) {
-	std::vector<Range> newRanges;
-	for (size_t i = 0; i < mostLeftUsageRangeIndex; i++) {
-	  newRanges.push_back(registersUsage[minConflictingRegister][i]);
-	}
-
-	const auto dividedRanges = divideRange2(registersUsage[minConflictingRegister][mostLeftUsageRangeIndex], mostLeftUsageUsageIndex);
-	newRanges.push_back(dividedRanges.first);
-	newRanges.push_back(newRange);
-	newRanges.push_back(dividedRanges.second);
-
-	for (size_t i = mostLeftUsageRangeIndex + 1; i < registersUsage[minConflictingRegister].size(); i++) {
-	  newRanges.push_back(registersUsage[minConflictingRegister][i]);
-	}
-
-	registersUsage[minConflictingRegister] = newRanges;
-
-	memoryStore[mostLeftUsage].push_back(
-		std::make_pair(Hardware::registerMap[minConflictingRegister].name,
-					   variableMemoryPosition[mostLeftUsageVariable]));
-  }
-
-  bool mostRightUsageFound = false;
-  uint64_t mostRightUsage = 0;
-  uint64_t mostRightUsageRangeIndex = 0;
-  uint64_t mostRightUsageUsageIndex = 0;
-  std::string mostRightUsageVariable;
-  for (uint64_t rangeIndex = 0; rangeIndex < registersUsage[minConflictingRegister].size(); rangeIndex++) {
-	const auto range = registersUsage[minConflictingRegister][rangeIndex];
-	for (uint64_t usageIndex = 0; usageIndex < range.usages.size(); usageIndex++) {
-	  const auto usage = range.usages[usageIndex];
-	  if (range.start <= newRange.end && usage.position > newRange.end
-		  && (usage.position < mostRightUsage || !mostRightUsageFound)) {
-		mostRightUsage = usage.position;
-		mostRightUsageRangeIndex = rangeIndex;
-		mostRightUsageUsageIndex = usageIndex;
-		mostRightUsageVariable = range.owner;
-		mostRightUsageFound = true;
-	  }
-	}
-  }
-
-  if (mostRightUsageFound) {
-	std::vector<Range> newRanges;
-	for (size_t i = 0; i < mostRightUsageRangeIndex; i++) {
-	  newRanges.push_back(registersUsage[minConflictingRegister][i]);
-	}
-
-	const auto dividedRanges = divideRange3(registersUsage[minConflictingRegister][mostRightUsageRangeIndex], mostRightUsageUsageIndex);
-	newRanges.push_back(dividedRanges.first);
-	newRanges.push_back(newRange);
-	newRanges.push_back(dividedRanges.second);
-
-	for (size_t i = mostRightUsageRangeIndex + 1; i < registersUsage[minConflictingRegister].size(); i++) {
-	  newRanges.push_back(registersUsage[minConflictingRegister][i]);
-	}
-
-	registersUsage[minConflictingRegister] = newRanges;
-
-	memoryLoad[mostRightUsage].push_back(
-		std::make_pair(Hardware::registerMap[minConflictingRegister].name,
-					   variableMemoryPosition[mostRightUsageVariable]));
-  }
-
-  std::vector<Range> finalRanges;
-  for (auto &range : registersUsage[minConflictingRegister]) {
-	finalRanges.push_back(range);
-  }
-
   uint64_t currProblemIndex = 0;
   std::string currProblemVariable = minConflictingUsages[currProblemIndex].first;
-  Usage currProblemUsage = minConflictingUsages[currProblemIndex].second;
+  std::vector<Usage> currProblemUsages = {minConflictingUsages[currProblemIndex].second};
   currProblemIndex++;
   while (currProblemIndex < minConflictingUsages.size()) {
 	if (minConflictingUsages[currProblemIndex].first != currProblemVariable) {
-	  Range nextRange{currProblemVariable,
-					  currProblemUsage.position,
-					  minConflictingUsages[currProblemIndex - 1].second.position,
-					  {currProblemUsage, minConflictingUsages[currProblemIndex - 1].second}};
+	  Range nextRange{currProblemVariable, currProblemUsages.front().position, currProblemUsages.back().position,
+					  currProblemUsages};
 	  finalRanges.push_back(nextRange);
 
-	  memoryStore[minConflictingUsages[currProblemIndex - 1].second.position].push_back(
-		  std::make_pair(Hardware::registerMap[minConflictingRegister].name,
-						 variableMemoryPosition[minConflictingUsages[currProblemIndex - 1].first]));
-	  memoryLoad[minConflictingUsages[currProblemIndex].second.position].push_back(std::make_pair(
-		  Hardware::registerMap[minConflictingRegister].name,
-		  variableMemoryPosition[minConflictingUsages[currProblemIndex].first]));
+//	  memoryStore[minConflictingUsages[currProblemIndex - 1].second.position].push_back(
+//		  std::make_pair(Hardware::registerMap[minConflictingRegister].name,
+//						 variableMemoryPosition[minConflictingUsages[currProblemIndex - 1].first]));
+//	  memoryLoad[minConflictingUsages[currProblemIndex].second.position].push_back(std::make_pair(
+//		  Hardware::registerMap[minConflictingRegister].name,
+//		  variableMemoryPosition[minConflictingUsages[currProblemIndex].first]));
 
 	  currProblemVariable = minConflictingUsages[currProblemIndex].first;
-	  currProblemUsage = minConflictingUsages[currProblemIndex].second;
+	  currProblemUsages = {minConflictingUsages[currProblemIndex].second};
+	} else {
+	  currProblemUsages.push_back(minConflictingUsages[currProblemIndex].second);
 	}
 
 	currProblemIndex++;
   }
 
-  Range nextRange{currProblemVariable,
-				  currProblemUsage.position,
-				  minConflictingUsages[currProblemIndex - 1].second.position,
-				  {currProblemUsage, minConflictingUsages[currProblemIndex - 1].second}};
+  Range nextRange
+	  {currProblemVariable, currProblemUsages.front().position, currProblemUsages.back().position, currProblemUsages};
   finalRanges.push_back(nextRange);
 
   std::sort(finalRanges.begin(), finalRanges.end(), [](const Range &a, const Range &b) { return a.start < b.start; });
@@ -453,9 +357,11 @@ HardwareRegister RegistersLinearScan::splitRanges(const Range &newRange) {
   std::vector<Range> finalRangesWithoutDuplicates;
   for (const auto &range : finalRanges) {
 	const auto exist =
-		std::find_if(finalRangesWithoutDuplicates.begin(), finalRangesWithoutDuplicates.end(), [range](const Range &r) {
-		  return r.start == range.start && r.end == range.end;
-		});
+		std::find_if(finalRangesWithoutDuplicates.begin(),
+					 finalRangesWithoutDuplicates.end(),
+					 [range](const Range &r) {
+					   return r.start == range.start && r.end == range.end;
+					 });
 
 	if (exist == finalRangesWithoutDuplicates.end()) {
 	  finalRangesWithoutDuplicates.push_back(range);
@@ -515,7 +421,7 @@ UsageType RegistersLinearScan::getVariableUsageType(const std::string &variable,
   return UsageType::RVAL;
 }
 
-std::pair<Range, Range> RegistersLinearScan::divideRange1(const Range& range, uint64_t position) {
+std::pair<Range, Range> RegistersLinearScan::divideRange1(const Range &range, uint64_t position) {
   std::vector<Usage> newRangeUsages1;
   for (size_t i = 0; i < position; i++) {
 	newRangeUsages1.push_back(range.usages[i]);
@@ -531,7 +437,7 @@ std::pair<Range, Range> RegistersLinearScan::divideRange1(const Range& range, ui
   return std::make_pair(newRange1, newRange2);
 }
 
-std::pair<Range, Range> RegistersLinearScan::divideRange2(const Range& range, uint64_t position) {
+std::pair<Range, Range> RegistersLinearScan::divideRange2(const Range &range, uint64_t position) {
   std::vector<Usage> newRangeUsages1;
   for (size_t i = 0; i <= position; i++) {
 	newRangeUsages1.push_back(range.usages[i]);
@@ -539,7 +445,7 @@ std::pair<Range, Range> RegistersLinearScan::divideRange2(const Range& range, ui
   Range newRange1{range.owner, newRangeUsages1.front().position, newRangeUsages1.back().position, newRangeUsages1};
 
   std::vector<Usage> newRangeUsages2;
-  for (size_t i = (position+1); i < range.usages.size(); i++) {
+  for (size_t i = (position + 1); i < range.usages.size(); i++) {
 	newRangeUsages2.push_back(range.usages[i]);
   }
   Range newRange2{range.owner, newRangeUsages2.front().position, newRangeUsages2.back().position, newRangeUsages2};
@@ -547,7 +453,7 @@ std::pair<Range, Range> RegistersLinearScan::divideRange2(const Range& range, ui
   return std::make_pair(newRange1, newRange2);
 }
 
-std::pair<Range, Range> RegistersLinearScan::divideRange3(const Range& range, uint64_t position) {
+std::pair<Range, Range> RegistersLinearScan::divideRange3(const Range &range, uint64_t position) {
   std::vector<Usage> newRangeUsages1;
   for (size_t i = 0; i < position; i++) {
 	newRangeUsages1.push_back(range.usages[i]);
@@ -564,67 +470,67 @@ std::pair<Range, Range> RegistersLinearScan::divideRange3(const Range& range, ui
 }
 
 void RegistersLinearScan::findProperSuccessors(uint64_t source, std::string variable,
-											   std::set<uint64_t>& successors, std::set<uint64_t>& visited) {
-	const auto sourceNode = flowGraph.getNode(source);
-	bool found = false;
-	for(const auto& var: sourceNode.getDefinedVariables()) {
-	  if(var == variable) {
-		found = true;
-		break;
-	  }
+											   std::set<uint64_t> &successors, std::set<uint64_t> &visited) {
+  const auto sourceNode = flowGraph.getNode(source);
+  bool found = false;
+  for (const auto &var : sourceNode.getDefinedVariables()) {
+	if (var == variable) {
+	  found = true;
+	  break;
 	}
-	for(const auto& var: sourceNode.getUsedVariables()) {
-	  if(var == variable) {
-		found = true;
-		break;
-	  }
+  }
+  for (const auto &var : sourceNode.getUsedVariables()) {
+	if (var == variable) {
+	  found = true;
+	  break;
 	}
+  }
 
-	visited.insert(source);
+  visited.insert(source);
 
-	if(found) {
-	  successors.insert(source);
-	  return;
-	}
+  if (found) {
+	successors.insert(source);
+	return;
+  }
 
-	for(const auto& successor: sourceNode.getSuccessors()) {
-	  if(visited.find(successor) == visited.end()) {
-		findProperSuccessors(successor, variable, successors, visited);
-	  }
+  for (const auto &successor : sourceNode.getSuccessors()) {
+	if (visited.find(successor) == visited.end()) {
+	  findProperSuccessors(successor, variable, successors, visited);
 	}
+  }
 }
 
 void RegistersLinearScan::findProperPredecessors(uint64_t source,
 												 std::string variable,
 												 std::set<uint64_t> &predecessors,
 												 std::set<uint64_t> &visited) {
-  	const auto sourceNode = flowGraph.getNode(source);
-	bool found = false;
-	for(const auto& var: sourceNode.getDefinedVariables()) {
-	  if(var == variable) {
-		found = true;
-		break;
-	  }
+  const auto sourceNode = flowGraph.getNode(source);
+  bool found = false;
+  for (const auto &var : sourceNode.getDefinedVariables()) {
+	if (var == variable) {
+	  found = true;
+	  break;
 	}
-	for(const auto& var: sourceNode.getUsedVariables()) {
-	  if(var == variable) {
-		found = true;
-		break;
-	  }
+  }
+  for (const auto &var : sourceNode.getUsedVariables()) {
+	if (var == variable) {
+	  found = true;
+	  break;
 	}
+  }
 
-	visited.insert(source);
+  visited.insert(source);
 
-	if(found) {
-	  predecessors.insert(source);
-	  return;
-	}
+  if (found) {
+	predecessors.insert(source);
+	return;
+  }
 
-	for(const auto& predecessor: sourceNode.getPredecessors()) {
-	  if(visited.find(predecessor) == visited.end()) {
-		findProperPredecessors(predecessor, variable, predecessors, visited);
-	  }
+  for (const auto &predecessor : sourceNode.getPredecessors()) {
+	if (visited.find(predecessor) == visited.end()) {
+	  findProperPredecessors(predecessor, variable, predecessors, visited);
 	}
+  }
 }
 
 bool RegistersLinearScan::rangesOverlap(const Range &range1, const Range &range2) {
@@ -637,6 +543,31 @@ bool RegistersLinearScan::rangesInclude(const Range &outerRange, const Range &in
 
 uint64_t RegistersLinearScan::rangeSize(const Range &range) {
   return range.end - range.start + 1;
+}
+
+std::vector<Usage> RegistersLinearScan::findRangeUsages(const std::string &variable, uint64_t position) {
+  for (const auto &registerUsage : registersUsage) {
+	for (const auto &range : registerUsage.second) {
+	  if (range.owner == variable && range.start <= position && range.end >= position) {
+		return range.usages;
+	  }
+	}
+  }
+
+  return {};
+}
+
+std::vector<Range> RegistersLinearScan::findRangesWithVariable(const std::string &variable) {
+  std::vector<Range> result;
+  for (const auto &registerUsage : registersUsage) {
+	for (const auto &range : registerUsage.second) {
+	  if (range.owner == variable && range.usages.front().type != UsageType::LVAL) {
+		result.push_back(range);
+	  }
+	}
+  }
+
+  return result;
 }
 
 void RegistersLinearScan::printRanges() {
@@ -665,8 +596,7 @@ void RegistersLinearScan::printUsages() {
 		std::cout << "(L) ";
 	  } else if (position.type == UsageType::RVAL) {
 		std::cout << "(R) ";
-	  }
-	  else {
+	  } else {
 		std::cout << "(B) ";
 	  }
 	}

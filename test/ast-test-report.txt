@@ -18,18 +18,18 @@ Note: Google Test filter = toAstConversion.example1
 [----------] 1 test from toAstConversion (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.example2
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
 [----------] 1 test from toAstConversion
 [ RUN      ] toAstConversion.example2
-[       OK ] toAstConversion.example2 (8 ms)
-[----------] 1 test from toAstConversion (8 ms total)
+[       OK ] toAstConversion.example2 (34 ms)
+[----------] 1 test from toAstConversion (34 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (8 ms total)
+[==========] 1 test from 1 test suite ran. (34 ms total)
 [  PASSED  ] 1 test.
 Note: Google Test filter = toAstConversion.example3
 [==========] Running 1 test from 1 test suite.

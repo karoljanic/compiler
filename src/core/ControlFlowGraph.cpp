@@ -320,13 +320,9 @@ ControlFlowGraph::calculateVariablesLiveRanges() {
 	  }
 
 	  auto successors = node.getSuccessors();
-	  bool branch = false;
-	  if (successors.size() > 1) {
-		std::sort(successors.begin(), successors.end());
-		if (successors.front() < node.getId()) {
-		  branch = true;
-		}
-	  }
+	  std::sort(successors.begin(), successors.end());
+	  auto predecessors = node.getPredecessors();
+	  std::sort(predecessors.begin(), predecessors.end());
 
 	  std::set<std::string> vars{};
 	  for (const auto &var : node.getLiveInVariables()) {
@@ -343,15 +339,23 @@ ControlFlowGraph::calculateVariablesLiveRanges() {
 		if (Hardware::isRegName(var)) {
 		  continue;
 		}
+
 		if (result.find(var) == result.end()) {
-		  std::cout << "ERROR: Variable " << var << " not found in result" << std::endl;
 		  result[var] = std::vector < std::vector < uint64_t >> ();
 		  result[var].push_back(std::vector < uint64_t > {});
 		}
-		result[var].back().push_back(node.getId());
-		if (branch) {
-		  result[var].back().push_back(successors.front());
-		  //result[var].push_back({node.getId()});
+
+		if (predecessors.size() > 1 || successors.size() > 1) {
+		  result[var].push_back({node.getId()});
+		}
+		else if(predecessors.size() == 1 && (node.getId() - predecessors.front()) != 1) {
+		  result[var].push_back({node.getId()});
+		}
+		else if(successors.size() == 1 && (successors.front() - node.getId()) != 1) {
+		  result[var].push_back({node.getId()});
+		}
+		else {
+		  result[var].back().push_back(node.getId());
 		}
 	  }
 	}
@@ -519,4 +523,12 @@ std::vector<std::string> ControlFlowGraph::getSubgraphNames() const {
 
 std::vector<ControlFlowGraphNode> &ControlFlowGraph::getNodes(std::string subgraphName) {
   return graph.at(subgraphName);
+}
+
+const std::vector<std::pair<std::string, uint64_t>> &ControlFlowGraph::getRequiredLoads() const {
+  return requiredLoads;
+}
+
+const std::vector<std::pair<std::string, uint64_t>> &ControlFlowGraph::getRequiredStores() const {
+  return requiredStores;
 }

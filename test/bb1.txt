@@ -1,255 +1,9 @@
-Subgraph: check
-POP 0 check@n check@d check@p 
-Id: 23
-Labels: check@begin# 
-Predecessors: 
-Successors: 24 
-Used variables: 
-Defined variables: check@d check@n check@p temp#1 
-Live in variables: 
-Live out variables: check@d check@n temp#1 
-Live now variables: check@p 
-
-MOV 0 TO check@p
-Id: 24
-Labels: 
-Predecessors: 23 
-Successors: 25 
-Used variables: 
-Defined variables: check@p 
-Live in variables: check@d check@n temp#1 
-Live out variables: check@d check@n check@p temp#1 
-Live now variables: 
-
-MOV check@p TO check@p
-Id: 25
-Labels: 
-Predecessors: 24 
-Successors: 26 
-Used variables: check@p 
-Defined variables: check@p 
-Live in variables: check@d check@n check@p temp#1 
-Live out variables: check@d check@n check@p temp#1 
-Live now variables: 
-
-MOV check@n TO temp#2
-Id: 26
-Labels: 
-Predecessors: 25 
-Successors: 27 
-Used variables: check@n 
-Defined variables: temp#2 
-Live in variables: check@d check@n check@p temp#1 
-Live out variables: check@d check@n check@p temp#1 temp#2 
-Live now variables: 
-
-MOV check@d TO temp#3
-Id: 27
-Labels: 
-Predecessors: 26 
-Successors: 28 
-Used variables: check@d 
-Defined variables: temp#3 
-Live in variables: check@d check@n check@p temp#1 temp#2 
-Live out variables: check@d check@n check@p temp#1 temp#2 temp#3 
-Live now variables: 
-
-check@r = temp#2 % temp#3
-Id: 28
-Labels: 
-Predecessors: 27 
-Successors: 29 
-Used variables: temp#2 temp#3 
-Defined variables: check@r temp#18 
-Live in variables: check@d check@n check@p temp#1 temp#2 temp#3 
-Live out variables: check@d check@n check@p check@r temp#1 
-Live now variables: temp#18 
-
-MOV check@r TO check@r
-Id: 29
-Labels: 
-Predecessors: 28 
-Successors: 30 
-Used variables: check@r 
-Defined variables: check@r 
-Live in variables: check@d check@n check@p check@r temp#1 
-Live out variables: check@d check@n check@p check@r temp#1 
-Live now variables: 
-
-MOV check@r TO temp#4
-Id: 30
-Labels: check@beginwhile#@1 
-Predecessors: 29 42 
-Successors: 31 43 
-Used variables: check@r 
-Defined variables: temp#4 
-Live in variables: check@d check@n check@p check@r temp#1 
-Live out variables: check@d check@n check@p temp#1 temp#4 
-Live now variables: 
-
-JUMP IF temp#4 != 0 TO check@endwhilejump#@2
-Id: 31
-Labels: 
-Predecessors: 30 
-Successors: 32 
-Used variables: temp#4 
-Defined variables: 
-Live in variables: check@d check@n check@p temp#1 temp#4 
-Live out variables: check@d check@n check@p temp#1 
-Live now variables: 
-
-MOV check@n TO temp#5
-Id: 32
-Labels: 
-Predecessors: 31 
-Successors: 33 
-Used variables: check@n 
-Defined variables: temp#5 
-Live in variables: check@d check@n check@p temp#1 
-Live out variables: check@d check@p temp#1 temp#5 
-Live now variables: 
-
-MOV check@d TO temp#6
-Id: 33
-Labels: 
-Predecessors: 32 
-Successors: 34 
-Used variables: check@d 
-Defined variables: temp#6 
-Live in variables: check@d check@p temp#1 temp#5 
-Live out variables: check@d check@p temp#1 temp#5 temp#6 
-Live now variables: 
-
-check@n = temp#5 / temp#6
-Id: 34
-Labels: 
-Predecessors: 33 
-Successors: 35 
-Used variables: temp#5 temp#6 
-Defined variables: check@n temp#19 temp#20 
-Live in variables: check@d check@p temp#1 temp#5 temp#6 
-Live out variables: check@d check@n check@p temp#1 
-Live now variables: temp#19 temp#20 
-
-MOV check@n TO check@n
-Id: 35
-Labels: 
-Predecessors: 34 
-Successors: 36 
-Used variables: check@n 
-Defined variables: check@n 
-Live in variables: check@d check@n check@p temp#1 
-Live out variables: check@d check@n check@p temp#1 
-Live now variables: 
-
-check@p = check@p + 1
-Id: 36
-Labels: 
-Predecessors: 35 
-Successors: 37 
-Used variables: check@p 
-Defined variables: check@p 
-Live in variables: check@d check@n check@p temp#1 
-Live out variables: check@d check@n check@p temp#1 
-Live now variables: 
-
-MOV check@p TO check@p
-Id: 37
-Labels: 
-Predecessors: 36 
-Successors: 38 
-Used variables: check@p 
-Defined variables: check@p 
-Live in variables: check@d check@n check@p temp#1 
-Live out variables: check@d check@n check@p temp#1 
-Live now variables: 
-
-MOV check@n TO temp#7
-Id: 38
-Labels: 
-Predecessors: 37 
-Successors: 39 
-Used variables: check@n 
-Defined variables: temp#7 
-Live in variables: check@d check@n check@p temp#1 
-Live out variables: check@d check@n check@p temp#1 temp#7 
-Live now variables: 
-
-MOV check@d TO temp#8
-Id: 39
-Labels: 
-Predecessors: 38 
-Successors: 40 
-Used variables: check@d 
-Defined variables: temp#8 
-Live in variables: check@d check@n check@p temp#1 temp#7 
-Live out variables: check@d check@n check@p temp#1 temp#7 temp#8 
-Live now variables: 
-
-check@r = temp#7 % temp#8
-Id: 40
-Labels: 
-Predecessors: 39 
-Successors: 41 
-Used variables: temp#7 temp#8 
-Defined variables: check@r temp#21 
-Live in variables: check@d check@n check@p temp#1 temp#7 temp#8 
-Live out variables: check@d check@n check@p check@r temp#1 
-Live now variables: temp#21 
-
-MOV check@r TO check@r
-Id: 41
-Labels: 
-Predecessors: 40 
-Successors: 42 
-Used variables: check@r 
-Defined variables: check@r 
-Live in variables: check@d check@n check@p check@r temp#1 
-Live out variables: check@d check@n check@p check@r temp#1 
-Live now variables: 
-
-JUMP TO check@beginwhile#@1
-Id: 42
-Labels: 
-Predecessors: 41 
-Successors: 30 43 
-Used variables: 
-Defined variables: 
-Live in variables: check@d check@n check@p check@r temp#1 
-Live out variables: check@d check@n check@p check@r temp#1 
-Live now variables: 
-
-PUSH 0 check@n check@d check@p 
-Id: 43
-Labels: check@endwhilejump#@2 
-Predecessors: 30 42 
-Successors: 44 
-Used variables: check@d check@n check@p 
-Defined variables: check@d check@n check@p 
-Live in variables: check@d check@n check@p temp#1 
-Live out variables: temp#1 
-Live now variables: check@d check@n check@p 
-
-JUMP AT ADDRESS FROM temp#1
-Id: 44
-Labels: 
-Predecessors: 43 
-Successors: 
-Used variables: temp#1 
-Defined variables: 
-Live in variables: temp#1 
-Live out variables: 
-Live now variables: 
-
-
-
-
 Subgraph: main
 READ main@n
-Id: 45
+Id: 23
 Labels: 
 Predecessors: 
-Successors: 46 
+Successors: 24 
 Used variables: 
 Defined variables: main@n 
 Live in variables: main@potega 
@@ -257,10 +11,10 @@ Live out variables: main@n main@potega
 Live now variables: 
 
 MOV 2 TO main@dzielnik
-Id: 46
+Id: 24
 Labels: 
-Predecessors: 45 
-Successors: 47 
+Predecessors: 23 
+Successors: 25 
 Used variables: 
 Defined variables: main@dzielnik 
 Live in variables: main@n main@potega 
@@ -268,98 +22,98 @@ Live out variables: main@dzielnik main@n main@potega
 Live now variables: 
 
 MOV main@dzielnik TO main@dzielnik
-Id: 47
+Id: 25
 Labels: 
-Predecessors: 46 
-Successors: 48 
+Predecessors: 24 
+Successors: 26 
 Used variables: main@dzielnik 
 Defined variables: main@dzielnik 
 Live in variables: main@dzielnik main@n main@potega 
 Live out variables: main@dzielnik main@n main@potega 
 Live now variables: 
 
-MOV main@dzielnik TO temp#9
-Id: 48
+MOV main@dzielnik TO temp#1
+Id: 26
 Labels: 
-Predecessors: 47 
-Successors: 49 
+Predecessors: 25 
+Successors: 27 
 Used variables: main@dzielnik 
-Defined variables: temp#9 
+Defined variables: temp#1 
 Live in variables: main@dzielnik main@n main@potega 
-Live out variables: main@dzielnik main@n main@potega temp#9 
+Live out variables: main@dzielnik main@n main@potega temp#1 
 Live now variables: 
 
-MOV main@dzielnik TO temp#10
-Id: 49
+MOV main@dzielnik TO temp#2
+Id: 27
 Labels: 
-Predecessors: 48 
-Successors: 50 
+Predecessors: 26 
+Successors: 28 
 Used variables: main@dzielnik 
-Defined variables: temp#10 
-Live in variables: main@dzielnik main@n main@potega temp#9 
-Live out variables: main@dzielnik main@n main@potega temp#10 temp#9 
+Defined variables: temp#2 
+Live in variables: main@dzielnik main@n main@potega temp#1 
+Live out variables: main@dzielnik main@n main@potega temp#1 temp#2 
 Live now variables: 
 
-main@m = temp#9 * temp#10
-Id: 50
+main@m = temp#1 * temp#2
+Id: 28
 Labels: 
-Predecessors: 49 
-Successors: 51 
-Used variables: temp#10 temp#9 
-Defined variables: main@m temp#22 temp#23 
-Live in variables: main@dzielnik main@n main@potega temp#10 temp#9 
+Predecessors: 27 
+Successors: 29 
+Used variables: temp#1 temp#2 
+Defined variables: main@m temp#10 temp#11 
+Live in variables: main@dzielnik main@n main@potega temp#1 temp#2 
 Live out variables: main@dzielnik main@m main@n main@potega 
-Live now variables: temp#22 temp#23 
+Live now variables: temp#10 temp#11 
 
 MOV main@m TO main@m
-Id: 51
+Id: 29
 Labels: 
-Predecessors: 50 
-Successors: 52 
+Predecessors: 28 
+Successors: 30 
 Used variables: main@m 
 Defined variables: main@m 
 Live in variables: main@dzielnik main@m main@n main@potega 
 Live out variables: main@dzielnik main@m main@n main@potega 
 Live now variables: 
 
-MOV main@n TO temp#11
-Id: 52
-Labels: main@beginwhile#@3 
-Predecessors: 51 68 
-Successors: 53 69 
+MOV main@n TO temp#3
+Id: 30
+Labels: main@beginwhile#@1 
+Predecessors: 29 46 
+Successors: 31 47 
 Used variables: main@n 
-Defined variables: temp#11 
+Defined variables: temp#3 
 Live in variables: main@dzielnik main@m main@n main@potega 
-Live out variables: main@dzielnik main@m main@n main@potega temp#11 
+Live out variables: main@dzielnik main@m main@n main@potega temp#3 
 Live now variables: 
 
-MOV main@m TO temp#12
-Id: 53
+MOV main@m TO temp#4
+Id: 31
 Labels: 
-Predecessors: 52 
-Successors: 54 
+Predecessors: 30 
+Successors: 32 
 Used variables: main@m 
-Defined variables: temp#12 
-Live in variables: main@dzielnik main@m main@n main@potega temp#11 
-Live out variables: main@dzielnik main@n main@potega temp#11 temp#12 
+Defined variables: temp#4 
+Live in variables: main@dzielnik main@m main@n main@potega temp#3 
+Live out variables: main@dzielnik main@n main@potega temp#3 temp#4 
 Live now variables: 
 
-JUMP IF temp#11 < temp#12 TO main@endwhilejump#@4
-Id: 54
+JUMP IF temp#3 < temp#4 TO main@endwhilejump#@2
+Id: 32
 Labels: 
-Predecessors: 53 
-Successors: 55 
-Used variables: temp#11 temp#12 
+Predecessors: 31 
+Successors: 33 
+Used variables: temp#3 temp#4 
 Defined variables: 
-Live in variables: main@dzielnik main@n main@potega temp#11 temp#12 
+Live in variables: main@dzielnik main@n main@potega temp#3 temp#4 
 Live out variables: main@dzielnik main@n main@potega 
 Live now variables: 
 
 PUSH 0 main@n main@dzielnik main@potega 
-Id: 55
+Id: 33
 Labels: 
-Predecessors: 54 
-Successors: 56 
+Predecessors: 32 
+Successors: 34 
 Used variables: main@dzielnik main@n main@potega 
 Defined variables: main@dzielnik main@n main@potega 
 Live in variables: main@dzielnik main@n main@potega 
@@ -367,10 +121,10 @@ Live out variables:
 Live now variables: main@dzielnik main@n main@potega 
 
 JUMP TO FUN check
-Id: 56
+Id: 34
 Labels: 
-Predecessors: 55 
-Successors: 57 
+Predecessors: 33 
+Successors: 35 
 Used variables: 
 Defined variables: 
 Live in variables: 
@@ -378,43 +132,43 @@ Live out variables:
 Live now variables: 
 
 POP 0 main@n main@dzielnik main@potega 
-Id: 57
+Id: 35
 Labels: 
-Predecessors: 56 
-Successors: 58 
+Predecessors: 34 
+Successors: 36 
 Used variables: 
 Defined variables: main@dzielnik main@n main@potega 
 Live in variables: 
 Live out variables: main@dzielnik main@n main@potega 
 Live now variables: 
 
-MOV main@potega TO temp#13
-Id: 58
+MOV main@potega TO temp#5
+Id: 36
 Labels: 
-Predecessors: 57 
-Successors: 59 
+Predecessors: 35 
+Successors: 37 
 Used variables: main@potega 
-Defined variables: temp#13 
+Defined variables: temp#5 
 Live in variables: main@dzielnik main@n main@potega 
-Live out variables: main@dzielnik main@n main@potega temp#13 
+Live out variables: main@dzielnik main@n main@potega temp#5 
 Live now variables: 
 
-JUMP IF temp#13 <= 0 TO main@ifelse#@5
-Id: 59
+JUMP IF temp#5 <= 0 TO main@ifelse#@3
+Id: 37
 Labels: 
-Predecessors: 58 
-Successors: 60 62 
-Used variables: temp#13 
+Predecessors: 36 
+Successors: 38 40 
+Used variables: temp#5 
 Defined variables: 
-Live in variables: main@dzielnik main@n main@potega temp#13 
+Live in variables: main@dzielnik main@n main@potega temp#5 
 Live out variables: main@dzielnik main@n main@potega 
 Live now variables: 
 
 WRITE main@dzielnik
-Id: 60
+Id: 38
 Labels: 
-Predecessors: 59 
-Successors: 61 
+Predecessors: 37 
+Successors: 39 
 Used variables: main@dzielnik 
 Defined variables: 
 Live in variables: main@dzielnik main@n main@potega 
@@ -422,10 +176,10 @@ Live out variables: main@dzielnik main@n main@potega
 Live now variables: 
 
 WRITE main@potega
-Id: 61
+Id: 39
 Labels: 
-Predecessors: 60 
-Successors: 62 
+Predecessors: 38 
+Successors: 40 
 Used variables: main@potega 
 Defined variables: 
 Live in variables: main@dzielnik main@n main@potega 
@@ -433,10 +187,10 @@ Live out variables: main@dzielnik main@n main@potega
 Live now variables: 
 
 main@dzielnik = main@dzielnik + 1
-Id: 62
-Labels: main@ifelse#@5 
-Predecessors: 59 61 
-Successors: 63 
+Id: 40
+Labels: main@ifelse#@3 
+Predecessors: 37 39 
+Successors: 41 
 Used variables: main@dzielnik 
 Defined variables: main@dzielnik 
 Live in variables: main@dzielnik main@n main@potega 
@@ -444,130 +198,130 @@ Live out variables: main@dzielnik main@n main@potega
 Live now variables: 
 
 MOV main@dzielnik TO main@dzielnik
-Id: 63
+Id: 41
 Labels: 
-Predecessors: 62 
-Successors: 64 
+Predecessors: 40 
+Successors: 42 
 Used variables: main@dzielnik 
 Defined variables: main@dzielnik 
 Live in variables: main@dzielnik main@n main@potega 
 Live out variables: main@dzielnik main@n main@potega 
 Live now variables: 
 
-MOV main@dzielnik TO temp#14
-Id: 64
+MOV main@dzielnik TO temp#6
+Id: 42
 Labels: 
-Predecessors: 63 
-Successors: 65 
+Predecessors: 41 
+Successors: 43 
 Used variables: main@dzielnik 
-Defined variables: temp#14 
+Defined variables: temp#6 
 Live in variables: main@dzielnik main@n main@potega 
-Live out variables: main@dzielnik main@n main@potega temp#14 
+Live out variables: main@dzielnik main@n main@potega temp#6 
 Live now variables: 
 
-MOV main@dzielnik TO temp#15
-Id: 65
+MOV main@dzielnik TO temp#7
+Id: 43
 Labels: 
-Predecessors: 64 
-Successors: 66 
+Predecessors: 42 
+Successors: 44 
 Used variables: main@dzielnik 
-Defined variables: temp#15 
-Live in variables: main@dzielnik main@n main@potega temp#14 
-Live out variables: main@dzielnik main@n main@potega temp#14 temp#15 
+Defined variables: temp#7 
+Live in variables: main@dzielnik main@n main@potega temp#6 
+Live out variables: main@dzielnik main@n main@potega temp#6 temp#7 
 Live now variables: 
 
-main@m = temp#14 * temp#15
-Id: 66
+main@m = temp#6 * temp#7
+Id: 44
 Labels: 
-Predecessors: 65 
-Successors: 67 
-Used variables: temp#14 temp#15 
-Defined variables: main@m temp#24 temp#25 
-Live in variables: main@dzielnik main@n main@potega temp#14 temp#15 
+Predecessors: 43 
+Successors: 45 
+Used variables: temp#6 temp#7 
+Defined variables: main@m temp#12 temp#13 
+Live in variables: main@dzielnik main@n main@potega temp#6 temp#7 
 Live out variables: main@dzielnik main@m main@n main@potega 
-Live now variables: temp#24 temp#25 
+Live now variables: temp#12 temp#13 
 
 MOV main@m TO main@m
-Id: 67
+Id: 45
 Labels: 
-Predecessors: 66 
-Successors: 68 
+Predecessors: 44 
+Successors: 46 
 Used variables: main@m 
 Defined variables: main@m 
 Live in variables: main@dzielnik main@m main@n main@potega 
 Live out variables: main@dzielnik main@m main@n main@potega 
 Live now variables: 
 
-JUMP TO main@beginwhile#@3
-Id: 68
+JUMP TO main@beginwhile#@1
+Id: 46
 Labels: 
-Predecessors: 67 
-Successors: 52 69 
+Predecessors: 45 
+Successors: 30 47 
 Used variables: 
 Defined variables: 
 Live in variables: main@dzielnik main@m main@n main@potega 
 Live out variables: main@dzielnik main@m main@n main@potega 
 Live now variables: 
 
-MOV main@n TO temp#16
-Id: 69
-Labels: main@endwhilejump#@4 
-Predecessors: 52 68 
-Successors: 70 
+MOV main@n TO temp#8
+Id: 47
+Labels: main@endwhilejump#@2 
+Predecessors: 30 46 
+Successors: 48 
 Used variables: main@n 
-Defined variables: temp#16 
+Defined variables: temp#8 
 Live in variables: main@n 
-Live out variables: main@n temp#16 
+Live out variables: main@n temp#8 
 Live now variables: 
 
-JUMP IF temp#16 == 1 TO main@ifelse#@6
-Id: 70
+JUMP IF temp#8 == 1 TO main@ifelse#@4
+Id: 48
 Labels: 
-Predecessors: 69 
-Successors: 71 74 
-Used variables: temp#16 
+Predecessors: 47 
+Successors: 49 52 
+Used variables: temp#8 
 Defined variables: 
-Live in variables: main@n temp#16 
+Live in variables: main@n temp#8 
 Live out variables: main@n 
 Live now variables: 
 
 WRITE main@n
-Id: 71
+Id: 49
 Labels: 
-Predecessors: 70 
-Successors: 72 
+Predecessors: 48 
+Successors: 50 
 Used variables: main@n 
 Defined variables: 
 Live in variables: main@n 
 Live out variables: 
 Live now variables: 
 
-MOV 1 TO temp#17
-Id: 72
+MOV 1 TO temp#9
+Id: 50
 Labels: 
-Predecessors: 71 
-Successors: 73 
+Predecessors: 49 
+Successors: 51 
 Used variables: 
-Defined variables: temp#17 
+Defined variables: temp#9 
 Live in variables: 
-Live out variables: temp#17 
+Live out variables: temp#9 
 Live now variables: 
 
-WRITE temp#17
-Id: 73
+WRITE temp#9
+Id: 51
 Labels: 
-Predecessors: 72 
-Successors: 74 
-Used variables: temp#17 
+Predecessors: 50 
+Successors: 52 
+Used variables: temp#9 
 Defined variables: 
-Live in variables: temp#17 
+Live in variables: temp#9 
 Live out variables: 
 Live now variables: 
 
 HALT
-Id: 74
-Labels: main@ifelse#@6 
-Predecessors: 70 73 
+Id: 52
+Labels: main@ifelse#@4 
+Predecessors: 48 51 
 Successors: 
 Used variables: 
 Defined variables: 
