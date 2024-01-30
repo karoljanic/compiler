@@ -14,6 +14,8 @@ INC a
 LOAD a
 PUT b
 GET b
+PUT c
+GET c
 DEC a
 DEC a
 DEC a
@@ -24,7 +26,7 @@ DEC a
 DEC a
 DEC a
 DEC a
-JPOS 38
+JPOS 40
 GET b
 WRITE 
 GET b

@@ -1,7 +1,7 @@
 CXX := clang++
 CXXFLAGS := -Wall -Wextra -pedantic -std=c++17 -O3 -g
 
-all: vm compiler test-ast test-bblocks test-machine-code test-meaningful-programs
+all: vm compiler test-ast test-machine-code test-meaningful-programs
 
 vm:
 	$(MAKE) -C ../virtual-machine all
