@@ -1,4 +1,6 @@
-# Compiler for simple language implemented from scratch with C++, Lex, Bison.
+## Compiler project
 
-## Implemented simple optimalisations and register allocation.
+#### Compiler for simple language implemented from scratch with C++, Lex, Bison.
+
+Implemented simple optimalisations and register allocation.
 
